@@ -1,0 +1,321 @@
+\ChapterImageStar[cap:caracterizacionGRID]{Caracterización del GRID}{./images/fondo.png}\label{cap:caracterizacionGRID}
+\mbox{}\\
+\noindent
+El Grupo de Investigación en Redes, Información y Distribución (\GRID) de la Universidad del Quindío se enmarca en los objetivos misionales de la institución: educación, investigación y extensión. Uno del los intereses particulares del \GRID es ofrecer servicios tecnológicos avanzados a la comunidad académica, con énfasis en los estudiantes de Ingeniería de Sistemas y Computación, quienes encuentran en este grupo un espacio de formación e innovación en temas de infraestructura, ingeniería de software y tecnologías emergentes.\\
+La caracterización del \GRID\ resulta esencial para comprender su estructura, capacidades y necesidades en relación con la expansión de un nuevo universo HTCondor. A continuación, se presenta un análisis de los diferentes aspectos que definen el contexto institucional y tecnológico del grupo.
+
+\section{Análisis de stakeholders del GRID}
+\noindent
+Con el fin de identificar los actores internos y externos que influyen en el desarrollo de las actividades del grupo, se realizó un análisis de \textit{stakeholders}. Este ejercicio permitió reconocer los diferentes intereses, roles y niveles de influencia que cada actor tiene en relación con la expansión de un nuevo universo HTCondor. Los principales \textit{stakeholders} identificados incluyen: investigadores del grupo, estudiantes de pregrado y posgrado, docentes de la Facultad de Ingeniería, y en un nivel más amplio, la comunidad académica de la Universidad del Quindío.
+\\
+\noindent
+La tabla \ref{tab:stakeholders} presenta el análisis de los principales interesados en la expansión de los universos HTCondor dentro del contexto institucional. Se identifican actores internos y externos, especificando su rol, el tipo de relación con el proyecto, el nivel de impacto esperado, así como su poder de influencia, interés y compromiso frente a la iniciativa.
+
+El análisis de interesados revela una estructura compleja de actores con distintos niveles de influencia y compromiso frente al proyecto. El Grupo de Investigación GRID emerge como el interesado crítico, concentrando simultáneamente el mayor impacto, poder de influencia, interés y compromiso. Esta posición central le otorga un rol determinante como beneficiario principal y tomador de decisiones, lo que subraya la necesidad de mantener una comunicación estrecha y continua con este grupo para asegurar la alineación del proyecto con sus expectativas estratégicas y operativas.
+
+Los docentes de Ingeniería de Sistemas y Computación y los investigadores locales y externos constituyen el segundo nivel de importancia, caracterizándose por un alto interés en la solución y un potencial significativo como usuarios finales. Aunque su poder de decisión es limitado, su adopción efectiva de la tecnología será fundamental para validar el éxito del proyecto. Este segmento requiere especial atención en términos de usabilidad, documentación y capacitación, dado que su compromiso está condicionado a la utilidad práctica y los beneficios tangibles que puedan obtener. La diferencia principal entre ambos grupos radica en que los investigadores externos representarían el segmento de usuarios más activo e intensivo de la infraestructura.
+
+El Programa de Ingeniería de Sistemas y Computación desempeña un rol estratégico como facilitador institucional con alto poder de influencia, particularmente en la provisión de recursos y la posibilidad de escalar la solución hacia otros programas académicos. Sin embargo, su compromiso relativamente bajo sugiere que será necesario demostrar claramente el valor estratégico e institucional del proyecto para asegurar su respaldo sostenido. Por otro lado, los estudiantes de pregrado presentan bajo impacto, poder e interés debido a la naturaleza especializada de la computación distribuida en el contexto académico de pregrado, lo que los posiciona como beneficiarios secundarios que validarán la solución más por uso ocasional que por dependencia operativa.
+
+Finalmente, la comunidad HTCondor y los investigadores en HTC y HPC representan un interesado externo con una relación simbiótica particular: aunque no tienen poder de decisión sobre el proyecto y su compromiso es bajo, su rol como proveedores de conocimiento técnico es de alto impacto. La documentación y experiencias generadas por el proyecto podrían contribuir al fortalecimiento del ecosistema HTCondor, creando un valor agregado que trasciende los objetivos locales del proyecto. Esta relación sugiere la conveniencia de establecer canales de comunicación con esta comunidad para compartir hallazgos y mejores prácticas.
+
+\input{tablas-images/cp1/definicionStakeholders.tex}
+
+\section{Priorización de stakeholders}
+Una vez realizada la identificación de los \textit{stakeholders}, se emprendió un proceso de priorización para determinar cuáles poseen mayor impacto y poder de decisión en el proyecto. Esta clasificación resulta crucial para establecer estrategias de comunicación, gestión de expectativas y participación activa en la definición de requerimientos. De esta manera, se busca que los actores más influyentes en la toma de decisiones y en la adopción tecnológica sean atendidos de forma prioritaria, aumentando las probabilidades de éxito en la implementación.
+
+\input{tablas-images/cp1/priorizacionStakeholders.tex}
+
+\section{Integrantes y áreas de trabajo del GRID}
+El \GRID\ está conformado por un equipo multidisciplinario de investigadores y profesionales que, desde sus diferentes áreas de experticia, contribuyen al avance en campos como computación de alto rendimiento, \textit{big data}, inteligencia artificial, redes de computadoras y desarrollo de software. A continuación, se presenta una lista de los integrantes actuales del grupo, junto con sus respectivas líneas de trabajo y áreas de especialización:
+\begin{itemize}
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000210897}{\underline{{\textbf{Christian Andrés Candela Uribe}}}}: Microservicios, desarrollo de software, minería de datos, infraestructura TI.\@
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001383939}{\underline{{\textbf{Luis Eduardo Sepúlveda Rodríguez}}}}: Infraestructura de TI, HPC, computación paralela.
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001343801}{\underline{{\textbf{Carlos Eduardo Gómez Montoya}}}}: Redes, ingeniería de software, cloud computing.
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001398775}{\underline{{\textbf{Sergio Augusto Cardona Torres}}}}: Big data y análisis de datos, ingeniería de software, sistemas adaptativos, informática educativa.
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000193550}{\underline{{\textbf{Sonia Jaramillo Valbuena}}}}: Big data, electroquímica, inteligencia artificial.
+	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000283495}{\underline{{\textbf{Julián Esteban Gutiérrez Posada}}}}: Microservicios, desarrollo de software, minería de datos, infraestructura TI, HPC, computación paralela, redes, ingeniería de software.
+\end{itemize}
+
+La diversidad de líneas de trabajo de los integrantes fortalece la capacidad del grupo para abordar proyectos de carácter transversal y multidisciplinario, lo cual resulta particularmente relevante para el diseño e implementación de soluciones arquitectónicas soportadas en tecnologías de virtualización.
+
+\section{Misión del GRID}
+La misión del GRID es heredada de la Universidad del Quindío. A continuación se presenta la misión del GRID:\@
+
+\begin{quote}
+	\textit{La Universidad del Quindío contribuye a la transformación de la sociedad, mediante la formación integral desde el ser, el saber y el hacer, de líderes reflexivos y gestores del cambio; con estándares de calidad, a través de una oferta de formación en diferentes metodologías, que responda a una sociedad basada en el conocimiento; una investigación pertinente, que aporte a la solución de las problemáticas del desarrollo e integrada con la extensión y proyección social; educando en tiempos del posconflicto y de la consolidación de la paz, apoyada en una gestión creativa y con estándares de calidad.}
+\end{quote}
+
+A partir de esta misión, se identifican los siguientes pilares fundamentales:
+
+\begin{itemize}
+	\item \textbf{Docencia:} La Universidad del Quindío contribuye a la transformación de la sociedad, mediante la formación integral desde el ser, el saber y el hacer, de líderes reflexivos y gestores del cambio; con estándares de calidad, a través de una oferta de formación en diferentes metodologías, que responda a una sociedad basada en el conocimiento.
+
+	\item \textbf{Investigación:} Una investigación pertinente, que aporte a la solución de las problemáticas del desarrollo e integrada con la extensión y proyección social.
+
+	\item \textbf{Extensión y Desarrollo Social:} Apoyada en una gestión creativa y con estándares de calidad.
+
+	\item \textbf{Responsabilidad Social:} Educando en tiempos del posconflicto y de la consolidación de la paz.
+\end{itemize}
+
+\section{Visión del GRID}
+La misión de la Universidad del Quindío se complementa con su visión institucional, la cual también es adoptada por el \GRID. A continuación se presenta la visión del \GRID:\@
+
+\begin{quote}
+	\textit{En el año 2025, la Universidad del Quindío estará consolidada como una institución \textit{Pertinente --- Creativa --- Integradora}, acreditada de alta calidad, con reconocimiento nacional e internacional en sus procesos de formación a través de diferentes metodologías, de investigación, extensión, proyección y responsabilidad social.}
+\end{quote}
+
+A partir de esta visión, se destacan los siguientes enfoques estratégicos:
+
+\begin{itemize}
+	\item \textbf{Gestión:} La Universidad del Quindío estará consolidada como una institución \textit{Pertinente --- Creativa --- Integradora}.
+
+	\item \textbf{Docencia:} Acreditada de alta calidad en sus procesos de formación a través de diferentes metodologías.
+
+	\item \textbf{Investigación:} Consolidada como pertinente y de alta calidad en sus procesos de investigación.
+
+	\item \textbf{Extensión y Desarrollo Social:} Procesos creativos e integradores en proyección social.
+
+	\item \textbf{Responsabilidad Social:} Reconocimientos en sus procesos de responsabilidad social.
+\end{itemize}
+
+\section{Impacto del proyecto en el GRID}
+La ampliación de la infraestructura HTCondor mediante la incorporación de un nuevo universo representa un impacto estratégico multidimensional para el Grupo de Investigación GRID. Este proyecto constituye un avance decisivo en la consolidación de una infraestructura de computación distribuida más amplia y capaz, lo que incrementa la competitividad del \GRID en el ámbito de la computación distribuida y de alta productividad. Además, esta expansión podría ayudar a fortalecer el posicionamiento del grupo como referente regional en tecnologías HTC y potenciar su capacidad para establecer colaboraciones interuniversitarias tanto a nivel nacional como internacional.
+
+
+%%%%% ##############################################################################################################################
+%%%%% ##############################################################################################################################
+%%%%% ##############################################################################################################################
+%%%%% #############################################################################################################################
+
+
+\section{Caracterización de la infraestructura de computación distribuida del GRID}
+\noindent
+En la presente sección se especificarán las características técnicas actuales de la infraestructura de computación distribuida HTCondor del grupo \GRID.
+
+
+% !TODO Verificar el conteo real de la máquinas.
+\subsection{Clúster de máquinas Raspberry-Pi}\label{sec:cluster-raspberry}
+\noindent
+
+Actualmente, el grupo \GRID cuenta con un clúster compuesto por computadoras Raspberry Pi, distribuidas en nueve torres identificadas como \textbf{Torre 1} a \textbf{Torre 9}. Cada torre contiene siete equipos, con excepción de la Torre 1, que posee únicamente dos: uno opera como nodo maestro y el otro como nodo de envío de tareas. Los equipos restantes de las demás torres funcionan como nodos ejecutores.
+\\
+Si bien el \GRID posee nueve torres de equipos Raspberry-Pi, la torre novena se encuentra en funcionamiento. \\
+\input{tablas-images/raspberries/specs.tex}
+
+% Tabla con especificacioens de técnicas de las Raspberry-Pi
+En la tabla \ref{table:raspberries-pi-specs} se pueden evidenciar las especificaciones técnicas de las máquinas disponibles para la infraestructura HTCondor del \GRID.
+\\
+
+
+%%#################################  FOTOS TORRES  #########################################
+%Image de las Raspberry-Pi
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.07]{tablas-images/raspberries/torres-raspberries.jpg}
+	\caption{Vista general de las maquinas Raspberry-Pi}
+	\label{fig:foto-torres-rasp}
+\end{figure}
+
+
+\noindent
+En la figura \ref{fig:foto-torres-rasp} se muestra la imagen de las siete torres de Raspberry-Pi localizadas en la oficina del tercer piso de ingeniería. A continuación se muestran las demás torres individualmente.
+
+
+%Torre BINARIA
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.065]{tablas-images/raspberries/torre-binaria.jpeg}
+	\caption{Vista general de las máquinas \textit{submit } y \textit{master}}
+	\label{fig:foto-torre-binaria}
+\end{figure}
+
+
+% ####################################################################################################
+
+\noindent
+En la figura \ref{fig:foto-torre-binaria} se muestran las máquinas \textit{submit } y \textit{master} de clúster HTCondor.
+
+\noindent
+Como se puede evidenciar en las figuras \ref{fig:foto-torres-rasp} y \ref{fig:foto-torre-binaria}, cada máquina perteneciente a una torre está conectada a un \textit{switch}. Las especificaciones de dicho \textit{switch} se mencionan en la tabla \ref{table:mini-switch}.
+
+\input{tablas-images/raspberries/mini-switch.tex}
+
+
+\subsection{Ambientes de ejecución de la infraestructura HTCondor del \GRID}
+\noindent{}
+De acuerdo con la documentación oficial de HTCondor \citep{HTCondor-choosing-universe}, un universo se define como el ambiente de ejecución en el cual se lleva a cabo un trabajo. Al momento del desarrollo de la presente investigación, HTCondor contempla nueve universos disponibles: \textit{vanilla, grid, java, scheduler, local, parallel, vm, container} y \textit{docker}. Cada trabajo demanda, en función de sus características particulares, condiciones específicas de ejecución. A modo de ejemplo, un trabajo constituido por un programa desarrollado en lenguaje Java puede obtener ventajas significativas mediante la utilización del universo Java, lo cual facilita al usuario la configuración del ambiente de ejecución requerido.
+
+Hasta el momento, la configuración de HTCondor del \GRID únicamente incorpora el universo vanilla, el cual está orientado a la ejecución no especializada de programas. En otras palabras, se trata de un universo de propósito general en el que los scripts de Shell han demostrado ser particularmente efectivos \citep{HTCondor-choosing-universe}.
+
+
+\subsection{Servicios actuales de computación distribuida}
+\noindent
+Los servicios actuales de el grupo \GRID se orientan principalmente hacia la provisión de infraestructura de \TI, abarcando máquinas virtuales, soluciones de almacenamiento y configuración de redes. No obstante, la computación distribuida constituye un dominio especializado que demanda competencias técnicas avanzadas por parte de los usuarios. En consecuencia, si bien el grupo ha desarrollado capacidades en esta área, aún no se ha consolidado una oferta formal de servicios de computación distribuida de acceso público para la comunidad académica institucional.
+
+% !TODO PREGUNTA PARA EL PROFE: Aquí hago una declaración temeraria sobre la universidad que neceisto confirmar
+% Se han ofrecido servicios de computación identifica en el grupo grid que hayan estado disponibles para otros grupos o para 
+% los mismo estudiantes de la universidad? 
+%
+\subsection{Servicios de computación distribuida esperados}
+\noindent
+Dado que no se ha establecido previamente un servicio de computación distribuida basado en HTCondor con acceso abierto para la comunidad educativa, resulta necesario identificar los potenciales beneficiarios que podrían aprovechar esta tecnología. Como señalan \cite{Wilson2016}, la computación se ha consolidado como un componente crítico del proceso científico en prácticamente todas las disciplinas, independientemente de su orientación hacia la experimentación o la simulación computacional. En este contexto, los usuarios que obtendrían mayor beneficio de la implementación de un servicio de computación distribuida serían aquellos cuyas actividades académicas o investigativas demanden capacidades de procesamiento intensivo para la obtención de resultados científicos. Por consiguiente, se estima que los principales beneficiarios de esta infraestructura serían tanto los estudiantes, quienes podrían fortalecer significativamente su proceso formativo mediante el acceso a una ambiente de computación distribuida, como los grupos de investigación institucionales, que verían ampliadas sus capacidades para desarrollar proyectos de mayor envergadura computacional. En la tabla \ref{table:servicio-htcondor} se especifica cómo podría verse un servicio de computación de alta productividad basado en HTCondor.
+
+\begin{table}[H]
+	\centering
+	\sffamily\scriptsize
+	\setlength{\tabcolsep}{4pt}
+	\renewcommand{\arraystretch}{1.3}
+	\caption{Caracterización del servicio de computación distribuida HTCondor esperado para el GRID}
+	\label{table:servicio-htcondor}
+	\begin{tabular}{|p{0.28\textwidth}|p{0.67\textwidth}|}
+		\hline
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{DESCRIPCIÓN GENERAL DEL SERVICIO}}                                                                                                                                                                                            \\ \hline
+
+		\textbf{NOMBRE DEL SERVICIO}       & Servicio de Computación Distribuida HTCondor                                                                                                                                                                                             \\ \hline
+		\textbf{TIPO DE SERVICIO}          & Servicio de educación, investigación y extensión universitaria                                                                                                                                                                           \\ \hline
+		\textbf{HORARIO DE DISPONIBILIDAD} & 24/7 (Disponibilidad continua)                                                                                                                                                                                                           \\ \hline
+
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{OBJETIVOS Y ALCANCE}}                                                                                                                                                                                                         \\ \hline
+
+		\textbf{PROPÓSITO}                 &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			Proveer infraestructura de computación de alta productividad (\HTC) para la ejecución de tareas computacionales intensivas y paralelas, facilitando el procesamiento distribuido de cargas de trabajo científicas y académicas
+			\vspace{2pt}
+		\end{minipage}                                                 \\ \hline
+
+		\textbf{USUARIOS OBJETIVO}         &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• Estudiantes de pregrado y posgrado \\
+			• Grupos de investigación institucionales \\
+			• Docentes investigadores \\
+			• Comunidad académica UQ
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                                     \\ \hline
+
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{ESPECIFICACIONES TÉCNICAS}}                                                                                                                                                                                                   \\ \hline
+
+		\textbf{RECURSOS DE HARDWARE}      &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• Clúster de máquinas Raspberry Pi \\
+			• Máquinas virtuales especializadas \\
+			• Infraestructura de red dedicada
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                                           \\ \hline
+
+		\textbf{TECNOLOGÍAS}               &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• HTCondor (High Throughput Computing) \\
+			• Sistemas de virtualización \\
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                                        \\ \hline
+
+		\textbf{CAPACIDADES}               &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• Procesamiento paralelo de tareas independientes \\
+			• Gestión automática de recursos \\
+			• Balanceo de carga dinámico \\
+			• Tolerancia a fallos
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                             \\ \hline
+
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{APLICACIONES Y BENEFICIOS}}                                                                                                                                                                                                   \\ \hline
+
+		\textbf{CASOS DE USO}              &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• Simulaciones científicas y modelado matemático \\
+			• Procesamiento de datos masivos (Big Data) \\
+			• Renderización de video y gráficos \\
+			• Análisis bioinformático y genómico \\
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                              \\ \hline
+
+		\textbf{IMPACTO ESPERADO}          &
+		\begin{minipage}[t]{\linewidth}
+			\vspace{2pt}
+			• Fortalecimiento de capacidades investigativas \\
+			• Democratización del acceso a recursos HTC \\
+			• Apoyo a formación en computación distribuida \\
+			• Incremento en productividad científica \\
+			• Posicionamiento institucional en \HTC
+			\vspace{2pt}
+		\end{minipage}                                                                                                                                                                                                                               \\ \hline
+
+		\rowcolor{gray!15} \multicolumn{2}{|l|}{\textbf{CONTRIBUCIÓN:} Expansión de universos HTCondor para mayor versatilidad}                                                                                                                                                       \\ \hline
+		\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{OBSERVACIONES:} Servicio orientado a democratizar el acceso a recursos de computación de alto rendimiento para la comunidad académica, fortaleciendo las capacidades investigativas y formativas de la Universidad del Quindío.} \\ \hline
+	\end{tabular}
+\end{table}
+\section{Descripción de la oportunidad}
+\noindent
+La implementación de un nuevo universo HTCondor en la infraestructura del grupo GRID representa una oportunidad estratégica de considerable valor tanto para la comunidad académica de la Universidad del Quindío como para los grupos de investigación locales y externos. En primer lugar, esta ampliación abrirá el paso para que diversos grupos de investigación de la institución accedan a capacidades computacionales especializadas más diversas, democratizando así el uso de tecnologías de computación distribuida para disciplinas que requieren procesamiento intensivo de datos, tales como la bioinformática, el análisis de big data, el aprendizaje profundo y la simulación científica. En segundo lugar, desde una perspectiva formativa, la incorporación de este nuevo universo constituye una oportunidad para que los estudiantes de pregrado y posgrado adquieran competencias prácticas en computación de alto rendimiento (\HTC), un campo con limitada documentación y experiencias de implementación documentadas en el contexto colombiano. Adicionalmente, esta iniciativa ayudaría al posicionamiento del \GRID como un referente en computación distribuida a nivel nacional, facilitando la colaboración interinstitucional y el desarrollo de proyectos conjuntos con otras universidades e instituciones de investigación. Finalmente, la consolidación de una infraestructura HTCondor más robusta y versátil contribuye directamente a la competitividad investigativa de la Universidad del Quindío, optimizando el aprovechamiento de recursos computacionales disponibles y generando capacidades técnicas diferenciadas que pueden traducirse en publicaciones científicas, proyectos de mayor envergadura y fortalecimiento de las líneas de investigación institucionales.
+
+
+\section{Entrevista con integrante del grupo \GRID}
+
+Para comprender mejor las necesidades y expectativas del GRID, se realizó una entrevista con uno de sus miembros
+
+Entrevistado: Luis Eduardo Sepúlveda Rodríguez.\\
+Duración: 15 minutos.\\
+Link: \href{https://drive.google.com/file/d/1pZQHdHK-V-Hveej2DyTEszdBkFUaQdyy/view?usp=sharing}{click aquí}.\\
+Entrevistadores: Juan Esteban Castaño Osma, Juan Esteban Parra Parra.\\
+
+Se formularon preguntas sobre la alineación misional de la universidad con el clúster HTCondor actual, la visión a largo plazo para dicho clúster y los desafíos técnicos enfrentados.
+
+La lista de preguntas es como sigue:
+
+\begin{enumerate}
+	\item Como está expuesto en el objetivo misional de GRID, este ha investigado en computación distribuida. ¿Podría contarnos cuál fue la motivación inicial o el problema específico que llevó al grupo a adoptar HTCondor en lugar de otras tecnologías?
+	\item ¿Cuál es la visión a largo plazo para este clúster? ¿Se aspira a que se convierta en un servicio para otros grupos de investigación de la universidad o incluso externos?
+	\item ¿De qué manera la consolidación y ampliación de la infraestructura HTCondor se alinea con los objetivos de misionales de la Universidad del Quindío?
+	\item Actualmente, ¿quiénes son los principales usuarios del clúster HTCondor ¿cuáles han sido los desafíos técnicos u operativos más recurrentes que han enfrentado dichos usuarios?
+	\item Pensando en las líneas de investigación de GRID y sus colaboradores, ¿qué necesidades computacionales no se están pudiendo cubrir con la configuración actual?
+	\item El proyecto se centra en ampliar la infraestructura añadiendo un nuevo 'Universo'. Desde su perspectiva, ¿cuál es la principal oportunidad que esta ampliación representa para el grupo? ¿Qué nuevas capacidades esperan obtener?
+	\item El alcance del proyecto indica que el prototipo se implementará como un prototipo funcional. Si este exitoso, ¿cuáles serían los siguientes pasos o consideraciones para integrarlo en la infraestructura física del GRID?
+\end{enumerate}
+
+\subsection{Resumen de la entrevista}
+
+El siguiente es un resumen de lo expresado por el doctor Luis Eduardo Sepúlveda en respuesta a las preguntas listadas anteriormente.
+
+\subsubsection{Motivación para adoptar HTCondor}
+
+La adopción de HTCondor se produjo por afinidad temática, gracias a la guía del Dr. John Alexander Sanabria Ordóñez de la Universidad del Valle. El Dr. Sanabria fue un precursor de la iniciativa GRID Colombia, que hace más de 20 años promovió el uso generalizado de sistemas distribuidos en el país. La Universidad del Quindío, junto con la Universidad del Valle, ha logrado replicar estas tecnologías, buscando hacer un proceso de ``adopción digital'' a otras universidades con afinidad temática.
+
+
+
+\subsubsection{Visión a largo plazo para el clúster}
+
+La visión principal es generar conocimiento suficiente en el grupo \GRID para garantizar la mantenibilidad del sistema distribuido. El objetivo es que este clúster se convierta en un servicio para otros grupos de investigación de la universidad (física, química, biomédicas, etc.) que requieran cómputo intensivo o supercomputación. El sistema opera como un escenario de pruebas gratuito e intermediario, permitiendo que los grupos validen y afinen sus algoritmos antes de dar el salto a centros de supercomputación de pago. Esto asegura que el ``salto hacia un sistema de pago en supercomputación sea más natural y eficiente''.
+
+
+\subsubsection{Alineación con los objetivos misionales de la Universidad del Quindío}
+
+La infraestructura HTCondor se alinea principalmente con la investigación. A través de la extensión y proyección social, el grupo GRID pone a disposición el conocimiento gestado en procesos académicos para que otros grupos la utilicen, funcionando como una infraestructura que les permite avanzar en sus necesidades particulares de investigación.
+
+
+
+\subsubsection{Usuarios actuales y desafíos recurrentes}
+
+Actualmente, los principales usuarios son estudiantes de trabajos de grado que realizan pruebas funcionales para generar el conocimiento de base necesario para operar y mantener la infraestructura. El clúster aún no se ha abierto a servicios externos, aunque ha tenido intervenciones puntuales de prueba con el Observatorio Sismológico del Quindío y un grupo de química. Los desafíos más recurrentes son los retos técnicos inherentes a la comprensión y mantenimiento de un sistema distribuido, pero se espera que las guías de adaptación desarrolladas por los estudiantes minimicen esta complejidad a futuro.
+
+
+\subsubsection{Necesidades computacionales no cubiertas actualmente}
+
+La configuración inicial contaba únicamente con el universo \textit{vanilla}, que aunque este universo es versátil, limita ciertas tareas específicas al no aprovechar la paralelización. Existía la necesidad de diversificar las alternativas y realizar un estudio formal para identificar oportunidades que HTCondor pudiese proveer, como la inclusión del universo \textit{parallel} y el universo \textit{Grid}. Estos nuevos universos complementan las capacidades existentes, evitando sesgos en la exploración y permitiendo el uso de paralelización.
+
+
+\subsubsection{Oportunidad de la ampliación (nuevo universo)}
+
+La principal oportunidad que representa esta ampliación es la diversificación de capacidades y el aumento de la competitividad frente a otras iniciativas similares. Al contar con más universos, se tienen más posibilidades. Esto cimenta la capacidad para resolver problemas puntuales de futuros clientes, como grupos de biomédicas que podrían necesitar paralelismo o lenguajes específicos para tareas como la secuencia de un genoma.
+
+
+\subsubsection{Pasos para la integración a la infraestructura física}
+
+Dado que la infraestructura física actual utiliza tecnología anterior (Raspberry versión 3, existiendo actualmente la versión 5), la prioridad es que los documentos de entrega (guías de adaptación) del prototipo sean suficientemente claros. Esta claridad permitirá realizar migraciones de forma muy natural hacia ambientes productivos y más cómodos cuando las capacidades de infraestructura física maduren. Para el grupo, es de gran valor contar con estas guías que permitan vencer rápidamente el reto de implementación de un HTCondor funcional.
+

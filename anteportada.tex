@@ -1,0 +1,35 @@
+\AddToShipoutPicture*{\BackgroundPic}
+\begin{titlepage}
+	\thispagestyle{empty} % quita encabezados/pies de página
+
+	\vspace*{0.0cm}
+	\noindent
+	\begin{minipage}{\textwidth}
+		\centering
+		{\LARGE\bfseries \mytitlea}\\[1em]
+		{\LARGE\bfseries \mytitleb}\\[1em]
+		{\LARGE\bfseries \mytitlec}\\[1em]
+		{\LARGE\bfseries \mytitled}
+	\end{minipage}
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=west] at ([xshift=8cm,yshift=-19cm]current page.north west)
+		{\normalsize \myname };
+	\end{tikzpicture}
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=west] at ([xshift=9cm,yshift=-19.5cm]current page.north west)
+		{\small Cc: \matricle};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=west] at ([xshift=8cm,yshift=-21cm]current page.north west)
+		{\normalsize \mynameb};
+	\end{tikzpicture}
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[anchor=west] at ([xshift=9cm,yshift=-21.5cm]current page.north west)
+		{\small Cc: \matricleb};
+	\end{tikzpicture}
+	\clearpage % fuerza nueva página después
+\end{titlepage}
+\ClearShipoutPicture 

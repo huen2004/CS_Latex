@@ -1,0 +1,15 @@
+% redefinimos temporalmente el nombre del TOC
+\renewcommand{\contentsname}{} % sin título automático
+
+% portada bonita sin numeración de página
+\ChapterImagePrelim{Índice general}{./images/fondo.png}
+\vspace*{-3cm}
+% ahora el índice sin entrada ni salto extra
+\begingroup
+\renewcommand{\addcontentsline}[3]{} % no añade entrada
+\let\clearpage\relax
+\let\cleardoublepage\relax
+% Reducir el espacio entre líneas del índice
+\setlength{\parskip}{0.3em}  % Menos espacio entre párrafos para el TOC
+\tableofcontents
+\endgroup

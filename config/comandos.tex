@@ -1,0 +1,496 @@
+
+% Configuración del tamaño de secciones y subsecciones
+\titleformat{\section}
+{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% ##### Forar más espacio entre parrafos ########
+
+\setlength{\parskip}{0.7em}  % Space between paragraphs
+\setlength{\parindent}{0pt}  % Remove paragraph indentation (optional)
+
+% ##### Configuración de espaciado en listas ########
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0.3em, parsep=0pt, topsep=-0.1em, partopsep=0pt}
+\setlist[enumerate]{itemsep=0.3em, parsep=0pt, topsep=0.1em, partopsep=0pt}
+%############################
+
+%############################
+
+
+\input{config/variables.tex}
+
+% Configuración de encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{} % Limpia todos los encabezados y pies
+\renewcommand{\headrulewidth}{0pt} % Sin línea en el encabezado
+\renewcommand{\footrulewidth}{0pt} % Sin línea en el pie
+
+% Configuración del banner inferior desde la página 1
+% Ajustes de posición en puntos (1pt ≈ 1 pixel a 72 DPI)
+\newcommand{\bannerHeight}{68.16pt} % 2.4cm = 68.16pt
+\newcommand{\bannerXOffset}{0pt} % Desplazamiento horizontal del banner
+\newcommand{\bannerYOffset}{0pt} % Desplazamiento vertical del banner
+\newcommand{\pageNumXOffset}{28.35pt} % 1cm = 28.35pt - posición X del número
+\newcommand{\pageNumYOffset}{35.05pt} % 3cm = 85.05pt - posición Y del número
+
+\fancyfoot[C]{%
+	\begin{tikzpicture}[remember picture, overlay]
+		% Banner que ocupa todo el ancho de la página
+		\node[anchor=south, inner sep=0pt] at ([xshift=\bannerXOffset, yshift=\bannerYOffset]current page.south) {%
+			\includegraphics[width=\paperwidth, height=\bannerHeight]{./images/banner-inferior.png}%
+		};
+		% Número de página sobre la imagen en la esquina inferior izquierda
+		\node[anchor=south west, text=black, font=\bfseries]
+		at ([xshift=\pageNumXOffset, yshift=\pageNumYOffset]current page.south west) {\thepage};
+	\end{tikzpicture}%
+}
+
+% ##### Custom Figure Commands ########
+
+% Custom command for figures with shadow box
+% Usage: \shadowfigure{image_path}{caption_text}{label}
+\newcommand{\shadowfigure}[3]{
+	\begin{figure}[H]
+		\centering
+		\begin{tcolorbox}[
+				colback=white,
+				colframe=gray!50,
+				boxrule=1pt,
+				arc=2pt,
+				boxsep=5pt,
+				left=3pt,
+				right=3pt,
+				top=3pt,
+				bottom=3pt,
+				drop shadow
+			]
+			\includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+		\end{tcolorbox}
+		\caption{#2}\label{#3}
+	\end{figure}
+}
+
+% Custom command with auto-generated label (only 2 parameters)
+% Usage: \shadowfig{image_path}{caption_text}
+\newcommand{\shadowfig}[2]{
+	\begin{figure}[H]
+		\centering
+		\begin{tcolorbox}[
+				colback=white,
+				colframe=gray!50,
+				boxrule=1pt,
+				arc=2pt,
+				boxsep=5pt,
+				left=3pt,
+				right=3pt,
+				top=3pt,
+				bottom=3pt,
+				drop shadow
+			]
+			\includegraphics[width=0.95\textwidth,keepaspectratio]{#1}
+		\end{tcolorbox}
+		\caption{#2}
+	\end{figure}
+}
+
+% Custom command with optional width parameter
+% Usage: \shadowfigurewidth[0.8]{image_path}{caption_text}{label}
+% Default width is 0.95 if not specified
+\newcommand{\shadowfigurewidth}[4][0.95]{
+	\begin{figure}[H]
+		\centering
+		\begin{tcolorbox}[
+				colback=white,
+				colframe=gray!50,
+				boxrule=1pt,
+				arc=2pt,
+				boxsep=5pt,
+				left=3pt,
+				right=3pt,
+				top=3pt,
+				bottom=3pt,
+				drop shadow
+			]
+			\includegraphics[width=#1\textwidth,keepaspectratio]{#2}
+		\end{tcolorbox}
+		\caption{#3}\label{#4}
+	\end{figure}
+}
+
+%############################
+
+
+% ################## Babel mod for tables  ##################
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
+
+
+
+
+% ################## SIGLAS ##################
+
+% Marcador para la sección de Siglas
+\newcommand{\siglaref}{\hyperref[cap:siglas]{\nameref{cap:siglas}}}
+
+% Ahora definimos cada sigla con enlace hacia la lista
+\newcommand{\HTC}{\hyperref[cap:siglas]{HTC}\xspace}
+\newcommand{\CMMI}{\hyperref[cap:siglas]{CMMI}\xspace}
+\newcommand{\CPU}{\hyperref[cap:siglas]{CPU}\xspace}
+\newcommand{\DAR}{\hyperref[cap:siglas]{DAR}\xspace}
+\newcommand{\GRID}{\hyperref[cap:siglas]{GRID}\xspace}
+\newcommand{\IT}{\hyperref[cap:siglas]{IT}\xspace}
+\newcommand{\SMS}{\hyperref[cap:siglas]{SMS}\xspace}
+\newcommand{\VBC}{\hyperref[cap:siglas]{VBC}\xspace}
+\newcommand{\TI}{\hyperref[cap:siglas]{TI}\xspace}
+\newcommand{\PMV}{\hyperref[cap:siglas]{PMV}\xspace}
+\newcommand{\PMBOK}{\hyperref[cap:siglas]{PMBOK}\xspace}
+\newcommand{\ISO}{\hyperref[cap:siglas]{ISO}\xspace}
+\newcommand{\CNCF}{\hyperref[cap:siglas]{CNCF}\xspace}
+\newcommand{\TOGAF}{\hyperref[cap:siglas]{TOGAF}\xspace}
+\newcommand{\IEC}{\hyperref[cap:siglas]{IEC}\xspace}
+\newcommand{\CS}{\hyperref[cap:siglas]{CS}\xspace}
+\newcommand{\CLI}{\hyperref[cap:siglas]{CLI}\xspace}
+\newcommand{\UI}{\hyperref[cap:siglas]{UI}\xspace}
+\newcommand{\HPC}{\hyperref[cap:siglas]{HPC}\xspace}
+\newcommand{\AWS}{\hyperref[cap:siglas]{AWS}\xspace}
+\newcommand{\OCI}{\hyperref[cap:siglas]{OCI}\xspace}
+\newcommand{\VM}{\hyperref[cap:siglas]{VM}\xspace}
+\newcommand{\OS}{\hyperref[cap:siglas]{OS}\xspace}
+\newcommand{\PMI}{\hyperref[cap:siglas]{PMI}\xspace}
+\newcommand{\CPD}{\hyperref[cap:siglas]{CPD}\xspace}
+\newcommand{\NPO}{\hyperref[cap:siglas]{NPO}\xspace}
+\newcommand{\MPI}{\hyperref[cap:siglas]{MPI}\xspace}
+\newcommand{\SCI}{\hyperref[cap:siglas]{SCI}\xspace}
+\newcommand{\CVI}{\hyperref[cap:siglas]{CVI}\xspace}
+\newcommand{\IRRQ}{\hyperref[cap:siglas]{IRRQ}\xspace}
+\newcommand{\DOFA}{\hyperref[cap:siglas]{DOFA}\xspace}
+\newcommand{\TDD}{\hyperref[cap:siglas]{TDD}\xspace}
+\newcommand{\IPC}{\hyperref[cap:siglas]{IPC}\xspace}
+\newcommand{\JSON}{\hyperref[cap:siglas]{JSON}\xspace}
+\newcommand{\API}{\hyperref[cap:siglas]{API}\xspace}
+\newcommand{\UML}{\hyperref[cap:siglas]{UML}\xspace}
+\newcommand{\CSS}{\hyperref[cap:siglas]{CSS}\xspace}
+\newcommand{\JS}{\hyperref[cap:siglas]{JS}\xspace}
+\newcommand{\HTML}{\hyperref[cap:siglas]{HTML}\xspace}
+\newcommand{\CVS}{\hyperref[cap:siglas]{CVS}\xspace}
+\newcommand{\HTTP}{\hyperref[cap:siglas]{HTTP}\xspace}
+
+\newcommand{\HTCondor}{\hbox{HTCondor}} %Para que LaTex no corte la palabra en los saltos de linea
+
+
+% ####################################################
+
+
+% ################## COMANDOS ESTILISTICOS ##################
+\newcommand{\ie}{\textit{i.e.}\xspace}
+% ####################################################
+
+% ################## DOI HYPERLINKS FOR SPS TABLE ##################
+% Custom commands to create hyperlinks for SPS citations to their DOI URLs
+
+\newcommand{\spslink}[2]{\href{https://doi.org/#2}{[#1]}}
+
+%##### SECCION COMANDOS SPS #################
+% SPS DOI mappings based on the original table structure
+\newcommand{\spsone}{\spslink{1}{10.1016/j.future.2004.05.011}}              % Selikhov2005
+\newcommand{\spstwo}{\spslink{2}{10.1016/j.procs.2015.04.099}}               % Venkataraman2015
+\newcommand{\spsthree}{\spslink{3}{10.1145/2016741.2016786}}                 % Padmanabhan2011
+\newcommand{\spsfour}{\spslink{4}{10.1145/3594539}}                          % 10.1145/3594539
+\newcommand{\spsfive}{\spslink{5}{10.1007/s10723-012-9222-7}}                % Wu2012
+\newcommand{\spssix}{\spslink{6}{10.1016/j.jpdc.2007.08.010}}                % Korkhov2008
+\newcommand{\spsseven}{\spslink{7}{10.1007/s10723-010-9172-x}}               % Anand2011
+\newcommand{\spseight}{\spslink{8}{10.1007/s10723-010-9176-6}}               % Altunay2011
+\newcommand{\spsnine}{\spslink{9}{10.1007/s10723-015-9329-8}}                % Liu2015
+\newcommand{\spsten}{\spslink{10}{10.1145/3407947.3407977}}                  % Wang2020
+\newcommand{\spseleven}{\spslink{11}{10.1016/j.future.2019.05.062}}          % 10.1016/j.future.2019.05.062
+\newcommand{\spstwelve}{\spslink{12}{10.1109/GCE.2014.8}}                    % 10.1109/GCE.2014.8
+\newcommand{\spsthirteen}{\spslink{13}{10.1109/CCGrid.2015.123}}             % Quang2015
+\newcommand{\spsfourteen}{\spslink{14}{10.1016/S0167-739X(02)00085-7}}       % Abramson2002
+\newcommand{\spsfifteen}{\spslink{15}{10.1007/s11227-015-1564-z}}            % Saad2016
+\newcommand{\spssixteen}{\spslink{16}{10.1016/j.jpdc.2005.06.022}}           % Butt2006
+\newcommand{\spsseventeen}{\spslink{17}{10.1145/1566445.1566492}}            % 10.1145/1566445.1566492
+\newcommand{\spseighteen}{\spslink{18}{10.1145/2480741.2480754}}             % Grehant2013
+\newcommand{\spsnineteen}{\spslink{19}{10.1016/j.future.2017.11.007}}        % 10.1016/j.future.2017.11.007
+\newcommand{\spstwenty}{\spslink{20}{10.1016/j.future.2008.09.010}}          % Curran2009
+\newcommand{\spstwentyone}{\spslink{21}{10.1007/s41781-023-00101-0}}         % Cai2023
+\newcommand{\spstwentytwo}{\spslink{22}{10.1109/CCGrid.2016.57}}             % Chard2016
+\newcommand{\spstwentythree}{\spslink{23}{10.1007/s10723-012-9207-6}}        % Juve2012
+\newcommand{\spstwentyfour}{\spslink{24}{10.1016/j.procs.2012.04.191}}       % Zarza2012
+\newcommand{\spstwentyfive}{\spslink{25}{10.1016/j.future.2021.03.017}}      % DomizziSanchez-Gallegos2021
+\newcommand{\spstwentysix}{\spslink{26}{10.1109/DataCloud.2016.004}}         % Filgueira2017
+\newcommand{\spstwentyseven}{\spslink{27}{10.1145/3491418.3535123}}          % Sfiligoi2022
+\newcommand{\spstwentyeight}{\spslink{28}{10.1145/2110486.2110494}}          % Lenards2011
+\newcommand{\spstwentynine}{\spslink{29}{10.1145/3491418.3535135}}           % Belgin2022
+\newcommand{\spsthirty}{\spslink{30}{10.1016/j.jbi.2014.01.005}}             % 10.1016/j.jbi.2014.01.005
+\newcommand{\spsthirtyone}{\spslink{31}{10.14778/1453856.1453865}}           % 10.14778/1453856.1453865
+\newcommand{\spsthirtytwo}{\spslink{32}{10.1109/EduHPC.2016.008}}            % 10.5555/3018088.3018092
+\newcommand{\spsthirtythree}{\spslink{33}{10.1109/HPDC.2001.945176}}         % Frey2001
+\newcommand{\spsthirtyfour}{\spslink{34}{10.1186/s13677-021-00231-z}}        % Zhou2021
+\newcommand{\spsthirtyfive}{\spslink{35}{10.1145/3219104.3219145}}           % Belkin2018
+\newcommand{\spsthirtysix}{\spslink{36}{10.1016/j.jss.2017.01.007}}          % 10.1016/j.jss.2017.01.007
+\newcommand{\spsthirtyseven}{\spslink{37}{10.1109/TSE.2022.3229221}}         % Zhou2023a
+\newcommand{\spsthirtyeight}{\spslink{38}{10.1007/s11227-022-04848-y}}       % 10.1007/s11227-022-04848-y
+\newcommand{\spsthirtynine}{\spslink{39}{10.1145/3311790.3396625}}           % 10.1145/3311790.3396625
+\newcommand{\spsforty}{\spslink{40}{10.1007/s10723-009-9137-0}}              % Urbah2009
+\newcommand{\spsfortyone}{\spslink{41}{10.1016/j.future.2022.04.014}}        % Ejarque2022
+\newcommand{\spsfortytwo}{\spslink{42}{10.1016/j.future.2022.01.024}}        % 10.1016/j.future.2022.01.024
+\newcommand{\spsfortythree}{\spslink{43}{10.1177/00375497241233284}}         % Gibson2024
+\newcommand{\spsfortyfour}{\spslink{44}{10.1145/3603166.3632142}}            % 10.1145/3603166.3632142
+\newcommand{\spsfortyfive}{\spslink{45}{10.1016/j.future.2020.11.024}}       % Papadimitriou2021
+\newcommand{\spsfortysix}{\spslink{46}{10.1007/s10723-018-09472-w}}          % Krasovec2019
+\newcommand{\spsfortyseven}{\spslink{47}{10.1145/2534695.2534698}}           % Mandal2013
+\newcommand{\spsfortyeight}{\spslink{48}{10.1145/2616498.2616551}}           % Pavlovikj2014
+\newcommand{\spsfortynine}{\spslink{49}{10.1145/3185768.3186313}}            % McGough2018
+\newcommand{\spsfifty}{\spslink{50}{10.1145/2484762.2484827}}                % Madduri2013
+\newcommand{\spsfiftyone}{\spslink{51}{10.1145/1996109.1996114}}             % Vockler2011
+\newcommand{\spsfiftytwo}{\spslink{52}{10.1007/s10723-004-2075-y}}           % Maimour2004
+\newcommand{\spsfiftythree}{\spslink{53}{10.1016/j.jpdc.2019.08.002}}        % 10.1016/j.jpdc.2019.08.002
+\newcommand{\spsfiftyfour}{\spslink{54}{10.1145/3232174.3232177}}            % Shakil2018
+\newcommand{\spsfiftyfive}{\spslink{55}{10.1145/1866835.1866852}}            % Kupsch2010
+\newcommand{\spsfiftysix}{\spslink{56}{10.1007/s11227-018-2296-7}}           % Viil2018
+\newcommand{\spsfiftyseven}{\spslink{57}{10.14778/2733004.2733012}}          % Zhang2014
+\newcommand{\spsfiftyeight}{\spslink{58}{10.1145/1851476.1851588}}           % 10.1145/1851476.1851588
+\newcommand{\spsfiftynine}{\spslink{59}{10.1145/3086567.3086570}}            % 10.1145/3086567.3086570
+\newcommand{\spssixty}{\spslink{60}{10.1007/s10723-009-9135-2}}              % Rood2009
+\newcommand{\spssixtyone}{\spslink{61}{10.1109/WSC.2010.5679122}}            % Mustafee2010
+\newcommand{\spssixtytwo}{\spslink{62}{10.1145/2608029.2608035}}             % 10.1145/2608029.2608035
+\newcommand{\spssixtythree}{\spslink{63}{10.1145/2465848.2465850}}           % 10.1145/2465848.2465850
+\newcommand{\spssixtyfour}{\spslink{64}{10.1145/3219104.3219157}}            % Thapa2018
+\newcommand{\spssixtyfive}{\spslink{65}{10.1016/j.future.2010.11.003}}       % Mateescu2011
+\newcommand{\spssixtysix}{\spslink{66}{10.1016/j.jss.2016.05.027}}           % 10.1016/j.jss.2016.05.027
+\newcommand{\spssixtyseven}{\spslink{67}{10.1145/1383422.1383439}}           % 10.1145/1383422.1383439
+\newcommand{\spsixtyeight}{\spslink{68}{10.3762/BJNANO.15.119}}              % LePiane2024
+\newcommand{\spssixtynine}{\spslink{69}{10.1145/1362622.1362640}}            % 10.1145/1362622.1362640
+\newcommand{\spsseventy}{\spslink{70}{10.1016/0167-739X(95)00036-R}}         % Pruyne1996
+\newcommand{\spsseventyone}{\spslink{71}{10.1023/A:1019011716367}}           % Kepner2000
+\newcommand{\spsseventytwo}{\spslink{72}{10.1145/2286996.2287000}}           % Maheshwari2012
+\newcommand{\spsseventythree}{\spslink{73}{10.1145/3219104.3219162}}         % Milligan2018
+\newcommand{\spsseventyfour}{\spslink{74}{10.1016/j.future.2015.04.009}}     % Fernandez-Quiruelas2015
+\newcommand{\spsseventyfive}{\spslink{75}{10.1016/j.envsoft.2012.08.007}}    % Zhao2013
+\newcommand{\spsseventysix}{\spslink{76}{10.1109/CCGrid.2015.116}}           % Zhang2015a
+\newcommand{\spsseventyseven}{\spslink{77}{10.1007/s10586-010-0132-9}}       % Raicu2010
+\newcommand{\spsseventyeight}{\spslink{78}{10.1145/1646468.1646478}}         % 10.1145/1646468.1646478
+\newcommand{\spsseventynine}{\spslink{79}{10.1016/j.jpdc.2017.01.009}}       % Lopez2017
+\newcommand{\spseighty}{\spslink{80}{10.1007/s41781-020-00050-y}}            % Freyermuth2021a
+\newcommand{\spseightyone}{\spslink{81}{10.1177/10943420231167800}}          % Zhou2023
+\newcommand{\spseightytwo}{\spslink{82}{10.1109/GCE.2014.7}}                 % Chard2015
+\newcommand{\spseightythree}{\spslink{83}{10.1145/3307681.3325400}}          % Babuji2019
+\newcommand{\spseightyfour}{\spslink{84}{10.3390/a15070234}}                 % Decker2022
+\newcommand{\spseightyfive}{\spslink{85}{10.1007/s10586-021-03460-8}}        % Liu2022
+\newcommand{\spseightysix}{\spslink{86}{10.1007/s10586-007-0028-5}}          % Walker2004
+\newcommand{\spseightyseven}{\spslink{87}{10.1145/2287076.2287105}}          % 10.1145/2287076.2287105
+\newcommand{\spseightyeight}{\spslink{88}{10.1145/1851476.1851575}}          % Herzfeld2010
+\newcommand{\spseightynine}{\spslink{89}{10.1145/1731740.1731843}}           % 10.1145/1731740.1731843
+\newcommand{\spsninety}{\spslink{90}{10.1016/j.jocs.2020.101213}}            % Bockelman2021
+\newcommand{\spsninetyone}{\spslink{91}{10.1145/1551609.1551634}}            % 10.1145/1551609.1551634
+\newcommand{\spsninetytwo}{\spslink{92}{10.1145/1646468.1646469}}            % 10.1145/1646468.1646469
+\newcommand{\spsninetythree}{\spslink{93}{10.1145/2335755.2335787}}          % Mukherjee2012
+\newcommand{\spsninetyfour}{\spslink{94}{10.1145/3150994.3151003}}           % Callaghan2017
+\newcommand{\spsninetyfive}{\spslink{95}{10.1016/j.jpdc.2007.03.006}}        % Zhang2007
+\newcommand{\spsninetysix}{\spslink{96}{10.1145/3363554}}                    % 10.1145/3363554
+\newcommand{\spsninetyseven}{\spslink{97}{10.1109/DISTRA.2018.8601013}}      % Alrajeh2018
+\newcommand{\spsnineyeight}{\spslink{98}{10.1109/WSC.2008.4736176}}          % 10.5555/1516744.1516935
+\newcommand{\spsninetynine}{\spslink{99}{10.1145/3624062.3624277}}           % Sly-Delgado2023
+\newcommand{\spsonehundred}{\spslink{100}{10.1016/S0167-739X(02)00082-1}}    % Hey2002
+\newcommand{\spsonehundredone}{\spslink{101}{10.1145/1383422.1383435}}       % 10.1145/1383422.1383435
+\newcommand{\spsonehundredtwo}{\spslink{102}{10.1145/3437359.3465569}}       % Liu2021
+\newcommand{\spsonehundredthree}{\spslink{103}{10.1109/SC.2008.5219768}}     % 10.5555/1413370.1413393
+\newcommand{\spsonehundredfour}{\spslink{104}{10.1109/SC41404.2022.00029}}   % 10.5555/3571885.3571916
+\newcommand{\spsonehundredfive}{\spslink{105}{10.1145/1996010.1996013}}      % Maassen2011
+\newcommand{\spsonehundredsix}{\spslink{106}{10.1145/1869692.1869694}}       % Zhang2010
+\newcommand{\spsonehundredseven}{\spslink{107}{10.1007/s10723-009-9144-1}}   % Bittencourt2010
+\newcommand{\spsonehundredeight}{\spslink{108}{10.1145/2755979.2755982}}     % Meng2015
+\newcommand{\spsonehundrednine}{\spslink{109}{10.1007/s41781-021-00063-1}}   % Freyermuth2021
+\newcommand{\spsonehundredten}{\spslink{110}{10.1145/2616498.2616517}}       % Shieh2014
+\newcommand{\spsonehundredeleven}{\spslink{111}{10.1145/3053600.3053612}}    % 10.1145/3053600.3053612
+\newcommand{\spsonehundredtwelve}{\spslink{112}{10.1177/10943420231167811}}  % Alam2023
+\newcommand{\spsonehundredthirteen}{\spslink{113}{10.1145/2063348.2063362}}  % Benton2011
+\newcommand{\spsonehundredfourteen}{\spslink{114}{10.1016/j.future.2008.06.012}} % Deelman2009
+
+%##### FIN DE SECCION COMANDOS SPS #################
+% ####################################################
+
+% Comando para capítulos SIN numeración de página (páginas especiales)
+\newcommand{\ChapterImageEmpty}[3][]{%
+	\cleardoublepage
+	\thispagestyle{fancy}%
+	\refstepcounter{chapter}%
+	\AddToShipoutPictureBG*{%
+		\begin{tikzpicture}[remember picture,overlay]
+			% Imagen de fondo al ancho de la página
+			\node[inner sep=0pt, anchor=north west] at (current page.north west)
+			{\includegraphics[width=\paperwidth]{#3}};
+			% Caja blanca que se adapta al ancho del texto
+			\node[
+				anchor=north west,
+				xshift=1.5cm, yshift=-1.0cm,
+				text=black,
+				fill=white, fill opacity=0.8,
+				rounded corners=6pt,
+				inner xsep=10pt, inner ysep=6pt
+			] at (current page.north west)
+			{\Large\bfseries \thechapter\quad #2\strut};
+		\end{tikzpicture}
+	}%
+}
+
+% Comando para secciones preliminares (sin numeración pero en índice)
+\newcommand{\ChapterImagePrelim}[3][]{%
+	\cleardoublepage%
+	\phantomsection%
+	\addcontentsline{toc}{chapter}{#2}%
+	\AddToShipoutPictureBG*{%
+		\begin{tikzpicture}[remember picture,overlay]
+			% Imagen de fondo al ancho de la página
+			\node[inner sep=0pt, anchor=north west] at (current page.north west)
+			{\includegraphics[width=\paperwidth]{#3}};
+			% Caja blanca que se adapta al ancho del texto
+			\node[
+				anchor=north west,
+				xshift=1.5cm, yshift=-1.0cm,
+				text=black,
+				fill=white, fill opacity=0.8,
+				rounded corners=6pt,
+				inner xsep=10pt, inner ysep=6pt
+			] at (current page.north west)
+			{\Large\bfseries #2\strut};
+		\end{tikzpicture}
+	}%
+}
+
+% Comando para capítulos CON numeración de página (capítulos normales)
+\newcommand{\ChapterImageStar}[3][]{%
+	\cleardoublepage%
+	\refstepcounter{chapter}%
+	\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#2}%
+	\AddToShipoutPictureBG*{%
+		\begin{tikzpicture}[remember picture,overlay]
+			% Imagen de fondo al ancho de la página
+			\node[inner sep=0pt, anchor=north west] at (current page.north west)
+			{\includegraphics[width=\paperwidth]{#3}};
+			% Caja blanca que se adapta al ancho del texto
+			\node[
+				anchor=north west,
+				xshift=1.5cm, yshift=-1.0cm,
+				text=black,
+				fill=white, fill opacity=0.8,
+				rounded corners=6pt,
+				inner xsep=10pt, inner ysep=6pt
+			] at (current page.north west)
+			{\Large\bfseries \thechapter\quad #2\strut};
+		\end{tikzpicture}
+	}%
+}
+
+\newcommand\BackgroundPic{%
+	\put(-25,-2){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[scale=1,height=\paperheight]{./images/fondo-anteportada.png}%
+			\vfill
+		}}}
+
+\newcommand\PortadaPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight]{images/portada.png}%
+			\vfill
+		}}}
+
+
+
+% Definir colores estilo "Carbon"
+\definecolor{bg}{HTML}{FEFEFE}      % Fondo oscuro
+\definecolor{fg}{HTML}{3b3c3d}      % Texto principal
+\definecolor{keyword}{HTML}{C678DD} % Palabras clave (if, then, else...)
+\definecolor{string}{HTML}{98C379}  % Strings
+\definecolor{comment}{HTML}{C62828} % Comentarios
+\definecolor{number}{HTML}{000000}  % Números
+\definecolor{builtin}{HTML}{61AFEF} % Comandos (echo, ssh...)
+
+
+\setminted{fontsize=\scriptsize}
+% Configuración global de minted
+\setminted{
+	bgcolor=bg,
+	fontfamily=tt,
+	linenos,
+	numbersep=5pt,
+	gobble=0,
+	breaklines,
+	breakanywhere,
+	frame=none,
+	baselinestretch=1.2,
+}
+% Personalizar colores
+\renewcommand{\theFancyVerbLine}{\textcolor{number}{\arabic{FancyVerbLine}}}
+
+
+
+% Comando para partes del documento (diseño centrado con posición personalizable)
+% Uso: \PartImage[xpos,ypos]{Título}{imagen.png}
+% xpos: desplazamiento horizontal en puntos desde el centro (positivo = derecha, negativo = izquierda)
+% ypos: desplazamiento vertical en puntos desde el centro (positivo = arriba, negativo = abajo)
+\newcommand{\PartImage}[4][0pt,0pt]{%
+	\cleardoublepage%
+	\thispagestyle{empty}%
+	\refstepcounter{part}%
+	\addcontentsline{toc}{part}{\protect\numberline{\thepart}#2}%
+	% Procesar las coordenadas del parámetro opcional
+	\def\tempcoords{#1}%
+	\expandafter\parsecoords\tempcoords\relax%
+	\AddToShipoutPictureBG*{%
+		\begin{tikzpicture}[remember picture,overlay]
+			% Imagen de fondo que ocupa toda la página
+			\node[inner sep=0pt] at (current page.center)
+			{\includegraphics[width=\paperwidth,height=\paperheight]{#3}};
+			% Título en posición personalizable con salto de línea
+			\node[
+				text=black,
+				fill=white, fill opacity=0.9,
+				rounded corners=10pt,
+				inner xsep=20pt, inner ysep=15pt,
+				font=\Huge\bfseries,
+				align=center
+			] at ([xshift=\xpos,yshift=\ypos]current page.center)
+			{PARTE \thepart\\#2};
+		\end{tikzpicture}
+	}%
+	\vspace*{3cm}%
+	\phantom{.}%
+	\newpage%
+}
+
+% Comando auxiliar para procesar coordenadas
+\def\parsecoords#1,#2\relax{%
+	\def\xpos{#1}%
+	\def\ypos{#2}%
+}
+
+% Configuración de headers para anexos (definida aquí, aplicada en anexos.tex)
+\fancypagestyle{anexos}{
+	\fancyhf{}
+	\fancyhead[L]{\leftmark}
+	% Sin número de página en header (ya está en el banner inferior)
+	\renewcommand{\headrulewidth}{0.4pt}
+	\renewcommand{\footrulewidth}{0pt}
+	% Agregar el mismo banner inferior que las otras páginas
+	\fancyfoot[C]{%
+		\begin{tikzpicture}[remember picture, overlay]
+			% Banner que ocupa todo el ancho de la página
+			\node[anchor=south, inner sep=0pt] at ([xshift=\bannerXOffset, yshift=\bannerYOffset]current page.south) {%
+				\includegraphics[width=\paperwidth, height=\bannerHeight]{./images/banner-inferior.png}%
+			};
+			% Número de página sobre la imagen en la esquina inferior izquierda
+			\node[anchor=south west, text=black, font=\bfseries]
+			at ([xshift=\pageNumXOffset, yshift=\pageNumYOffset]current page.south west) {\thepage};
+		\end{tikzpicture}%
+	}
+}

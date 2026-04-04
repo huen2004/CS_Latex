@@ -1,0 +1,91 @@
+\documentclass[12pt]{report}
+\input{config/paquetes.tex}
+\input{config/comandos.tex}
+
+\begin{document}
+
+
+\input{anteportada.tex}
+\input{portada.tex}
+
+% ######## Página en blanco antes de la dedicatoria ########
+\cleardoublepage%
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	\small\textit{Página en blanco intencionalmente}
+\end{center}
+\vspace*{\fill}
+\newpage
+% #######################################
+
+
+\input{capitulos/dedicatoria.tex}
+\input{capitulos/agradecimientos.tex}
+
+
+
+% Página en blanco después de agradecimientos
+\cleardoublepage%
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	\small\textit{Página en blanco intencionalmente}
+\end{center}
+\vspace*{\fill}
+\newpage
+% #######################################
+
+\input{indice.tex}
+\input{resumen.tex}
+
+\input{capitulos/listaFiguras.tex}
+\input{capitulos/listaTablas.tex}
+
+% Reiniciar numeración de capítulos para el contenido principal
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+
+%! PARTE 1 GENERALIDADES
+\PartImage[-50pt,50pt]{Generalidades}{./images/referencias.png}
+
+\input{partes/01-generalidades/introduccion.tex}
+\input{partes/01-generalidades/glosario.tex}
+\input{partes/01-generalidades/siglas.tex}
+\input{partes/01-generalidades/cronograma.tex}
+\input{partes/01-generalidades/alcance.tex}
+\input{partes/01-generalidades/objetivos.tex}
+\input{partes/01-generalidades/justificacion.tex}
+\input{partes/01-generalidades/marcoConceptual.tex}
+\input{partes/01-generalidades/marcoTeorico.tex}
+
+
+
+
+\PartImage[-50pt,50pt]{Desarrollo metodológico}{./images/referencias.png}
+
+\input{partes/02-desarrollo-metodologico/mapeoSMS.tex}
+\input{partes/02-desarrollo-metodologico/caracterizacionGRID.tex}
+\input{partes/02-desarrollo-metodologico/caracterizacion-universos.tex}
+\input{partes/02-desarrollo-metodologico/DAR.tex}
+\input{partes/02-desarrollo-metodologico/disenio.tex}
+\input{partes/02-desarrollo-metodologico/pmv.tex}
+\input{partes/02-desarrollo-metodologico/validacion.tex}
+
+\PartImage[-50pt,50pt]{Ámbito de resultados}{./images/referencias.png}
+
+\input{partes/03-conclusiones/resultados.tex}
+\input{partes/03-conclusiones/conclusiones.tex}
+\input{partes/03-conclusiones/trabajos-futuros.tex}
+\input{partes/03-conclusiones/cumplimiento-objetivos.tex}
+
+
+\input{capitulos/referencias.tex}
+
+\PartImage[-50pt,50pt]{Apéndices}{./images/referencias.png}
+
+\input{apendices/apendices.tex}
+\input{anexos/anexos.tex}
+
+\end{document}
