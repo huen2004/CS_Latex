@@ -1,10 +1,25 @@
 \ChapterImagePrelim[cap:introduccion]{Introducción}{./images/fondo.png}\label{cap:introduccion}
 \mbox{}\\
 
-La computación científica se enfoca en la solución de problemas complejos que, por su naturaleza o escala, desbordan la capacidad de resolución analítica humana~\citep{landau01}. En este campo, el ordenador no es solo una herramienta, sino un recurso indispensable que permite modelar y analizar fenómenos del mundo real que de otro modo serían inaccesibles. La capacidad de procesamiento de las computadoras modernas abre la puerta a la exploración de problemas que, aunque teóricamente solucionables, en la práctica demandan un volumen de cálculo extraordinario \citep{landau01}.
+En el panorama actual, el despliegue de infraestructuras tecnológicas modernas ha dado lugar a entornos cada vez más complejos, en 
+los cuales las amenazas cibernéticas evolucionan constantemente en sofisticación, alcance e impacto. Esta realidad exige que la 
+seguridad de la información sea concebida como un componente transversal dentro de las arquitecturas tecnológicas, especialmente 
+en aquellas soportadas por servicios de computación en la nube, donde la disponibilidad, escalabilidad y acceso distribuido 
+incrementan la superficie de exposición a riesgos.
 
-Sin embargo, la potencia de un único equipo es a menudo insuficiente. Ciertos desafíos científicos, caracterizados por conjuntos de datos masivos o una complejidad inherente, hacen inviable su ejecución en una sola máquina. Para superar esta barrera, la comunidad científica recurre a la computación de alto rendimiento (HTC, por sus siglas en inglés: \textit{High-Throughput Computing}), un paradigma de la computación distribuida cuyo objetivo es maximizar el número de tareas completadas en un período determinado \citep{Juve2015}. Este enfoque no solo es fundamental para la investigación, sino que también ha despertado un creciente interés en el ámbito educativo como herramienta pedagógica \citep{Senol-01}.
+En el contexto institucional, la arquitectura tecnológica actual requiere mecanismos que permitan fortalecer la protección de los 
+activos de información, garantizando principios fundamentales como la confidencialidad, integridad y disponibilidad. Esta 
+necesidad resulta especialmente relevante en entornos universitarios, donde convergen procesos críticos asociados con la docencia, 
+la investigación y la gestión administrativa, todos ellos dependientes de servicios tecnológicos confiables, disponibles y seguros.
 
-En este ecosistema tecnológico destaca HTCondor, un sistema de gestión de cargas de trabajo desarrollado por la Universidad de Wisconsin–Madison y optimizado para el cómputo intensivo \citep{chang-01, htcondor-description}. HTCondor facilita el envío de trabajos a un clúster de computadoras, administrando de manera autónoma la asignación de recursos, la planificación y la distribución de las tareas entre los nodos disponibles. Su innovador mecanismo de planificación se basa en un modelo de políticas bidireccional, donde tanto los proveedores de recursos como los usuarios pueden definir preferencias y restricciones que rigen la ejecución de los trabajos \citep{htcondor-description}.
+La adopción de mecanismos de seguridad en la nube debe sustentarse en marcos de referencia internacionalmente reconocidos. En este 
+sentido, ISO/IEC 27001 proporciona la base para la gestión de riesgos mediante un Sistema de Gestión de Seguridad de la 
+Información~\cite{iso27001}, mientras que ISO/IEC 27017 incorpora controles específicos para entornos cloud, como la responsabilidad compartida y 
+la gestión de servicios virtualizados~\cite{iso27017}. De forma complementaria, ISO/IEC 27018 fortalece la protección de datos personales en nubes 
+públicas, aportando lineamientos orientados a la privacidad y al tratamiento adecuado de información sensible~\cite{iso27018}.
 
-Las tareas computacionales en HTCondor se organizan en ``universos'', que no son más que entornos de ejecución predefinidos para distintos tipos de lenguajes o tecnologías. En el momento de la redacción de este documento, los universos soportados por HTCondor incluyen:~\textit{vanilla, grid, java, scheduler, local, parallel, vm, container y docker.}
+Bajo esta perspectiva, el presente trabajo se orienta al inicio de la implementación de herramientas y controles de seguridad 
+previamente identificados, adaptándolos a la arquitectura tecnológica actual de la institución con el apoyo del UTM.\@ Con ello, se 
+busca fortalecer progresivamente la postura de seguridad de la infraestructura cloud institucional, reducir riesgos asociados a 
+configuraciones inseguras y accesos no autorizados, y establecer una base técnica para futuras fases de maduración del ecosistema 
+de ciberseguridad.

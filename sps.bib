@@ -2,51 +2,6 @@
 % ---------------DESDE AQUI INICIAN LOS SPSs---------------------
 % ---------------------------------------------------------------
 
-@article{Selikhov2005,
-abstract = {Fault tolerant message passing environments protect parallel applications against node failures. Very large scale computing systems, ranging from large clusters to worldwide Global Computing systems, require a high level of fault tolerance in order to efficiently run parallel applications. The Channel Memory approach provides the infrastructure for scalable tolerance to simultaneous faults. Along with a specially designed checkpointing system and recovery protocol, this approach has resulted in the MPICH-V architecture. In this paper, we describe CMDE – a stand-alone distributed program system based on MPICH-V architecture and implementing an approach to tolerate faults of Channel Memories.},
-author = {Selikhov, A and Germain, C},
-doi = {10.1016/j.future.2004.05.011},
-issn = {0167739X},
-journal = {Future Generation Computer Systems},
-keywords = {Channel Memory,Fault tolerance,Global Computing,Grid,Message passing interface},
-month = {may},
-number = {5},
-pages = {709--715},
-title = {{A Channel Memory based fault tolerance for MPI applications}},
-url = {https://www.sciencedirect.com/science/article/pii/S0167739X04000822 https://linkinghub.elsevier.com/retrieve/pii/S0167739X04000822},
-volume = {21},
-year = {2005}
-}
-@article{10.1016/j.future.2019.05.062,
-abstract = {There are many scientific and commercial applications that require the execution of a large number of independent jobs resulting in significant overall execution time. Therefore, such applications typically require distributed computing infrastructures and science gateways to run efficiently and to be easily accessible for end-users. Optimising the execution of such applications in a cloud computing environment by keeping resource utilisation at minimum but still completing the experiment by a set deadline has paramount importance. As container-based technologies are becoming more widespread, support for job-queuing and auto-scaling in such environments is becoming important. Current container management technologies, such as Docker Swarm or Kubernetes, while provide auto-scaling based on resource consumption, do not support job queuing and deadline-based execution policies directly. This paper presents JQueuer, a cloud-agnostic queuing system that supports the scheduling of a large number of jobs in containerised cloud environments. The paper also demonstrates how JQueuer, when integrated with a cloud application-level orchestrator and auto-scaling framework, called MiCADO, can be used to implement deadline-based execution policies. This novel technical solution provides an important step towards the cost-optimisation of batch processing and job submission applications. In order to test and prove the effectiveness of the solution, the paper presents experimental results when executing an agent-based simulation application using the open source REPAST simulation framework.},
-address = {NLD},
-author = {Kiss, Tamas and DesLauriers, James and Gesmier, Gregoire and Terstyanszky, Gabor and Pierantoni, Gabriele and Oun, Osama Abu and Taylor, Simon J.E. and Anagnostou, Anastasia and Kovacs, Jozsef},
-doi = {10.1016/j.future.2019.05.062},
-issn = {0167739X},
-journal = {Future Generation Computer Systems},
-keywords = {Agent-based simulation,Cloud computing,Container technologies,Deadline-based auto-scaling,JQueuer,MiCADO},
-number = {C},
-pages = {99--111},
-publisher = {Elsevier Science Publishers B. V.},
-title = {{A cloud-agnostic queuing system to support the implementation of deadline-based application execution policies}},
-url = {https://doi.org/10.1016/j.future.2019.05.062},
-volume = {101},
-year = {2019}
-}
-@inproceedings{10.1109/GCE.2014.8,
-abstract = {Diffusion Tensor Imaging (DTI) may soon become the noninvasive tool of choice for diagnosing Traumatic Brain Injury (TBI) due to its ability to examine white matter changes in the living brain. While research has shown the value of DTI in differentiating affected and control populations, further work is required to develop algorithms and tools that enable reliable and reproducible methods for obtaining clinical biomarkers. Current approaches are computationally intensive, collaborative and require orchestrated invocation of many independently developed research tools. Thus, researchers are faced with challenges related to developing such complex analysis pipelines and executing them at scale on high performance compute resources and over large subject cohorts. To alleviate the need for both considerable technical expertise and dedicated local resources to set up and run those analyses, we have developed an always available cloud-based gateway service in which computational resources are provisioned and configured on demand. We build upon the Globus Galaxies platform which allows researchers to assemble and execute complex pipelines through their web browser. Our DTI gateway supports a range of different analyses and implements an execution model in which cloud compute instances are dynamically provisioned and configured.},
-author = {Chard, Kyle and Madduri, Ravi and Jiang, Xia and Dahi, Farid and Vannier, Michael W. and Foster, Ian},
-booktitle = {Proceedings of GCE 2014: 9th Gateway Computing Environments Workshop, held in conjunction with SC 2014: The International Conference for High Performance Computing, Networking, Storage and Analysis},
-doi = {10.1109/GCE.2014.8},
-isbn = {9781479970308},
-keywords = {Diffusion tensor imaging,Educational institutions,Logic gates,Pipelines,Sociology,Statistics,Tensile stress},
-pages = {13--16},
-publisher = {IEEE Press},
-series = {GCE '14},
-title = {{A cloud-based image analysis gateway for Traumatic Brain Injury research}},
-url = {https://doi.org/10.1109/GCE.2014.8},
-year = {2015}
-}
 @inproceedings{Quang2015,
 abstract = {Traditional High-Throughput Computing (HTC) consists of running many loosely-coupled tasks that are independent but requires a large amount of computing power during significant period of time. However, recent emerging applications requiring millions or even billions of tasks to be processed within a relatively short period of time have expanded the traditional HTC into Many-Task Computing (MTC).In silico drug discovery offers an efficient alternative to reduce the cost of drug development and discovery process. For this purpose, virtual screening is used to select the most promising candidate drugs for in vitro testing from millions of chemical compounds. This process requires a substantial amount of computing resources and high-performance processing of docking simulations, which shows the typical characteristics of MTC applications. As the number of users performing this virtual screening process increases with limited available computing resources, it becomes crucial to devise an effective scheduling policy that can ensure a certain degree of fairness and user satisfaction. In this paper, we present a comparative analysis of scheduling mechanisms for the virtual screening workflow where multiple users in the system are sharing a common service infrastructure. To effectively support these multiple users, the underlying system should be able to consider fairness, user response time and overall system throughput. We have implemented two different scheduling algorithms which can address fairness and user response time respectively in a common middleware stack call edHTCaaS which is a pilot-job based multi-level scheduling system running on top of a dedicated production-level cluster. Throughout comparative analysis of two different scheduling mechanisms targeting different metrics on top of a single H/W and S/W system, we can give an insight to the research community on the design and implementation of a scheduling mechanism that can trade-off user fairness and overall system performance which's crucial to support challenging MTC applications.},
 author = {Quang, Bui The and Kim, Jik Soo and Rho, Seungwoo and Kim, Seoyoung and Kim, Sangwan and Hwang, Soonwook and Medernach, Emmanuel and Breton, Vincent},
@@ -61,6 +16,7 @@ title = {{A comparative analysis of scheduling mechanisms for virtual screening 
 url = {https://doi.org/10.1109/CCGrid.2015.123},
 year = {2015}
 }
+
 @article{Abramson2002,
 abstract = {Computational grids that couple geographically distributed resources such as PCs, workstations, clusters, and scientific instruments, have emerged as a next generation computing platform for solving large-scale problems in science, engineering, and commerce. However, application development, resource management, and scheduling in these environments continue to be a complex undertaking. In this article, we discuss our efforts in developing a resource management system for scheduling computations on resources distributed across the world with varying quality of service (QoS). Our service-oriented grid computing system called Nimrod-G manages all operations associated with remote execution including resource discovery, trading, scheduling based on economic principles and a user-defined QoS requirement. The Nimrod-G resource broker is implemented by leveraging existing technologies such as Globus, and provides new services that are essential for constructing industrial-strength grids. We present the results of experiments using the Nimrod-G resource broker for scheduling parametric computations on the World Wide Grid (WWG) resources that span five continents.},
 author = {Abramson, David and Buyya, Rajkumar and Giddy, Jonathan},
@@ -76,6 +32,7 @@ url = {https://www.sciencedirect.com/science/article/pii/S0167739X02000857 https
 volume = {18},
 year = {2002}
 }
+
 @article{Venkataraman2015,
 abstract = {To harvest idle, unused computational resources in networked environments, researchers have proposed different architectures for desktop grid infrastructure. In this paper, we present one such infrastructure, called the Mini-Grid Framework for resource management in ad hoc grids using market-based scheduling and context-based resource and application modeling. The framework proposes peer-to-peer architecture that supports several futures: decentralized task distribution, small scale ad hoc grid formation, and symmetric resource. Furthermore, users can model and specify non-performance based parameters that influence resource allocation. Different types of resources can provide similar capabilities but with varying degrees of quality of service. Hence, the resource capabilities are required to be presented in such a way that resource providers can evaluate their capabilities against the requested capabilities for task execution, and the resource consumers can find optimal resources.},
 author = {Venkataraman, Neelanarayanan},
