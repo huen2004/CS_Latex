@@ -7,25 +7,43 @@ la adopción de la computación en la nube y la seguridad de la información.
 
 \section{Adopción de cloud en universidades}
 \noindent
-La adopción de la computación en la nube en instituciones académicas ha incrementado significativamente en los últimos años, debido a su 
-capacidad para mejorar la gestión de recursos tecnológicos y facilitar el acceso a servicios digitales. En este sentido,~\cite{aydin2021cloud}
-señala que la computación en la nube no solo responde a necesidades académicas, sino que también actúa como una guía para la migración y 
-administración de datos institucionales, contribuyendo a la continuidad operativa.
+La adopción de la computación en la nube en instituciones académicas ha incrementado significativamente en los últimos años, impulsada
+por su capacidad para optimizar la gestión de recursos tecnológicos, reducir costos de infraestructura y facilitar el acceso a 
+servicios digitales de forma remota. En este sentido,~\cite{aydin2021cloud} señala que la computación en la nube no solo responde a 
+necesidades académicas, sino que también actúa como una guía para la migración y administración de datos institucionales, 
+contribuyendo a la continuidad operativa.
+
+Adicionalmente, este modelo permite a las universidades soportar entornos de aprendizaje virtual, gestionar grandes volúmenes de 
+información y escalar sus servicios conforme a la demanda, lo cual resulta especialmente relevante en contextos de transformación 
+digital. No obstante, su adopción también implica desafíos asociados a la seguridad de la información, la gobernanza de los datos y 
+la dependencia de proveedores de servicios, aspectos que deben ser considerados para garantizar una implementación adecuada en el 
+ámbito académico.
 
 \section{Crecimiento y retos de la nube}
 \noindent
-El crecimiento de los servicios en la nube ha sido impulsado por su flexibilidad y escalabilidad. Sin embargo, este avance también ha traído consigo
-nuevos retos en materia de seguridad. De acuerdo con~\cite{ibm2025cloud} la computación en la nube ofrece múltiples beneficios, la seguridad sigue 
-siendo uno de los principales desafíos, ya que requiere la implementación de capacidades técnicas especializadas y procedimientos adecuados.
+El crecimiento de los servicios en la nube ha sido impulsado por su flexibilidad, escalabilidad y capacidad de provisión bajo demanda, 
+lo que ha permitido a las organizaciones optimizar sus operaciones y adaptarse a entornos dinámicos. Sin embargo, este avance también 
+ha traído consigo nuevos retos en materia de seguridad. De acuerdo con~\cite{ibm2025cloud} la computación en la nube ofrece múltiples 
+beneficios, la seguridad continua siendo uno de los principales desafíos, debido a la necesidad de implementar capacidades técnicas 
+especializadas y procedimientos adecuados para la protección de la información.
+
+Igualmente~\cite{ibm2025cloud} mencionan los riesgos asociados a la adopción de la nube, como la exposición de datos, la gestión de 
+identidades y accesos, la configuración incorrecta de servicios y la dependencia de proveedores externos. Estos factores incrementan 
+la complejidad en la protección de los activos de información, lo que exige la incorporación de mecanismos avanzados de monitoreo, 
+detección de amenazas y respuesta a incidentes. En consecuencia, las organizaciones deben complementar las ventajas operativas de la 
+nube con estrategias de seguridad robustas que permitan mitigar los riesgos inherentes a este modelo.
 
 \section{Seguridad en la nube basada en riesgos}
 \noindent
-La seguridad en la nube debe abordarse desde un enfoque basado en riesgos. En este sentido, la \textit{European Network and Information Security Agency}
-propone que la protección en entornos cloud deben fundamentarse en la identificación, análisis y mitigación de riesgos asociados a las amenazas y 
-vulnerabilidades propias de estos sistemas. Esto implica que la adopción de estrategias de seguridad en la nube debe orientarse a la implementación 
-de controles adaptativos y mecanismos de monitoreo continuo que permitan responder de manera efectiva a los riesgos identificados.
+La seguridad en la nube debe abordarse desde un enfoque basado en la gestión riesgos. En este sentido, la \textit{European Network and Information Security Agency}
+propone que la protección en entornos cloud se fundamenta en la identificación, análisis y tratamiento de riesgos derivados de amenazas y 
+vulnerabilidades inherentes a estos entornos.
 
-\section{Modelo de seguridad (CIA)}
+Este enfoque adquiere especial relevancia debido a caracteristicas propias de la computación en la nube, como la arquitectura multiusuario \textit{(multi-tenancy)}, 
+la externalización de servicios y la pérdida parcial de control sobre la infraestructura. En consecuencia, las estrategias de seguridad deben orientarse a la implementación 
+de controles adaptativos, así como a mecanismos de monitoreo y respuesta continua que permitan responder de manera efectiva los riesgos identificados.
+
+\section{Modelo de seguridad (\CIA)}
 \noindent
 En el ámbito de la seguridad de la información, la tríada \CIA \textit{(Confidentiality, Integrity, Availability)} constituye uno de los modelos 
 fundamentales para el diseño y evaluación de mecanismos de protección. Más allá de su definición conceptual, este modelo sirve como base para la 
@@ -43,4 +61,16 @@ permitiendo evaluar la efectividad de los controles implementados y su alineaci�
 
 \section{Estándares de seguridad}
 \noindent
-En general, el marco de referencia que se propone para este proyecto se basa en teorías y estándares reconocidos internacionalmente, ofreciendo así un soporte metodológico, técnico y estratégico para el diseño y desarrollo de la ampliación de la infraestructura HTCondor del grupo \GRID, permitiéndole a estos avanzar hacia una infraestructura más madura y escalable, alineada con las necesidades actuales de la computación distribuida y de alto rendimiento.
+Los estándares internacionales proporcionan lineamientos estructurados para la gestión de la seguridad de la información en las 
+organizaciones. En este contexto, la norma ISO/IEC 27001:2022 establece un modelo para la implementación de un Sistema de Gestión de 
+Seguridad de la Información (\SGSI), basado en un enfoque de mejora continua y gestión de riesgos, que permite definir, implementar, 
+operar y supervisar controles de seguridad alineados con los objetivos organizacionales.~\cite{iso27001}
+
+Por su parte, las normas complementarias de la familia ISO/IEC 27000 amplían estos lineamientos hacia contextos específicos. En 
+particular, la ISO/IEC 27017:2015 proporciona directrices para la aplicación de controles de seguridad en servicios de computación en 
+la nube, abordando aspectos como la responsabilidad compartida entre proveedor y cliente~\cite{iso27017}. Asimismo, la ISO/IEC 
+27018:2019 se enfoca en la protección de datos personales (\PII) en entornos de nube pública, estableciendo principios y controles 
+orientados a garantizar la privacidad y confidencialidad de la información.~\cite{iso27018}
+
+En conjunto, estos estándares permiten a las organizaciones adoptar un enfoque sistemático y alineado con buenas prácticas 
+internacionales, facilitando la implementación de estrategias de seguridad coherentes en entornos de computación en la nube.
