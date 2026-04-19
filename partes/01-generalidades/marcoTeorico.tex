@@ -1,30 +1,46 @@
 \ChapterImageStar[cap:Marco-Teorico]{Marco Teórico}{./images/fondo.png}\label{cap:marcoTeorico}
 \mbox{}\\
+%------------------------------------------------------------------------------------------------------------------------------------
 \noindent
-En el ámbito de la gestión de proyectos y la computación de alto rendimiento, es importante contar con marcos de referencia que ofrezcan una estructura robusta y metodologías para enfrentar los retos actuales. Los conceptos a continuación proporcionan las bases metodológicas, técnicas y estructurales necesarias para el desarrollo e implementación de la ampliación de la infraestructura HTCondor del grupo \GRID.
+El marco teórico presenta los fundamentos investigativos y normativos que respaldan la propuesta, abordando estudios relacionados con
+la adopción de la computación en la nube y la seguridad de la información.
 
-\section{\PMBOK}
+\section{Adopción de cloud en universidades}
 \noindent
-El presente proyecto se fundamenta en el \PMBOK~(\textit{Project Management Body of Knowledge}), el cual es un estándar reconocido a nivel mundial en la gestión de proyectos y proporciona un conjunto exhaustivo de buenas prácticas aplicables a la mayoría de los proyectos \citep{PMI2019}. Este marco ayuda a la gestión de aspectos importantes como el alcance, tiempo, costo, calidad, recursos humanos, riesgos y comunicación, entre otros.
+La adopción de la computación en la nube en instituciones académicas ha incrementado significativamente en los últimos años, debido a su 
+capacidad para mejorar la gestión de recursos tecnológicos y facilitar el acceso a servicios digitales. En este sentido,~\cite{aydin2021cloud}
+señala que la computación en la nube no solo responde a necesidades académicas, sino que también actúa como una guía para la migración y 
+administración de datos institucionales, contribuyendo a la continuidad operativa.
 
-\section{Normas ISO 9000}
+\section{Crecimiento y retos de la nube}
 \noindent
-Complementando esta perspectiva, las normas ISO 9000 aportan un conjunto de principios y directrices internacionales que permiten a las organizaciones satisfacer las expectativas y necesidades de sus clientes de manera consistente. Estas normas no solo ofrecen un marco sistemático para la mejora continua de los procesos, sino que también propenden por la eficiencia operativa y la calidad de los productos y servicios ofrecidos. En el contexto de este proyecto, su adopción resulta pertinente con el fin de estructurar de forma adecuada las fases de diseño y validación, ayudando así a que el resultado del proyecto sea de calidad y aporte valor al cliente.
+El crecimiento de los servicios en la nube ha sido impulsado por su flexibilidad y escalabilidad. Sin embargo, este avance también ha traído consigo
+nuevos retos en materia de seguridad. De acuerdo con~\cite{ibm2025cloud} la computación en la nube ofrece múltiples beneficios, la seguridad sigue 
+siendo uno de los principales desafíos, ya que requiere la implementación de capacidades técnicas especializadas y procedimientos adecuados.
 
-\section{Modelo por Capas}
+\section{Seguridad en la nube basada en riesgos}
 \noindent
-Otro pilar conceptual relevante es el modelo por capas, conocido también como arquitectura en capas, que se refiere a una estructura de diseño en la que el sistema se divide en diferentes niveles o capas, cada una con una función específica e independiente de las demás \citep{Spray2023}. Este enfoque resulta especialmente útil en el ámbito de la computación, ya que facilita la escalabilidad, el mantenimiento y la interoperabilidad de los sistemas involucrados. Además, contribuye a reducir la complejidad del diseño y a facilitar la implementación de trabajos futuros inspirados en el presente.
+La seguridad en la nube debe abordarse desde un enfoque basado en riesgos. En este sentido, la \textit{European Network and Information Security Agency}
+propone que la protección en entornos cloud deben fundamentarse en la identificación, análisis y mitigación de riesgos asociados a las amenazas y 
+vulnerabilidades propias de estos sistemas. Esto implica que la adopción de estrategias de seguridad en la nube debe orientarse a la implementación 
+de controles adaptativos y mecanismos de monitoreo continuo que permitan responder de manera efectiva a los riesgos identificados.
 
-\section{TOGAF (\textit{The Open Group Architecture Framework})}
+\section{Modelo de seguridad (CIA)}
 \noindent
-Asimismo, el marco TOGAF, que se ha convertido en uno de los marcos de referencia más utilizados para el desarrollo y gestión de arquitecturas empresariales, proporciona un enfoque estructurado que permite a las organizaciones alinear la estrategia de negocio con los procesos de \TI, facilitando la toma de decisiones y reduciendo el uso de recursos \citep{Mumtaza2025}. Su arquitectura por fases, que abarca la planificación, diseño, implementación y monitoreo, no solo facilita la integración de sistemas y tecnologías, sino que también permite flexibilidad y adaptabilidad en un entorno empresarial en constante evolución.
+En el ámbito de la seguridad de la información, la tríada \CIA \textit{(Confidentiality, Integrity, Availability)} constituye uno de los modelos 
+fundamentales para el diseño y evaluación de mecanismos de protección. Más allá de su definición conceptual, este modelo sirve como base para la 
+identificación de requisitos de seguridad y la priorización de controles en sistemas computacionales. Según~\cite{stallings2012computer}, estos tres 
+principios permiten estructurar las estrategias de seguridad en función de los riesgos a los que se encuentran expuestos los activos de información. 
+En este sentido, la confidencialidad se relaciona con la restricción del acceso a usuarios autorizados, la integridad con la protección frente a 
+modificaciones no autorizadas y la disponibilidad con la garantía de acceso oportuno a la información.
 
-\section{Estándar ISO/IEC 25010}
-\noindent
-Además de lo anterior, el estándar ISO/IEC 25010 se incorpora como un estándar internacional que establece un modelo de calidad del software y sistemas, ampliamente utilizado para evaluar la calidad de productos y servicios de \TI. Según lo explica \cite{ISO25010}, este modelo define características como funcionalidad, eficiencia, seguridad, mantenibilidad y usabilidad, proporcionando un marco integral para asegurar que los sistemas cumplan con los requisitos del usuario y del negocio. La implementación de ISO/IEC 25010 en este proyecto responde al deseo de establecer criterios objetivos para validar la utilidad del Universo HTCondor propuesto.
+En entornos de computación en la nube, la aplicación de la tríada CIA adquiere una mayor complejidad debido a factores como la distribución de los 
+recursos, la multi-tenencia y la externalización de servicios. Esto implica que los mecanismos de seguridad deben adaptarse para garantizar estos principios 
+en escenarios donde el control de la infraestructura es compartido o delegado a terceros.
 
+Por tanto, la tríada CIA no solo actúa como un marco conceptual, sino también como un criterio práctico para el diseño de arquitecturas de seguridad, 
+permitiendo evaluar la efectividad de los controles implementados y su alineación con los objetivos de protección de la información.
 
-
-\section{Conclusión del Marco de Referencia}
+\section{Estándares de seguridad}
 \noindent
 En general, el marco de referencia que se propone para este proyecto se basa en teorías y estándares reconocidos internacionalmente, ofreciendo así un soporte metodológico, técnico y estratégico para el diseño y desarrollo de la ampliación de la infraestructura HTCondor del grupo \GRID, permitiéndole a estos avanzar hacia una infraestructura más madura y escalable, alineada con las necesidades actuales de la computación distribuida y de alto rendimiento.
