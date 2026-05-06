@@ -1,33 +1,55 @@
 \ChapterImageStar[cap:caracterizacionGRID]{Caracterización del GRID}{./images/fondo.png}\label{cap:caracterizacionGRID}
 \mbox{}\\
 \noindent
-El Grupo de Investigación en Redes, Información y Distribución (\GRID) de la Universidad del Quindío se enmarca en los objetivos misionales de la institución: educación, investigación y extensión. Uno del los intereses particulares del \GRID es ofrecer servicios tecnológicos avanzados a la comunidad académica, con énfasis en los estudiantes de Ingeniería de Sistemas y Computación, quienes encuentran en este grupo un espacio de formación e innovación en temas de infraestructura, ingeniería de software y tecnologías emergentes.\\
-La caracterización del \GRID\ resulta esencial para comprender su estructura, capacidades y necesidades en relación con la expansión de un nuevo universo HTCondor. A continuación, se presenta un análisis de los diferentes aspectos que definen el contexto institucional y tecnológico del grupo.
+El Grupo de Investigación en Redes, Información y Distribución (\GRID) de la Universidad del Quindío se enmarca en los objetivos 
+misionales de la institución: docencia, investigación y extensión. Dentro de sus líneas de interés, el grupo promueve el desarrollo y 
+uso de infraestructuras tecnológicas orientadas al soporte de actividades académicas y científicas, especialmente en el programa de 
+Ingeniería de Sistemas y Computación, donde los estudiantes encuentran un espacio para la formación, experimentación e innovación en 
+áreas como computación en la nube, ciberseguridad y tecnologías emergentes.\\
+
+Por tanto, la caracterización del GRID resulta fundamental para comprender su entorno operativo, capacidades tecnológicas y requerimientos 
+de seguridad, permitiendo establecer una base para la especificación de una arquitectura de seguridad en su entorno de computación en 
+la nube, alineada con las necesidades institucionales y con estándares internacionales.
 
 \section{Análisis de stakeholders del GRID}
 \noindent
-Con el fin de identificar los actores internos y externos que influyen en el desarrollo de las actividades del grupo, se realizó un análisis de \textit{stakeholders}. Este ejercicio permitió reconocer los diferentes intereses, roles y niveles de influencia que cada actor tiene en relación con la expansión de un nuevo universo HTCondor. Los principales \textit{stakeholders} identificados incluyen: investigadores del grupo, estudiantes de pregrado y posgrado, docentes de la Facultad de Ingeniería, y en un nivel más amplio, la comunidad académica de la Universidad del Quindío.
-\\
-\noindent
-La tabla \ref{tab:stakeholders} presenta el análisis de los principales interesados en la expansión de los universos HTCondor dentro del contexto institucional. Se identifican actores internos y externos, especificando su rol, el tipo de relación con el proyecto, el nivel de impacto esperado, así como su poder de influencia, interés y compromiso frente a la iniciativa.
+Con el fin de identificar los actores que influyen en el desarrollo de la infraestructura tecnológica del Grupo de Investigación en 
+Redes, Información y Distribución (GRID), se realizó un análisis de stakeholders. Este ejercicio permitió reconocer los diferentes 
+intereses, roles y niveles de influencia que cada actor tiene en relación con el fortalecimiento de la seguridad en el entorno de 
+computación en la nube.
 
-El análisis de interesados revela una estructura compleja de actores con distintos niveles de influencia y compromiso frente al proyecto. El Grupo de Investigación GRID emerge como el interesado crítico, concentrando simultáneamente el mayor impacto, poder de influencia, interés y compromiso. Esta posición central le otorga un rol determinante como beneficiario principal y tomador de decisiones, lo que subraya la necesidad de mantener una comunicación estrecha y continua con este grupo para asegurar la alineación del proyecto con sus expectativas estratégicas y operativas.
+Los principales stakeholders identificados corresponden a los docentes del programa de Ingeniería de Sistemas y Computación, los 
+estudiantes del mismo programa y el grupo de investigación GRID. Estos actores representan la comunidad directamente involucrada en el 
+uso, gestión y aprovechamiento de la infraestructura tecnológica.
 
-Los docentes de Ingeniería de Sistemas y Computación y los investigadores locales y externos constituyen el segundo nivel de importancia, caracterizándose por un alto interés en la solución y un potencial significativo como usuarios finales. Aunque su poder de decisión es limitado, su adopción efectiva de la tecnología será fundamental para validar el éxito del proyecto. Este segmento requiere especial atención en términos de usabilidad, documentación y capacitación, dado que su compromiso está condicionado a la utilidad práctica y los beneficios tangibles que puedan obtener. La diferencia principal entre ambos grupos radica en que los investigadores externos representarían el segmento de usuarios más activo e intensivo de la infraestructura.
+La tabla~\ref{tab:stakeholders} presenta el análisis de los interesados, especificando su rol, relación con el proyecto, nivel de 
+impacto, así como su poder de influencia, interés y compromiso frente a la iniciativa.
 
-El Programa de Ingeniería de Sistemas y Computación desempeña un rol estratégico como facilitador institucional con alto poder de influencia, particularmente en la provisión de recursos y la posibilidad de escalar la solución hacia otros programas académicos. Sin embargo, su compromiso relativamente bajo sugiere que será necesario demostrar claramente el valor estratégico e institucional del proyecto para asegurar su respaldo sostenido. Por otro lado, los estudiantes de pregrado presentan bajo impacto, poder e interés debido a la naturaleza especializada de la computación distribuida en el contexto académico de pregrado, lo que los posiciona como beneficiarios secundarios que validarán la solución más por uso ocasional que por dependencia operativa.
+El análisis realizado evidencia que el grupo de investigación GRID constituye el actor central del proyecto, al concentrar el mayor 
+nivel de influencia, interés y compromiso. Su rol como gestor de la infraestructura y principal beneficiario lo posiciona como el 
+responsable directo en la toma de decisiones, lo que hace fundamental mantener una alineación constante con sus necesidades operativas 
+y estratégicas.
 
-Finalmente, la comunidad HTCondor y los investigadores en HTC y HPC representan un interesado externo con una relación simbiótica particular: aunque no tienen poder de decisión sobre el proyecto y su compromiso es bajo, su rol como proveedores de conocimiento técnico es de alto impacto. La documentación y experiencias generadas por el proyecto podrían contribuir al fortalecimiento del ecosistema HTCondor, creando un valor agregado que trasciende los objetivos locales del proyecto. Esta relación sugiere la conveniencia de establecer canales de comunicación con esta comunidad para compartir hallazgos y mejores prácticas.
+Por su parte, los docentes de Ingeniería de Sistemas y Computación representan un grupo con alto interés y un nivel significativo de 
+impacto, ya que participan en actividades académicas e investigativas que requieren un acceso seguro a los recursos tecnológicos. 
+Aunque su poder de decisión es limitado, su adopción de las soluciones propuestas resulta clave para validar la efectividad de la 
+arquitectura de seguridad.
+
+Finalmente, los estudiantes se identifican como usuarios finales de la infraestructura, con un nivel de impacto e interés moderado. Su 
+participación se centra en el uso de los recursos tecnológicos para procesos de formación y desarrollo académico, por lo que requieren 
+mecanismos de acceso seguros y controlados que garanticen la protección de la información.
 
 \input{tablas-images/cp1/definicionStakeholders.tex}
 
-\section{Priorización de stakeholders}
-Una vez realizada la identificación de los \textit{stakeholders}, se emprendió un proceso de priorización para determinar cuáles poseen mayor impacto y poder de decisión en el proyecto. Esta clasificación resulta crucial para establecer estrategias de comunicación, gestión de expectativas y participación activa en la definición de requerimientos. De esta manera, se busca que los actores más influyentes en la toma de decisiones y en la adopción tecnológica sean atendidos de forma prioritaria, aumentando las probabilidades de éxito en la implementación.
-
-\input{tablas-images/cp1/priorizacionStakeholders.tex}
-
 \section{Integrantes y áreas de trabajo del GRID}
-El \GRID\ está conformado por un equipo multidisciplinario de investigadores y profesionales que, desde sus diferentes áreas de experticia, contribuyen al avance en campos como computación de alto rendimiento, \textit{big data}, inteligencia artificial, redes de computadoras y desarrollo de software. A continuación, se presenta una lista de los integrantes actuales del grupo, junto con sus respectivas líneas de trabajo y áreas de especialización:
+El \GRID está conformado por un equipo multidisciplinario de investigadores y profesionales que, desde sus diferentes áreas de 
+experticia, contribuyen al desarrollo de soluciones en campos como computación de alto rendimiento, \textit{big data}, inteligencia 
+artificial, redes de computadoras y desarrollo de software. Estas capacidades permiten al grupo abordar problemáticas complejas 
+asociadas a la gestión y protección de infraestructuras tecnológicas.
+
+A continuación, se presenta una lista de los integrantes actuales del grupo, junto con sus respectivas líneas de trabajo y áreas de 
+especialización:
+
 \begin{itemize}
 	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000210897}{\underline{{\textbf{Christian Andrés Candela Uribe}}}}: Microservicios, desarrollo de software, minería de datos, infraestructura TI.\@
 	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001383939}{\underline{{\textbf{Luis Eduardo Sepúlveda Rodríguez}}}}: Infraestructura de TI, HPC, computación paralela.
@@ -37,7 +59,9 @@ El \GRID\ está conformado por un equipo multidisciplinario de investigadores y 
 	\item \href{https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000283495}{\underline{{\textbf{Julián Esteban Gutiérrez Posada}}}}: Microservicios, desarrollo de software, minería de datos, infraestructura TI, HPC, computación paralela, redes, ingeniería de software.
 \end{itemize}
 
-La diversidad de líneas de trabajo de los integrantes fortalece la capacidad del grupo para abordar proyectos de carácter transversal y multidisciplinario, lo cual resulta particularmente relevante para el diseño e implementación de soluciones arquitectónicas soportadas en tecnologías de virtualización.
+La diversidad de líneas de trabajo de los integrantes fortalece la capacidad del grupo para abordar proyectos de carácter transversal y 
+multidisciplinario. En particular, estas capacidades resultan fundamentales para el diseño y especificación de arquitecturas de 
+seguridad en entornos de computación en la nube, integrando enfoques de infraestructura, desarrollo de software y ciberseguridad.
 
 \section{Misión del GRID}
 La misión del GRID es heredada de la Universidad del Quindío. A continuación se presenta la misión del GRID:\@
@@ -80,86 +104,94 @@ A partir de esta visión, se destacan los siguientes enfoques estratégicos:
 \end{itemize}
 
 \section{Impacto del proyecto en el GRID}
-La ampliación de la infraestructura HTCondor mediante la incorporación de un nuevo universo representa un impacto estratégico multidimensional para el Grupo de Investigación GRID. Este proyecto constituye un avance decisivo en la consolidación de una infraestructura de computación distribuida más amplia y capaz, lo que incrementa la competitividad del \GRID en el ámbito de la computación distribuida y de alta productividad. Además, esta expansión podría ayudar a fortalecer el posicionamiento del grupo como referente regional en tecnologías HTC y potenciar su capacidad para establecer colaboraciones interuniversitarias tanto a nivel nacional como internacional.
+El proyecto fortalece la seguridad de la infraestructura en la nube del GRID mediante la incorporación de mecanismos de monitoreo, 
+control de acceso y gestión de eventos, reduciendo riesgos sobre los activos de información.
+
+Asimismo, mejora la gestión operativa de la infraestructura al proporcionar una estructura clara para la administración de la seguridad, 
+basada en buenas prácticas y estándares como ISO/IEC 27001, 27017 y 27018.
+
+En consecuencia, el GRID contará con un entorno más seguro y confiable para el desarrollo de actividades académicas e investigativas.
 
 
 %%%%% ##############################################################################################################################
 %%%%% ##############################################################################################################################
-%%%%% ##############################################################################################################################
+%%%%% ######################################## TABLA UTM #############################################
 %%%%% #############################################################################################################################
 
 
-\section{Caracterización de la infraestructura de computación distribuida del GRID}
+\section{Caracterización de la infraestructura de seguridad del GRID}
 \noindent
-En la presente sección se especificarán las características técnicas actuales de la infraestructura de computación distribuida HTCondor del grupo \GRID.
+En la presente sección se especificarán las características técnicas actuales de la infraestructura de seguridad en el entorno de 
+computación en la nube del grupo \GRID.
 
 
 % !TODO Verificar el conteo real de la máquinas.
-\subsection{Clúster de máquinas Raspberry-Pi}\label{sec:cluster-raspberry}
+\subsection{Adminstrador unificado de amenazas (UTM)}\label{sec:cluster-raspberry}
 \noindent
 
-Actualmente, el grupo \GRID cuenta con un clúster compuesto por computadoras Raspberry Pi, distribuidas en nueve torres identificadas como \textbf{Torre 1} a \textbf{Torre 9}. Cada torre contiene siete equipos, con excepción de la Torre 1, que posee únicamente dos: uno opera como nodo maestro y el otro como nodo de envío de tareas. Los equipos restantes de las demás torres funcionan como nodos ejecutores.
-\\
-Si bien el \GRID posee nueve torres de equipos Raspberry-Pi, la torre novena se encuentra en funcionamiento. \\
-\input{tablas-images/raspberries/specs.tex}
+Actualmente, el grupo \GRID cuenta con un dispositivo de seguridad perimetral tipo UTM que permite gestionar, monitorear y proteger el 
+tráfico de red de la infraestructura tecnológica. Este equipo cumple un rol fundamental dentro de la arquitectura de seguridad, al 
+integrar funcionalidades como firewall, detección y prevención de intrusiones, control de acceso y establecimiento de conexiones seguras 
+mediante \VPN. Su incorporación contribuye al fortalecimiento de la protección de los activos de información del grupo, así como a la 
+implementación de mecanismos de defensa en profundidad en entornos de computación en la nube. 
 
+\input{tablas-images/utm/ficha-utm.tex}
 % Tabla con especificacioens de técnicas de las Raspberry-Pi
-En la tabla \ref{table:raspberries-pi-specs} se pueden evidenciar las especificaciones técnicas de las máquinas disponibles para la infraestructura HTCondor del \GRID.
-\\
+En la tabla~\ref{table:utm} se presenta la ficha técnica del dispositivo utilizado.\\
 
 
-%%#################################  FOTOS TORRES  #########################################
+%%#################################  FOTOS   #########################################
 %Image de las Raspberry-Pi
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.07]{tablas-images/raspberries/torres-raspberries.jpg}
-	\caption{Vista general de las maquinas Raspberry-Pi}
-	\label{fig:foto-torres-rasp}
+	\includegraphics[scale=0.50]{tablas-images/utm/utm-grid.png}
+	\caption{Vista general del UTM SonicWall NSa 6600 del \GRID}\label{fig:foto-torre-binaria}
 \end{figure}
 
-
 \noindent
-En la figura \ref{fig:foto-torres-rasp} se muestra la imagen de las siete torres de Raspberry-Pi localizadas en la oficina del tercer piso de ingeniería. A continuación se muestran las demás torres individualmente.
+En la figura se muestra la imagen del UTM SonicWall NSa 6600 del \GRID, con sus respectivas conexiones, como principales la conexión en 
+X1 correspondiente a la red WAN y X0 correspondiente a la red LAN.
 
-
-%Torre BINARIA
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.065]{tablas-images/raspberries/torre-binaria.jpeg}
-	\caption{Vista general de las máquinas \textit{submit } y \textit{master}}
-	\label{fig:foto-torre-binaria}
+	\includegraphics[scale=0.20]{tablas-images/utm/switch-grid.png}
+	\caption{Vista general del Switch del Grid}\label{fig:foto-torre-binaria}
 \end{figure}
 
 
 % ####################################################################################################
 
-\noindent
-En la figura \ref{fig:foto-torre-binaria} se muestran las máquinas \textit{submit } y \textit{master} de clúster HTCondor.
 
-\noindent
-Como se puede evidenciar en las figuras \ref{fig:foto-torres-rasp} y \ref{fig:foto-torre-binaria}, cada máquina perteneciente a una torre está conectada a un \textit{switch}. Las especificaciones de dicho \textit{switch} se mencionan en la tabla \ref{table:mini-switch}.
-
-\input{tablas-images/raspberries/mini-switch.tex}
-
-
-\subsection{Ambientes de ejecución de la infraestructura HTCondor del \GRID}
+\subsection{Infraestructura de seguridad en la nube del \GRID}
 \noindent{}
-De acuerdo con la documentación oficial de HTCondor \citep{HTCondor-choosing-universe}, un universo se define como el ambiente de ejecución en el cual se lleva a cabo un trabajo. Al momento del desarrollo de la presente investigación, HTCondor contempla nueve universos disponibles: \textit{vanilla, grid, java, scheduler, local, parallel, vm, container} y \textit{docker}. Cada trabajo demanda, en función de sus características particulares, condiciones específicas de ejecución. A modo de ejemplo, un trabajo constituido por un programa desarrollado en lenguaje Java puede obtener ventajas significativas mediante la utilización del universo Java, lo cual facilita al usuario la configuración del ambiente de ejecución requerido.
-
-Hasta el momento, la configuración de HTCondor del \GRID únicamente incorpora el universo vanilla, el cual está orientado a la ejecución no especializada de programas. En otras palabras, se trata de un universo de propósito general en el que los scripts de Shell han demostrado ser particularmente efectivos \citep{HTCondor-choosing-universe}.
 
 
-\subsection{Servicios actuales de computación distribuida}
+
+
+\subsection{Servicios actuales de seguridad en la nube del \GRID}
 \noindent
-Los servicios actuales de el grupo \GRID se orientan principalmente hacia la provisión de infraestructura de \TI, abarcando máquinas virtuales, soluciones de almacenamiento y configuración de redes. No obstante, la computación distribuida constituye un dominio especializado que demanda competencias técnicas avanzadas por parte de los usuarios. En consecuencia, si bien el grupo ha desarrollado capacidades en esta área, aún no se ha consolidado una oferta formal de servicios de computación distribuida de acceso público para la comunidad académica institucional.
+Actualmente, la infraestructura de seguridad del \GRID presenta una operación estable y se organiza a partir de un esquema perimetral 
+definido. El tráfico proveniente de Internet ingresa a través de un switch de acceso (Ruijie), desde el cual es encaminado hacia el 
+firewall basado en Shorewall, encargado de aplicar las políticas de seguridad y controlar el acceso a la red interna. Este mecanismo 
+permite proteger los activos de información asociados a los diferentes entornos del \GRID, incluyendo los clústeres de cómputo, 
+servidores, hipervisores y redes internas como ADM-GRID, el grupo de MV de Ingeniería de Sistemas, el grupo de HPC y el entorno de 
+virtualización del GRID.
 
-% !TODO PREGUNTA PARA EL PROFE: Aquí hago una declaración temeraria sobre la universidad que neceisto confirmar
-% Se han ofrecido servicios de computación identifica en el grupo grid que hayan estado disponibles para otros grupos o para 
-% los mismo estudiantes de la universidad? 
-%
-\subsection{Servicios de computación distribuida esperados}
+%----------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Servicios de seguridad en la nube del \GRID esperados}
 \noindent
-Dado que no se ha establecido previamente un servicio de computación distribuida basado en HTCondor con acceso abierto para la comunidad educativa, resulta necesario identificar los potenciales beneficiarios que podrían aprovechar esta tecnología. Como señalan \cite{Wilson2016}, la computación se ha consolidado como un componente crítico del proceso científico en prácticamente todas las disciplinas, independientemente de su orientación hacia la experimentación o la simulación computacional. En este contexto, los usuarios que obtendrían mayor beneficio de la implementación de un servicio de computación distribuida serían aquellos cuyas actividades académicas o investigativas demanden capacidades de procesamiento intensivo para la obtención de resultados científicos. Por consiguiente, se estima que los principales beneficiarios de esta infraestructura serían tanto los estudiantes, quienes podrían fortalecer significativamente su proceso formativo mediante el acceso a una ambiente de computación distribuida, como los grupos de investigación institucionales, que verían ampliadas sus capacidades para desarrollar proyectos de mayor envergadura computacional. En la tabla \ref{table:servicio-htcondor} se especifica cómo podría verse un servicio de computación de alta productividad basado en HTCondor.
+Dado que la infraestructura actual del \GRID\ cuenta con mecanismos de seguridad operativos, pero no dispone de una arquitectura de 
+seguridad formalmente definida ni alineada con estándares y controles de seguridad, se propone un servicio orientado a fortalecer la 
+protección de la infraestructura tecnológica. Este servicio busca mejorar las capacidades de detección, prevención y respuesta ante 
+amenazas, así como garantizar la disponibilidad, integridad y confidencialidad de los activos de información.
+
+Los principales beneficiarios serían los estudiantes y docentes de Ingeniería de Sistemas y Computación, junto con el grupo de 
+investigación \GRID, quienes dependen del correcto funcionamiento de la infraestructura para sus actividades académicas e investigativas.
+
+Al tratarse de un prototipo funcional, la propuesta no implica modificaciones estructurales, sino que complementa los mecanismos 
+existentes y permite validar un modelo de arquitectura de seguridad alineado con buenas prácticas y estándares internacionales. En la 
+tabla~\ref{table:servicio-seguridad} se presenta una aproximación de este servicio.
 
 \begin{table}[H]
 	\centering
@@ -181,7 +213,7 @@ Dado que no se ha establecido previamente un servicio de computación distribuid
 		\textbf{PROPÓSITO}                 &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			Proveer infraestructura de computación de alta productividad (\HTC) para la ejecución de tareas computacionales intensivas y paralelas, facilitando el procesamiento distribuido de cargas de trabajo científicas y académicas
+			Proveer infraestructura de computación de alta productividad () para la ejecución de tareas computacionales intensivas y paralelas, facilitando el procesamiento distribuido de cargas de trabajo científicas y académicas
 			\vspace{2pt}
 		\end{minipage}                                                 \\ \hline
 
@@ -243,7 +275,7 @@ Dado que no se ha establecido previamente un servicio de computación distribuid
 			• Democratización del acceso a recursos HTC \\
 			• Apoyo a formación en computación distribuida \\
 			• Incremento en productividad científica \\
-			• Posicionamiento institucional en \HTC
+			• Posicionamiento institucional en 
 			\vspace{2pt}
 		\end{minipage}                                                                                                                                                                                                                               \\ \hline
 
@@ -251,33 +283,39 @@ Dado que no se ha establecido previamente un servicio de computación distribuid
 		\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{OBSERVACIONES:} Servicio orientado a democratizar el acceso a recursos de computación de alto rendimiento para la comunidad académica, fortaleciendo las capacidades investigativas y formativas de la Universidad del Quindío.} \\ \hline
 	\end{tabular}
 \end{table}
+
 \section{Descripción de la oportunidad}
 \noindent
-La implementación de un nuevo universo HTCondor en la infraestructura del grupo GRID representa una oportunidad estratégica de considerable valor tanto para la comunidad académica de la Universidad del Quindío como para los grupos de investigación locales y externos. En primer lugar, esta ampliación abrirá el paso para que diversos grupos de investigación de la institución accedan a capacidades computacionales especializadas más diversas, democratizando así el uso de tecnologías de computación distribuida para disciplinas que requieren procesamiento intensivo de datos, tales como la bioinformática, el análisis de big data, el aprendizaje profundo y la simulación científica. En segundo lugar, desde una perspectiva formativa, la incorporación de este nuevo universo constituye una oportunidad para que los estudiantes de pregrado y posgrado adquieran competencias prácticas en computación de alto rendimiento (\HTC), un campo con limitada documentación y experiencias de implementación documentadas en el contexto colombiano. Adicionalmente, esta iniciativa ayudaría al posicionamiento del \GRID como un referente en computación distribuida a nivel nacional, facilitando la colaboración interinstitucional y el desarrollo de proyectos conjuntos con otras universidades e instituciones de investigación. Finalmente, la consolidación de una infraestructura HTCondor más robusta y versátil contribuye directamente a la competitividad investigativa de la Universidad del Quindío, optimizando el aprovechamiento de recursos computacionales disponibles y generando capacidades técnicas diferenciadas que pueden traducirse en publicaciones científicas, proyectos de mayor envergadura y fortalecimiento de las líneas de investigación institucionales.
 
+\textbf{Oportunidad de uso:} 
+
+La implementación de mecanismos de seguridad perimetral y de monitoreo mediante el uso de dispositivos UTM y tecnologías complementarias, 
+orientadas al control, inspección y análisis del tráfico de red en la infraestructura del \GRID, con el fin de fortalecer la protección de 
+los activos de información y mejorar la capacidad de respuesta ante incidentes de seguridad.
+
+%###############################################################################################################################
+%############################################ ENTREVISTA #########################################
 
 \section{Entrevista con integrante del grupo \GRID}
 
-Para comprender mejor las necesidades y expectativas del GRID, se realizó una entrevista con uno de sus miembros
+Para comprender mejor las necesidades y expectativas del \GRID, se realizó una entrevista estructurada con uno de sus miembros, 
+directamente involucrado en la gestión de la infraestructura tecnológica. Las preguntas formuladas incluyeron tanto ítems cerrados, 
+orientados a identificar el nivel de implementación de controles de seguridad y la adopción de lineamientos basados en estándares como 
+ISO/IEC 27001 e ISO/IEC 27017, como preguntas abiertas que permitieron profundizar en prácticas actuales, procedimientos y percepciones 
+sobre la seguridad de la infraestructura.
 
-Entrevistado: Luis Eduardo Sepúlveda Rodríguez.\\
-Duración: 15 minutos.\\
-Link: \href{https://drive.google.com/file/d/1pZQHdHK-V-Hveej2DyTEszdBkFUaQdyy/view?usp=sharing}{click aquí}.\\
-Entrevistadores: Juan Esteban Castaño Osma, Juan Esteban Parra Parra.\\
+La información obtenida a partir de esta entrevista permitió complementar los hallazgos del estudio teórico, proporcionando una visión 
+contextualizada del entorno del \GRID y sirviendo como insumo para la definición de requerimientos y el diseño de la arquitectura de 
+seguridad propuesta.
 
-Se formularon preguntas sobre la alineación misional de la universidad con el clúster HTCondor actual, la visión a largo plazo para dicho clúster y los desafíos técnicos enfrentados.
+A continuación en la figura~\ref{fig:entrevista-grid} se muestra la presentación de la entrevista, el resto de la entrevista se encuentra en el Anexo~\ref{anexo:entrevista-grid}.
 
-La lista de preguntas es como sigue:
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.50]{tablas-images/entrevista-grid/portada.png}
+	\caption{Vista general de la entrevista con el integrante del \GRID}\label{fig:foto-torre-binaria}
+\end{figure}
 
-\begin{enumerate}
-	\item Como está expuesto en el objetivo misional de GRID, este ha investigado en computación distribuida. ¿Podría contarnos cuál fue la motivación inicial o el problema específico que llevó al grupo a adoptar HTCondor en lugar de otras tecnologías?
-	\item ¿Cuál es la visión a largo plazo para este clúster? ¿Se aspira a que se convierta en un servicio para otros grupos de investigación de la universidad o incluso externos?
-	\item ¿De qué manera la consolidación y ampliación de la infraestructura HTCondor se alinea con los objetivos de misionales de la Universidad del Quindío?
-	\item Actualmente, ¿quiénes son los principales usuarios del clúster HTCondor ¿cuáles han sido los desafíos técnicos u operativos más recurrentes que han enfrentado dichos usuarios?
-	\item Pensando en las líneas de investigación de GRID y sus colaboradores, ¿qué necesidades computacionales no se están pudiendo cubrir con la configuración actual?
-	\item El proyecto se centra en ampliar la infraestructura añadiendo un nuevo 'Universo'. Desde su perspectiva, ¿cuál es la principal oportunidad que esta ampliación representa para el grupo? ¿Qué nuevas capacidades esperan obtener?
-	\item El alcance del proyecto indica que el prototipo se implementará como un prototipo funcional. Si este exitoso, ¿cuáles serían los siguientes pasos o consideraciones para integrarlo en la infraestructura física del GRID?
-\end{enumerate}
 
 \subsection{Resumen de la entrevista}
 
