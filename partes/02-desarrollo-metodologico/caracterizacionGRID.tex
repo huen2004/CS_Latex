@@ -146,7 +146,7 @@ En la tabla~\ref{table:utm} se presenta la ficha técnica del dispositivo utiliz
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.50]{tablas-images/utm/utm-grid.png}
-	\caption{Vista general del UTM SonicWall NSa 6600 del \GRID}\label{fig:foto-torre-binaria}
+	\caption{Vista general del UTM SonicWall NSa 6600 del \GRID}\label{fig:foto-utm-grid}
 \end{figure}
 
 \noindent
@@ -156,7 +156,7 @@ X1 correspondiente a la red WAN y X0 correspondiente a la red LAN.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.20]{tablas-images/utm/switch-grid.png}
-	\caption{Vista general del Switch del Grid}\label{fig:foto-torre-binaria}
+	\caption{Vista general del Switch del Grid}\label{fig:foto-switch-grid}
 \end{figure}
 
 
@@ -165,9 +165,8 @@ X1 correspondiente a la red WAN y X0 correspondiente a la red LAN.
 
 \subsection{Infraestructura de seguridad en la nube del \GRID}
 \noindent{}
-
-
-
+ En la siguiente sección se especificarán las características técnicas actuales de la infraestructura de seguridad en el entorno de 
+ computación en la nube del grupo \GRID,
 
 \subsection{Servicios actuales de seguridad en la nube del \GRID}
 \noindent
@@ -198,96 +197,101 @@ tabla~\ref{table:servicio-seguridad} se presenta una aproximación de este servi
 	\sffamily\scriptsize
 	\setlength{\tabcolsep}{4pt}
 	\renewcommand{\arraystretch}{1.3}
-	\caption{Caracterización del servicio de computación distribuida HTCondor esperado para el GRID}
-	\label{table:servicio-htcondor}
+	\caption{Caracterización del servicio de seguridad esperado para el \GRID}\label{table:servicio-seguridad}
 	\begin{tabular}{|p{0.28\textwidth}|p{0.67\textwidth}|}
 		\hline
-		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{DESCRIPCIÓN GENERAL DEL SERVICIO}}                                                                                                                                                                                            \\ \hline
-
-		\textbf{NOMBRE DEL SERVICIO}       & Servicio de Computación Distribuida HTCondor                                                                                                                                                                                             \\ \hline
-		\textbf{TIPO DE SERVICIO}          & Servicio de educación, investigación y extensión universitaria                                                                                                                                                                           \\ \hline
-		\textbf{HORARIO DE DISPONIBILIDAD} & 24/7 (Disponibilidad continua)                                                                                                                                                                                                           \\ \hline
-
-		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{OBJETIVOS Y ALCANCE}}                                                                                                                                                                                                         \\ \hline
-
-		\textbf{PROPÓSITO}                 &
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{DESCRIPCIÓN GENERAL DEL SERVICIO}} \\ \hline
+		
+		\textbf{NOMBRE DEL SERVICIO} &
+		Servicio de Seguridad para la Infraestructura de Computación en la Nube del \GRID \\ \hline
+		
+		\textbf{TIPO DE SERVICIO} &
+		Servicio de apoyo a la seguridad de la infraestructura tecnológica e investigativa \\ \hline
+		
+		\textbf{HORARIO DE DISPONIBILIDAD} &
+		24/7 (Disponibilidad continua) \\ \hline
+		
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{OBJETIVOS Y ALCANCE}} \\ \hline
+		
+		\textbf{PROPÓSITO} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			Proveer infraestructura de computación de alta productividad () para la ejecución de tareas computacionales intensivas y paralelas, facilitando el procesamiento distribuido de cargas de trabajo científicas y académicas
+			Fortalecer la protección de la infraestructura tecnológica del \GRID\ mediante la incorporación de mecanismos de seguridad orientados a la prevención, detección y monitoreo de amenazas cibernéticas.
 			\vspace{2pt}
-		\end{minipage}                                                 \\ \hline
-
-		\textbf{USUARIOS OBJETIVO}         &
+		\end{minipage} \\ \hline
+		
+		\textbf{USUARIOS OBJETIVO} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• Estudiantes de pregrado y posgrado \\
-			• Grupos de investigación institucionales \\
-			• Docentes investigadores \\
-			• Comunidad académica UQ
+			• Grupo de investigación \GRID \\ 
+			• Docentes de Ingeniería de Sistemas y Computación \\ 
+			• Estudiantes de Ingeniería de Sistemas y Computación
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                                     \\ \hline
-
-		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{ESPECIFICACIONES TÉCNICAS}}                                                                                                                                                                                                   \\ \hline
-
-		\textbf{RECURSOS DE HARDWARE}      &
+		\end{minipage} \\ \hline
+		
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{ESPECIFICACIONES TÉCNICAS}} \\ \hline
+		
+		\textbf{INFRAESTRUCTURA} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• Clúster de máquinas Raspberry Pi \\
-			• Máquinas virtuales especializadas \\
-			• Infraestructura de red dedicada
+			• Redes internas del \GRID \\ 
+			• Servidores físicos y virtuales \\ 
+			• Hipervisores y servicios institucionales
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                                           \\ \hline
-
-		\textbf{TECNOLOGÍAS}               &
+		\end{minipage} \\ \hline
+		
+		\textbf{TECNOLOGÍAS} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• HTCondor (High Throughput Computing) \\
-			• Sistemas de virtualización \\
+			• Dispositivos UTM \\ 
+			• Sistemas de monitoreo y análisis \\ 
+			• Tecnologías complementarias de seguridad
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                                        \\ \hline
-
-		\textbf{CAPACIDADES}               &
+		\end{minipage} \\ \hline
+		
+		\textbf{CAPACIDADES} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• Procesamiento paralelo de tareas independientes \\
-			• Gestión automática de recursos \\
-			• Balanceo de carga dinámico \\
-			• Tolerancia a fallos
+			• Monitoreo del tráfico de red \\ 
+			• Detección de amenazas \\ 
+			• Control de acceso y segmentación \\ 
+			• Registro y análisis de eventos de seguridad
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                             \\ \hline
-
-		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{APLICACIONES Y BENEFICIOS}}                                                                                                                                                                                                   \\ \hline
-
-		\textbf{CASOS DE USO}              &
+		\end{minipage} \\ \hline
+		
+		\rowcolor{gray!15} \multicolumn{2}{|c|}{\textbf{APLICACIONES Y BENEFICIOS}} \\ \hline
+		
+		\textbf{CASOS DE USO} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• Simulaciones científicas y modelado matemático \\
-			• Procesamiento de datos masivos (Big Data) \\
-			• Renderización de video y gráficos \\
-			• Análisis bioinformático y genómico \\
+			• Protección de servicios institucionales \\ 
+			• Supervisión de infraestructura virtualizada \\ 
+			• Monitoreo de tráfico y eventos de seguridad \\ 
+			• Fortalecimiento de controles de seguridad
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                              \\ \hline
-
-		\textbf{IMPACTO ESPERADO}          &
+		\end{minipage} \\ \hline
+		
+		\textbf{IMPACTO ESPERADO} &
 		\begin{minipage}[t]{\linewidth}
 			\vspace{2pt}
-			• Fortalecimiento de capacidades investigativas \\
-			• Democratización del acceso a recursos HTC \\
-			• Apoyo a formación en computación distribuida \\
-			• Incremento en productividad científica \\
-			• Posicionamiento institucional en 
+			• Fortalecimiento de la seguridad institucional \\ 
+			• Mayor protección de activos de información \\ 
+			• Apoyo a la continuidad de servicios tecnológicos \\ 
+			• Validación de una arquitectura alineada con estándares internacionales
 			\vspace{2pt}
-		\end{minipage}                                                                                                                                                                                                                               \\ \hline
-
-		\rowcolor{gray!15} \multicolumn{2}{|l|}{\textbf{CONTRIBUCIÓN:} Expansión de universos HTCondor para mayor versatilidad}                                                                                                                                                       \\ \hline
-		\multicolumn{2}{|p{0.95\textwidth}|}{\textbf{OBSERVACIONES:} Servicio orientado a democratizar el acceso a recursos de computación de alto rendimiento para la comunidad académica, fortaleciendo las capacidades investigativas y formativas de la Universidad del Quindío.} \\ \hline
+		\end{minipage} \\ \hline
+		
+		\rowcolor{gray!15} \multicolumn{2}{|l|}{\textbf{CONTRIBUCIÓN:} Fortalecimiento de la arquitectura de seguridad del \GRID} \\ \hline
+		
+		\multicolumn{2}{|p{0.95\textwidth}|}{
+			\textbf{OBSERVACIONES:} El servicio se plantea como un prototipo funcional orientado a complementar la infraestructura actual del \GRID, sin modificar su estructura operativa, permitiendo validar mecanismos y controles de seguridad aplicables a entornos de computación en la nube.
+		} \\ \hline
+		
 	\end{tabular}
 \end{table}
 
 \section{Descripción de la oportunidad}
 \noindent
-
-\textbf{Oportunidad de uso:} 
 
 La implementación de mecanismos de seguridad perimetral y de monitoreo mediante el uso de dispositivos UTM y tecnologías complementarias, 
 orientadas al control, inspección y análisis del tráfico de red en la infraestructura del \GRID, con el fin de fortalecer la protección de 
@@ -308,52 +312,101 @@ La información obtenida a partir de esta entrevista permitió complementar los 
 contextualizada del entorno del \GRID y sirviendo como insumo para la definición de requerimientos y el diseño de la arquitectura de 
 seguridad propuesta.
 
-A continuación en la figura~\ref{fig:entrevista-grid} se muestra la presentación de la entrevista, el resto de la entrevista se encuentra en el Anexo~\ref{anexo:entrevista-grid}.
+A continuación en la figura~\ref{fig:entrevista-grid} se muestra la presentación de la entrevista, el resto de la entrevista se encuentra 
+en el Anexo~\ref{sec:entrevista-grid}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.50]{tablas-images/entrevista-grid/portada.png}
-	\caption{Vista general de la entrevista con el integrante del \GRID}\label{fig:foto-torre-binaria}
+	\caption{Vista general de la entrevista con el integrante del \GRID}\label{fig:entrevista-grid}
 \end{figure}
 
 
 \subsection{Resumen de la entrevista}
 
-El siguiente es un resumen de lo expresado por el doctor Luis Eduardo Sepúlveda en respuesta a las preguntas listadas anteriormente.
+Con el fin de analizar la información obtenida a partir de la entrevista realizada en esta fase, se llevó a cabo un proceso de 
+sistematización y tabulación de los datos recolectados. Las respuestas fueron examinadas detalladamente, permitiendo identificar 
+categorías temáticas relacionadas con el objeto de estudio. Posteriormente, estas categorías fueron codificadas y cuantificadas con el 
+propósito de facilitar su análisis descriptivo y apoyar la interpretación de los resultados.
 
-\subsubsection{Motivación para adoptar HTCondor}
+La entrevista tuvo un enfoque estructurado con preguntas mixtas, combinando preguntas abiertas y cerradas. Las respuestas cerradas fueron 
+tabuladas de forma directa, mientras que las abiertas se analizaron mediante un proceso de codificación temática. Este procedimiento 
+permitió agrupar la información en categorías de análisis e identificar patrones relevantes asociados al estado actual de la seguridad en 
+la infraestructura del \GRID.
 
-La adopción de HTCondor se produjo por afinidad temática, gracias a la guía del Dr. John Alexander Sanabria Ordóñez de la Universidad del Valle. El Dr. Sanabria fue un precursor de la iniciativa GRID Colombia, que hace más de 20 años promovió el uso generalizado de sistemas distribuidos en el país. La Universidad del Quindío, junto con la Universidad del Valle, ha logrado replicar estas tecnologías, buscando hacer un proceso de ``adopción digital'' a otras universidades con afinidad temática.
+\subsubsection{Preguntas abiertas}
+
+Las respuestas correspondientes a las preguntas abiertas fueron analizadas mediante un proceso de codificación temática. A partir de la 
+revisión detallada de las respuestas obtenidas, se identificaron diferentes categorías de análisis que permitieron agrupar la información 
+según aspectos relacionados con la seguridad, la gestión de la seguridad, los controles tecnológicos y la responsabilidad compartida en 
+entornos de computación en la nube.
+
+\subsubsection{Gráfico de Barras frecuencia de cada categoría}
+
+En la Figura~\ref{fig:frecuencias-categorias} se presenta una gráfica de barras horizontales que muestra la frecuencia de aparición de las 
+categorías identificadas durante el proceso de codificación. En el eje vertical se representan las categorías de análisis, mientras que el 
+eje horizontal indica la frecuencia de aparición de cada una dentro de las respuestas obtenidas, permitiendo identificar los temas con 
+mayor y menor presencia en la entrevista realizada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.50]{tablas-images/utm/frecuencia-abiertas.png}
+	\caption{Frecuencia de aparición de las categorías en las respuestas abiertas}\label{fig:frecuencias-categorias}
+\end{figure}
+
+\subsubsection{Porcentajes de cada Categoría}
+
+En la Figura~\ref{fig:porcentajes-categorias} se presenta una gráfica de pastel que representa la distribución porcentual de las categorías 
+identificadas a partir del análisis de las preguntas abiertas, permitiendo visualizar la proporción relativa de cada categoría respecto
+al total de respuestas analizadas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.50]{tablas-images/utm/porcentajes-abiertas.png}
+	\caption{Porcentajes de aparición de las categorías en las respuestas abiertas}\label{fig:porcentajes-categorias}
+\end{figure}
+
+A partir del análisis de las respuestas obtenidas en las preguntas abiertas, se identificaron seis categorías de análisis relacionadas con 
+la seguridad de la infraestructura en la nube. Como se observa en las Figuras~\ref{fig:frecuencias-categorias} 
+y~\ref{fig:porcentajes-categorias}, las categorías C1, C2 y C3 presentan la mayor frecuencia de aparición, con un 21,4\% cada una, 
+evidenciando un mayor interés en aspectos relacionados con infraestructura tecnológica, gestión de la información y gobierno de la 
+seguridad.
+
+Por su parte, las categorías C4 y C5 presentan una frecuencia moderada de 14,3\%, asociadas principalmente con monitoreo, evaluación y 
+gestión de incidentes. Finalmente, la categoría C6 registra la menor frecuencia con un 7,1\%, reflejando una menor presencia de aspectos 
+relacionados con la comunicación y notificación de eventos de seguridad.
+
+\subsubsection{Preguntas cerradas}
+
+Las preguntas cerradas fueron organizadas en una tabla de frecuencias mediante una codificación binaria, asignando valores de 1 y 0 según 
+la selección de cada opción. En la tabla se presenta el nivel de implementación de los controles evaluados, considerando lineamientos 
+relacionados con las normas ISO/IEC 27001 e ISO/IEC 27017, así como aspectos asociados a controles físicos y tecnológicos.
+
+\subsubsection{Gráfico de Barras}
+
+En la Figura~\ref{fig:barras-cerradas} se presenta una gráfica de barras que muestra las opciones de respuesta del cuestionario y 
+su nivel de implementación, determinado a partir de la frecuencia de selección. En el eje horizontal se representan las áreas evaluadas, 
+mientras que el eje vertical indica la frecuencia de las respuestas, facilitando la comparación del nivel de implementación entre los 
+distintos controles analizados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.50]{tablas-images/utm/barras-cerradas.png}
+	\caption{Gráfico de barras de las respuestas cerradas}\label{fig:barras-cerradas}
+\end{figure}
+
+\subsubsection{Gráfico de Barras}
+
+A partir del análisis de las respuestas correspondientes a las preguntas cerradas, representadas en la Figura~\ref{fig:barras-cerradas}, 
+se evidencia un nivel heterogéneo en la implementación de los controles evaluados. En los controles físicos se observa una distribución 
+equilibrada entre respuestas afirmativas y negativas, indicando que algunos controles están implementados mientras otros presentan 
+limitaciones.
+
+En los controles tecnológicos predominan las respuestas negativas y parciales, sugiriendo que existen iniciativas de seguridad, aunque aún 
+no se encuentran completamente consolidadas. Asimismo, las respuestas relacionadas con las normas ISO/IEC 27001 e ISO/IEC 27017 reflejan 
+un bajo nivel de adopción formal, evidenciando la necesidad de fortalecer el marco de gestión y gobierno de la seguridad de la información 
+dentro del \GRID.
 
 
-
-\subsubsection{Visión a largo plazo para el clúster}
-
-La visión principal es generar conocimiento suficiente en el grupo \GRID para garantizar la mantenibilidad del sistema distribuido. El objetivo es que este clúster se convierta en un servicio para otros grupos de investigación de la universidad (física, química, biomédicas, etc.) que requieran cómputo intensivo o supercomputación. El sistema opera como un escenario de pruebas gratuito e intermediario, permitiendo que los grupos validen y afinen sus algoritmos antes de dar el salto a centros de supercomputación de pago. Esto asegura que el ``salto hacia un sistema de pago en supercomputación sea más natural y eficiente''.
-
-
-\subsubsection{Alineación con los objetivos misionales de la Universidad del Quindío}
-
-La infraestructura HTCondor se alinea principalmente con la investigación. A través de la extensión y proyección social, el grupo GRID pone a disposición el conocimiento gestado en procesos académicos para que otros grupos la utilicen, funcionando como una infraestructura que les permite avanzar en sus necesidades particulares de investigación.
-
-
-
-\subsubsection{Usuarios actuales y desafíos recurrentes}
-
-Actualmente, los principales usuarios son estudiantes de trabajos de grado que realizan pruebas funcionales para generar el conocimiento de base necesario para operar y mantener la infraestructura. El clúster aún no se ha abierto a servicios externos, aunque ha tenido intervenciones puntuales de prueba con el Observatorio Sismológico del Quindío y un grupo de química. Los desafíos más recurrentes son los retos técnicos inherentes a la comprensión y mantenimiento de un sistema distribuido, pero se espera que las guías de adaptación desarrolladas por los estudiantes minimicen esta complejidad a futuro.
-
-
-\subsubsection{Necesidades computacionales no cubiertas actualmente}
-
-La configuración inicial contaba únicamente con el universo \textit{vanilla}, que aunque este universo es versátil, limita ciertas tareas específicas al no aprovechar la paralelización. Existía la necesidad de diversificar las alternativas y realizar un estudio formal para identificar oportunidades que HTCondor pudiese proveer, como la inclusión del universo \textit{parallel} y el universo \textit{Grid}. Estos nuevos universos complementan las capacidades existentes, evitando sesgos en la exploración y permitiendo el uso de paralelización.
-
-
-\subsubsection{Oportunidad de la ampliación (nuevo universo)}
-
-La principal oportunidad que representa esta ampliación es la diversificación de capacidades y el aumento de la competitividad frente a otras iniciativas similares. Al contar con más universos, se tienen más posibilidades. Esto cimenta la capacidad para resolver problemas puntuales de futuros clientes, como grupos de biomédicas que podrían necesitar paralelismo o lenguajes específicos para tareas como la secuencia de un genoma.
-
-
-\subsubsection{Pasos para la integración a la infraestructura física}
-
-Dado que la infraestructura física actual utiliza tecnología anterior (Raspberry versión 3, existiendo actualmente la versión 5), la prioridad es que los documentos de entrega (guías de adaptación) del prototipo sean suficientemente claros. Esta claridad permitirá realizar migraciones de forma muy natural hacia ambientes productivos y más cómodos cuando las capacidades de infraestructura física maduren. Para el grupo, es de gran valor contar con estas guías que permitan vencer rápidamente el reto de implementación de un HTCondor funcional.
-
+Para una visualización detallada de las tablas y resultados obtenidos durante el proceso de tabulación, consultar el 
+Apéndice~\ref{sec:tabulacion}.
