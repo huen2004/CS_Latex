@@ -1,0 +1,325 @@
+\ChapterImageStar[cap:caracterizacion]{Caracterización de las metodologías y tecnologías}{./images/fondo.png}\label{cap:caracterizacion}
+\mbox{}\\
+
+En esta sección se presentan los principales referentes metodológicos y tecnológicos identificados durante el proceso de revisión 
+sistemática de la literatura. Su propósito es analizar las metodologías, arquitecturas y herramientas de seguridad más relevantes 
+encontradas en los estudios seleccionados, con el fin de comprender sus características, capacidades y posibles aplicaciones dentro del 
+contexto de la infraestructura de computación en la nube del grupo GRID.\@
+
+\section{Caracterización de Referentes Metodológicos}
+
+Esta etapa se centra principalmente en la caracterización de los referentes metodológicos identificados durante el proceso de SMS.\@ Su 
+objetivo es analizar los atributos, capacidades y alcances de cada metodología encontrada, proporcionando un análisis detallado que 
+permita comprender su aplicabilidad en el contexto de la seguridad de la infraestructura en la nube del grupo GRID.\@ Esta caracterización 
+constituye un insumo fundamental para la posterior selección de metodologías en el desarrollo del presente trabajo de grado.
+
+\subsection{Estándar ISO/IEC 27001}
+
+\subsubsection{Contexto y relevancia del estándar ISO/IEC 27001}
+
+De acuerdo con \citeauthor{rajesh2024unified}, la norma ISO/IEC 27001 constituye un marco de cumplimiento regulatorio fundamental en 
+entornos de computación en la nube, especialmente en un contexto donde la adopción de servicios cloud continúa creciendo y las 
+preocupaciones relacionadas con la seguridad de la información representan uno de los principales desafíos para las organizaciones. 
+Su relevancia radica en proporcionar lineamientos orientados a garantizar la gestión de la seguridad de la información bajo un modelo de 
+responsabilidad compartida entre usuarios, proveedores y demás actores involucrados en la infraestructura cloud.
+
+Asimismo, el estudio desarrollado por \citeauthor{tissir2021cybersecurity} resalta que este estándar permite definir necesidades de 
+gestión y control que aún presentan limitaciones dentro de la literatura actual, particularmente en entornos dinámicos y distribuidos 
+como los de computación en la nube.
+
+\subsubsection{Alcance prestacional}
+
+Con base en los estudios analizados, los principales aspectos funcionales de la ISO/IEC 27001 se centran en los siguientes elementos:
+
+\begin{itemize}
+	\item \textbf{Gestión integral de riesgos:} Proporciona un marco para identificar, evaluar y mitigar riesgos relacionados con la seguridad de la información, considerando la interacción entre personas, procesos y tecnologías~\cite{tissir2021cybersecurity}.
+	
+	\item \textbf{Estandarización y auditoría:} Funciona como un referente internacional para la realización de auditorías y procesos de verificación del cumplimiento de controles de seguridad en infraestructuras tecnológicas~\cite{gambo2025navigating}.
+	
+	\item \textbf{Marco de políticas y controles:} Establece lineamientos orientados a la definición de políticas, procedimientos y controles de seguridad que permitan fortalecer la protección de los activos de información y mejorar la madurez organizacional~\cite{tissir2021cybersecurity}.
+\end{itemize}
+
+\subsubsection{Aplicabilidad en el contexto de infraestructura en la nube}
+
+La aplicación de la norma ISO/IEC 27001 en entornos de computación en la nube permite abordar problemáticas relacionadas con la auditoría, 
+el aseguramiento de servicios y la gestión de riesgos en infraestructuras cloud. Diversos estudios destacan que este estándar facilita la 
+transparencia entre los actores involucrados y contribuye a medir el nivel de madurez de las organizaciones frente a la gestión de la 
+seguridad de la información~\cite{rajesh2024unified,tissir2021cybersecurity}.
+
+De igual manera, la literatura señala que su implementación debe considerar factores como la disponibilidad de personal especializado, 
+los recursos económicos y las capacidades tecnológicas de la organización, especialmente en contextos institucionales y 
+académicos~\cite{gambo2025navigating}.
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado a la ISO/IEC 27001 dentro de esta investigación se encuentra respaldado por los SPS 084, 154 y 025, los 
+cuales presentan enfoques relacionados con auditoría de seguridad, gestión de riesgos y cumplimiento regulatorio en entornos cloud. En 
+conjunto, estos estudios posicionan a la ISO/IEC 27001 como un componente fundamental para fortalecer la resiliencia operativa, la 
+protección de activos de información y la gestión de la ciberseguridad en infraestructuras de computación en la 
+nube~\cite{rajesh2024unified,tissir2021cybersecurity}.
+
+%####################################################################################################################################
+
+\subsection{NIST Cybersecurity Framework (CSF)}
+
+\subsubsection{Contexto y relevancia del \NISTCSF}
+
+El marco de ciberseguridad del \textit{National Institute of Standards and Technology (\NISTCSF)} constituye un referente internacional 
+orientado a la definición de lineamientos y mejores prácticas para la gestión de la ciberseguridad dentro de las organizaciones. De 
+acuerdo con~\cite{tissir2021cybersecurity}, este marco proporciona un lenguaje común que facilita la maduración de procesos de seguridad y 
+fortalece la gestión de riesgos en entornos tecnológicos distribuidos.
+
+Asimismo,~\cite{rajesh2024unified} caracterizan al \NISTCSF como un estándar técnico esencial para establecer procedimientos de auditoría y 
+verificación de controles de seguridad en entornos cloud. Su relevancia también se fundamenta en su capacidad para responder a las 
+necesidades de gestión derivadas de paradigmas emergentes como la computación distribuida y la computación en la nube.
+
+Por otra parte, el estudio desarrollado por~\cite{ulloa2025integral} destaca que este marco no solo resulta aplicable en servidores e 
+infraestructuras tradicionales, sino también en ecosistemas de dispositivos interconectados, donde la protección continua de los activos y 
+canales de comunicación representa un aspecto crítico para prevenir vulnerabilidades y ataques.
+
+\subsubsection{Alcance prestacional}
+
+A partir de la síntesis de los estudios analizados, los principales aspectos funcionales del \NISTCSF se centran en los siguientes 
+elementos:
+
+\begin{itemize}
+	\item \textbf{Seguridad desde el diseño e integridad:} El marco promueve la protección frente a accesos no autorizados y modificaciones maliciosas de los datos, garantizando la integridad de los activos dentro de entornos interconectados~\cite{ulloa2025integral}.
+	
+	\item \textbf{Adaptabilidad y maduración organizacional:} Diversos estudios destacan que el \NISTCSF permite establecer un lenguaje común entre las organizaciones, facilitando la maduración de procesos de seguridad y la gestión de riesgos~\cite{tissir2021cybersecurity,rajesh2024unified}.
+	
+	\item \textbf{Estandarización y apoyo al cumplimiento:} El marco funciona como un referente internacional que puede complementarse con estándares como ISO/IEC 27001 para fortalecer procesos de auditoría, cumplimiento y gobernanza de la seguridad de la información~\cite{gambo2025navigating}.
+\end{itemize}
+
+\subsubsection{Aplicabilidad en el contexto de infraestructura en la nube}
+
+La aplicabilidad del \NISTCSF dentro del contexto de infraestructura en la nube se orienta principalmente a tres aspectos identificados en 
+la literatura:
+
+\begin{itemize}
+	\item \textbf{Auditoría y confianza:} El \NISTCSF facilita la implementación de procesos continuos de auditoría y verificación de controles, fortaleciendo el cumplimiento técnico y operativo en entornos cloud~\cite{rajesh2024unified}.
+	
+	\item \textbf{Protección de dispositivos e infraestructura:} El marco contribuye a asegurar los canales de comunicación entre dispositivos y servicios en la nube, favoreciendo la protección de los flujos de información y la integridad de los activos tecnológicos~\cite{ulloa2025integral}.
+	
+	\item \textbf{Evaluación del nivel de madurez:} El \NISTCSF permite evaluar la capacidad de respuesta y madurez organizacional frente a amenazas emergentes, apoyando la gestión integral de riesgos y vulnerabilidades~\cite{tissir2021cybersecurity,gambo2025navigating}.
+\end{itemize}
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado al \NISTCSF dentro de esta investigación se encuentra respaldado por los SPS 025, 084, 134 y 154. Los 
+estudios analizados posicionan este marco como un enfoque orientado a fortalecer la gobernanza de la seguridad, la estandarización de 
+criterios y la maduración de procesos organizacionales en contextos tecnológicos heterogéneos~\cite{rajesh2024unified,ulloa2025integral}.
+
+%####################################################################################################################################
+
+\subsection{ISO/IEC 27017}
+
+\subsubsection{Contexto y relevancia del estándar ISO/IEC 27017}
+
+El estándar ISO/IEC 27017 presentó una presencia limitada dentro del proceso de SMS desarrollado en esta investigación, siendo 
+identificado principalmente en el estudio realizado por~\cite{tissir2021cybersecurity}. Dicho trabajo posiciona este estándar como un 
+componente relevante para abordar los desafíos asociados al paradigma emergente de la computación en la nube, especialmente en aspectos 
+relacionados con la gestión de la ciberseguridad y la responsabilidad compartida entre proveedores y consumidores de servicios cloud.
+
+La relevancia de la ISO/IEC 27017 radica en que proporciona lineamientos y controles específicos orientados a entornos de computación en la 
+nube, permitiendo complementar otros marcos y estándares de seguridad de la información para fortalecer la gestión de riesgos, amenazas y 
+vulnerabilidades dentro de infraestructuras cloud~\cite{tissir2021cybersecurity}.
+
+\subsubsection{Aplicabilidad en el contexto de la infraestructura en la nube}
+
+El framework conceptual propuesto por~\cite{tissir2021cybersecurity}, aunque no se enfoca específicamente en entornos universitarios, 
+resalta que la ISO/IEC 27017 contribuye al fortalecimiento de la madurez organizacional y a la protección de los activos de información 
+presentes en infraestructuras de computación en la nube.
+
+Asimismo, el estudio destaca que cualquier infraestructura cloud se encuentra expuesta a amenazas, vulnerabilidades y ataques, razón por 
+la cual la integración de este estándar con otros marcos de referencia y normativas permite establecer enfoques de seguridad más robustos 
+y alineados con las necesidades de protección de los entornos distribuidos.
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado a la ISO/IEC 27017 dentro de esta investigación se encuentra respaldado principalmente por el SPS 084 
+correspondiente al estudio desarrollado por~\cite{tissir2021cybersecurity}. Los autores proponen un modelo conceptual basado en análisis 
+semántico que integra estándares como ISO/IEC 27017, ISO/IEC 27001 y el \NISTCSF, enfatizando la importancia de la madurez organizacional, 
+la gestión de riesgos y la implementación de controles de seguridad orientados a la prevención de amenazas y vulnerabilidades en entornos cloud.
+
+%####################################################################################################################################
+
+\subsection{Zero-Trust Architecture (\ZTA)}
+
+\subsubsection{Contexto y relevancia de la arquitectura Zero-Trust Architecture (\ZTA)}
+
+La arquitectura de ciberseguridad \textit{Zero-Trust Architecture (\ZTA)} constituye un modelo orientado a fortalecer la protección de los 
+activos de información mediante el principio de ``nunca confiar, siempre verificar''. De acuerdo con~\cite{ali2025zta}, este enfoque trata 
+la identidad como el nuevo perímetro de seguridad, realizando procesos continuos de autenticación y validación tanto de usuarios como de 
+dispositivos antes de conceder acceso a cualquier recurso dentro de la infraestructura.
+
+Asimismo,~\cite{stojalowski2024zero} describen el \ZTA como un modelo de seguridad diseñado para proteger datos y servicios sin importar su 
+ubicación, incluyendo la prevención de movimientos laterales dentro de la infraestructura. Los autores destacan que este enfoque se 
+fundamenta en pilares relacionados con la seguridad de usuarios, dispositivos, aplicaciones, redes, datos, visibilidad, analítica y 
+automatización, permitiendo fortalecer el control sobre los activos procesados en entornos distribuidos y cloud.
+
+\subsubsection{Alcance prestacional}
+
+Con base en los estudios analizados sobre Zero-Trust Architecture (\ZTA), se identifica que este modelo de ciberseguridad protege los 
+activos de información mediante mecanismos continuos de autenticación, validación y monitoreo de usuarios y dispositivos. De acuerdo 
+con~\cite{bennaceur2026zero}, el \ZTA permite proteger información crítica frente a comportamientos maliciosos, incorporando esquemas 
+orientados a detectar y restringir actividades sospechosas dentro de la infraestructura.
+
+Asimismo,~\cite{stojalowski2024zero} destacan que el concepto de Zero-Trust se encuentra respaldado por la publicación especial NIST0
+SP 800-207, consolidándose como un enfoque orientado a la protección de datos, servicios y activos de información empresariales. Los 
+autores señalan que su alcance se fundamenta en la implementación de controles distribuidos sobre distintos componentes de la 
+infraestructura, incluyendo usuarios, dispositivos, aplicaciones, cargas de trabajo, redes, datos, visibilidad, analítica y automatización.
+
+De igual manera, la literatura resalta que el principio de ``nunca confiar, siempre verificar'' se aplica mediante procesos constantes de 
+autenticación, inspección de tráfico, generación de logs y monitoreo de actividades, independientemente de si el acceso proviene desde 
+dentro o fuera de la infraestructura organizacional. Esto permite fortalecer la administración y protección de entornos de computación en 
+la nube de manera más segura y controlada~\cite{stojalowski2024zero}.
+
+\subsubsection{Aplicabilidad en la infraestructura en la nube}
+
+La implementación de la arquitectura Zero-Trust en infraestructuras de computación en la nube requiere un proceso gradual de transición 
+desde modelos tradicionales basados en perímetros hacia enfoques centrados en identidad y control continuo~\cite{stojalowski2024zero}. 
+En este contexto, la literatura identifica principios fundamentales para su adopción:
+
+\begin{itemize}
+	\item Garantizar el acceso seguro a los recursos independientemente de su ubicación.
+	
+	\item Aplicar estrategias de mínimos privilegios y controles estrictos de acceso.
+	
+	\item Inspeccionar y monitorear continuamente el tráfico y los registros generados dentro de la infraestructura.
+\end{itemize}
+
+Estos principios permiten fortalecer el control sobre la superficie de protección y asegurar que los usuarios únicamente accedan a los 
+recursos estrictamente necesarios para el desarrollo de sus actividades~\cite{stojalowski2024zero}.
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado a la arquitectura Zero-Trust dentro de esta investigación se encuentra respaldado por los SPS 151, 175 y 
+180. Los estudios analizados presentan simulaciones y casos prácticos que evidencian la capacidad del modelo \ZTA para fortalecer la 
+seguridad, estabilidad y resiliencia de infraestructuras tecnológicas frente a amenazas emergentes en entornos públicos y 
+privados~\cite{bennaceur2026zero}.
+
+%####################################################################################################################################
+
+\section{Caracterización de Referentes Tecnológicos}
+
+Posterior al establecimiento de los referentes metodológicos, esta fase se enfoca en la caracterización de los referentes tecnológicos. A 
+partir de los hallazgos identificados en la literatura, se analizan las tecnologías desde sus capacidades de detección, mitigación y 
+compatibilidad, permitiendo validar la viabilidad operativa de sus funciones frente a los requerimientos de seguridad identificados en el 
+entorno de infraestructura en la nube del grupo \GRID.\@
+
+\subsection{Intrusion Detection and Prevention System (\IDPS)}
+
+\subsubsection{Contexto y relevancia del IDPS}
+
+Los sistemas Intrusion Detection and Prevention System (\IDPS) desempeñan un rol fundamental en la protección de redes e infraestructuras 
+tecnológicas mediante la detección, análisis y prevención de actividades maliciosas. De acuerdo con~\cite{nasim2025idps}, estas tecnologías 
+integran las capacidades de detección de un \IDS con las funciones de prevención de un \IPS, permitiendo identificar amenazas y ejecutar 
+acciones orientadas a mitigar ataques dentro de la infraestructura.
+
+Asimismo, los autores destacan que, aunque los \IDPS fueron desarrollados inicialmente para entornos de red tradicionales, actualmente 
+enfrentan desafíos asociados a la naturaleza dinámica y cambiante de los entornos de computación en la nube~\cite{nasim2025idps}.
+
+Por otra parte,~\cite{vaneeta2025idps} atribuyen a los \IDPS la capacidad de mejorar su desempeño mediante el uso de técnicas híbridas 
+como \textit{signature-based}, \textit{anomaly-based} y \textit{hybrid-based}, las cuales permiten optimizar la detección de amenazas y 
+adaptar los mecanismos de seguridad a infraestructuras ya existentes. En conjunto, la literatura resalta la versatilidad de estas 
+tecnologías y su capacidad para responder tanto a amenazas conocidas como a comportamientos anómalos dentro de entornos cloud.
+
+\subsubsection{Capacidad operativa}
+
+Con base en la literatura analizada, las principales capacidades operativas de las tecnologías IDPS se clasifican en los siguientes 
+enfoques:
+
+\begin{itemize}
+	\item \textbf{Signature-based Technique:} Este enfoque permite detectar amenazas mediante la comparación del tráfico de red con firmas previamente conocidas. Su principal ventaja radica en la alta precisión frente a ataques reconocidos y en la reducción de falsos positivos. Sin embargo, presenta limitaciones frente a amenazas nuevas o desconocidas que no han sido registradas previamente~\cite{nasim2025idps}.
+	
+	\item \textbf{Anomaly-based Technique:} Este método se basa en el análisis del comportamiento normal de usuarios y sistemas para identificar desviaciones o actividades sospechosas. Aunque permite detectar amenazas desconocidas, puede generar mayores tasas de falsos positivos debido a variaciones frecuentes en los patrones de comportamiento~\cite{nasim2025idps}.
+	
+	\item \textbf{Hybrid-based Technique:} Este enfoque combina técnicas basadas en firmas y detección de anomalías, permitiendo incrementar la efectividad del IDPS en entornos de computación en la nube. Su integración facilita la detección tanto de amenazas conocidas como de ataques emergentes y vulnerabilidades desconocidas~\cite{nasim2025idps}.
+\end{itemize}
+
+\subsubsection{Aplicabilidad en la nube}
+
+Según~\cite{adiwal2023cloud}, los proveedores de servicios cloud requieren la implementación de tecnologías \IDPS como parte fundamental 
+de la protección de sus infraestructuras, siempre que estas se configuren de acuerdo con las necesidades y características específicas del 
+entorno.
+
+No obstante,~\cite{nasim2025idps} señalan que estas tecnologías pueden presentar limitaciones relacionadas con el consumo de recursos 
+computacionales y la necesidad de realizar pruebas constantes sobre tráfico real y escenarios de amenazas dinámicas. A pesar de ello, los 
+estudios coinciden en que una configuración y adaptación adecuada de los IDPS permite fortalecer significativamente la seguridad de 
+infraestructuras de computación en la nube.
+
+En consecuencia, la literatura posiciona a los \IDPS como tecnologías relevantes para la identificación, clasificación y mitigación de 
+amenazas dentro de entornos cloud.
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado a las tecnologías \IDPS dentro de esta investigación se encuentra respaldado por los SPS 056, 129 y 137. 
+Los estudios analizados evidencian que estas tecnologías poseen una amplia adopción en entornos de producción debido a su efectividad, 
+versatilidad y disponibilidad de herramientas \textit{open-source} respaldadas por comunidades activas de desarrollo y 
+soporte.
+
+%####################################################################################################################################
+
+\subsection{Security Information and Event Management (\SIEM)}
+
+\subsubsection{Contexto y relevancia del Security Information and Event Management (\SIEM)}
+
+Los sistemas \textit{Security Information and Event Management (\SIEM)} constituyen soluciones orientadas a la correlación, análisis y monitoreo de 
+eventos de seguridad provenientes de múltiples fuentes dentro de una infraestructura tecnológica. De acuerdo con~\cite{coppolino2022siem}, 
+estas herramientas permiten integrar información procedente de dispositivos de red, sistemas operativos, mecanismos de administración de 
+identidades y plataformas de control de acceso, facilitando la identificación y análisis de incidentes de seguridad.
+
+Asimismo,~\cite{hadi2024opensource} describen al SIEM como una tecnología especializada en la recolección, gestión y análisis de logs, 
+desempeñando un rol crítico en la detección y administración de eventos de seguridad dentro de infraestructuras organizacionales. Los 
+autores destacan que estas soluciones permiten centralizar grandes volúmenes de información para fortalecer los procesos de monitoreo y 
+respuesta ante incidentes.
+
+No obstante, la literatura también señala que las herramientas \SIEM \textit{open-source} pueden presentar desafíos relacionados con su 
+complejidad de implementación y la necesidad de configuraciones avanzadas para adaptarse a los requerimientos específicos de cada 
+organización. A pesar de ello, su flexibilidad, escalabilidad y bajo costo las convierten en alternativas atractivas para entornos 
+institucionales y empresariales~\cite{hadi2024opensource}.
+
+\subsubsection{Capacidad operativa}
+
+Con base en la literatura analizada, la capacidad operativa de las tecnologías \SIEM se fundamenta principalmente en la monitorización, 
+correlación y análisis de eventos de seguridad mediante el procesamiento de logs provenientes de diferentes componentes de la 
+infraestructura~\cite{coppolino2022siem}.
+
+Los estudios revisados destacan que los logs representan el elemento central dentro de este tipo de soluciones, ya que permiten 
+identificar accesos autorizados y no autorizados, actividades sospechosas, movimientos de información y fallos dentro de los sistemas. De 
+igual manera, el \SIEM facilita la priorización y análisis de incidentes por parte del personal encargado de la seguridad, fortaleciendo la 
+capacidad de respuesta frente a amenazas y eventos críticos~\cite{coppolino2022siem}.
+
+\subsubsection{Aplicabilidad en la nube}
+
+De acuerdo con~\cite{coppolino2022siem}, las soluciones \SIEM se posicionan como herramientas estratégicas para el monitoreo y análisis de 
+eventos dentro de infraestructuras cloud, proporcionando información oportuna para la detección y mitigación de ciberataques.
+
+Asimismo, la literatura destaca que la adopción progresiva de servicios en la nube incrementa la necesidad de implementar mecanismos 
+centralizados de monitoreo y correlación de eventos que permitan proteger la integridad y disponibilidad de los servicios críticos. En este 
+contexto,~\cite{hadi2024opensource} señalan que los \SIEM constituyen componentes fundamentales dentro de estrategias de defensa multicapa, 
+gracias a sus capacidades de análisis, correlación de eventos y administración de logs en entornos distribuidos.
+
+Por consiguiente, el \SIEM se establece como una tecnología relevante para fortalecer los procesos de vigilancia, detección y gestión de 
+incidentes dentro de infraestructuras de computación en la nube.
+
+\subsubsection{Sustento científico vinculado}
+
+El sustento científico asociado a las tecnologías \SIEM dentro de esta investigación se encuentra respaldado por los SPS 083 y 168. Los 
+estudios analizados evidencian una amplia recomendación hacia la implementación de herramientas \SIEM en infraestructuras cloud, debido a 
+su capacidad para monitorizar eventos, analizar actividades sospechosas y fortalecer la protección de los activos de información mediante 
+mecanismos centralizados de gestión y correlación de logs.
+%####################################################################################################################################
+\subsection{Conclusiones de la caracterización}
+
+Este proceso permitió sustentar la investigación sobre bases científicas y metodológicas, evitando un enfoque empírico y proporcionando 
+argumentos sólidos y defendibles para la construcción de la propuesta.
+
+Asimismo, la cantidad de estudios procesados permitió dimensionar la amplitud del ecosistema de la ciberseguridad en la nube, evidenciando 
+múltiples enfoques, estrategias y tecnologías aplicables a infraestructuras cloud. Esto facilitó un proceso de selección y adaptación 
+orientado a identificar los modelos y herramientas más adecuados para las necesidades del entorno del grupo GRID, favoreciendo el 
+planteamiento de una solución técnica contextualizada y sustentada.
+
+Para una descripción más detallada sobre la caracterización de los referentes metodológicos y tecnológicos analizados en esta etapa, se 
+recomienda consultar el Apéndice~\ref{sec:caracterizacion-referentes}, donde se presenta la información complementaria asociada al proceso de análisis y selección 
+realizado.
