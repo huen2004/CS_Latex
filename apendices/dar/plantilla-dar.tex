@@ -2,8 +2,7 @@
 
 % Increment the chapter counter so \thechapter shows the correct number
 % and make it referenceable with \ref
-\refstepcounter{chapter}
-\label{chap:plantilla-dar}
+\refstepcounter{chapter}\label{chap:plantilla-dar}
 
 
 % Manually add this appendix to the Table of Contents
@@ -27,38 +26,14 @@
 % Set the running headers for left and right pages
 \markboth{Apéndice \thechapter: Plantilla análisis DAR}{Apéndice \thechapter: Plantilla análisis DAR}
 
-
-
-\begin{table}[H]
+\begin{figure}[H]
 	\centering
-	\renewcommand{\arraystretch}{1.2} % Espaciado reducido
-	\fontsize{9pt}{10pt}\selectfont % Tamaño de fuente 8pt
-	\caption{Plantilla análisis \DAR.}
-	\label{tab:plantilla-analisis_dar}
-	\begin{tabular}{|>{\centering\arraybackslash}p{1.8cm}|>{\centering\arraybackslash}p{1.8cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{1.4cm}|>{\centering\arraybackslash}p{1.5cm}|}
-		\hline
-		{\scriptsize\textbf{Criterio}}                         & {\tiny\textbf{PARALLEL}}                                                   & {\tiny\textbf{CHECKPOINTING}}                          & {\tiny\textbf{POPULARITY}} & {\tiny\textbf{DOC}} & {\tiny\textbf{ROLE DIV}} & {\tiny\textbf{}} \\
-		\hline
-		{\cellcolor[HTML]{E6E6E6}\scriptsize\textbf{Universo}} & \multicolumn{5}{c|}{\cellcolor[HTML]{E6E6E6}{\scriptsize\textbf{Puntaje}}} & \cellcolor[HTML]{E6E6E6}{\scriptsize\textbf{Promedio}}                                                                                                  \\
-		\hline
-		Vanilla                                                &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Grid                                                   &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Java                                                   &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Scheduler                                              &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Local                                                  &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Parallel                                               &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		VM                                                     &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Container                                              &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-		Docker                                                 &                                                                            &                                                        &                            &                     &                          &                  \\
-		\hline
-	\end{tabular}
-	\vspace{5pt}
-\end{table}
+	\includegraphics[scale=0.4] {tablas-images/dar/plantilla-IDPS.png}
+	\caption{Plantilla de análisis DAR para tecnologías IDPS}\label{fig:plantilla-idps}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4] {tablas-images/dar/plantilla-SIEM.png}
+	\caption{Plantilla de análisis DAR para tecnologías SIEM}\label{fig:plantilla-siem}
+\end{figure}

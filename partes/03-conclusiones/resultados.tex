@@ -1,152 +1,117 @@
 \ChapterImageStar[cap:resultados]{Resultados}{./images/fondo.png}\label{cap:resultados}
 \mbox{}\\
 
-\section{Caracterización del Grupo \GRID e identificación de necesidades}
+\section{Caracterización del Grupo \GRID\ e identificación de necesidades}
 \noindent
 
-La caracterización integral del Grupo GRID permitió identificar sus capacidades tecnológicas actuales, estructura organizacional y necesidades específicas. Se determinó que el grupo cuenta con una infraestructura de computación distribuida basada en HTCondor, compuesta por un clúster de máquinas Raspberry Pi y una infraestructura virtualizada utilizando el hipervisor XCP-ng.
+La caracterización realizada sobre la infraestructura del grupo \GRID\ permitió identificar las capacidades tecnológicas existentes, los 
+mecanismos actuales de protección y las necesidades asociadas al fortalecimiento de la seguridad en entornos de computación en la nube. Se 
+evidenció que el grupo dispone de una infraestructura virtualizada soportada mediante hipervisores, servicios de red segmentados y
+mecanismos básicos de protección perimetral, los cuales sirven como base para la integración de una arquitectura de defensa en profundidad.
 
-El análisis de \textit{stakeholders} reveló una estructura compleja de actores con distintos niveles de influencia, identificando al Grupo GRID como el interesado crítico, seguido por docentes de Ingeniería de Sistemas e investigadores. Se estableció que los principales beneficiarios serían estudiantes, grupos de investigación institucionales y la comunidad académica en general.
+El análisis de \textit{stakeholders} permitió identificar como actores principales al grupo \GRID, docentes y estudiantes del programa de 
+Ingeniería de Sistemas y Computación, estableciendo su relación con los procesos de investigación, docencia y administración de los 
+recursos tecnológicos. Asimismo, se determinó la necesidad de fortalecer los mecanismos de supervisión, monitoreo y gestión de eventos de 
+seguridad dentro de la infraestructura, con el propósito de mejorar la trazabilidad y visibilidad operacional del entorno.
 
-La caracterización evidenció la necesidad de ampliar las capacidades computacionales existentes mediante la incorporación de universos HTCondor adicionales que complementen la infraestructura Vanilla actual, específicamente orientados hacia aplicaciones que requieren federación de recursos (Grid) y paralelización fuertemente acoplada (Parallel).
+A partir de los hallazgos obtenidos en el estudio de Mapeo Sistemático de Literatura (\SMS) y del análisis DAR realizado sobre diferentes 
+tecnologías de seguridad, se seleccionaron herramientas orientadas a fortalecer las capacidades de detección, correlación y respuesta ante 
+incidentes dentro de la infraestructura cloud del \GRID. Como resultado, se definió una arquitectura basada en la integración de un 
+firewall NGFW SonicWall NSA 6600, el IDPS Suricata y el SIEM Wazuh, estableciendo un modelo interoperable alineado con controles de las 
+normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
 \section{Revisión sistemática de la literatura}
 \noindent
 
-El estudio de mapeo sistemático (SMS) logró identificar y analizar 114 estudios relevantes de un total inicial de 847 documentos recuperados de cinco bases de datos académicas principales. El proceso metodológico riguroso aplicó criterios de inclusión y exclusión que redujeron el corpus inicial en un 43.44\%, seguido de la eliminación de duplicados y la aplicación de la técnica de bola de nieve.
+El Estudio de Mapeo Sistemático de Literatura (\SMS) permitió identificar, analizar y clasificar un conjunto de 181 estudios primarios 
+relacionados con arquitecturas de seguridad, controles y mecanismos de protección en entornos de computación en la nube. El proceso 
+metodológico aplicado contempló una estrategia híbrida de búsqueda basada en consultas automáticas en bases de datos científicas y la 
+técnica de \textit{snowballing}, garantizando trazabilidad, reproducibilidad y rigurosidad en la selección de los estudios analizados.
 
-Los resultados del SMS revelaron que la base de datos ACM fue la fuente más productiva con el 61.16\% de los artículos, mientras que IEEE y Taylor \& Francis mostraron menor productividad en las condiciones propuestas por este proyecto. El análisis temático identificó como tópicos predominantes: \textbf{Grid Computing, HPC, Cloud Computing, HTC y Parallel}, evidenciando una concentración de la investigación en estos dominios.
+Los resultados obtenidos evidenciaron un crecimiento significativo en la producción científica relacionada con ciberseguridad en la nube 
+durante el periodo comprendido entre 2022 y 2025, identificando un enfoque recurrente hacia arquitecturas Zero Trust, mecanismos de 
+monitoreo continuo, correlación de eventos, protección perimetral y supervisión de infraestructuras distribuidas. Asimismo, los estudios 
+seleccionados mostraron una amplia adopción de estándares y buenas prácticas alineadas con las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
-La distribución de universos HTCondor en la literatura mostró una clara predominancia del universo Vanilla (61 menciones), seguido por Grid (39 menciones) y Parallel (26 menciones), proporcionando evidencia cuantitativa para el proceso de toma de decisiones posterior.
+De igual forma, el SMS permitió establecer una estructura taxonómica orientada a clasificar los estudios según su tipo de contribución, 
+enfoque de seguridad y contexto de aplicación, proporcionando una visión integral sobre las tendencias actuales en arquitecturas de 
+seguridad para entornos cloud. Esta clasificación facilitó la identificación de patrones tecnológicos y metodológicos presentes en la 
+literatura, así como la relación existente entre monitoreo, detección de amenazas, gestión de eventos y protección de activos de 
+información dentro de infraestructuras institucionales y académicas.
 
 \section{Análisis de Decisiones y Resolución (DAR)}
 \noindent
 
-La aplicación de la metodología DAR del modelo CMMI permitió evaluar objetivamente los universos HTCondor mediante criterios técnicos y organizacionales claramente definidos. Los criterios evaluados incluyeron: nivel de acoplamiento, capacidad de \textit{checkpointing}, popularidad académica, disponibilidad de documentación, división de roles, facilidad de implementación, compatibilidad con infraestructura existente, potencial educativo e investigativo, y soporte comunitario.
+La aplicación de la metodología \DAR\ (\textit{Decision Analysis and Resolution}) del modelo \CMMI\ permitió evaluar de manera estructurada 
+diferentes tecnologías orientadas a fortalecer la arquitectura de seguridad propuesta para el entorno \GRID. El proceso de evaluación se 
+fundamentó en criterios técnicos, operativos y organizacionales alineados con las necesidades, problemas y oportunidades identificadas 
+previamente, así como con controles establecidos en las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
-El proceso de evaluación sistemática arrojó un empate técnico entre los universos \textbf{Grid} y \textbf{Parallel}, ambos obteniendo las puntuaciones más altas. Esta situación llevó a la decisión estratégica de implementar ambos universos, maximizando así el impacto y las capacidades de la infraestructura resultante.
+Entre los criterios considerados se incluyeron aspectos como rentabilidad, tipo de licenciamiento, facilidad de implementación, calidad de 
+la documentación, escalabilidad, consumo de recursos, capacidad de detección, integración con otras herramientas, actualización de reglas y 
+capacidad de correlación de eventos. Estos criterios permitieron establecer un análisis comparativo orientado a determinar la viabilidad y 
+pertinencia de cada alternativa tecnológica dentro del contexto de la infraestructura cloud del grupo \GRID.
 
-Los criterios que favorecieron estos universos incluyeron su alto potencial para investigación y docencia, amplia documentación disponible, capacidades técnicas diferenciadas y complementariedad con la infraestructura Vanilla existente.
+Como resultado del proceso \DAR, las tecnologías \textbf{Suricata} y \textbf{Wazuh} obtuvieron las puntuaciones más altas dentro de las 
+categorías \IDPS\ y \SIEM\ respectivamente, evidenciando una mayor compatibilidad con los requerimientos técnicos y operativos definidos 
+para la arquitectura de defensa en profundidad propuesta. Los resultados obtenidos reflejan que ambas herramientas ofrecen capacidades 
+robustas de monitoreo, detección, correlación de eventos y respuesta ante incidentes, además de una adecuada interoperabilidad con el 
+ecosistema tecnológico planteado para el entorno \GRID.
 
-\section{Diseño arquitectónico y especificación técnica}
+\subsection{Arquitectura de defensa en profundidad}
 \noindent
 
-Se desarrolló una arquitectura integral que articula la integración de los universos Grid y Parallel con la infraestructura HTCondor existente del Grupo GRID. El diseño arquitectónico contempla:
+Se especificó una arquitectura de defensa en profundidad orientada al fortalecimiento de las capacidades de monitoreo, detección, 
+correlación de eventos y respuesta ante incidentes dentro de la infraestructura cloud del grupo \GRID. La arquitectura integra componentes 
+físicos, virtualizados y servicios de seguridad interoperables, conformando un modelo multicapa alineado con controles de las normas 
+\ISO/IEC 27001 e \ISO/IEC 27017.
 
-\subsection{Arquitectura del universo Grid}
-\noindent
+El diseño arquitectónico fue desarrollado mediante el marco de trabajo TOGAF y modelado utilizando ArchiMate como lenguaje de representación 
+empresarial. Como resultado, se construyeron siete vistas arquitectónicas especializadas, orientadas a representar la interacción entre las 
+capas de negocio, aplicación y tecnología, así como la cooperación entre actores, procesos, servicios, mecanismos de monitoreo y componentes 
+de infraestructura involucrados en la operación del entorno \GRID.
 
-Se especificó una arquitectura federada donde un \textit{grid manager} central coordina múltiples clústeres Vanilla independientes. La implementación incluye la configuración de un nodo coordinador (172.30.27.11) que ejecuta los \textit{daemons} especializados (SCHEDD, MASTER, GRIDMANAGER, COLLECTOR) y la adaptación de dos clústeres Vanilla (B y C) para funcionar como recursos Grid.
-
-La arquitectura permite la transparencia de ubicación, balanceo automático de carga, tolerancia a fallos y gestión unificada de credenciales a través de diferentes dominios administrativos.
-
-\subsection{Arquitectura del universo Parallel}
-\noindent
-
-Se diseñó una infraestructura virtualizada completamente nueva utilizando máquinas virtuales con AlmaLinux 9.6 sobre el hipervisor XCP-ng existente. Esta implementación proporciona un entorno moderno y optimizado para aplicaciones \MPI que requieren comunicación fuertemente acoplada.
-
-La arquitectura incluye configuración especializada para OpenMPI, gestión de recursos paralelos y mecanismos de sincronización que garantizan la ejecución coordinada de procesos distribuidos.
+La arquitectura incorpora mecanismos de segmentación de red, monitoreo continuo, inspección de tráfico, correlación de eventos y respuesta 
+activa, integrando tecnologías como el firewall SonicWall NSA 6600, el \IDPS\ Suricata y el \SIEM\ Wazuh. Asimismo, se modeló el flujo 
+operativo de la infraestructura mediante Draw.io, permitiendo representar de manera holística las zonas de red, el tráfico entre 
+componentes y la trazabilidad operacional existente entre los diferentes elementos que conforman la arquitectura propuesta.
 
 \section{Implementación del Producto Mínimo Viable (PMV)}
 \noindent
 
-La materialización de la arquitectura propuesta se realizó mediante un PMV que integra todos los componentes del sistema diseñado:
 
-\subsection{Grid App - Interfaz de usuario}
-\noindent
-
-Se desarrolló una aplicación web con Flask que funciona como interfaz unificada para la gestión de trabajos en los diferentes universos HTCondor. La aplicación incluye:
-
-\begin{itemize}
-	\item \textbf{Punto de envío}: Procesamiento inteligente de trabajos con generación de identificadores únicos, manejo de archivos \textit{multipart} y generación automática de \textit{submit files}.
-	\item \textbf{Monitoreo de estado}: Monitoreo en tiempo real del estado de trabajos distribuidos.
-	\item \textbf{Gestión de resultados}: Gestión y descarga de resultados de ejecución.
-	\item \textbf{Selección de clústeres}: Selección automática de recursos basada en tipo de trabajo y disponibilidad.
-\end{itemize}
-
-\subsection{Infraestructura Grid implementada}
-\noindent
-
-La implementación del universo Grid materializó la arquitectura federada diseñada:
-
-\begin{itemize}
-	\item \textbf{\textit{Grid Manager}}: Configurado exitosamente con \textit{daemons} especializados y políticas de distribución.
-	\item \textbf{Expansión de infraestructura}: Implementación de un segundo clúster Vanilla (Clúster C) demostrando escalabilidad.
-	\item \textbf{Federación funcional}: Capacidad demostrada de distribuir trabajos transparentemente entre múltiples pools HTCondor.
-\end{itemize}
-
-\subsection{Infraestructura Parallel implementada}
-\noindent
-
-Se estableció exitosamente un entorno de ejecución paralelo completamente funcional:
-
-\begin{itemize}
-	\item \textbf{Clúster virtualizado}: Implementación de múltiples VMs con configuración MPI optimizada.
-	\item \textbf{Integración OpenMPI}: Configuración y validación de comunicación entre procesos paralelos.
-	\item \textbf{Gestión de recursos}: Asignación coordinada de recursos para trabajos fuertemente acoplados.
-\end{itemize}
 
 \section{Validación técnica y funcional}
 \noindent
 
-La validación integral del sistema implementado se realizó mediante tres escenarios de prueba específicos que cubrieron las funcionalidades críticas de ambos universos:
 
-\subsection{Validación del universo Grid}
-\noindent
-
-\textbf{ESC-01}: Ejecución exitosa de trabajos Grid con repeticiones múltiples, validando:
-\begin{itemize}
-	\item Correcta distribución de trabajos entre clústeres.
-	\item Gestión adecuada de archivos de entrada y salida.
-	\item Monitoreo efectivo de estado de trabajos distribuidos.
-\end{itemize}
-
-\textbf{ESC-02}: Validación de trabajos parametrizables con variables dinámicas, demostrando:
-\begin{itemize}
-	\item Capacidad de procesamiento de parámetros variables.
-	\item Flexibilidad en configuración de trabajos.
-	\item Integración correcta con la interfaz \textit{Grid App}.
-\end{itemize}
-
-\subsection{Validación del universo Parallel}
-\noindent
-
-\textbf{ESC-03}: Ejecución exitosa de algoritmo \textit{quicksort} paralelo, confirmando:
-\begin{itemize}
-	\item Funcionamiento correcto de comunicación \MPI.
-	\item Coordinación efectiva de procesos distribuidos.
-	\item Capacidades de sincronización y paralelización.
-\end{itemize}
-
-Todos los casos de prueba se ejecutaron exitosamente, validando tanto los requisitos funcionales como no funcionales especificados. Las pruebas confirmaron que el sistema es estable, reproducible y adecuado para su uso en escenarios académicos y de investigación.
 
 \section{Métricas de impacto y capacidades resultantes}
 \noindent
 
-La implementación exitosa del proyecto ha resultado en un incremento significativo de las capacidades computacionales del Grupo GRID:
-
-\begin{itemize}
-	\item \textbf{Expansión de recursos}: De un clúster Vanilla único a una infraestructura federada con tres \textit{pools} independientes.
-	\item \textbf{Diversificación de capacidades}: Soporte para tres universos HTCondor (Vanilla, Grid, Parallel).
-	\item \textbf{Escalabilidad demostrada}: Arquitectura probada capaz de incorporar recursos adicionales transparentemente.
-	\item \textbf{Interfaz unificada}: Acceso simplificado a recursos computacionales distribuidos mediante \textit{Grid App}.
-\end{itemize}
 
 \section{Contribuciones al conocimiento}
 \noindent
 
-Este proyecto genera varias contribuciones significativas:
+Este proyecto genera múltiples contribuciones orientadas al fortalecimiento de la seguridad en infraestructuras de computación en la nube dentro de contextos académicos e institucionales:
 
 \begin{itemize}
-	\item \textbf{Metodológica}: Marco reproducible combinando caracterización contextual, revisión sistemática, evaluación DAR y diseño arquitectónico.
-	\item \textbf{Técnica}: Implementación funcional de múltiples universos HTCondor en infraestructura académica con recursos limitados.
-	\item \textbf{Académica}: Documentación completa de configuraciones y procedimientos para replicación en contextos similares.
-	\item \textbf{Institucional}: Fortalecimiento de capacidades de investigación y docencia en computación distribuida.
+	\item \textbf{Metodológica}: Integración de un proceso reproducible compuesto por caracterización organizacional, mapeo sistemático de literatura, análisis DAR y modelado arquitectónico basado en TOGAF y ArchiMate.
+	
+	\item \textbf{Técnica}: Diseño de una arquitectura de defensa en profundidad orientada a la supervisión, correlación y respuesta ante eventos de seguridad mediante tecnologías como SonicWall NSA 6600, Suricata y Wazuh.
+	
+	\item \textbf{Académica}: Consolidación y documentación de referentes metodológicos y tecnológicos relacionados con seguridad en la nube, proporcionando trazabilidad y soporte científico para futuras investigaciones.
+	
+	\item \textbf{Institucional}: Fortalecimiento de las capacidades de monitoreo, protección y gestión de eventos de seguridad dentro de la infraestructura del grupo \GRID, alineando la propuesta con controles de la ISO/IEC 27001 e ISO/IEC 27017.
 \end{itemize}
 
-Los resultados demuestran que la incorporación de los universos Grid y Parallel en la infraestructura del Grupo \GRID representa una solución viable y eficiente para expandir el portafolio de servicios de computación distribuida, sin desestimar la inversión previa en tecnologías HTCondor y proporcionando una base sólida para el crecimiento futuro de las capacidades computacionales institucionales.
+Los resultados demuestran que la incorporación de los universos Grid y Parallel en la infraestructura del Grupo \GRID\ representa una 
+solución viable y eficiente para expandir el portafolio de servicios de computación distribuida, sin desestimar la inversión previa en 
+tecnologías HTCondor y proporcionando una base sólida para el crecimiento futuro de las capacidades computacionales institucionales.
 
 % !TODO Validar este titulo con sepúlveda
 \section{Validación del proyecto}
 
-Con el objetivo de concluir formalmente el proyecto y verificar el cumplimiento de los objetivos planteados, se realizó una reunión entre los integrantes del equipo. En dicho encuentro, y mediante consenso, se acordó dar por finalizado el proyecto. El enlace a la reunión se encuentra en el siguiete link: \url{https://drive.google.com/file/d/1L0Yn525G_eLi5PQflZPLNKzfQaJkmTDm/view?usp=share_link}
+Con el objetivo de concluir formalmente el proyecto y verificar el cumplimiento de los objetivos planteados, se realizó una reunión entre 
+los integrantes del equipo. En dicho encuentro, y mediante consenso, se acordó dar por finalizado el proyecto. El enlace a la reunión se
+encuentra en el siguiete link: \url{https://drive.google.com/file/d/1L0Yn525G_eLi5PQflZPLNKzfQaJkmTDm/view?usp=share_link}

@@ -1,290 +1,534 @@
 \ChapterImageStar[cap:disenio]{Diseño de la solución}{./images/fondo.png}\label{cap:disenio}
 \mbox{}\\
 
-El presente capítulo tiene como objetivo fundamental traducir la decisión estratégica —la implementación de los universos Grid y Parallel— en un diseño técnico y estratégico concreto y ejecutable. Aquí se especifica la arquitectura de la solución, detallando los componentes de HTCondor que serán configurados o modificados, los flujos de trabajo establecidos para cada universo y los criterios de interoperabilidad con el universo Vanilla preexistente. Este diseño busca establecer las bases técnicas y metodológicas para la fase de implementación, propendiendo por la robustez, escalabilidad e integridad de la infraestructura de computación distribuida resultante. Además, busca ayudar al Grupo \GRID con el cumplimiento de sus objetivos estratégicos y el cierre de la brecha identificada en la caracterización.
+El presente capítulo tiene como objetivo fundamental traducir los resultados obtenidos durante las etapas de caracterización, análisis y 
+selección tecnológica en un diseño técnico y estratégico concreto para la infraestructura de seguridad propuesta. En esta fase se 
+especifica la arquitectura de seguridad planteada para el grupo \GRID, detallando los componentes tecnológicos seleccionados, los 
+mecanismos de interacción entre las herramientas y los lineamientos de integración con la infraestructura existente.
+
+Asimismo, el diseño propuesto busca establecer las bases técnicas y metodológicas necesarias para la fase de implementación del prototipo 
+funcional, procurando mantener la integridad y operatividad de la infraestructura actual del grupo \GRID, sin generar modificaciones 
+directas sobre su funcionamiento. De igual manera, se pretende fortalecer las capacidades de monitoreo, detección, prevención y gestión de 
+eventos de seguridad, alineando la propuesta con controles y lineamientos derivados de las normas \ISO/IEC 27001 e \ISO/IEC 27017, así como 
+con las necesidades, problemáticas y oportunidades identificadas durante el estudio.
 
 \section{Definición de estrategia}
 \noindent
 
+El diseño de la arquitectura propuesta se desarrolla a partir de una estrategia orientada al fortalecimiento de la seguridad de la 
+infraestructura en la nube del grupo \GRID, tomando como base los hallazgos obtenidos durante las fases previas de caracterización, 
+evaluación y selección tecnológica. Para representar de manera estructurada los componentes, relaciones, servicios y procesos involucrados 
+en la propuesta, se emplea el lenguaje de modelado ArchiMate, el cual permite describir arquitecturas empresariales mediante diferentes 
+vistas orientadas a las capas de negocio, aplicación y tecnología.
 
-
-\section{Casos de prueba}
-\noindent
-
-\subsection{Definición de requisitos}
-\noindent
-Para iniciar con la definición de casos de prueba, se establecen los requisitos que debe cumplir la \textit{Grid App} que están fundamentados en el análisis preliminar hecho anteriormente, principalmente en la descripción de la oportunidad para el Grupo \GRID.
-
-\subsubsection{Requisitos funcionales}
-\noindent
-Según \cite{159342} un requisito funcional especifica una función que el sistema o que un componente del sistema es capaz de hacer. A continuación se definen los requisitos funcionales para la \textit{Grid App}.
-\input{tablas-images/pruebas/requisitosFuncionales.tex}
-
-\subsubsection{Requisitos no-funcionales}
-\noindent
-Según \cite{4384163} un requisito no-funcional es un atributo o una restricción de un sistema. A continuación se definen los requisitos no-funcionales para la \textit{Grid App}.
-\input{tablas-images/pruebas/requisitosNoFuncionales.tex}
-
-\subsection{Pruebas}
-\noindent
-Para esta sección, se definen las pruebas y los pasos para ejecutar cada prueba.
-\input{tablas-images/pruebas/pruebas.tex}
-
-\subsection{Casos de uso}
-\noindent
-Luego de tener las pruebas que se van a ejecutar al sistema de la \textit{Grid App} ya definidas, se procede con la creación de un caso de uso por cada prueba. Esto tiene 3 motivaciones en este trabajo; (1) Mostrar la utilidad del sistema para un usuario ficticio, (2) Limitar el alcance del prototipo a unos casos de uso concretos y (3) Guiar el desarrollo hacia situaciones reales y la utilidad para los \textit{stakeholders}.
-
-A continuación se definen los casos de uso:
-
-\subsubsection{Caso 1: \textit{Montecarlo} para $\pi$}
-\noindent
-\begin{itemize}
-    \item \textbf{Descripción:} En un laboratorio de investigación financiera, los analistas necesitan valuar instrumentos derivados complejos utilizando métodos \textit{Montecarlo} que requieren cientos de simulaciones. La infraestructura HTCondor distribuye estos cálculos estadísticos masivos a través de múltiples nodos, donde cada trabajo ejecuta una porción de las simulaciones para calcular aproximaciones de $\pi$ como prototipo, y luego consolida los resultados para obtener una mejor estimación que valide la confiabilidad del sistema en modelos de riesgo financiero.
-    \item \textbf{Escenario de prueba relacionado:} ESC-01
-\end{itemize}
-
-\subsubsection{Caso 2: Conteo de números primos}
-\noindent
-\begin{itemize}
-    \item \textbf{Descripción:} Un centro de criptografía debe analizar la distribución de números primos en intervalos grandes para evaluar la seguridad de algoritmos de encriptación RSA. HTCondor divide automáticamente estos rangos numéricos en sub intervalos que distribuye entre nodos heterogéneos, permitiendo el conteo concurrente de primos que demuestra la capacidad del sistema para manejar cargas computacionales intensivas.
-    \item \textbf{Escenario de prueba relacionado:} ESC-02
-\end{itemize}
-
-\subsubsection{Caso 3: \textit{Quicksort} Paralelo}
-\noindent
-\begin{itemize}
-    \item \textbf{Descripción:} Un instituto de genómica requiere ordenar cantidades enormes de datos de secuencias de ADN para identificar patrones de mutaciones genéticas. El algoritmo de \textit{quicksort} paralelo implementado con \MPI aprovechar los recursos agregados de memoria y procesamiento de múltiples máquinas bajo HTCondor, validando la capacidad de la infraestructura para coordinar trabajos que necesitan comunicación entre procesos (\IPC) en aplicaciones científicas.
-    \item \textbf{Escenario de prueba relacionado:} ESC-03
-\end{itemize}
+A través de este modelado, se busca proporcionar una representación clara de la integración entre las tecnologías seleccionadas y la 
+infraestructura existente del grupo \GRID, facilitando la comprensión de los flujos de interacción, mecanismos de seguridad y dependencias 
+presentes dentro de la arquitectura propuesta.
 
 \section{Modelado del sistema en Archimate}
 \noindent
-ArchiMate es un lenguaje de modelado estándar, abierto e independiente de~\textit{The Open Group} que permite representar de manera estructurada y general las diferentes capas de una arquitectura empresarial: negocio, aplicación y tecnología \citep{josey2016introduction}. Esto permite tener una visión integrada que facilita la comunicación entre los distintos actores de un negocio y que muestre cómo los procesos, los sistemas de información y la infraestructura tecnológica se relacionan entre sí.
-A su vez, Archi es un Software que permite realizar diagramas de ArchiMate de forma sencilla y fue el Software elegido por el equipo de este proyecto para modelar las relaciones del proyecto con el negocio y varios elementos más. Archi permite dividir los modelos en vistas, que facilitan la organización y hacen más sencilla la labor de ampliar ciertos elementos o modelos importantes.
 
-Cabe recalcar que algunos de los elementos como la misión y la visión no se muestran de forma completa en las vistas debido a su gran extensión textual. Sin embargo, con el fin de mostrar información completa, se mencionan y describen a continuación.
+En este apartado se describe la metodología utilizada para el diseño de la arquitectura de defensa en profundidad. Como marco de 
+trabajo se adoptó TOGAF~\cite{togaf-standard}, debido a su enfoque para el desarrollo de arquitecturas empresariales, haciendo 
+énfasis en las capas de negocio, aplicación y tecnología. Para el modelado y la representación visual de los elementos arquitectónicos se 
+utilizó ArchiMate como lenguaje de notación estándar, el cual permite representar relaciones entre las distintas capas arquitectónicas 
+mediante viewpoints especializados para cada contexto.
 
-\begin{itemize}
-    \item \textbf{Misión:} El Grupo de Investigación en Redes, Información y Distribución - GRID tiene como objetivo principal la realización de proyectos de investigación en temas relacionados principalmente con soluciones informáticas en Infraestructura Computacional, la Ingeniería de Software, el Análisis de Datos y la Informática Educativa. Hacer investigación en los temas mencionados, así como realizar proyectos interdisciplinarios deberá redundar en conocimientos frescos y la adopción de nuevas tecnologías que contribuyan al desarrollo académico del Programa Ingeniería de Sistemas y Computación, la Maestría en Ingeniería, y la Maestría y el Doctorado en Educación de la Universidad del Quindío. Luego de 10 años de existencia, de haber superado exitosamente los procesos de formación a nivel doctoral y de maestría de nuestros integrantes y de haber logrado la categoría C en el escalafón nacional de Ministerio de Ciencia, Tecnología e Innovación, nuestros esfuerzos estarán centrados en: (1) la formación de estudiantes a nivel de pregrado, maestría y doctorado; (2) fortalecer los lazos de amistad y colaboración con investigadores y grupos de investigación a nivel nacional e internacional; (3) la realización de proyectos de investigación y desarrollo de productos de nuevo conocimiento que busquen dar solución a problemas de la sociedad; y (4) aumentar la visibilidad del grupo y mejorar la categoría en el escalafón de MinCiencias.
-    \item \textbf{Visión:} Para el año 2025, el Grupo de Investigación en Redes, Información y Distribución - GRID de la Facultad de Ingeniería de la Universidad del Quindío será un grupo consolidado y reconocido en la más alta categoría del escalafón nacional del Ministerio de Ciencia Tecnología e Innovación, que a través de sus aportes sea tenido en cuenta en la toma de decisiones a nivel regional y nacional; y con reconocimiento internacional mediante la realización de trabajos en colaboración con investigadores de otras universidades nacionales y extranjeras. Misión: Somos un grupo de profesores universitarios dedicados a realizar investigación en áreas tecnológicas orientadas a facilitar procesos y resolver problemas de la comunidad académica, de la sociedad que nos rodea y del sector productivo, mediante la adaptación de tecnologías o el desarrollo de soluciones informáticas en Infraestructura Computacional, la Ingeniería de Software, el Análisis de Datos y la Informática Educativa que constituyan un aporte al desarrollo social, económico y tecnológico de la región y el país.
-    \item \textbf{Objetivo estratégico 1:} Realizar proyectos de investigación en los temas relacionados con las áreas de interés del grupo, así como proyectos interdisciplinarios que permitan la adopción de conocimientos y nuevas tecnologías que contribuyan al desarrollo de la región, del país y de la comunidad académica mundial.
-    \item \textbf{Objetivo estratégico 2:} Establecer contactos con otros grupos de investigación interesados en temáticas similares, pertenecientes a otras instituciones de educación superior, tanto a nivel nacional como internacional.
-    \item \textbf{Objetivo estratégico 3:} Impulsar la investigación dentro de la Universidad del Quindío y la Facultad de Ingeniería, particularmente en el programa Ingeniería de Sistemas y Computación, el programa de Maestría en Ingeniería, y los programas de Maestría y Doctorado en Educación.
-    \item \textbf{Objetivo estratégico 4:} Establecer una comunidad académica con la participación de estudiantes de pregrado y posgrado, profesores y jóvenes investigadores.
-\end{itemize}
+En total, se construyeron siete viewpoints orientados a representar la cooperación del actor principal del presente trabajo de grado, 
+correspondiente al grupo \GRID, así como la función de negocio, los procesos de negocio, la estructura de aplicación, la estructura de 
+detección, la infraestructura tecnológica y la vista por capas de la arquitectura de defensa en profundidad. Esta última integra de manera 
+general la comunicación existente entre cada capa de la arquitectura y presenta una vista abstracta del funcionamiento propuesto para la 
+solución.
 
-\subsection{Vista de misión, visión y objetivos}
+Partiendo de lo anterior, se modeló una arquitectura mediante la aplicación web draw.io~\cite{drawio}, con el objetivo de especificar las 
+direcciones IP, interfaces y divisiones de red correspondientes a cada zona del \GRID, así como la integración gráfica de las tecnologías 
+seleccionadas a partir del análisis DAR y del dispositivo SonicWall NSa 6600, encargado de gestionar la comunicación entre la 
+infraestructura interna y el entorno externo.
+
+
+\subsection{Arquitectura de Defensa en Profundidad (Draw.io)}
 \noindent
-        En la Figura \ref{fig:archiMVOView} se muestra las relaciones entre la misión, la visión y los objetivos estratégicos del negocio. Además, se muestran los ámbitos clave en los que se enfoca el negocio para cumplir con sus objetivos estratégicos. Esta última información se tomó de conversaciones informales con el representante del negocio para este proyecto, quien manifestó que estos son los enfoques que se le debe dar al proyecto y están dados por la organización a la que está adscrito el negocio, que para nuestro caso específico es el Grupo \GRID.\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.15]{tablas-images/archi/Mission-Values-Vision View.jpg}
-	\caption{Vista de misión, visión y objetivos}
-    \label{fig:archiMVOView}
-\end{figure}
+En la Figura~\ref{fig:arqui-draw} se presenta la arquitectura desarrollada mediante la aplicación Draw.io~\cite{drawio}. Esta se divide en diferentes 
+segmentos que agrupan las funciones y componentes principales de la arquitectura propuesta, los cuales se describen a continuación:
 
-\subsection{Vista de mapa de valor estratégico}
-\noindent
-En la Figura \ref{fig:archiSVMView} se muestra el valor estratégico del negocio desde distintas perspectivas y su descomposición hacia otros valores más concretos. Todo esto con el fin de conocer que perspectivas son de más interés para el negocio y cuáles valores componen dichas perspectivas. Esto ocurre en capa de motivación, por lo que estos valores estratégicos identificados servirán como los principios orientadores de la estrategia del negocio.
+\textbf{Segmento de acceso a Internet}
+
+En este segmento se representa el inicio de la interacción entre el administrador de TI y la infraestructura del \GRID. Para acceder al 
+entorno, el administrador requiere establecer una conexión \VPN\ activa, la cual es traducida mediante reglas de \DNAT\ para permitir el 
+acceso controlado a la infraestructura interna del \GRID.
+
+\textbf{Segmento de distribución}
+
+Una vez realizada la solicitud de acceso, el tráfico es recibido por el switch core de la Universidad del Quindío, el cual cumple 
+funciones de enrutamiento y distribución, redireccionando la comunicación hacia la zona de red correspondiente a la infraestructura del 
+\GRID.
+
+\textbf{Segmento de perímetro de red del \GRID}
+
+Posteriormente, el tráfico es recibido por el dispositivo SonicWall NSa 6600, correspondiente a un \NGFW\ \textit{(Next Generation Firewall)}. 
+Este dispositivo aplica políticas de seguridad, reglas de \NAT\ y mecanismos de filtrado de tráfico para analizar las solicitudes entrantes, 
+generar registros de acceso y redirigir la comunicación hacia la máquina o zona de red de destino dentro de la infraestructura.
+
+\textbf{Segmento de defensa en profundidad del \GRID}
+
+Una vez establecido el acceso a la infraestructura, el firewall SonicWall NSa 6600 ejecuta procesos de filtrado y monitoreo del tráfico de 
+red, generando registros asociados a eventos y accesos dentro del entorno. Como parte de la arquitectura de seguridad implementada, el 
+tráfico inspeccionado es replicado mediante técnicas de \textit{port mirroring} hacia la herramienta IDPS Suricata, configurada en modo 
+promiscuo, con el propósito de analizar patrones de comportamiento, firmas de paquetes y posibles actividades sospechosas presentes en la 
+red.
+
+Aunque en el diagrama no se representa explícitamente la conexión física entre Suricata, el SonicWall NSa 6600 y el switch, esto se debe a 
+que la arquitectura presentada está orientada principalmente al flujo lógico y funcional de la comunicación dentro del entorno.
+
+Como resultado del proceso de inspección, Suricata genera registros y eventos de seguridad que, junto con los logs producidos por el 
+firewall, son enviados hacia la plataforma \SIEM\ Wazuh. Esta plataforma centraliza y correlaciona información proveniente de múltiples 
+fuentes de la infraestructura.
+
+Adicionalmente, Wazuh incorpora agentes desplegados en las distintas zonas del \GRID, permitiendo la recopilación continua de eventos del 
+sistema, el monitoreo de integridad y la detección de actividades sospechosas o manipulaciones no autorizadas dentro de la infraestructura.
+
+A partir de estas fuentes de información, la plataforma \SIEM\ ejecuta procesos de correlación de eventos y análisis de seguridad, cuyos 
+resultados son visualizados mediante paneles centralizados de monitoreo. La integración de estas herramientas conforma la arquitectura de 
+defensa en profundidad propuesta, proporcionando capacidades de supervisión, detección y respuesta ante incidentes de seguridad tanto para 
+el administrador de TI como para el analista \SOC\ encargado de la supervisión del entorno.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.15]{tablas-images/archi/Strategic Value Map View.jpg}
-	\caption{Vista de mapa de valor estratégico}
-    \label{fig:archiSVMView}
+	\includegraphics[scale=0.4]{tablas-images/archi/arqui-draw.png}
+	\caption{Arquitectura de Defensa en Profundidad realizada en Draw.io}\label{fig:arqui-draw}
 \end{figure}
 
-\subsection{Vista de objetivos}
+%######################################################################################################################################
+
+\subsection{Arquitectura de Defensa en Profundidad (Archimate)}
 \noindent
-En la Figura \ref{fig:archiGoalsView} se muestra un desglose completo de los objetivos del negocio. Para este fin se usó una variación de una estrategia conocida como 5W, que usa cinco preguntas para obtener información completa sobre un elemento. Estas preguntas son: ¿Quién?, ¿Qué?, ¿Cuándo?, ¿Dónde? Y ¿Por qué? \citep{5WAmitava}. Para el desglose de los objetivos del negocio en esta vista del modelo se hizo necesarias solo cuatro preguntas como se muestra en la Figura \ref{fig:archiGoalsView}. Así, podemos ver como está compuesta la motivación del negocio y los elementos que están en torno a los objetivos estratégicos.
+En este apartado se presenta la arquitectura de defensa en profundidad desarrollada mediante ArchiMate, describiendo progresivamente cada 
+una de las vistas que la componen y los controles de seguridad asociados a cada representación realizada. El recorrido inicia desde la capa 
+de infraestructura, correspondiente al nivel más concreto de la arquitectura, avanzando posteriormente hacia los elementos de conectividad, 
+protocolos de comunicación, archivos de configuración y mecanismos de almacenamiento de registros.
+
+Seguidamente, se aborda el comportamiento funcional de las herramientas desplegadas y la integración existente entre los diferentes 
+componentes de la infraestructura del \GRID. Finalmente, se describen los procesos de negocio asociados a la gestión de la seguridad de la 
+información y los artefactos generados como parte del presente trabajo de grado, los cuales se alinean con principios de trazabilidad y 
+reproducibilidad establecidos en la ISO/IEC 27001~\cite{iso27001}, con el propósito de facilitar la replicación, mantenimiento y
+escalabilidad de la arquitectura propuesta.
+
+\subsubsection{Arquitectura de Defensa en Profundidad: Layered View}
+
+La Figura~\ref{fig:layared-view} representa una vista integral por capas del modelo de defensa en profundidad propuesto, proporcionando una interrelación entre 
+las capas de negocio, aplicación y tecnología. Adicionalmente, se incorpora una capa de interacción externa, cuya función es representar de 
+manera holística la trazabilidad operativa de la arquitectura.
+
+El \textit{Grouping} correspondiente a la capa de infraestructura integra los componentes encargados de la comunicación entre redes, la 
+centralización de nodos físicos y virtuales, así como los mecanismos de control y protección perimetral de la infraestructura del \GRID. 
+En esta capa se materializan capacidades asociadas a los controles A.8.6 y A.5.31 de la ISO/IEC 27001~\cite{iso27001}, así como al control 
+CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}. Dentro de esta representación se incorpora el nodo de rack, el cual concentra dispositivos 
+como el switch y el hipervisor encargado de orquestar los recursos virtualizados utilizados por la arquitectura. Asimismo, se incluye el 
+firewall SonicWall NSa 6600, responsable de ejecutar funciones de filtrado, validación y restricción del tráfico, actuando como punto de 
+control entre el entorno externo y la red interna del \GRID.
+
+Esta capa establece interacción con la capa de aplicación, proporcionando alineamiento con los controles A.5.7 y A.8.16 de la ISO/IEC 
+27001~\cite{iso27001}, así como con los controles 12.4.1 y CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}. Esto se logra mediante la 
+intercomunicación entre la LAN del \GRID\ y el agente de Wazuh, el cual identifica anomalías presentes en la red interna y establece 
+conexión con el servidor Wazuh para verificar comportamientos no autorizados mediante reglas y políticas de seguridad.
+
+A partir de ello, se consolidan mecanismos de respuesta activa. Consecuentemente, los servicios de Suricata y Wazuh exponen funcionalidades 
+hacia la capa intermedia de servicios de aplicación, en donde se ejecutan procesos de respuesta activa al tráfico de red, sincronización de 
+alertas, correlación de eventos y análisis centralizado de registros, consolidando así un sistema integral de monitoreo de seguridad.
+
+La capa de negocio establece alineamiento con los controles A.5.24, A.5.31 y A.5.7 de la ISO/IEC 27001~\cite{iso27001}, mediante el flujo 
+de trazabilidad operacional definido dentro de la arquitectura, exponiendo servicios orientados a la gestión y respuesta ante amenazas de 
+seguridad. En esta capa se integran funcionalidades como la política de denegación de acceso, alimentada por el servicio de respuesta 
+activa al tráfico de red, permitiendo restringir conexiones potencialmente maliciosas identificadas durante el proceso de monitoreo y 
+análisis.
+
+Asimismo, se incorpora el servicio de gestión de incidentes, encargado de proporcionar capacidades de registro de eventos, monitoreo 
+continuo y supervisión de actividades dentro de la infraestructura. Estos procesos son consolidados y representados mediante el dashboard 
+de eventos, el cual centraliza la información proveniente del sistema de monitoreo y correlación implementado por la arquitectura.
+
+La integración de estos servicios fortalece el perímetro de seguridad del entorno \GRID, proporcionando capacidades de análisis, 
+trazabilidad y supervisión continua para el analista \SOC\ responsable de la gestión de eventos e incidentes de seguridad.
+
+Finalmente, la capa superior establece interacción directa con la capa de negocio, evidenciando los actores y roles externos que 
+interactúan con la arquitectura. En este contexto, usuarios como estudiantes o docentes que requieran acceder a la infraestructura deben 
+conectarse mediante la red institucional o de forma remota. En ambos casos, el acceso se realiza a través de un servicio \VPN, 
+fortaleciendo los mecanismos de acceso controlado y alineándose con los principios de seguridad definidos para la arquitectura propuesta.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.12]{tablas-images/archi/Goals View.jpg}
-	\caption{Vista de objetivos}
-    \label{fig:archiGoalsView}
+	\includegraphics[scale=0.3]{tablas-images/archi/layared-view.jpeg}
+	\caption{Layered View Realizada en ArchiMate}\label{fig:layared-view}
 \end{figure}
 
-\subsection{Vista de servicio de negocio}
+%#######################################################################################################################################
+
+\subsubsection{Arquitectura de Defensa en Profundidad: Infrastructure Function View}
 \noindent
-En la Figura \ref{fig:archiBSView} se muestra la estructura del servicio de negocio que el proyecto relatado en este documento buscar intervenir, desde los objetivos estratégicos en cuanto a motivación hasta los componentes de aplicación, pasando por los servicios de aplicación y el servicio de negocio con una estructura mínima. Cabe recalcar que los nombres en inglés de algunos componentes corresponden a nombres propios que se le asignaron al componente
+La Figura~\ref{fig:archiInfrastructureView} representa la interacción entre los componentes pertenecientes a la capa de infraestructura, los cuales establecen 
+interoperabilidad con el propósito de proporcionar la base estructural donde se alojan los dispositivos utilizados y las zonas a proteger. 
+La integración de estos elementos permite consolidar capacidades de filtrado, trazabilidad del envío de paquetes y operatividad conjunta 
+entre componentes, contribuyendo al fortalecimiento del modelo de defensa en profundidad implementado dentro de la infraestructura del 
+\GRID. Asimismo, esta capa proporciona soporte a los controles A.8.6 y A.5.31 de la ISO/IEC 27001~\cite{iso27001}, relacionados con la 
+gestión de capacidades y el establecimiento de mecanismos de acceso y segmentación controlada dentro de la infraestructura tecnológica.
+
+El \textit{Grouping} de infraestructura del \GRID\ representa la integración de dispositivos y nodos orientados a la comunicación del 
+tráfico de red entrante y saliente. En primera instancia, se encuentra el dispositivo SonicWall NSa 6600, encargado de ejecutar procesos 
+de filtrado e inspección del tráfico proveniente del entorno externo, constituyéndose como un punto de control que reduce la superficie de 
+exposición, segmenta el tráfico entre zonas y fortalece el perímetro de seguridad del \GRID. Dentro de este dispositivo se alojan 
+funcionalidades de traducción \NAT, así como reglas y políticas de seguridad orientadas al control y monitoreo de las comunicaciones. 
+Estas capacidades fortalecen los principios de supervisión y protección perimetral asociados al control CLD 12.4.5 de la ISO/IEC 
+27017~\cite{iso27017}, orientado a la supervisión de servicios dentro de entornos cloud.
+
+En este contexto, el switch Ruijie constituye el punto central de interconexión física dentro de la infraestructura del \GRID, permitiendo 
+la comunicación entre el hipervisor, la LAN interna y el firewall SonicWall NSa 6600 mediante enlaces Ethernet dedicados. A través de esta 
+topología de red, el hipervisor mantiene conectividad con las máquinas virtuales que alojan las herramientas Suricata y Wazuh, mientras 
+que la LAN del \GRID\ canaliza el tráfico generado por los dispositivos y usuarios internos hacia el firewall perimetral para su salida al 
+entorno externo.
+
+De manera complementaria, el switch implementa un esquema de \textit{Port Mirroring} sobre uno de sus puertos físicos, replicando el 
+tráfico de red y enviándolo hacia la interfaz de monitoreo de Suricata configurada en modo promiscuo, permitiendo la inspección pasiva de 
+paquetes sin alterar el flujo original de la comunicación.
+
+Asimismo, mediante segmentación lógica basada en VLAN y enlaces físicos dedicados, los registros de tráfico (\textit{syslog}) son 
+transmitidos hacia el servidor Wazuh, donde se centraliza el almacenamiento y análisis de eventos. Finalmente, la infraestructura de 
+interconexión permite que las decisiones de respuesta y actualización de políticas generadas por Wazuh sean retransmitidas hacia el 
+SonicWall NSa 6600 mediante inyección de comandos SSH, manteniendo sincronización entre los componentes físicos y lógicos que conforman 
+la arquitectura de defensa en profundidad.
+
+La centralización y correlación de registros fortalece adicionalmente los controles A.8.16 de la ISO/IEC 27001~\cite{iso27001} y 
+CLD 12.4.1 de la ISO/IEC 27017~\cite{iso27017}, relacionados con actividades de monitoreo y gestión de registros de eventos.
+
+Bajo este contexto, el flujo de interacción a nivel de infraestructura se desarrolla de la siguiente manera: al recibir la copia del 
+tráfico de red, Suricata aplica las reglas de inspección definidas, almacena los registros generados y estos son posteriormente leídos 
+mediante el agente de Wazuh, el cual reporta la información hacia el \textit{manager} desplegado en su respectiva máquina virtual.
+
+De igual manera, debido a la segmentación de la LAN del \GRID\ en distintas zonas dentro del prototipo, cada segmento incorpora un agente 
+de Wazuh encargado de proporcionar monitoreo continuo y enviar los registros generados de manera cifrada mediante AES-256 hacia el servidor 
+central de Wazuh.
+
+De esta forma, se establece un esquema de respuesta activa, monitoreo continuo y correlación de eventos que fortalece la continuidad, 
+disponibilidad y trazabilidad de los servicios de la infraestructura. La interacción coordinada entre Suricata y Wazuh contribuye 
+igualmente al fortalecimiento de los controles A.5.7 y A.5.24 de la ISO/IEC 27001~\cite{iso27001}, orientados a la inteligencia sobre 
+amenazas y la gestión de incidentes de seguridad.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.13]{tablas-images/archi/Business Service View.jpg}
-	\caption{Vista de servicio de negocio}
-    \label{fig:archiBSView}
+	\includegraphics[scale=0.3]{tablas-images/archi/Infrastructure Function View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad: Infrastructure Function View Realizada en Archimate}\label{fig:archiInfrastructureView}
 \end{figure}
 
-\subsection{Vista de aplicación}
+%########################################################################################################################################
+
+\subsubsection{Arquitectura de Defensa en Profundidad: Detection Structure View}
 \noindent
-En la Figura \ref{fig:archiAppView} se muestran de forma general, las características y procesos de las aplicaciones que componen la solución, además de la comunicación entre dichas aplicaciones y la información de intercambio. Sin embargo, la vista que nos ofrece ArchiMate en capa de aplicación puede ser un poco limitada cuando el objetivo es describir a detalle la forma en que funciona cada componente de la aplicación y del sistema en general. Por lo que se decide complementar este modelo con otros diagramas usando otros lenguajes de modelado un poco más adelante.
+La Figura~\ref{fig:archiDetectionView} representa la estructura de detección integrada dentro de la arquitectura de defensa en profundidad 
+implementada para el entorno del \GRID, la cual opera de manera continua cada vez que un usuario requiere interactuar con la 
+infraestructura. En esta vista se integran elementos pertenecientes a las capas de tecnología y negocio, representando los objetos, 
+eventos y procesos generados por las funciones de autenticación, monitoreo, correlación y respuesta activa definidas dentro del modelo 
+propuesto.
+
+De manera complementaria, esta estructura fortalece los controles A.5.7 y A.8.16 de la ISO/IEC 27001~\cite{iso27001}, así como los 
+controles CLD 12.4.1 y CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}, relacionados con inteligencia sobre amenazas, monitoreo continuo, 
+gestión de registros y supervisión de servicios cloud.
+
+Partiendo de lo anterior, el flujo inicia cuando un estudiante o docente requiere acceder a la LAN del \GRID. Para ello, es necesario 
+realizar un proceso de autenticación y autorización mediante un servicio \VPN, el cual se encuentra alineado con la política de uso de 
+red establecida dentro de la arquitectura.
+
+Esta acción genera un registro de acceso que posteriormente pasa por un proceso de inspección de tráfico. En esta etapa, las políticas y 
+reglas definidas permiten determinar el comportamiento e intención del usuario dentro de la infraestructura.
+
+En caso de detectarse una intrusión o comportamiento sospechoso, se genera una alerta de seguridad que es enviada al sistema de correlación 
+de eventos. Dicho proceso consolida tanto la alerta de intrusión como los registros de tráfico generados, permitiendo la construcción de 
+un incidente de seguridad asociado al evento detectado.
+
+Posteriormente, el incidente es representado dentro de la interfaz de monitoreo correspondiente a las herramientas de supervisión 
+implementadas y se genera un reporte dirigido al analista \SOC\ encargado de la interpretación y gestión del incidente.
+
+Finalmente, la información obtenida retroalimenta el conjunto de políticas y reglas de seguridad, permitiendo su actualización y 
+fortalecimiento continuo. De esta manera, se establece un ciclo de respuesta activa alineado con el modelo de defensa en profundidad 
+propuesto para la infraestructura del \GRID.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.12]{tablas-images/archi/Application View.jpg}
-	\caption{Vista de aplicación}
-    \label{fig:archiAppView}
+	\includegraphics[scale=0.4]{tablas-images/archi/Detection Structure View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad:Detection Structure View Realizada en Archimate}\label{fig:archiDetectionView}
 \end{figure}
 
-\subsection{Vista de infraestructura}
+%########################################################################################################################################
+
+\subsubsection{Arquitectura de Defensa en Profundidad: Business Process View}
 \noindent
-En la Figura \ref{fig:archiInfrastructureView} se muestran de forma general, las características de los nodos de la infraestructura que componen la solución, además de las relaciones entre dichos nodos y su relación con las aplicaciones que corren en ellos. Sin embargo, al igual que pasa en la capa de aplicación, la vista que nos ofrece ArchiMate en capa de infraestructura puede ser un poco limitada cuando el objetivo es describir a detalle la forma en que funciona cada nodo de la infraestructura y su comunicación física. Por lo que se decide complementar este modelo con otros diagramas usando otros lenguajes de modelado un poco más adelante.
+La Figura~\ref{fig:archiBusinessView} representa la interacción entre los procesos y componentes pertenecientes a la capa de negocio, los cuales establecen la 
+trazabilidad de la gestión de acceso y vigilancia implementada dentro de la arquitectura de defensa en profundidad del entorno \GRID. 
+Esta capa consolida el conjunto de procesos encargados de fortalecer el funcionamiento coordinado de los mecanismos de autenticación, 
+monitoreo, correlación de eventos y respuesta ante incidentes, permitiendo que, durante la operación de la infraestructura, se generen 
+registros, alertas y eventos de seguridad cuyo resultado final corresponde a la notificación y gestión del incidente detectado.
+
+De manera complementaria, esta vista proporciona soporte a los controles A.5.24 y A.5.31 de la ISO/IEC 27001~\cite{iso27001}, relacionados 
+con la gestión de incidentes y el control de acceso dentro de la infraestructura tecnológica.
+
+Bajo este enfoque, el flujo operacional inicia con los actores externos, tales como docentes, estudiantes o analistas \SOC, quienes 
+requieren autenticarse mediante credenciales válidas para acceder a la infraestructura del \GRID\ a través del servicio \VPN.
+
+A partir de este punto, tanto el proceso de conexión como el comportamiento del usuario dentro de la infraestructura activan los 
+mecanismos de gestión de acceso y supervisión de seguridad implementados en la arquitectura. Dichos mecanismos integran procesos de 
+autenticación, análisis de integridad del tráfico, monitoreo continuo de red, correlación de eventos y respuesta ante incidentes de 
+seguridad, los cuales establecen interoperabilidad con el propósito de detectar comportamientos anómalos y generar alertas 
+contextualizadas sobre actividades o instrucciones ejecutadas dentro del entorno del \GRID.
+
+La interacción coordinada entre estos componentes fortalece la trazabilidad, visibilidad y capacidad de respuesta de la arquitectura de 
+defensa en profundidad implementada, permitiendo consolidar un esquema de monitoreo y supervisión continua alineado con los objetivos de 
+seguridad definidos para la infraestructura.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.103]{tablas-images/archi/Infrastructure View.jpg}
-	\caption{Vista de infraestructura}
-    \label{fig:archiInfrastructureView}
+	\includegraphics[scale=0.3]{tablas-images/archi/Business Process View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad: Business Process View Realizada en Archimate}\label{fig:archiBusinessView}
 \end{figure}
 
-\subsection{Vista por capas}
+%########################################################################################################################################
+
+\subsubsection{Arquitectura de Defensa en Profundidad: Business Function View}
 \noindent
-El último modelo de ArchiMate que compone la solución es el mostrado en la Figura \ref{fig:archiLayeredView} en donde se unen de forma general los demás modelos mostrados anteriormente y se muestran sus relaciones a alto nivel. Todo esto con el fin de dar una visión general de las capas que componen la solución y así tener una idea global de la forma en que cada componente se comunica con los demás.
+La Figura~\ref{fig:archiBusinessFunctionView} representa la interacción entre las funcionalidades y roles del negocio. Esta vista consolida la funcionalidad y 
+reproducibilidad de la arquitectura dentro del panorama del \GRID, asociando las capacidades de seguridad propuestas con los actores 
+encargados de interactuar con ellas. Asimismo, incorpora el componente de reproducibilidad del trabajo de grado mediante el alojamiento de 
+un repositorio estructurado bajo una arquitectura de directorios predefinida.
+
+El flujo operacional se distribuye entre tres actores principales que interactúan directamente con los mecanismos de seguridad 
+implementados: docentes/estudiantes, el analista \SOC\ y el grupo de investigación \GRID. Este último asume tanto el rol de implementación 
+de la arquitectura como la administración del repositorio que contiene la estructura documental y técnica orientada a garantizar la 
+reproducibilidad de la propuesta desarrollada.
+
+Partiendo de lo anterior, los aspectos de seguridad definidos dentro de la arquitectura se fundamentan en seis funcionalidades 
+principales, orientadas a fortalecer las capacidades de protección, monitoreo y gestión del entorno del \GRID. Entre estas 
+funcionalidades, la gestión de cumplimiento normativo y gobernanza constituye el eje central de alineación con los controles 
+A.5.7, A.5.24, A.8.16, A.8.6 y A.5.31 de la \ISO/IEC 27001~\cite{iso27001}, así como con los controles CLD 12.4.5 y CLD 12.4.1 de la 
+\ISO/IEC 27017~\cite{iso27017}. Esta alineación garantiza que las demás funciones de seguridad operen bajo controles, mecanismos de 
+supervisión y buenas prácticas reconocidas internacionalmente.
+
+Bajo este contexto, las funcionalidades restantes mantienen una relación continua de interoperabilidad y correlación, debido a que la 
+efectividad de los mecanismos de detección de intrusos depende de la integración coordinada entre procesos de monitoreo, análisis de 
+eventos, gestión de accesos, respuesta ante incidentes y supervisión de la infraestructura.
+
+La interacción entre dichas funciones permite consolidar un modelo de detección más robusto, incrementando la capacidad de identificar 
+comportamientos anómalos y responder oportunamente ante posibles amenazas presentes dentro del entorno tecnológico implementado.
+
+Finalmente, el apartado correspondiente al repositorio representa la arquitectura de directorios definida para los componentes de 
+seguridad del \GRID, proporcionando mecanismos de reproducibilidad relacionados con la implementación, gestión, prueba y eliminación de 
+configuraciones o elementos asociados a la arquitectura propuesta. Este enfoque se encuentra alineado con los principios de gestión 
+documental y trazabilidad promovidos por la \ISO/IEC 27001~\cite{iso27001}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.125]{tablas-images/archi/Layered View.jpg}
-	\caption{Vista por capas}
-    \label{fig:archiLayeredView}
+	\includegraphics[scale=0.3]{tablas-images/archi/Business Function View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad: Business Function View Realizada en Archimate}\label{fig:archiBusinessFunctionView}
 \end{figure}
 
-\section{Modelado del software con el modelo C4}
-\noindent
-El modelo C4 es una herramienta que ayuda a los equipos de desarrollo de software a describir y comunicar la arquitectura del software a varios niveles de detalle. De forma general el modelo C4 tiene cuatro niveles, cada una con mayor nivel de detalle que la anterior. Para el caso de uso de este proyecto se optó por usar los tres primeros niveles, ya que se considera que el último nivel no da demasiado detalle visual para representar las interacciones en el ámbito de código, por lo que para este fin se usará otro diagrama presentado más adelante.
+%########################################################################################################################################
 
-\subsection{Nivel 1: Diagrama de contexto del sistema}
+\subsubsection{Arquitectura de Defensa en Profundidad: Application Structure View}
 \noindent
-El diagrama de contexto del sistema muestra de forma muy general y a muy alto nivel la solución que se propone. Lo que permite una visión global y generalizada, útil para comprender rápidamente los elementos de la solución.
 
-En la Figura \ref{fig:C4Nivel1} se muestra los elementos principales de la arquitectura, los nombres de dichos elementos, la interacción entre ellos y la comunicación que realizan con el usuario. Como se puede apreciar en el diagrama, el sistema está compuesto de tres aplicaciones y los tres universos de HTCondor que componen la solución. Cabe aclarar que la aplicación denominada \textit{Tablero App} ya estaba implementada en un clúster antes del inicio de este proyecto. Sin embargo, se adiciona a la arquitectura de la solución, ya que se hizo un esfuerzo para adaptar está en todos los clústeres Vanilla que componen la solución.
+La Figura~\ref{fig:archiApplicationView} representa la capa de aplicación correspondiente a la estructura funcional definida a partir de la selección de herramientas 
+realizada durante la fase de análisis \DAR. En esta vista se evidencia la trazabilidad operativa existente entre los componentes 
+aplicativos que conforman la arquitectura de defensa en profundidad implementada para el entorno del \GRID, iniciando desde el firewall 
+SonicWall NSA 6600 y su sistema operativo SonicOS, pasando por el \IDPS\ Suricata y finalizando en la plataforma \SIEM\ Wazuh, encargada de 
+centralizar, correlacionar y analizar los eventos generados dentro de la infraestructura.
+
+La integración de estas herramientas fortalece los mecanismos de monitoreo continuo, gestión de registros y respuesta ante incidentes, 
+proporcionando soporte a los controles A.5.7, A.5.24 y A.8.16 de la \ISO/IEC 27001~\cite{iso27001}, así como a los controles CLD 12.4.1 y 
+CLD 12.4.5 de la \ISO/IEC 27017~\cite{iso27017}.
+
+En primera instancia se encuentra el dispositivo SonicWall NSA 6600, el cual incorpora funcionalidades orientadas al filtrado de paquetes 
+mediante reglas y políticas predefinidas en su configuración, generando registros que posteriormente son enviados hacia el \SIEM\ Wazuh 
+mediante el protocolo Syslog definido en el RFC 5424~\cite{rfc5424}.
+
+Asimismo, el SonicWall NSA 6600 establece interoperabilidad con el \IDPS\ Suricata mediante el análisis de una copia del tráfico entrante, 
+la cual es procesada directamente por el motor de detección de intrusos integrado dentro de la arquitectura. Este motor opera basándose en 
+reglas y firmas alojadas en los archivos de configuración de Suricata.
+
+Posteriormente, una vez realizado el proceso de inspección, Suricata genera registros que son almacenados en el archivo 
+\texttt{eve.json}. Dichos registros son consumidos por el agente de Wazuh y enviados hacia el Wazuh Manager alojado en el servidor 
+principal de la plataforma.
+
+Una vez el Wazuh Manager obtiene registros provenientes tanto del SonicWall NSA 6600 como de los distintos agentes Wazuh desplegados en la 
+infraestructura, estos pasan por diversos procesos internos de análisis y tratamiento de información. Entre ellos se encuentran los 
+procesos de decodificación de texto plano y el manejo de la comunicación cifrada mediante AES-256 establecida entre el Wazuh Agent y el 
+servidor.
+
+Posteriormente, la información es enviada al motor de análisis de Wazuh, encargado de interpretar los eventos basándose en reglas 
+predefinidas y políticas personalizadas configuradas por el administrador. En caso de detectarse una amenaza activa, el componente Wazuh 
+Execd ejecuta procesos de respuesta activa mediante la inyección de comandos SSH hacia el SonicWall NSA 6600, permitiendo la actualización 
+dinámica de reglas de tráfico y el bloqueo de conexiones potencialmente maliciosas. Este mecanismo fortalece la capacidad de reacción del 
+\GRID\ frente a anomalías presentes dentro de su infraestructura.
+
+El motor de análisis, independientemente de si detecta o no una amenaza, genera registros que posteriormente son enviados al servicio 
+Wazuh Filebeat, encargado de transmitir dicha información hacia el Wazuh Indexer. Este componente funciona como un motor de búsqueda y 
+análisis de texto completo, basado en la tecnología OpenSearch, permitiendo el almacenamiento centralizado e indexado de eventos de 
+seguridad.
+
+Finalmente, el Wazuh Indexer escribe los registros dentro del repositorio de eventos indexados, desde donde el Wazuh Dashboard consume la 
+información para su visualización por parte del usuario. Cabe resaltar que el Dashboard puede consultar directamente el repositorio 
+indexado o interactuar dinámicamente con el Wazuh Indexer para realizar búsquedas y análisis en tiempo real.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.1]{tablas-images/C4/Diagramas HTCondor-Nivel 1.drawio.png}
-	\caption{Diagrama de contexto del sistema}
-    \label{fig:C4Nivel1}
+	\includegraphics[scale=0.3]{tablas-images/archi/Application Structure View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad: Application Structure View Realizada en Archimate}\label{fig:archiApplicationView}
 \end{figure}
 
-\subsection{Nivel 2: Diagrama de contenedores}
-\noindent
-El diagrama de contenedores muestra los elementos básicos dentro de cada sistema de Software. Lo que permite ir un poco más allá y entender como funciona cada sistema de software por dentro y como interactúa con el resto de contenedores.
+%########################################################################################################################################
 
-En la Figura \ref{fig:C4Nivel2} se muestran los contenedores principales de la arquitectura, los nombres de dichos contenedores, la interacción entre ellos y la comunicación que realizan con el usuario. Como se puede apreciar en el diagrama, el sistema está compuesto por: (1) Un \textit{backend} que cumple dos funciones principales; la primera es renderizar las plantillas que se le van a mostrar al usuario pues estás contienen información dinámica que debe ser consultada y establecida por el servidor, la segunda es realizar toda la lógica de la aplicación como despertar otros procesos o construir los archivos maestros de HTCondor. Se optó por este enfoque en el diseño para propender por la simplicidad de la aplicación y su fácil portabilidad y despliegue en diferentes tipos de entornos. En el Apéndice XX se muestra el código de los componentes y la estructura de los directorios de este componente. (2) Un directorio dentro del sistema de archivos del equipo que sirve la aplicación \textit{Grid App} en donde se almacenan los resultados de los trabajos. (3) Los universos de HTCondor que se propusieron implementar en este proyecto, estos son, Parallel y Grid, pues el Vanilla ya estaba implementado y (4) una aplicación llamada \textit{Cluster Info App} en cada clúster de HTCondor que recoge métricas básicas y las expone en formato \JSON a través de una \API.
+\subsubsection{Arquitectura de Defensa en Profundidad: Actor Cooperation View}
+\noindent
+La Figura~\ref{fig:archiActorCooperationView} representa la capa de negocio correspondiente a la cooperación del actor. En esta vista se establece la correlación existente 
+entre el entorno que interactúa con el \GRID\ y los actores asociados al mismo. Principalmente, se expone la comunicación interna presente 
+dentro del programa de Ingeniería de Sistemas y Computación, así como la manera en que el \GRID\ se relaciona con diferentes solicitudes 
+documentales provenientes tanto del programa académico como de la propia Universidad del Quindío.
+
+Profundizando en la trazabilidad operacional representada en esta vista, se identifican tres roles principales que interactúan con la 
+infraestructura del \GRID\ y con los actores internos asociados a los cursos, la directiva académica y las relaciones contractuales 
+establecidas dentro del entorno institucional.
+
+Estas interacciones se articulan con el actor correspondiente al repositorio documental del programa, el cual centraliza y habilita el 
+flujo de información relacionado con syllabus, actas de concertación, contratos y contratos intermediarios requeridos para la operación 
+académica y administrativa.
+
+Asimismo, el repositorio documental del programa mantiene interoperabilidad directa con la Universidad del Quindío mediante el intercambio 
+y gestión de contratos electrónicos y documentación asociada a los cursos, permitiendo consolidar un flujo estructurado de información 
+entre los distintos actores institucionales.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.1]{tablas-images/C4/Diagramas HTCondor-Nivel 2.drawio.png}
-	\caption{Diagrama de contenedores}
-    \label{fig:C4Nivel2}
+	\includegraphics[scale=0.3]{tablas-images/archi/Actor Cooperation View.jpeg}
+	\caption{Arquitectura de Defensa en Profundidad: Actor Cooperation View Realizada en Archimate}\label{fig:archiActorCooperationView}
 \end{figure}
 
-\subsection{Nivel 3: Diagrama de componentes}
+\subsection{Ecosistema Tecnológico}
 \noindent
-El diagrama de componentes muestra los elementos básicos dentro de cada contenedor. Lo que permite ir aún más allá y entender de forma profunda como están compuestos los elementos del Software y que realizan a nivel interno. Para este nivel de granularidad se decide dividir el diagrama de componentes en distintas partes. Con el fin de hacer más sencilla su lectura y comprensión.
+En el presente apartado se justifica el ecosistema tecnológico sobre el cual se soporta la arquitectura de defensa en profundidad y 
+mediante el cual se implementan los controles especificados anteriormente. Se aclara que, independientemente del ecosistema tecnológico 
+utilizado, la arquitectura propuesta puede mantenerse funcional, debido a que su objetivo principal consiste en correlacionar eventos, 
+generar alertas, establecer mecanismos de protección perimetral y proporcionar capacidades de visualización y monitoreo sobre lo que 
+ocurre dentro de la infraestructura.
 
-\subsubsection{Universo \textit{Vanilla}}
+Cabe resaltar que las fichas técnicas correspondientes al firewall UTM SonicWall NSA 6600 y al Switch Ruijie fueron presentadas 
+previamente en el Capítulo~\ref{cap:caracterizacionGRID}, debido a que estos dispositivos forman parte de la infraestructura física 
+existente del \GRID. Por esta razón, en el presente apartado únicamente se describen las tecnologías seleccionadas como resultado del 
+análisis \DAR, las cuales fueron incorporadas para fortalecer las capacidades de detección, monitoreo y correlación de eventos dentro de la 
+arquitectura propuesta.
+
+En este contexto, el ecosistema tecnológico implementado se compone de los dispositivos y herramientas encargados de alojar la lógica, 
+correlación e interoperabilidad del modelo de defensa en profundidad, los cuales se describen a continuación:
+
+\subsubsection{Máquina Virtual Suricata}
 \noindent
-En la Figura \ref{fig:C4Nivel3Vanilla} se muestran los componentes principales de la arquitectura del universo Vanilla en HTCondor. Además, se pueden apreciar los distintos procesos que sigue un trabajo desde su envío hasta la recepción de sus resultados.
 
-\begin{figure}[H]
+Este dispositivo se implementa a partir del hipervisor alojado en la infraestructura del \GRID, denominado Xen-Orchestra, el cual permite 
+crear la máquina virtual y asignarle los recursos computacionales requeridos para su funcionamiento. La presente máquina virtual se 
+encarga de alojar el \IDPS\ Suricata, incluyendo su sistema operativo, recursos de hardware y servicios asociados.
+
+En cuanto a la conectividad de red, la máquina dispone de dos interfaces \NIC: una destinada a la comunicación y gestión administrativa, y 
+otra configurada específicamente para recibir el tráfico replicado mediante Port Mirroring desde el dispositivo SonicWall NSA 6600. Las 
+características técnicas correspondientes se especifican en la Tabla~\ref{tab:vm-suricata}.
+
+\begin{table}[H]
 	\centering
-	\includegraphics[scale=0.09]{tablas-images/C4/Diagramas HTCondor-Nivel 3 - Vanilla.drawio.png}
-	\caption{Diagrama de componentes para el universo Vanilla}
-    \label{fig:C4Nivel3Vanilla}
-\end{figure}
+	\sffamily\small
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{8pt}
+	\caption{Ficha técnica: Máquina Virtual Suricata}\label{tab:vm-suricata}
+	
+	\begin{tabular}{|p{0.42\textwidth}|p{0.35\textwidth}|}
+		\hline
+		\rowcolor{pink!40}
+		\centering\textbf{Recurso} & \centering\textbf{Configuración} \tabularnewline
+		\hline
+		
+		\centering\textbf{Núcleos de Procesamiento} & \centering 6 \tabularnewline
+		\hline
+		
+		\centering\textbf{RAM} & \centering 6GB \tabularnewline
+		\hline
+		
+		\centering\textbf{Almacenamiento} & \centering 30GB \tabularnewline
+		\hline
+		
+		\centering\textbf{Sistema Operativo (S.O)} & \centering Debían 13 (CLI) \tabularnewline
+		\hline
+		
+		\centering\textbf{NIC} & \centering 2 \tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
 
-\subsubsection{Universo \textit{Parallel}}
+\subsubsection{Máquina Virtual Wazuh}
 \noindent
-En la Figura \ref{fig:C4Nivel3Parallel} se muestran los componentes principales de la arquitectura del universo Parallel en HTCondor. Además, se pueden apreciar los distintos procesos que sigue un trabajo desde su envío hasta la recepción de sus resultados. Es importante notar que ls comunicación y los componentes funcionan exactamente de la misma forma que en el universo Vanilla, con la unica diferencia que aquí, los trabajo se comunican a través de \MPI.
 
-\begin{figure}[H]
+Este dispositivo, al igual que la máquina virtual destinada a Suricata, se implementa a partir del hipervisor Xen-Orchestra, el cual 
+permite la creación de la máquina virtual y la asignación de los recursos computacionales necesarios para su funcionamiento. No obstante, 
+esta máquina virtual requiere una mayor capacidad de hardware debido a las múltiples funciones que desempeña dentro de la arquitectura de 
+defensa en profundidad, especialmente aquellas relacionadas con la correlación de eventos, almacenamiento, indexación y monitoreo 
+centralizado.
+
+Por otra parte, los agentes de Wazuh se instalan directamente sobre los dispositivos o sistemas de los cuales se desea obtener información 
+y monitoreo continuo. La plataforma Wazuh facilita este proceso mediante la disponibilidad de instaladores y comandos específicos para 
+diferentes sistemas operativos compatibles, simplificando así el despliegue de los agentes dentro de la infraestructura.
+
+En la Tabla~\ref{tab:vm-wazuh} se especifican las características de hardware y software que esta máquina virtual posee.
+
+\begin{table}[H]
 	\centering
-	\includegraphics[scale=0.09]{tablas-images/C4/Diagramas HTCondor-Nivel 3 - Parallel.drawio.png}
-	\caption{Diagrama de componentes para el universo Parallel}
-    \label{fig:C4Nivel3Parallel}
-\end{figure}
+	\sffamily\small
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{8pt}
+	\caption{Ficha técnica: Máquina Virtual Wazuh}\label{tab:vm-wazuh}
+	
+	\begin{tabular}{|p{0.42\textwidth}|p{0.35\textwidth}|}
+		\hline
+		\rowcolor{blue!40}
+		\centering\textbf{Recurso} & \centering\textbf{Configuración} \tabularnewline
+		\hline
+		
+		\centering\textbf{Núcleos de Procesamiento} & \centering 6 \tabularnewline
+		\hline
+		
+		\centering\textbf{RAM} & \centering 6GB \tabularnewline
+		\hline
+		
+		\centering\textbf{Almacenamiento} & \centering 30GB \tabularnewline
+		\hline
+		
+		\centering\textbf{Sistema Operativo (S.O)} & \centering Debian 13 \tabularnewline
+		\hline
+		
+		\centering\textbf{NIC} & \centering 1 \tabularnewline
+		\hline
+	\end{tabular}
+\end{table}
 
-\subsubsection{Universo \textit{Grid}}
+\subsection{Conclusión sobre el diseño de la solución}
 \noindent
-En la Figura \ref{fig:C4Nivel3Grid} se muestran los componentes principales de la arquitectura del universo Grid en HTCondor. Como se puede apreciar en el digrama este universo actua como un intermediario entre el usuario y el clúster que va a ejecutar su trabajo, permitiendo así interconectar multiples clústeres, donde reside el valor de este universo.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.1]{tablas-images/C4/Diagramas HTCondor-Nivel 3 - Grid.drawio.png}
-	\caption{Diagrama de componentes para el universo Grid}
-    \label{fig:C4Nivel3Grid}
-\end{figure}
+La arquitectura de defensa en profundidad planteada para el entorno \GRID\ permite consolidar un modelo multicapa orientado al 
+fortalecimiento de la supervisión, detección y respuesta ante eventos potencialmente sospechosos dentro de la infraestructura. La 
+integración coordinada de componentes físicos, virtualizados y servicios de seguridad, tales como el SonicWall NSA 6600, el \IDPS\ Suricata, 
+el \SIEM\ Wazuh, el switch Ruijie encargado de la interconexión de la infraestructura y los mecanismos de segmentación y monitoreo, permite 
+establecer una arquitectura interoperable capaz de centralizar, correlacionar y analizar eventos de seguridad de manera continua.
 
-\subsubsection{Aplicaciones de Software}
-\noindent
-En la Figura \ref{fig:C4Nivel3Apps} se muestran los componentes principales de las aplicaciones que integran el sistema. Como se puede evidenciar en el diagrama, hay dos aplicaciones principales que conforman este sistema. La primera es la aplicación central \textit{Grid App} que ayuda a abstraer la complejidad de HTCondor con una interfaz \textit{web} más amigable, además, es la encargada de enviar los trabajos y recoger los resultados. La segunda es la \textit{Cluster Info App} que ayuda a exponer métricas de cada clúster, permitiendo así a la aplicación central obtener datos reales de cada clúster y permitir al usuario elegir el clúster con métricas más favorables para su caso de uso. Es importante aclarar que la aplicación \textit{Tablero App} también está disponible y funcionando en algunos de los clústeres que componen la solución. Sin embargo, dado que su única labor es mostrar métricas detalladas del clúster, se opta por no agregarlo al diagrama por dos razones: (1) para reducir su complejidad y (2) porque el desarrollo de esta aplicación no es resultado del desarrollo de este proyecto.
+De igual forma, la implementación de mecanismos de inspección de tráfico, monitoreo de red, correlación de eventos y respuesta activa 
+contribuye al fortalecimiento de la trazabilidad operacional y de la capacidad de supervisión del entorno \GRID, proporcionando una mayor 
+visibilidad sobre las actividades ejecutadas dentro de la infraestructura.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.09]{tablas-images/C4/Diagramas HTCondor-Nivel 3 - Apps.drawio.png}
-	\caption{Diagrama de componentes para las aplicaciones que componen el sistema}
-    \label{fig:C4Nivel3Apps}
-\end{figure}
+La interacción entre las diferentes capas arquitectónicas definidas mediante ArchiMate evidencia la relación existente entre los 
+componentes tecnológicos, los servicios de aplicación, los procesos de negocio y los actores involucrados en la operación del entorno. 
+Asimismo, el modelado realizado en Draw.io permite representar de manera holística el flujo del tráfico de red, las zonas definidas y sus 
+respectivas direcciones IP, proporcionando transparencia y trazabilidad operativa dentro de la arquitectura propuesta.
 
-\section{Modelado de secuencia con UML}
-\UML es un lenguaje de modelado orientado a múltiples enfoques como la secuencia de eventos y la estructura de las clases \citep{10.1145/1125944.1125949}. Para el caso de este proyecto se usará para describir de forma concreta y estructurada la secuencia que siguen los componentes del Software en cada momento, así como las alternativas que toma el programa con base en la información disponible. De igual forma, se usará este lenguaje para modelar la estructura de las clases que transportan información a través del programa. Cabe aclarar que el sistema no se diseña con una orientación a objetos estricta. Sin embargo su forma principal de intercambio de información es a través de \JSON. Por lo que se hace necesario conocer y describir la forma de los objetos que se intercambian.
-
-\subsection{Diagrama de secuencia}
-\noindent
-En la Figura \ref{fig:UMLSecuencia} se muestran los procesos y llamados que se ejecutan en cada paso del sistema, desde las rutas que se visitan hasta la información que se transfiere en cada momento. Es importante añadir que la información de transferencia entre cada sistema de software es meramente ilustrativa y para dar mayor profundidad a dicha información, debe complementarse con el diagrama de clases presentado en la sección siguiente y el código de la aplicación presentado en el Apéndice XX.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.11]{tablas-images/UML/Diagramas HTCondor-Secuencia.drawio.png}
-	\caption{Diagrama de secuencia para el sistema}
-    \label{fig:UMLSecuencia}
-\end{figure}
-
-\subsection{Diagrama de clases}
-\noindent
-En la Figura \ref{fig:UMLClases} se muestra la composición de las clases en las que se basan los objetos que permiten intercambiar información a través de los sistemas. Debido a que el diseño no fue orientado a objetos, este diagrama solo pretende mostrar los elementos de información que intercambia el sistema y no pretende modelar la arquitectura general de los sistemas de software.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.1]{tablas-images/UML/Diagramas HTCondor-Objetos.drawio.png}
-	\caption{Diagrama de clases para el sistema}
-    \label{fig:UMLClases}
-\end{figure}
-
-\section{Modelado de infraestructura con modelos personalizados}
-Después de conocer como está compuesto el sistema de forma transversal con ArchiMate y en cuanto a software con C4 y \UML, se hace necesario un modelado más profundo de la infraestructura física y de red que compone la solución. Esto debido a que ArchiMate no da la profundidad necesaria para modelar esta clase de elementos, por lo que se opta por otras opciones con el fin de dar más profundidad al diseño y más claridad al lector sobre los elementos que componen la solución.
-
-A pesar de esto, el equipo del proyecto no halló ningún lenguaje de modelado ni sistema formal que se armonizara con la clase de modelado de infraestructura que se pretende realizar. Por lo que se opta por usar una herramienta de modelado llamada draw.io y figuras genéricas con información complementaria que permiten tener una idea general de la infraestructura que subyace la solución.
-
-\subsection{Modelo de infraestructura física}
-\noindent
-En la Figura \ref{fig:Fisica} se muestran los componentes de hardware principales que componen la solución. A su vez, se presentan las conexiones eléctricas que tiene cada elemento. Esto con el fin de mostrar la forma en que están conectados a la red eléctrica los componentes, ya que su conexión no es trivial y se hace necesaria documentación especializada que muestre este tipo de elementos.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.1]{tablas-images/personalizado/Diagramas HTCondor-Fisica.drawio.png}
-	\caption{Modelo de infraestructura física}
-    \label{fig:Fisica}
-\end{figure}
-
-\subsection{Modelo de enlace de datos}
-\noindent
-En la Figura \ref{fig:Enlace} se muestran las conexiones de red que tiene cada elemento. Esto con el fin de mostrar la forma en que están conectados los componentes a la red y a Internet, ya que su conexión no es trivial y se hace necesaria documentación especializada que muestre estás conexiones.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.1]{tablas-images/personalizado/Diagramas HTCondor-Enlace.drawio.png}
-	\caption{Modelo de enlace de datos}
-    \label{fig:Enlace}
-\end{figure}
-
-\subsection{Modelo de roles}
-\noindent
-Después de conocer como están conectados los elementos de infraestructura a nivel eléctrico y de red, se hace necesario plasmar la forma en que están conectados los elementos de forma lógica, que es la forma en que se comunican los elementos en el diseño de la solución. Además, se hace necesario mostrar los roles de HTCondor que ocupa cada elemento en su clúster. En la Figura \ref{fig:Roles} se plasman estos aspectos.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.088]{tablas-images/personalizado/Diagramas HTCondor-Roles.drawio.png}
-	\caption{Modelo de roles}
-    \label{fig:Roles}
-\end{figure}
+Finalmente, el alineamiento de la arquitectura con controles de la \ISO/IEC 27001~\cite{iso27001} e \ISO/IEC 27017~\cite{iso27017} permite 
+estructurar un enfoque orientado a la gobernanza, gestión de incidentes, monitoreo continuo y protección de activos de información, 
+fortaleciendo la postura de seguridad del grupo \GRID. Como resultado, el trabajo desarrollado deja una arquitectura reproducible y 
+escalable, capaz de ser adaptada a entornos académicos o tecnológicos con necesidades similares de protección, supervisión y gestión de 
+seguridad sobre infraestructuras en la nube.
