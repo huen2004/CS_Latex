@@ -1,85 +1,76 @@
 \ChapterImageStar[cap:trabajos-futuros]{Trabajos Futuros}{./images/fondo.png}\label{cap:trabajos-futuros}
 \mbox{}\\
 
-El desarrollo exitoso de este proyecto de ampliación de la infraestructura HTCondor del Grupo \GRID ha establecido una base sólida que abre múltiples direcciones para trabajo futuro. Las oportunidades identificadas se extienden desde mejoras técnicas específicas hasta iniciativas de mayor alcance que pueden potenciar significativamente el impacto de la infraestructura implementada.
+El desarrollo exitoso de este proyecto de definición de aspectos de seguridad para la infraestructura de computación en la nube del Grupo 
+\GRID\ ha establecido una base sólida que abre múltiples direcciones para trabajo futuro. Las oportunidades identificadas se extienden desde 
+mejoras técnicas específicas hasta iniciativas de mayor alcance que pueden potenciar significativamente el impacto de la infraestructura.
 
-\section{Expansión de la infraestructura distribuida}
+\section{Definición de Aspectos de seguridad}
 \noindent
 
-\subsection{Incorporación de recursos adicionales}
+\subsection{Implementación adicional de controles}
 \noindent
 
-La arquitectura del universo Grid implementada ha demostrado su capacidad de escalabilidad al expandirse exitosamente de un clúster único a dos clústeres independientes. Esta característica habilita la incorporación de recursos computacionales adicionales que pueden incluir:
+Las tecnologías de seguridad implementadas demostraron capacidades de escalabilidad, interoperabilidad y monitoreo continuo dentro del 
+entorno prototipo construido conforme a las características de la infraestructura del \GRID. La integración entre el firewall SonicWall 
+NSA 6600, el IDPS Suricata y la plataforma SIEM Wazuh permitió consolidar mecanismos de protección, correlación de eventos y supervisión 
+centralizada, evidenciando la viabilidad de ampliar progresivamente las capacidades de seguridad de la arquitectura propuesta.
 
-\textbf{Recursos heterogéneos}: Integración de diferentes tipos de hardware, incluyendo servidores de mayor capacidad, estaciones de trabajo de laboratorios y recursos de computación en la nube híbrida. Esta diversificación permitiría optimizar la ejecución de diferentes tipos de cargas de trabajo según sus requerimientos específicos.
+Bajo este contexto, la arquitectura planteada habilita la futura incorporación de controles adicionales pertenecientes a estándares 
+internacionales como la \ISO/IEC 27001 y la \ISO/IEC 27017, fortaleciendo aún más la postura de seguridad del entorno \GRID.
 
-\textbf{Federación interinstitucional}: Establecimiento de colaboraciones con otras universidades para crear una federación regional de recursos HTCondor. Esta iniciativa podría proporcionar acceso a capacidades computacionales significativamente mayores y facilitar proyectos de investigación colaborativa entre instituciones.
+\textbf{Controles de la \ISO/IEC 27001}: La implementación de controles adicionales relacionados con gestión de incidentes, gestión de 
+activos, continuidad operativa, control de accesos y gestión de proveedores permitiría incrementar las capacidades de prevención, 
+detección y respuesta ante amenazas de seguridad. La integración progresiva de estos controles contribuiría al fortalecimiento de la 
+gobernanza de seguridad y a una protección más robusta de los activos de información del \GRID.
 
-\subsection{Implementación de universos adicionales}
+\textbf{Controles de la \ISO/IEC 27017}: La incorporación de controles orientados específicamente a entornos cloud, como gestión de 
+configuración, protección de datos, segregación de entornos virtualizados y supervisión de servicios cloud, permitiría mejorar los 
+mecanismos de protección sobre la infraestructura y la información procesada dentro del entorno \GRID. Asimismo, estos controles 
+complementarían las capacidades de monitoreo y trazabilidad ya implementadas en la arquitectura de defensa en profundidad.
+
+\subsection{Implementación de modelo arquitectonico \ZTA}
 \noindent
 
-El análisis DAR realizado identificó varios universos HTCondor que, aunque no fueron seleccionados inicialmente, presentan potencial para casos de uso específicos:
+La implementación de un modelo arquitectónico fundamentado en los principios de Zero Trust Architecture (\ZTA) representa una oportunidad 
+estratégica para fortalecer la postura de seguridad del entorno \GRID. Este enfoque se basa en el principio de ``nunca confiar, siempre 
+verificar'', estableciendo que todo acceso a recursos, servicios o componentes de la infraestructura debe ser autenticado, autorizado y 
+monitoreado continuamente, independientemente de la ubicación del usuario, dispositivo o segmento de red desde donde se origine la conexión.
 
-\textbf{Universo Container/Docker}: Implementación de capacidades de contenedorización que facilitarían el despliegue de aplicaciones con dependencias complejas y garantizarían reproducibilidad en entornos de investigación científica.
+Bajo este contexto, la arquitectura de defensa en profundidad propuesta proporciona una base adecuada para la futura adopción de principios 
+\ZTA, debido a la integración de mecanismos de monitoreo continuo, correlación de eventos, segmentación de red, control de accesos y 
+supervisión de actividades implementados mediante herramientas como SonicWall NSA 6600, Suricata y Wazuh. Estas capacidades permiten 
+establecer procesos de validación y análisis permanente sobre el comportamiento de usuarios, dispositivos y servicios presentes dentro de 
+la infraestructura.
 
-\textbf{Universo VM}: Integración con la infraestructura de virtualización existente (XCP-ng) para proporcionar aislamiento completo y soporte para sistemas operativos alternativos requeridos por aplicaciones específicas.
+Asimismo, la incorporación progresiva de un modelo \ZTA\ permitiría fortalecer aspectos relacionados con autenticación multifactor, 
+microsegmentación de servicios, control granular de privilegios, verificación continua de identidad y supervisión contextual de accesos, 
+incrementando la capacidad de respuesta ante amenazas internas y externas. De esta manera, el entorno \GRID\ podría evolucionar hacia un 
+modelo de seguridad más dinámico, adaptable y alineado con las tendencias actuales de protección para infraestructuras cloud y entornos 
+académicos distribuidos.
 
-\section{Mejoras en \textit{Grid App}}
+\section{Optimización y automatización de las tecnologías}
 \noindent
 
-\subsection{Funcionalidades avanzadas de monitoreo}
-\noindent
 
-La interfaz actual de \textit{Grid App} puede expandirse para incluir capacidades de monitoreo más sofisticadas:
+\textbf{Optimización y automatización de la tecnología Suricata}:  
+La herramienta Suricata permite incorporar mecanismos avanzados de automatización orientados a la gestión dinámica de eventos de seguridad 
+y respuesta ante incidentes. Una posible estrategia consiste en integrar plataformas de automatización como \textit{n8n}, la cual puede 
+recibir las alertas generadas por Suricata, procesarlas y correlacionarlas con fuentes externas de inteligencia de amenazas, tales como 
+VirusTotal u otras bases de datos de reputación. A partir de ello, se podrían automatizar acciones como el bloqueo de direcciones IP 
+maliciosas, generación de notificaciones al equipo de seguridad o actualización dinámica de reglas en el firewall SonicWall NSA 6600.
 
-\textbf{Dashboard analítico}: Desarrollo de visualizaciones interactivas que muestren métricas de utilización de recursos, tendencias de uso, patrones de ejecución y estadísticas de rendimiento en tiempo real.
+\textbf{Optimización y automatización de la tecnología Wazuh}:  
+La plataforma SIEM Wazuh permite fortalecer los procesos de automatización y despliegue de infraestructura mediante herramientas de 
+infraestructura como código, como \textit{Terraform}. Bajo este enfoque, Terraform podría utilizarse para automatizar el aprovisionamiento 
+y configuración de componentes críticos de Wazuh, incluyendo servidores, indexadores, almacenamiento de registros y nodos asociados a la 
+arquitectura de monitoreo, garantizando consistencia, escalabilidad y trazabilidad en futuras implementaciones del entorno \GRID.
 
-\textbf{Alertas y notificaciones}: Implementación de un sistema de notificaciones que informe a los usuarios sobre cambios de estado en sus trabajos, completación de ejecuciones y disponibilidad de resultados.
-
-\textbf{Monitoreo predictivo}: Incorporación de algoritmos de aprendizaje automático para predecir tiempos de ejecución, identificar posibles fallos y optimizar la asignación de recursos.
-
-\subsection{Gestión avanzada de usuarios}
-\noindent
-
-\textbf{Autenticación institucional}: Integración con sistemas de autenticación y autorización de la Universidad del Quindío para proporcionar acceso controlado y auditoría de uso.
-
-\textbf{Gestión de cuotas}: Implementación de un sistema de cuotas que permita administrar el uso de recursos por usuario o grupo, garantizando acceso equitativo y previniendo monopolización de recursos.
-
-\textbf{Perfiles de usuario}: Desarrollo de perfiles personalizados que permitan a los usuarios guardar configuraciones frecuentes, mantener historial de trabajos y acceder a plantillas predefinidas.
-
-\section{Optimización y automatización}
-\noindent
-
-\subsection{Balanceado inteligente de carga}
-\noindent
-
-\textbf{Algoritmos adaptativos}: Desarrollo de algoritmos de balanceado de carga que consideren no solo la disponibilidad actual de recursos, sino también características específicas de los trabajos, historial de rendimiento y predicciones de carga futura.
-
-\textbf{Optimización dinámica}: Implementación de mecanismos que ajusten automáticamente la distribución de trabajos basándose en métricas de rendimiento en tiempo real y aprendizaje de patrones de uso.
-
-\subsection{Automatización operacional}
-\noindent
-
-\textbf{Despliegue automatizado}: Desarrollo de scripts y herramientas de automatización (Ansible, Terraform) que faciliten la configuración y despliegue de nuevos nodos HTCondor, reduciendo la complejidad operacional.
-
-\textbf{Mantenimiento predictivo}: Implementación de sistemas de monitoreo que identifiquen proactivamente problemas potenciales en la infraestructura y ejecuten acciones correctivas automáticas.
-
-\section{Integración con ecosistemas científicos}
-\noindent
-
-\subsection{\textit{Workflows} científicos}
-\noindent
-
-\textbf{Integración con sistemas de \textit{workflows}}: Desarrollo de conectores para sistemas populares de gestión de workflows científicos como Nextflow, Snakemake o Galaxy, facilitando la ejecución de pipelines complejos de análisis de datos.
-
-\textbf{Soporte para Jupyter}: Integración que permita ejecutar notebooks Jupyter de manera distribuida, facilitando el análisis de datos interactivo con acceso a recursos computacionales masivos.
-
-\subsection{Repositorios de datos}
-\noindent
-
-\textbf{Gestión de \textit{datasets}}: Implementación de capacidades de gestión de conjuntos de datos que faciliten el almacenamiento, versionado y distribución de datos de investigación entre diferentes trabajos y usuarios.
-
-\textbf{Integración con almacenamiento distribuido}: Conexión con sistemas de almacenamiento distribuido como Ceph o GlusterFS para proporcionar acceso eficiente a grandes volúmenes de datos.
+De igual manera, Wazuh incorpora capacidades nativas de \textit{Active Response}, integración mediante APIs REST y compatibilidad con 
+plataformas externas de orquestación, permitiendo automatizar tareas como generación de alertas, ejecución de respuestas activas, 
+actualización de reglas y correlación avanzada de eventos. Estas capacidades pueden complementarse con herramientas como \textit{n8n}, 
+posibilitando la automatización de flujos de trabajo relacionados con creación de tickets, envío de notificaciones y gestión centralizada 
+de incidentes de seguridad dentro de la infraestructura.
 
 \section{Investigación y desarrollo}
 \noindent
@@ -87,16 +78,22 @@ La interfaz actual de \textit{Grid App} puede expandirse para incluir capacidade
 \subsection{Estudios de rendimiento}
 \noindent
 
-\textbf{Benchmarking comparativo}: Realización de estudios sistemáticos de rendimiento que comparen la eficiencia de diferentes universos HTCondor para tipos específicos de cargas de trabajo científicas.
-
-\textbf{Optimización de algoritmos}: Investigación en algoritmos de planificación y distribución de trabajos específicamente optimizados para infraestructuras académicas con recursos heterogéneos.
+\textbf{Benchmarking de herramientas de seguridad}:  
+Realización de estudios comparativos orientados a evaluar el rendimiento de tecnologías SIEM, IDPS y firewalls en entornos de computación 
+en la nube académicos, considerando métricas como consumo de recursos, capacidad de correlación de eventos, tiempo de respuesta y precisión 
+en la detección de amenazas.
 
 \subsection{Nuevas aplicaciones}
 \noindent
 
-\textbf{Machine Learning distribuido}: Exploración de la aplicación de la infraestructura para entrenamiento distribuido de modelos de aprendizaje automático, aprovechando las capacidades paralelas implementadas.
+\textbf{Integración de inteligencia artificial aplicada a ciberseguridad}:  
+Exploración de mecanismos de análisis basados en aprendizaje automático para la identificación de comportamientos anómalos, clasificación 
+automática de incidentes y generación de alertas predictivas dentro del entorno \GRID.
 
-\textbf{Simulaciones científicas}: Desarrollo de casos de uso específicos para simulaciones en áreas como física, química, biología y ingeniería que aprovechen las capacidades distribuidas disponibles.
+\textbf{Extensión hacia entornos académicos distribuidos}:  
+Evaluación de la arquitectura propuesta en otros escenarios institucionales o laboratorios académicos con necesidades similares de 
+monitoreo, correlación de eventos y protección de activos tecnológicos, permitiendo validar la escalabilidad y adaptabilidad del modelo de 
+defensa en profundidad planteado.
 
 \section{Transferencia de conocimiento}
 \noindent
@@ -104,16 +101,11 @@ La interfaz actual de \textit{Grid App} puede expandirse para incluir capacidade
 \subsection{Documentación y capacitación}
 \noindent
 
-\textbf{Recursos educativos}: Desarrollo de materiales didácticos, tutoriales interactivos y casos de estudio que faciliten la adopción de la infraestructura por parte de estudiantes e investigadores.
-
-\textbf{Programa de capacitación}: Establecimiento de un programa estructurado de capacitación que incluya talleres, seminarios y certificaciones en computación distribuida usando HTCondor.
-
-\subsection{Colaboraciones interinstitucionales}
-\noindent
-
-\textbf{Red de conocimiento}: Formación de una red de instituciones académicas que compartan experiencias, buenas prácticas y recursos relacionados con HTCondor y computación distribuida.
-
-\textbf{Proyectos colaborativos}: Iniciación de proyectos de investigación colaborativa que aprovechen las capacidades distribuidas para abordar problemas científicos de gran escala.
+\textbf{Recursos educativos}:  
+Desarrollo de documentación técnica, guías de implementación, manuales de configuración y material didáctico orientado a facilitar la 
+comprensión, despliegue y administración de la arquitectura de defensa en profundidad propuesta. Asimismo, la generación de tutoriales 
+prácticos y casos de estudio permitiría fortalecer los procesos de aprendizaje relacionados con monitoreo de seguridad, correlación de 
+eventos y protección de infraestructuras cloud dentro del entorno académico.
 
 \section{Sustentabilidad y gobierno}
 \noindent
@@ -121,20 +113,43 @@ La interfaz actual de \textit{Grid App} puede expandirse para incluir capacidade
 \subsection{Modelo de sostenibilidad}
 \noindent
 
-\textbf{Plan de sostenibilidad financiera}: Desarrollo de un modelo que garantice el financiamiento continuo para operación, mantenimiento y crecimiento de la infraestructura a largo plazo.
+\textbf{Plan de sostenibilidad financiera}: Desarrollo de un modelo que garantice el financiamiento continuo para operación, mantenimiento 
+y crecimiento de la infraestructura a largo plazo.
 
-\textbf{Políticas de uso}: Establecimiento de políticas claras que regulen el uso de recursos, prioridades de acceso y procedimientos para resolución de conflictos.
+\textbf{Políticas de uso}: Establecimiento de políticas claras que regulen el uso de recursos, prioridades de acceso y procedimientos para 
+resolución de conflictos.
 
 \subsection{Mejora continua}
 \noindent
 
-\textbf{Ciclo de evaluación}: Implementación de un proceso sistemático de evaluación y mejora que considere retroalimentación de usuarios, métricas de rendimiento y evolución tecnológica.
+\textbf{Ciclo de evaluación}:  
+Implementación de un proceso continuo de evaluación y mejora de la arquitectura de defensa en profundidad, considerando métricas de 
+rendimiento, capacidad de detección, consumo de recursos, tiempos de respuesta y retroalimentación derivada de las actividades de monitoreo
+y gestión de incidentes. Este proceso permitiría identificar oportunidades de optimización sobre las configuraciones, reglas y mecanismos 
+de correlación implementados dentro del entorno \GRID.
 
-\textbf{Adaptación tecnológica}: Establecimiento de mecanismos para evaluar e incorporar nuevas tecnologías emergentes en computación distribuida que puedan beneficiar a la infraestructura.
+\textbf{Adaptación tecnológica}:  
+Establecimiento de mecanismos orientados a evaluar, integrar y validar nuevas tecnologías emergentes relacionadas con ciberseguridad, 
+monitoreo de infraestructuras cloud, automatización y análisis de eventos de seguridad. La incorporación progresiva de nuevas herramientas, 
+modelos de inteligencia artificial, plataformas SOAR o mecanismos de automatización permitiría fortalecer continuamente las capacidades de 
+supervisión, protección y respuesta de la arquitectura propuesta.
 
 \section{Impacto a largo plazo}
 \noindent
 
-Las direcciones de trabajo futuro identificadas tienen el potencial de transformar significativamente el panorama de computación científica en la Universidad del Quindío y establecer un modelo replicable para otras instituciones académicas. La implementación gradual de estas iniciativas puede posicionar al GRID como un centro de referencia regional en computación distribuida, fortaleciendo su capacidad para atraer proyectos de investigación, establecer colaboraciones interinstitucionales y contribuir al desarrollo científico y tecnológico nacional.
+Las líneas de trabajo futuro identificadas poseen el potencial de fortalecer progresivamente la postura de seguridad y las capacidades de 
+supervisión tecnológica dentro del entorno \GRID, estableciendo una arquitectura de referencia aplicable a otros escenarios académicos e 
+institucionales con necesidades similares de protección en infraestructuras cloud. La evolución gradual de mecanismos de monitoreo, 
+correlación de eventos, automatización y respuesta ante incidentes permitiría consolidar un entorno más resiliente, escalable y alineado 
+con estándares internacionales de seguridad de la información.
 
-El éxito en la implementación de estos trabajos futuros dependerá de la capacidad para mantener un balance entre innovación tecnológica y sostenibilidad operacional, garantizando que las mejoras propuestas se alineen con las necesidades reales de la comunidad académica y contribuyan efectivamente al cumplimiento de los objetivos misionales de docencia, investigación y extensión de la Universidad del Quindío.
+Asimismo, la integración de nuevas tecnologías orientadas a automatización, inteligencia artificial, orquestación de seguridad y modelos 
+Zero Trust puede contribuir significativamente al fortalecimiento de los procesos de gobernanza, gestión de incidentes y protección de 
+activos de información dentro de la Universidad del Quindío. Esto permitiría ampliar las capacidades institucionales relacionadas con 
+ciberseguridad, favoreciendo el desarrollo de actividades de docencia, investigación y extensión soportadas sobre infraestructuras 
+tecnológicas más seguras y supervisadas.
+
+Finalmente, la sostenibilidad y evolución de los aspectos de seguridad propuestos dependerán de la capacidad de mantener procesos de 
+mejora continua, actualización tecnológica y adaptación frente a nuevas amenazas y requerimientos institucionales. Bajo este contexto, el 
+trabajo desarrollado proporciona una base técnica y metodológica que puede ser replicada y extendida en futuros proyectos orientados al 
+fortalecimiento de la seguridad en entornos académicos y de computación en la nube.

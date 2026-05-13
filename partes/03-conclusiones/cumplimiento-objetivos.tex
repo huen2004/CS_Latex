@@ -1,24 +1,40 @@
 \ChapterImageStar[cap:cumplimiento-objetivos]{Cumplimiento de objetivos}{./images/fondo.png}\label{cap:cumplimiento-objetivos}
 \mbox{}\\
 
-El presente capítulo documenta el cumplimiento sistemático de los objetivos establecidos para esta investigación, demostrando cómo cada fase del proyecto contribuyó al logro del objetivo general de proponer universos HTCondor para la ampliación de la infraestructura del Grupo de Investigación en Redes, Información y Distribución (GRID) de la Universidad del Quindío. Se presenta una evaluación detallada del grado de cumplimiento de cada objetivo específico, respaldada por evidencia tangible de los resultados obtenidos.
+El presente capítulo documenta el cumplimiento sistemático de los objetivos establecidos para la investigación, evidenciando cómo cada una 
+de las fases desarrolladas contribuyó al logro del objetivo general orientado a aspectos de seguridad para la infraestructura de 
+computación en la nube del Grupo de Investigación en Redes, Información y Distribución (\GRID) de la Universidad del Quindío. En este
+apartado se presenta una evaluación del grado de cumplimiento de los objetivos específicos, respaldada por los resultados obtenidos 
+durante las etapas de caracterización, estudio de mapeo sistemático, análisis DAR, selección tecnológica y modelado de la arquitectura de 
+defensa en profundidad propuesta.
 
 \section{Cumplimiento del objetivo general}
 \noindent
 
-\textbf{Objetivo general}: Proponer un Universo para la ampliación de la infraestructura HTCondor del grupo de investigación GRID de la Universidad del Quindío.
+\textbf{Objetivo general}: Especificar una arquitectura de seguridad para la infraestructura de la computación en la
+nube del grupo de investigación \GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-El objetivo general se ha cumplido exitosamente, superando incluso las expectativas iniciales. En lugar de proponer un único universo, la investigación resultó en la propuesta, diseño e implementación funcional de dos universos HTCondor: Grid y Parallel. Esta decisión, fundamentada en el empate técnico obtenido durante la evaluación \DAR, maximizó el impacto del proyecto y proporcionó capacidades complementarias que abordan diferentes necesidades computacionales del Grupo \GRID.
+El objetivo general se cumplió satisfactoriamente mediante la especificación de una arquitectura de defensa en profundidad orientada al 
+fortalecimiento de la supervisión, monitoreo y protección de la infraestructura cloud del grupo \GRID. La investigación permitió 
+identificar las necesidades, problemas y oportunidades relacionadas con la seguridad de la infraestructura, así como seleccionar y modelar 
+un conjunto de tecnologías interoperables capaces de proporcionar capacidades de correlación de eventos, monitoreo continuo, detección de 
+intrusiones y respuesta ante incidentes.
+
+Como resultado, se diseñó una arquitectura multicapa soportada en tecnologías como SonicWall NSA 6600, Suricata y Wazuh, integradas 
+mediante mecanismos de segmentación, análisis de tráfico y centralización de registros de seguridad. Asimismo, el desarrollo del estudio de 
+mapeo sistemático, el análisis DAR y el modelado arquitectónico en Archimate y Draw.io permitieron consolidar una propuesta alineada con 
+controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017, proporcionando una arquitectura reproducible, escalable y adaptable a entornos 
+académicos con necesidades similares de protección y monitoreo de infraestructura.
 
 \textbf{Evidencia del cumplimiento}:
 \begin{itemize}
-    \item Implementación funcional del universo Grid con arquitectura federada.
-    \item Implementación completa del universo Parallel con infraestructura virtualizada.
-    \item Validación técnica exitosa de ambos universos mediante casos de prueba específicos.
-    \item Documentación arquitectónica completa y procedimientos de replicación.
-    \item Interfaz de usuario (\textit{Grid App}) que facilita el acceso a ambos universos.
+	\item Implementación funcional de las tecnologías Suricata y Wazuh dentro del entorno prototipo asociado a la infraestructura del \GRID.
+	\item Definición de aspectos de seguridad alineados con controles de la \ISO/IEC 27001 y la \ISO/IEC 27017.
+	\item Validación operativa de mecanismos de monitoreo continuo, correlación de eventos y respuesta activa ante incidentes de seguridad.
+	\item Modelado arquitectónico completo de la arquitectura de defensa en profundidad mediante Archimate y Draw.io.
+	\item Documentación técnica de la arquitectura propuesta, incluyendo fichas técnicas, segmentación de red y alineación con controles de la \ISO/IEC 27001 y la \ISO/IEC 27017.
 \end{itemize}
 
 \section{Cumplimiento de objetivos específicos}
@@ -27,138 +43,218 @@ El objetivo general se ha cumplido exitosamente, superando incluso las expectati
 \subsection{Objetivo específico 1}
 \noindent
 
-\textbf{Enunciado}: Determinar necesidades, oportunidades y/o problemas (\NPO) con relación a la infraestructura HTCondor del Grupo \GRID.
+\textbf{Enunciado}: Identificar necesidades, problemas y oportunidades relacionados con la ciberseguridad para la infraestructura de 
+la computación en la nube del Grupo \GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-Este objetivo se alcanzó mediante un proceso exhaustivo de caracterización que incluyó análisis de \textit{stakeholders}, evaluación de la infraestructura actual e identificación de brechas tecnológicas.
+El objetivo general se cumplió satisfactoriamente mediante el análisis de las necesidades, problemas y oportunidades presentes en la 
+infraestructura de computación en la nube del grupo \GRID, relacionadas con aspectos de ciberseguridad, monitoreo y gestión de controles de 
+seguridad. A partir de la caracterización realizada y del análisis de la información obtenida, fue posible evidenciar la necesidad de 
+alinear la gestión de seguridad con estándares internacionales como la \ISO/IEC 27001 y la \ISO/IEC 27017, así como centralizar la 
+administración y supervisión de los controles de seguridad implementados dentro de la infraestructura.
+
+Asimismo, se identificaron problemáticas asociadas a la baja adopción de normas y buenas prácticas de seguridad de la información, además 
+de la dispersión y baja formalización de controles, lo cual genera brechas relacionadas con monitoreo, trazabilidad y protección de los 
+activos de información del entorno \GRID. Estas condiciones evidenciaron la necesidad de fortalecer los mecanismos de supervisión, 
+correlación de eventos y gestión centralizada de incidentes de seguridad.
+
+De igual manera, el análisis permitió identificar oportunidades de mejora orientadas a la implementación de mecanismos de Gestión Unificada 
+de Amenazas (UTM), la integración de controles de seguridad dentro de una arquitectura de defensa en profundidad y el fortalecimiento de la 
+alineación con los controles establecidos en las normas \ISO/IEC 27001 e \ISO/IEC 27017. Como resultado, se estableció una base técnica y 
+metodológica que permitió orientar la selección de tecnologías y la definición de aspectos de seguridad para la infraestructura cloud del 
+grupo \GRID.
 
 \textbf{Actividades realizadas}:
 \begin{itemize}
-    \item Análisis detallado de \textit{stakeholders} identificando actores clave, niveles de influencia e intereses.
-    \item Caracterización técnica de la infraestructura HTCondor existente.
-    \item Evaluación de capacidades actuales y limitaciones identificadas.
-    \item Documentación de necesidades específicas de diferentes grupos de usuarios.
-    \item Identificación de oportunidades de mejora y expansión tecnológica.
+   	\item Caracterización de la infraestructura tecnológica y organizacional del grupo \GRID.
+	\item Identificación de actores, procesos y componentes relacionados con la seguridad de la infraestructura cloud.
+	\item Aplicación de instrumentos de recolección de información orientados al análisis de seguridad de la infraestructura.
+	\item Análisis de necesidades, problemas y oportunidades (NPO) relacionados con la ciberseguridad del entorno \GRID.
+	\item Evaluación del nivel de alineación de la infraestructura con lineamientos de las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 \end{itemize}
 
 \textbf{Resultados obtenidos}:
 \begin{itemize}
-    \item Mapa completo de \textit{stakeholders} con priorización basada en impacto e influencia.
-    \item Diagnóstico técnico de la infraestructura Vanilla existente.
-    \item Identificación de la necesidad de universos adicionales para ampliar capacidades.
-    \item Establecimiento de requisitos funcionales y no funcionales para la expansión.
+        \item Identificación de necesidades relacionadas con la centralización y formalización de controles de seguridad.
+	\item Detección de problemáticas asociadas a la baja adopción de estándares y buenas prácticas de seguridad de la información.
+	\item Identificación de oportunidades para implementar mecanismos de Gestión Unificada de Amenazas (UTM).
+	\item Reconocimiento de la necesidad de fortalecer el monitoreo y la gestión centralizada de eventos de seguridad.
+	\item Definición de oportunidades de alineación con controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 \end{itemize}
 
 \subsection{Objetivo específico 2}
 \noindent
 
-\textbf{Enunciado}: Identificar, analizar y caracterizar universos HTCondor y seleccionar un universo para la infraestructura del Grupo GRID.
+\textbf{Enunciado}: Caracterizar referentes metodológicos y tecnológicos relacionados con la computación en la nube del \GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-La identificación y análisis se realizó mediante un estudio de mapeo sistemático (SMS) riguroso, seguido de una caracterización técnica detallada y un proceso de selección estructurado usando la metodología DAR.
+El presente objetivo se cumplió mediante el desarrollo de un estudio de mapeo sistemático (SMS) orientado a identificar, analizar y 
+clasificar referentes metodológicos y tecnológicos relacionados con arquitecturas de seguridad, monitoreo y protección de infraestructuras 
+de computación en la nube. El proceso permitió consolidar una base de conocimiento enfocada en mecanismos, controles, tecnologías y 
+enfoques utilizados en entornos académicos e institucionales similares al contexto del grupo \GRID.
+
+A través del análisis de la literatura científica se identificaron tendencias relacionadas con arquitecturas de defensa en profundidad, 
+sistemas SIEM, tecnologías IDPS, monitoreo continuo, correlación de eventos y enfoques de seguridad como Zero Trust. Asimismo, se 
+evidenció la recurrencia de controles alineados con estándares internacionales como la \ISO/IEC 27001 y la \ISO/IEC 27017, proporcionando 
+una base metodológica para la definición de aspectos de seguridad aplicables al entorno cloud del \GRID.
+
+De igual manera, la caracterización de los referentes permitió construir una taxonomía orientada a clasificar enfoques de seguridad, tipos 
+de contribución y contextos de aplicación identificados en la literatura, consolidando así un soporte técnico y conceptual para las fases 
+posteriores de análisis DAR, selección tecnológica y modelado arquitectónico de la propuesta desarrollada.
 
 \textbf{Actividades realizadas}:
 \begin{itemize}
-    \item Estudio de mapeo sistemático analizando 114 estudios de 847 documentos iniciales.
-    \item Caracterización técnica de nueve universos HTCondor disponibles.
-    \item Aplicación de metodología DAR con criterios técnicos y organizacionales definidos.
-    \item Evaluación comparativa usando pesos ponderados y métricas objetivas.
-    \item Proceso de selección que resultó en empate técnico entre Grid y Parallel.
+    \item Definición del protocolo metodológico para el desarrollo del estudio de mapeo sistemático (SMS).
+	\item Construcción y aplicación de cadenas de búsqueda en bases de datos científicas relacionadas con seguridad y computación en la nube.
+	\item Aplicación de criterios de inclusión, exclusión y evaluación de calidad de los estudios identificados.
+	\item Análisis y clasificación de enfoques metodológicos, arquitecturas y tecnologías de seguridad presentes en la literatura científica.
+	\item Construcción de una taxonomía orientada a categorizar los referentes metodológicos y tecnológicos identificados.
 \end{itemize}
 
 \textbf{Resultados obtenidos}:
 \begin{itemize}
-    \item Base de conocimiento de 114 estudios académicos sobre universos HTCondor.
-    \item Caracterización completa de capacidades, limitaciones y casos de uso de cada universo.
-    \item Análisis DAR documentado con criterios transparentes y trazables.
-    \item Selección justificada de universos Grid y Parallel como los más adecuados.
-    \item Metodología reproducible para evaluación de tecnologías HTCondor.
+    \item Identificación de referentes metodológicos y tecnológicos aplicados a entornos de computación en la nube.
+	\item Caracterización de arquitecturas de seguridad, controles y mecanismos de protección utilizados en infraestructuras cloud.
+	\item Identificación de enfoques relacionados con monitoreo continuo, correlación de eventos, SIEM, IDPS y Zero Trust.
+	\item Construcción de una taxonomía de enfoques de seguridad y contextos de aplicación en entornos académicos e institucionales.
+	\item Consolidación de una base de conocimiento para apoyar la selección de tecnologías y la definición de aspectos de seguridad para el \GRID.
 \end{itemize}
 
 \subsection{Objetivo específico 3}
 \noindent
 
-\textbf{Enunciado}: Especificar el diseño arquitectónico requerido para la implementación del universo HTCondor seleccionado.
+\textbf{Enunciado}: Seleccionar referentes metodológicos y tecnológicos relacionados con la seguridad en la infraestructura de la 
+computación en la nube del \GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-Se desarrollaron especificaciones arquitectónicas detalladas para ambos universos seleccionados, incluyendo diagramas, configuraciones técnicas y procedimientos de implementación.
+El presente objetivo se cumplió mediante la aplicación del proceso de análisis y resolución de decisiones (\DAR), el cual permitió evaluar 
+y seleccionar referentes metodológicos y tecnológicos orientados al fortalecimiento de la seguridad dentro de la infraestructura de 
+computación en la nube del \GRID. Para ello, se definieron criterios técnicos, operacionales y de alineación normativa relacionados con 
+monitoreo, detección de amenazas, correlación de eventos, interoperabilidad, escalabilidad y capacidad de integración con entornos cloud.
+
+A partir de este proceso, se analizaron diferentes alternativas tecnológicas asociadas a sistemas SIEM, herramientas IDPS y soluciones de 
+seguridad perimetral, permitiendo identificar aquellas con mayor adecuación frente a las necesidades, problemas y oportunidades previamente 
+detectadas en el entorno del \GRID. Como resultado, las tecnologías Suricata y Wazuh fueron seleccionadas como componentes principales para 
+la detección de intrusiones, monitoreo continuo y correlación centralizada de eventos de seguridad.
+
+Asimismo, el análisis permitió consolidar referentes metodológicos relacionados con arquitecturas de defensa en profundidad, monitoreo de 
+seguridad y gestión centralizada de eventos, proporcionando soporte para la definición de la arquitectura propuesta y su alineación con 
+controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
 \textbf{Actividades realizadas}:
 \begin{itemize}
-    \item Diseño de arquitectura federada para el universo Grid.
-    \item Especificación de infraestructura virtualizada para el universo Parallel.
-    \item Definición de componentes, roles y responsabilidades de cada elemento.
-    \item Documentación de configuraciones HTCondor específicas.
-    \item Especificación de interfaces y protocolos de comunicación.
-    \item Definición de casos de prueba para validación funcional.
+    \item Definición de criterios de evaluación para el análisis de tecnologías de seguridad.
+	\item Aplicación de la metodología DAR para el análisis y resolución de decisiones tecnológicas.
+	\item Evaluación comparativa de herramientas SIEM, IDPS y soluciones de seguridad perimetral.
+	\item Análisis de capacidades de interoperabilidad, monitoreo y correlación de eventos de las tecnologías evaluadas.
+	\item Revisión del alineamiento de las tecnologías con controles de la \ISO/IEC 27001 y la \ISO/IEC 27017.
 \end{itemize}
 
 \textbf{Resultados obtenidos}:
 \begin{itemize}
-    \item Arquitectura Grid con \textit{grid manager} coordinando múltiples clústeres Vanilla.
-    \item Diseño Parallel con infraestructura virtualizada moderna (AlmaLinux 9.6).
-    \item Especificaciones técnicas detalladas para todos los componentes.
-    \item Casos de prueba específicos (ESC-01, ESC-02, ESC-03) para validación.
-    \item Documentación completa en apéndices técnicos.
+    \item Selección de la tecnología Suricata como solución IDPS para monitoreo y detección de intrusiones.
+	\item Selección de la plataforma Wazuh como solución SIEM para correlación y gestión centralizada de eventos.
+	\item Identificación del SonicWall NSA 6600 como solución UTM para fortalecimiento del perímetro de seguridad.
+	\item Consolidación de referentes metodológicos asociados a arquitecturas de defensa en profundidad y monitoreo continuo.
+	\item Definición de una base tecnológica orientada al fortalecimiento de la seguridad de la infraestructura cloud del \GRID.
 \end{itemize}
 
 \subsection{Objetivo específico 4}
 \noindent
 
-\textbf{Enunciado}: Implementar un prototipo funcional del universo HTCondor seleccionado según el diseño especificado.
+\textbf{Enunciado}: Diseñar una arquitectura de seguridad de la infraestructura de la computación en la nube del grupo de investigación. 
+\GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-La implementación superó las expectativas al desarrollar prototipos funcionales completos para ambos universos, complementados con una interfaz de usuario integrada.
+El presente objetivo se cumplió mediante el diseño y modelado de una arquitectura de defensa en profundidad orientada al fortalecimiento de 
+la seguridad de la infraestructura de computación en la nube del \GRID. La arquitectura propuesta integra mecanismos de monitoreo, 
+correlación de eventos, detección de intrusiones, control perimetral y respuesta activa, permitiendo establecer un modelo multicapa 
+enfocado en la supervisión continua y protección de los activos de información.
+
+Para el desarrollo de la arquitectura se adoptó TOGAF como marco de referencia metodológico y Archimate como lenguaje de modelado 
+empresarial, permitiendo representar de manera estructurada la interacción entre las capas de negocio, aplicación y tecnología. De manera 
+complementaria, se utilizó Draw.io para el modelado detallado de la infraestructura, especificando zonas de red, dispositivos, segmentación 
+lógica e interoperabilidad entre los componentes de seguridad implementados.
+
+La arquitectura diseñada integra tecnologías como el firewall SonicWall NSA 6600, el IDPS Suricata, el SIEM Wazuh y mecanismos de 
+segmentación y monitoreo continuo, estableciendo interoperabilidad entre componentes físicos y virtualizados. Asimismo, el modelo propuesto 
+permite fortalecer capacidades de trazabilidad, gestión de incidentes, supervisión de eventos y protección perimetral dentro del entorno 
+cloud del \GRID, manteniendo alineamiento con controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
 \textbf{Actividades realizadas}:
 \begin{itemize}
-    \item Configuración del \textit{grid manager} con \textit{daemons} especializados.
-    \item Adaptación de clústeres Vanilla existentes para funcionamiento como recursos Grid.
-    \item Expansión de infraestructura Vanilla con segundo clúster independiente.
-    \item Implementación de infraestructura Parallel virtualizada completa.
-    \item Desarrollo de aplicación web \textit{Grid App} como interfaz unificada.
-    \item Configuración de comunicación \MPI para trabajos paralelos.
+    \item Definición de la arquitectura de defensa en profundidad para el entorno \GRID.
+	\item Modelado arquitectónico mediante Archimate de las capas de negocio, aplicación y tecnología.
+	\item Diagramación de la infraestructura y segmentación de red utilizando Draw.io.
+	\item Integración conceptual de tecnologías SIEM, IDPS y UTM dentro de la arquitectura propuesta.
+	\item Definición de flujos de monitoreo, correlación de eventos y respuesta activa.
+	\item Relación de la arquitectura con controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 \end{itemize}
 
 \textbf{Resultados obtenidos}:
 \begin{itemize}
-    \item Universo Grid completamente funcional con capacidad de federación.
-    \item Universo Parallel operativo con soporte OpenMPI.
-    \item Grid App funcional con endpoints para submit, status y results.
-    \item Infraestructura escalable demostrada mediante expansión exitosa.
-    \item Documentación técnica completa para replicación y mantenimiento.
+	\item Diseño de una arquitectura de defensa en profundidad orientada a la protección de la infraestructura cloud del \GRID.
+	\item Construcción de siete vistas arquitectónicas representadas mediante Archimate.
+	\item Integración de mecanismos de monitoreo continuo, correlación de eventos y respuesta activa ante incidentes.
+	\item Definición de interoperabilidad entre SonicWall NSA 6600, Suricata y Wazuh.
+	\item Especificación de zonas de red, segmentación lógica y flujos de comunicación de la arquitectura.
+	\item Consolidación de una arquitectura alineada con controles de seguridad de la \ISO/IEC 27001 y la \ISO/IEC 27017.
 \end{itemize}
 
 \subsection{Objetivo específico 5}
 \noindent
 
-\textbf{Enunciado}: Validar la implementación del universos HTCondor seleccionado según las \NPO del Grupo GRID.
+\textbf{Enunciado}: Implementar un prototipo funcional del diseño de arquitectura de seguridad perteneciente a la infraestructura de la 
+computación en la nube del \GRID.
 
 \textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
 
-La validación se realizó mediante pruebas manuales exhaustivas que cubrieron todos los aspectos funcionales y no funcionales de ambos universos implementados.
+
 
 \textbf{Actividades realizadas}:
 \begin{itemize}
-    \item Ejecución de ESC-01: Trabajos Grid con repeticiones múltiples (Monte Carlo $\pi$).
-    \item Ejecución de ESC-02: Trabajos Grid parametrizables con variables dinámicas.
-    \item Ejecución de ESC-03: Algoritmo \textit{quicksort} paralelo con comunicación \MPI.
-    \item Validación de requisitos funcionales y no funcionales.
-    \item Verificación de integración entre componentes del sistema.
-    \item Evaluación de usabilidad y experiencia de usuario.
+	\item Creación del entorno prototipo basado en la infraestructura tecnológica del \GRID.
+	\item Despliegue de máquinas virtuales para la implementación de Suricata y Wazuh.
+	\item Configuración del firewall SonicWall NSA 6600 para control y monitoreo del tráfico de red.
+	\item Implementación de mecanismos de Port Mirroring y segmentación de red mediante el switch Ruijie.
+	\item Integración funcional entre Suricata, Wazuh y SonicWall NSA 6600.
+	\item Configuración de mecanismos de monitoreo continuo, correlación de eventos y respuesta activa.
 \end{itemize}
 
 \textbf{Resultados obtenidos}:
 \begin{itemize}
-    \item Validación exitosa de todos los casos de prueba diseñados.
-    \item Confirmación del cumplimiento de requisitos funcionales y no funcionales.
-    \item Demostración de capacidades de distribución, paralelización y federación.
-    \item Validación de integración correcta entre \textit{Grid App} y universos HTCondor.
-    \item Evidencia documentada de funcionamiento según especificaciones.
+	\item Implementación funcional de un prototipo de arquitectura de defensa en profundidad para el entorno \GRID.
+	\item Validación operativa de procesos de monitoreo y detección de eventos de seguridad.
+	\item Centralización y correlación de registros mediante la plataforma SIEM Wazuh.
+	\item Verificación de capacidades de inspección y análisis de tráfico utilizando Suricata.
+	\item Integración del SonicWall NSA 6600 como mecanismo de protección perimetral y control de acceso.
+	\item Comprobación de la interoperabilidad entre componentes físicos y virtualizados dentro del entorno prototipo.
+\end{itemize}
+
+\subsection{Objetivo específico 6}
+\noindent
+
+\textbf{Enunciado}: Validar la arquitectura de seguridad mediante la implementación del prototipo de arquitectura funcional en relación 
+con la computación en la nube del grupo \GRID.
+
+\textbf{Estado de cumplimiento}: \textbf{CUMPLIDO COMPLETAMENTE}
+
+
+
+\textbf{Actividades realizadas}:
+\begin{itemize}
+	\item Integración del SonicWall NSA 6600 como mecanismo de protección perimetral y control de acceso.
+	\item Comprobación de la interoperabilidad entre componentes físicos y virtualizados dentro del entorno prototipo.
+\end{itemize}
+
+\textbf{Resultados obtenidos}:
+\begin{itemize}
+	\item Integración del SonicWall NSA 6600 como mecanismo de protección perimetral y control de acceso.
+	\item Comprobación de la interoperabilidad entre componentes físicos y virtualizados dentro del entorno prototipo.
 \end{itemize}
 
 \section{Análisis del grado de cumplimiento}
@@ -179,15 +275,24 @@ El análisis cuantitativo del cumplimiento de objetivos muestra:
 \subsection{Cumplimiento cualitativo}
 \noindent
 
-Desde la perspectiva cualitativa, el proyecto no solo cumplió los objetivos establecidos, sino que los superó en varios aspectos:
+Desde una perspectiva cualitativa, el proyecto permitió consolidar una propuesta orientada al fortalecimiento de la seguridad de la 
+infraestructura de computación en la nube del \GRID, evidenciando resultados relevantes tanto a nivel metodológico como tecnológico:
 
-\textbf{Amplitud de la solución}: La implementación de dos universos en lugar de uno proporciona mayor versatilidad y capacidades complementarias.
+\textbf{Integralidad de la solución}: Los aspectos de seguridad propuestos incorporan mecanismos de protección perimetral, monitoreo 
+continuo, correlación de eventos y respuesta activa, permitiendo abordar la seguridad desde un enfoque de defensa en profundidad.
 
-\textbf{Calidad técnica}: Las implementaciones siguen buenas prácticas, incluyen documentación exhaustiva y consideran aspectos de escalabilidad y mantenibilidad.
+\textbf{Alineamiento normativo}: El diseño arquitectónico y las tecnologías seleccionadas mantienen relación con controles de las normas 
+\ISO/IEC 27001 e \ISO/IEC 27017, fortaleciendo la gestión de seguridad y la formalización de controles dentro del entorno cloud del \GRID.
 
-\textbf{Usabilidad}: La interfaz \textit{Grid App} facilita significativamente el acceso a las capacidades implementadas, reduciendo barreras técnicas para usuarios finales.
+\textbf{Interoperabilidad tecnológica}: La integración entre SonicWall NSA 6600, Suricata, Wazuh y los mecanismos de segmentación de red 
+permitió establecer capacidades coordinadas de supervisión, detección y análisis de eventos de seguridad.
 
-\textbf{Reproducibilidad}: La documentación generada permite replicar las implementaciones en contextos similares, contribuyendo al conocimiento transferible.
+\textbf{Modelado y trazabilidad}: El uso de Archimate y Draw.io permitió representar de manera estructurada las relaciones entre capas de 
+negocio, aplicación y tecnología, facilitando la comprensión operacional de la arquitectura propuesta.
+
+\textbf{Reproducibilidad}: La documentación generada, junto con las vistas arquitectónicas y especificaciones técnicas desarrolladas, 
+proporciona una base metodológica y técnica que facilita la futura implementación, escalabilidad y adaptación de la arquitectura en 
+contextos similares.
 
 \section{Impacto en las NPO identificadas}
 \noindent
@@ -195,29 +300,59 @@ Desde la perspectiva cualitativa, el proyecto no solo cumplió los objetivos est
 \subsection{Necesidades atendidas}
 \noindent
 
-\textbf{Diversificación de capacidades computacionales}: Se dividieron los recursos disponibles mediante la federación del universo Grid y se habilitaron capacidades de paralelización fuertemente acoplada.
+\textbf{Centralización de controles de seguridad}: Los aspectos de seguridad propuesta integran mecanismos de monitoreo, correlación de 
+eventos, control perimetral y respuesta activa dentro de un ecosistema tecnológico unificado, permitiendo fortalecer la gestión 
+centralizada de la seguridad en la infraestructura cloud del \GRID.
 
-\textbf{Diversificación de tipos de trabajo}: Los nuevos universos permiten ejecutar aplicaciones que requieren distribución geográfica (Grid) y sincronización intensiva (Parallel).
+\textbf{Fortalecimiento del monitoreo y la supervisión}: La integración de tecnologías como Wazuh y Suricata permite establecer capacidades 
+de monitoreo continuo, análisis de tráfico y correlación de eventos orientadas a la detección de comportamientos anómalos dentro de la 
+infraestructura.
 
-\textbf{Interfaz de acceso simplificada}: \textit{Grid App} elimina la complejidad técnica tradicionalmente asociada con el uso de HTCondor.
+\textbf{Protección perimetral y segmentación}: La incorporación del SonicWall NSA 6600 y mecanismos de segmentación lógica contribuye al 
+fortalecimiento del perímetro de seguridad y al control de acceso entre las diferentes zonas de red del entorno \GRID.
+
+\textbf{Alineamiento con estándares internacionales}: El diseño de la arquitectura y la selección de tecnologías se orientaron al 
+fortalecimiento de controles relacionados con las normas \ISO/IEC 27001 e \ISO/IEC 27017, promoviendo mejores prácticas de seguridad de la 
+información.
+
+\textbf{Formalización y trazabilidad}: El modelado arquitectónico realizado mediante Archimate y Draw.io permitió documentar de forma 
+estructurada la interacción entre procesos, tecnologías y actores involucrados en la operación de la infraestructura de seguridad propuesta.
 
 \subsection{Oportunidades aprovechadas}
 \noindent
 
-\textbf{Fortalecimiento institucional}: El proyecto posiciona al Grupo \GRID como un referente en computación distribuida académica.
+\textbf{Implementación de una arquitectura de defensa en profundidad}: El proyecto permitió diseñar un prototipo de una arquitectura de 
+defensa en profundidadorientada al fortalecimiento de la protección, monitoreo y supervisión de la infraestructura cloud del \GRID\ 
+mediante mecanismos multicapa de seguridad.
 
-\textbf{Capacidades de investigación}: Las nuevas capacidades habilitan proyectos de investigación más ambiciosos y colaboraciones interinstitucionales.
+\textbf{Integración de tecnologías de seguridad}: La incorporación de herramientas como SonicWall NSA 6600, Suricata y Wazuh permitió 
+consolidar capacidades de correlación de eventos, monitoreo continuo y respuesta activa dentro de un entorno centralizado.
 
-\textbf{Formación académica}: Los estudiantes tienen acceso a tecnologías de vanguardia que fortalecen su formación práctica.
+\textbf{Fortalecimiento de la gobernanza de seguridad}: La alineación del prototipo de la arquitectura en seguridad con controles de las 
+normas \ISO/IEC 27001 e \ISO/IEC 27017 permitió establecer una base orientada a la formalización y mejora continua de la seguridad de la 
+información en el \GRID.
+
+\textbf{Capacidades de trazabilidad y supervisión}: El prototipo de la arquitectura propuesta habilita una mayor visibilidad sobre los 
+eventos y actividades ejecutadas dentro de la infraestructura, fortaleciendo la capacidad de análisis y gestión de incidentes de seguridad.
+
+\textbf{Base para futuras implementaciones}: El modelado arquitectónico, la documentación técnica y el entorno prototipo desarrollado 
+proporcionan una base reproducible y escalable para futuras implementaciones de seguridad en contextos académicos similares.
 
 \subsection{Problemas resueltos}
 \noindent
 
-\textbf{Limitaciones de recursos}: La federación del universo Grid propende por la utilización de recursos existentes y facilita la incorporación de recursos adicionales.
+\textbf{Baja formalización de mecanismos de seguridad}: El modelado arquitectónico y la alineación con controles de la \ISO/IEC 27001 y la
+\ISO/IEC 27017 permitieron estructurar de forma más organizada los procesos y controles relacionados con la seguridad del entorno \GRID.
 
-\textbf{Complejidad de uso}: \textit{Grid App} democratiza el acceso a capacidades avanzadas de computación distribuida.
+\textbf{Limitaciones en monitoreo y trazabilidad}: La integración de Wazuh y Suricata permitió fortalecer la capacidad de supervisión 
+continua, análisis de tráfico y detección de eventos sospechosos dentro de la infraestructura.
 
-\textbf{Falta de documentación}: Se generó documentación completa que facilita el mantenimiento y la transferencia de conocimiento.
+\textbf{Falta de centralización de eventos}: La implementación de un SIEM permitió consolidar registros y eventos provenientes de 
+múltiples fuentes dentro de una plataforma centralizada de monitoreo.
+
+\textbf{Ausencia de una arquitectura de seguridad estructurada}: El diseño de la arquitectura de defensa en profundidad permitió 
+establecer un modelo organizado de interacción entre capas de negocio, aplicación y tecnología para la protección de la infraestructura 
+cloud del \GRID.
 
 \section{Lecciones aprendidas}
 \noindent
@@ -225,21 +360,39 @@ Desde la perspectiva cualitativa, el proyecto no solo cumplió los objetivos est
 \subsection{Aspectos metodológicos}
 \noindent
 
-La integración de caracterización contextual, revisión sistemática y análisis de decisiones estructurado resultó beneficiosa para la toma de decisiones tecnológicas fundamentadas. La flexibilidad para adaptar objetivos cuando la evidencia técnica lo justifica (como la implementación de dos universos) puede generar mayor valor que la adhesión rígida a planes iniciales.
+La integración del análisis de necesidades, problemas y oportunidades (\NPO), el estudio de mapeo sistemático (\SMS), el análisis \DAR\ y 
+el modelado arquitectónico permitió estructurar una metodología orientada a la toma de decisiones fundamentadas para el fortalecimiento de 
+la seguridad del entorno \GRID. Asimismo, se evidenció la importancia de combinar enfoques cualitativos, normativos y tecnológicos para 
+construir propuestas alineadas tanto con estándares internacionales como con las necesidades reales de la infraestructura.
 
 \subsection{Aspectos técnicos}
 \noindent
 
-La implementación gradual e incremental de capacidades HTCondor permite aprovechar inversiones existentes mientras se incorporan nuevas funcionalidades. La documentación exhaustiva desde las fases tempranas del proyecto facilita significativamente la transferencia de conocimiento y sostenibilidad a largo plazo.
+La interoperabilidad entre tecnologías como SonicWall NSA 6600, Suricata y Wazuh demostró la viabilidad de implementar capacidades de 
+monitoreo, correlación de eventos y respuesta activa dentro de un entorno basado en componentes físicos y virtualizados. De igual manera, 
+el modelado arquitectónico mediante Archimate y Draw.io facilitó la comprensión estructurada de la interacción entre capas de negocio, 
+aplicación y tecnología, fortaleciendo la trazabilidad operacional de la arquitectura propuesta.
 
 \subsection{Aspectos institucionales}
 \noindent
 
-El éxito del proyecto dependió significativamente del alineamiento con necesidades reales de \textit{stakeholders} y del enfoque hacia beneficios tangibles para la comunidad académica. La consideración temprana de aspectos de usabilidad y accesibilidad resulta crucial para la adopción efectiva de soluciones tecnológicas.
+El desarrollo del proyecto permitió evidenciar la importancia de alinear los mecanismos de seguridad con las necesidades operativas y 
+académicas del \GRID, especialmente en aspectos relacionados con monitoreo, protección de activos y supervisión continua de la 
+infraestructura cloud. Asimismo, se identificó que la formalización de controles y la adopción de estándares como la \ISO/IEC 27001 y la 
+\ISO/IEC 27017 constituyen elementos clave para fortalecer la madurez de seguridad de la información dentro de entornos académicos y de 
+investigación.
 
 \section{Conclusión del cumplimiento de objetivos}
 \noindent
 
-La evaluación sistemática demuestra que todos los objetivos planteados para esta investigación fueron cumplidos completamente, superando en muchos casos las expectativas iniciales. El proyecto no solo logró implementar exitosamente los universos HTCondor seleccionados, sino que estableció una base sólida para el crecimiento futuro de las capacidades computacionales del Grupo GRID y generó conocimiento transferible para la comunidad académica más amplia.
+La evaluación realizada permite concluir que los objetivos planteados para la presente investigación fueron cumplidos satisfactoriamente, 
+permitiendo identificar necesidades, problemas y oportunidades relacionadas con la seguridad de la infraestructura cloud del \GRID, así 
+como seleccionar tecnologías y enfoques metodológicos acordes con el contexto institucional y académico del grupo de investigación.
 
-El cumplimiento exitoso de objetivos valida la metodología empleada y confirma la viabilidad de ampliar infraestructuras HTCondor en contextos académicos con recursos limitados. Los resultados obtenidos constituyen una contribución significativa tanto al fortalecimiento de capacidades institucionales como al avance del conocimiento en el área de computación distribuida aplicada a entornos educativos y de investigación.
+De igual manera, el desarrollo de la arquitectura de defensa en profundidad y su representación mediante modelos arquitectónicos permitió 
+consolidar una propuesta estructurada, alineada con controles de las normas \ISO/IEC 27001 e \ISO/IEC 27017 y orientada al fortalecimiento 
+de la protección, trazabilidad y gestión de la seguridad dentro del entorno \GRID.
+
+Finalmente, los resultados obtenidos proporcionan una base técnica, metodológica y documental que facilita futuras implementaciones y 
+procesos de mejora continua, contribuyendo al fortalecimiento de la seguridad de la información en entornos académicos y de investigación 
+con características similares.
