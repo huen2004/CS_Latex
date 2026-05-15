@@ -198,6 +198,14 @@ la arquitectura de defensa en profundidad.
 La centralización y correlación de registros fortalece adicionalmente los controles A.8.16 de la ISO/IEC 27001~\cite{iso27001} y 
 CLD 12.4.1 de la ISO/IEC 27017~\cite{iso27017}, relacionados con actividades de monitoreo y gestión de registros de eventos.
 
+Adicionalmente, queda especificar el control A.12.3.1 de la \ISO/IEC 27001, que justifica el respaldo de información en una ubicación 
+separada, esto se evidencia gracias a él SIEM Wazuh, debido a que cuenta con un servicio denominado Snapshot Lifecycle Management(SLM), 
+este se encarga de generar las snapshots de los eventos y registros que Wazuh obtenga de agentes o de fuentes externas, dichas snapshots 
+pueden ajustarse a las necesidades del usuario según con qué frecuencia requiera los guardados de los registros y eventos, posteriormente 
+estas snapshots pasan por una VLAN que viaja a la NAS del GRID en donde se almacenan en frío, al ser un repositorio donde se guardan los 
+eventos y registros, Wazuh podrá acceder a él de ser necesario para restaurarlos mediante el servicio de restauración de snapshots, según 
+el caso que se presente.
+
 Bajo este contexto, el flujo de interacción a nivel de infraestructura se desarrolla de la siguiente manera: al recibir la copia del 
 tráfico de red, Suricata aplica las reglas de inspección definidas, almacena los registros generados y estos son posteriormente leídos 
 mediante el agente de Wazuh, el cual reporta la información hacia el \textit{manager} desplegado en su respectiva máquina virtual.
@@ -366,8 +374,10 @@ dinámica de reglas de tráfico y el bloqueo de conexiones potencialmente malici
 
 El motor de análisis, independientemente de si detecta o no una amenaza, genera registros que posteriormente son enviados al servicio 
 Wazuh Filebeat, encargado de transmitir dicha información hacia el Wazuh Indexer. Este componente funciona como un motor de búsqueda y 
-análisis de texto completo, basado en la tecnología OpenSearch, permitiendo el almacenamiento centralizado e indexado de eventos de 
-seguridad.
+análisis de texto completo, basado en la tecnología Open source, llamada OpenSearch, permitiendo el almacenamiento centralizado e indexado de eventos de 
+seguridad. Esta tecnología es particularmente relevante dentro de la arquitectura, debido a que se encarga de generar snapshots de los 
+eventos y registros que son almacenados en el sistema. Dichas snapshots son enviadas a un repositorio de respaldo, permitiendo que, en 
+caso de ser necesario, la información pueda ser restaurada para recuperar eventos y registros previamente almacenados.
 
 Finalmente, el Wazuh Indexer escribe los registros dentro del repositorio de eventos indexados, desde donde el Wazuh Dashboard consume la 
 información para su visualización por parte del usuario. Cabe resaltar que el Dashboard puede consultar directamente el repositorio 
