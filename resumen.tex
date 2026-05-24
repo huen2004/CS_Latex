@@ -1,34 +1,42 @@
 \ChapterImagePrelim[cap:resumen]{Resumen}{./images/fondo.png}\label{cap:resumen}
 \mbox{}\\
 \noindent
-El presente trabajo de grado desarrolla los esfuerzos de expansión de un universo (\ie un contexto de ejecución computacional) de 
-la infraestructura HTCondor actual para el Grupo de Investigación en Redes, Información y Distribución (\GRID) de la Universidad 
-del Quindío. Este trabajo responde a la necesidad estratégica del grupo \GRID~de fortalecer sus capacidades en computación 
-distribuida y paralela, con el objetivo de incrementar su competitividad académica y científica. La expansión propuesta facilita 
-la colaboración con otras Universidades y centros de investigación, permitiendo la consolidación de recursos computacionales 
-misionales de \textit{investigación y extensión} de la Universidad del Quindío.
-\\\\
-Metodológicamente, el proyecto comprende: (\textbf{a}) la exploración y documentación de las necesidades, problemas y oportunidades 
-(\NPO) del \GRID, (\textbf{b}) un estudio de mapeo sistemático (\SMS) para la identificación de la literatura relacionada a los 
-universos HTCondor con el fin de propender por la toma de decisiones informadas, (\textbf{c}) la aplicación de la metodología de 
-Análisis de Decisiones y Resolución (\DAR) del modelo \CMMI. Los resultados señalan a los universos \textbf{parallel} y 
-\textbf{Grid} como los más adecuados. Finalmente, se desarrolla un diseño arquitectónico utilizando el \textit{framework } 
-de modelado ArchiMate, el cual articula la integración entre los universos HTCondor seleccionados y la infraestructura existente 
-del grupo \GRID. Este diseño se complementa con el desarrollo de prototipos funcionales para cada universo seleccionado, 
-implementados bajo el enfoque de producto mínimo viable (\PMV) para validar la viabilidad técnica y funcional de las soluciones 
-propuestas. Considerando que la solución propuesta debe trascender las necesidades específicas del \GRID~y beneficiar a otros 
-grupos de investigación, se desarrolló adicionalmente una aplicación web que funciona como interfaz de usuario intuitiva, 
-facilitando el acceso de los investigadores a la infraestructura computacional sin requerir conocimientos técnicos especializados.
+El presente trabajo desarrolla la definición de aspectos de una arquitectura de seguridad para la infraestructura de computación en la nube 
+del grupo de investigación en Redes, Información y Distribución (\GRID) de la Universidad del Quindío. La propuesta surge ante la necesidad 
+de fortalecer las capacidades de protección, monitoreo y gestión de eventos de seguridad dentro de entornos académicos basados en 
+infraestructuras físicas y virtualizadas, considerando lineamientos asociados a estándares internacionales de seguridad de la información y 
+computación en la nube.
+
+Metodológicamente, el trabajo comprende: (\textbf{a}) la caracterización contextual de las necesidades, problemas y oportunidades (\NPO) 
+del grupo \GRID, (\textbf{b}) el desarrollo de un Estudio de Mapeo Sistemático de Literatura (\SMS) orientado a identificar metodologías, 
+arquitecturas y tecnologías relacionadas con seguridad en computación en la nube, (\textbf{c}) la aplicación del proceso de Análisis y 
+Resolución de Decisiones (\DAR) del modelo \CMMI~para la selección de tecnologías de seguridad y el diseño e implementación 
+de un prototipo funcional basado en un enfoque de defensa en profundidad, (\textbf{d}) la implementación del prototipo funcional y 
+(\textbf{e}) la validación del prototipo funcional.
+
+Como resultado, se seleccionaron tecnologías orientadas a Sistemas de Detección y Prevención de Intrusiones (\IDPS) y plataformas de 
+Gestión de Información y Eventos de Seguridad (\SIEM), integradas dentro de una arquitectura interoperable y adaptable a contextos 
+académicos con recursos limitados. Finalmente, se implementó un prototipo funcional con capacidades de monitoreo continuo, correlación de 
+eventos, centralización de registros y respuesta activa ante incidentes, validando la viabilidad técnica y funcional de la propuesta para 
+el fortalecimiento de la protección de los activos de información del grupo \GRID.
 
 
 \ChapterImagePrelim[cap:abstract]{Abstract}{./images/fondo.png}\label{cap:abstract}
 \mbox{}\\
 \noindent
-This thesis develops the expansion efforts of a universe (\ie a computational execution context) of the current HTCondor 
-infrastructure for the Research Group on Networks, Information and Distribution (\GRID) at Universidad del Quindío. This work 
-responds to the strategic need of the \GRID~group to strengthen its capabilities in distributed and parallel computing, with the 
-objective of increasing its academic and scientific competitiveness. The proposed expansion would facilitate collaboration with 
-other universities and research centers, enabling the consolidation of shared computational resources that enhance scientific 
-development and high-impact research, which in turn aligns with the institutional mission objectives of \textit{research and extension} at Universidad del Quindío.
-\\\\
-Methodologically, the project comprises: (\textbf{a}) the exploration and documentation of the needs, problems and opportunities (\NPO) of \GRID, (\textbf{b}) a systematic mapping study (\SMS) for the identification of literature related to HTCondor universes in order to promote informed decision-making, (\textbf{c}) the application of the Decision Analysis and Resolution (\DAR) methodology from the \CMMI~model. The results indicate the parallel and \GRID~universes as the most suitable. Finally, an architectural design is developed using the ArchiMate modeling framework, which articulates the integration between the selected HTCondor universes and the existing infrastructure of the \GRID~group. This design is complemented by the development of functional prototypes for each selected universe, implemented under the minimum viable product (\PMV) approach to validate the technical and functional viability of the proposed solutions. Considering that the proposed solution must transcend the specific needs of \GRID~and benefit other research groups, a web application was additionally developed that functions as an intuitive user interface, facilitating researchers' access to the computational infrastructure without requiring specialized technical knowledge.
+This work develops the definition of security architecture aspects for the cloud computing infrastructure of the Research Group on Networks, 
+Information and Distribution (\GRID) at the Universidad del Quindío. The proposal arises from the need to strengthen protection, monitoring, 
+and security event management capabilities within academic environments based on physical and virtualized infrastructures, considering 
+guidelines associated with international information security and cloud computing standards.
+
+Methodologically, the work comprises: (\textbf{a}) the contextual characterization of the needs, problems, and opportunities (\NPO) of the 
+\GRID\ group, (\textbf{b}) the development of a Systematic Mapping Study (\SMS) aimed at identifying methodologies, architectures, and 
+technologies related to cloud computing security, (\textbf{c}) the application of the Decision Analysis and Resolution (\DAR) process from 
+the \CMMI\ model for the selection of security technologies and the design and implementation of a functional prototype based on a defense-
+in-depth approach, (\textbf{d}) the implementation of the functional prototype, and (\textbf{e}) the validation of the functional prototype.
+
+As a result, technologies oriented toward Intrusion Detection and Prevention Systems (\IDPS) and Security Information and Event Management 
+(\SIEM) platforms were selected and integrated into an interoperable architecture adaptable to academic environments with limited resources. 
+Finally, a functional prototype was implemented with capabilities for continuous monitoring, event correlation, log centralization, and 
+active incident response, validating the technical and functional feasibility of the proposal for strengthening the protection of the 
+information assets of the \GRID\ group.

@@ -76,19 +76,71 @@ activa, integrando tecnologías como el firewall SonicWall NSA 6600, el \IDPS\ S
 operativo de la infraestructura mediante Draw.io, permitiendo representar de manera holística las zonas de red, el tráfico entre 
 componentes y la trazabilidad operacional existente entre los diferentes elementos que conforman la arquitectura propuesta.
 
-\section{Implementación del Producto Mínimo Viable (PMV)}
+\section{Implementación del Prototipo de Arquitectura de defensa en profundidad}
 \noindent
 
+La materialización de la arquitectura propuesta se realizó mediante un PMV o prototipo funcional queintegra todos los componentes
+seleccionados y diseñados para la debida realización de esta sección.
 
+\subsection{Implementación del Firewall Perimetral Opnsense}
+
+La implementación del firewall Opnsense permitió establecer mecanismos de segmentación lógica, control de acceso y filtrado del tráfico 
+dentro del laboratorio virtual. Mediante la configuración de interfaces virtualizadas independientes y reglas restrictivas de comunicación, 
+se logró aislar los diferentes segmentos de red correspondientes a administración, monitoreo y servidores.
+
+Asimismo, el despliegue de reglas de firewall sobre la interfaz WAN permitió establecer capacidades de control perimetral y soporte para 
+procesos de respuesta activa provenientes de la herramienta SIEM Wazuh. La implementación de aliases dinámicos permitió automatizar 
+procesos de bloqueo temporal sobre direcciones IP identificadas como potencialmente maliciosas.
+
+\subsection{Implementación del Sistema IDPS Suricata}
+
+La implementación del sistema IDPS Suricata permitió realizar inspección profunda del tráfico de red mediante técnicas de port mirroring 
+configuradas sobre la infraestructura virtualizada. Esto posibilitó analizar paquetes en tiempo real sin afectar el desempeño operativo de 
+las máquinas desplegadas.
+
+A partir de la utilización de firmas de detección y reglas de inspección, se logró identificar actividades sospechosas, tráfico 
+potencialmente malicioso y eventos asociados a amenazas de red. Los registros generados en el archivo \textit{eve.json} fueron 
+posteriormente centralizados por Wazuh para su correlación y monitoreo continuo.
+
+\subsection{Implementación de la Plataforma SIEM Wazuh}
+
+La implementación de la plataforma SIEM Wazuh permitió centralizar registros provenientes de los agentes desplegados sobre las diferentes 
+máquinas del laboratorio, incluyendo el firewall OPNsense, el IDPS Suricata y la máquina objetivo.
+
+Mediante el uso de agentes y configuraciones personalizadas en el archivo \textit{ossec.conf}, se habilitaron capacidades de monitoreo 
+continuo, clasificación de alertas, correlación de eventos y visualización centralizada de incidentes de seguridad.
+
+Adicionalmente, se desarrollaron dashboards personalizados orientados al análisis de severidad de alertas, monitoreo de eventos por agente 
+y visualización de firmas detectadas por Suricata, facilitando los procesos de auditoría y supervisión de la infraestructura.
 
 \section{Validación técnica y funcional}
 \noindent
 
-
+FALTA
 
 \section{Métricas de impacto y capacidades resultantes}
 \noindent
 
+La implementación exitosa del prototipo permitió fortalecer las capacidades de seguridad y monitoreo del laboratorio virtual del grupo 
+\GRID\ mediante la integración de tecnologías de código abierto orientadas a la protección de infraestructuras de computación en la nube.
+
+\begin{itemize}
+    \item \textbf{Centralización de eventos de seguridad:} Consolidación de registros provenientes del firewall, el IDPS y las máquinas monitoreadas mediante la plataforma SIEM Wazuh.
+
+    \item \textbf{Capacidades de monitoreo continuo:} Implementación de dashboards personalizados para visualización de alertas, análisis de severidad y seguimiento de eventos de seguridad en tiempo real.
+
+    \item \textbf{Inspección profunda de tráfico:} Despliegue del sistema IDPS Suricata mediante técnicas de port mirroring para análisis de tráfico interno y externo sin afectar el rendimiento de la infraestructura.
+
+    \item \textbf{Respuesta activa automatizada:} Integración entre Wazuh y OpnSense para aplicar bloqueos dinámicos sobre direcciones IP sospechosas detectadas por correlación de eventos.
+
+    \item \textbf{Segmentación lógica de red:} Separación de entornos de administración, monitoreo y servicios mediante interfaces virtualizadas y políticas restrictivas de firewall.
+
+    \item \textbf{Correlación de eventos de seguridad:} Relación automática entre alertas provenientes de diferentes fuentes para mejorar la detección de amenazas y el análisis de incidentes.
+
+    \item \textbf{Cumplimiento de estándares internacionales:} Implementación alineada con controles de las normas ISO/IEC 27001:2022, ISO/IEC 27017:2015 y capacidades de monitoreo bajo NIST SP 800-53.
+
+    \item \textbf{Escalabilidad del entorno:} Arquitectura virtualizada preparada para incorporar nuevas máquinas, agentes y mecanismos de seguridad sin afectar la operación del laboratorio.
+\end{itemize}
 
 \section{Contribuciones al conocimiento}
 \noindent
@@ -105,9 +157,10 @@ Este proyecto genera múltiples contribuciones orientadas al fortalecimiento de 
 	\item \textbf{Institucional}: Fortalecimiento de las capacidades de monitoreo, protección y gestión de eventos de seguridad dentro de la infraestructura del grupo \GRID, alineando la propuesta con controles de la ISO/IEC 27001 e ISO/IEC 27017.
 \end{itemize}
 
-Los resultados demuestran que la incorporación de los universos Grid y Parallel en la infraestructura del Grupo \GRID\ representa una 
-solución viable y eficiente para expandir el portafolio de servicios de computación distribuida, sin desestimar la inversión previa en 
-tecnologías HTCondor y proporcionando una base sólida para el crecimiento futuro de las capacidades computacionales institucionales.
+Los resultados demuestran que la incorporación de los aspectos de seguridad seleccionados para la infraestructura del Grupo \GRID\ 
+representa una solución viable y eficiente para la protección de los activos de información existentes, sin desestimar la inversión previa 
+en tecnologías de seguridad y proporcionando una base sólida para el crecimiento futuro de la seguridad en entornos de computación en la 
+nube institucionales.
 
 % !TODO Validar este titulo con sepúlveda
 \section{Validación del proyecto}

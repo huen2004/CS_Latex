@@ -1,313 +1,128 @@
 \ChapterImageStar[cap:validacion]{Implementación y validación de la solución}{./images/fondo.png}\label{cap:validacion}
 \mbox{}\\
-En este capítulo se detalla el proceso de validación de la solución implementada, el cual incluye pruebas técnicas exhaustivas de los tres universos HTCondor desarrollados (\textit{Grid, Vanilla} y \textit{Parallel}), así como la validación de la funcionalidad completa del sistema a través de casos de prueba específicos que abarcan los requisitos funcionales y no funcionales establecidos.
+La presente sección tiene como finalidad validar la efectividad de la arquitectura de defensa en profundidad implementada mediante la 
+integración de OPNsense, Suricata y Wazuh dentro de un laboratorio virtualizado. Para ello, se diseñaron ocho casos de prueba basados en el 
+marco MITRE ATT\&CK y las fases de la Cyber Kill Chain, permitiendo evaluar capacidades de detección, correlación de eventos y respuesta 
+activa frente a diferentes escenarios de ataque.
 
-\section{Metodología de pruebas}
+Las pruebas fueron ejecutadas desde una máquina atacante con OpenSUSE, generando tráfico y eventos maliciosos controlados dentro de un 
+entorno completamente aislado. De esta manera, fue posible analizar el comportamiento de la arquitectura propuesta y validar la capacidad 
+de monitoreo continuo, mitigación dinámica y gestión centralizada de eventos de seguridad.
+
+\section{Metodología de ejecución de pruebas}
 \noindent
 
-La validación de la solución se realizó mediante pruebas manuales exhaustivas, ejecutadas directamente sobre la infraestructura HTCondor implementada. Esta metodología se seleccionó debido a la naturaleza distribuida del sistema y la necesidad de validar la integración completa entre todos los componentes desarrollados, incluidos la aplicación \textit{Grid App}, la infraestructura HTCondor federada y los diferentes universos de ejecución.
-
-\subsection{Entorno de pruebas}
-\noindent
-
-Las pruebas se ejecutaron en el entorno de producción de la infraestructura HTCondor del Grupo \GRID, que incluye:
+Con el fin de validar los aspectos de seguridad integrados mediante la arquitectura de defensa en profundidad implementada, se definió una 
+metodología orientada a garantizar la reproducibilidad y validez de los resultados obtenidos en los ocho escenarios de prueba planteados. 
+Para ello, cada caso fue ejecutado bajo un protocolo estandarizado compuesto por cuatro fases consecutivas:
 
 \begin{itemize}
-	\item \textbf{Grid Manager}: Nodo coordinador (172.30.27.11) ejecutando HTCondor 8.4.11 sobre Raspbian GNU/Linux 9
-	\item \textbf{Clúster Vanilla B}: 15 nodos de ejecución (172.30.27.36-48) con Central Manager y Submit node
-	\item \textbf{Clúster Vanilla C}: 13 nodos de ejecución (172.30.27.68-80) con Central Manager y Submit node
-	\item \textbf{Infraestructura Parallel}: Clúster virtualizado con AlmaLinux 9.6 y HTCondor LTS sobre hipervisor XCP-ng
-	\item \textbf{Grid App}: Aplicación Flask desplegada en el Grid Manager para gestión de trabajos
+    \item \textbf{Fase de Línea Base:} verificación previa del estado operativo de la infraestructura, comprobando el funcionamiento de los agentes de Wazuh, el motor Suricata y la conectividad entre las máquinas involucradas.
+    
+    \item \textbf{Fase de Estímulo:} ejecución controlada del ataque o actividad maliciosa desde la máquina atacante mediante las herramientas definidas para cada escenario.
+    
+    \item \textbf{Fase de Monitoreo y Centralización:} observación del procesamiento de eventos y generación de alertas por parte de Wazuh, así como el tiempo de reacción de la respuesta activa.
+    
+    \item \textbf{Fase de Verificación de Contención:} comprobación de la mitigación aplicada mediante las reglas dinámicas del firewall y la interrupción de la actividad maliciosa.
 \end{itemize}
 
 \subsection{Criterios de validación}
 \noindent
 
-Cada caso de prueba fue evaluado considerando:
+Con el fin de evaluar cuantitativa y cualitativamente el desempeño de la arquitectura de defensa en profundidad, se definieron criterios 
+estrictos para dictaminar el estado final de cada prueba:
 
-\begin{itemize}
-	\item \textbf{Funcionalidad}: Correcta ejecución del flujo de trabajo definido
-	\item \textbf{Integridad de datos}: Preservación de archivos de entrada y generación adecuada de salidas
-	\item \textbf{Distribución inteligente}: Selección automática de clúster con base en disponibilidad y tipo de universo
-	\item \textbf{Monitoreo}: Capacidad de seguimiento del estado de trabajos en tiempo real
-	\item \textbf{Tolerancia a errores}: Manejo apropiado de condiciones de error y recuperación
-\end{itemize}
-
-\section{Casos de prueba ejecutados}
+\subsubsection{Criterio de Éxito (Aprobado)}
 \noindent
 
-Se ejecutaron tres escenarios de prueba principales, presentados en la sección de diseño, que abarcan las funcionalidades críticas del sistema y validan tanto los requisitos funcionales como no funcionales especificados en el diseño de la solución.
+Una prueba se considera exitosa si cumple de manera secuencial el ciclo completo de automatización definido en la arquitectura 
+implementada: detección del tráfico malicioso por parte del host o del IDS Suricata, reporte del evento hacia el Wazuh Manager, correlación 
+de la regla y generación de la alerta correspondiente en el Dashboard, y finalmente la aplicación de la respuesta activa mediante el 
+firewall OPNsense, bloqueando la dirección IP atacante en un tiempo igual o inferior al umbral crítico de tolerancia establecido.
 
-\subsection{ESC-01: Ejecución de trabajos Grid con repeticiones iguales}
+No obstante, es importante resaltar que no todas las alertas generadas producen una respuesta activa automática. Wazuh evalúa el nivel de s
+everidad asociado a cada evento y únicamente ejecuta acciones de mitigación cuando la alerta supera el umbral de prioridad configurado. 
+Por consiguiente, aquellos eventos catalogados con niveles inferiores a 10 dentro de la escala de criticidad del SIEM son considerados de 
+bajo impacto y no desencadenan interacción directa con el firewall.
+
+\subsubsection{Criterio de Fallo (Rechazado)}
 \noindent
 
-Este caso de prueba validó la capacidad del sistema para ejecutar múltiples instancias de un mismo trabajo con parámetros idénticos, distribuidas a través del universo \textit{Grid} hacia clústeres \textit{Vanilla} disponibles.
+Una prueba se considera fallida cuando se presenta alguna anomalía que interrumpa el ciclo de detección, correlación o contención definido 
+en la arquitectura de seguridad implementada. Entre los posibles escenarios de fallo se encuentran la evasión del ataque frente a las 
+firmas del IDS o los registros del sistema, generando falsos negativos; la incapacidad del agente para transmitir la alerta debido a 
+congestión o fallos en el canal seguro de comunicación; errores en el procesamiento de las reglas de respuesta activa por parte del Wazuh 
+Manager; o la imposibilidad del firewall OpnSense de aplicar el bloqueo perimetral correspondiente. Cualquiera de estas situaciones 
+implica que el atacante conserve conectividad y logre continuar o completar la explotación del objetivo.
 
-\subsubsection{Configuración del trabajo de prueba}
+\section{Desarrollo de los casos de prueba}
 \noindent
 
-Para este escenario se utilizó un \textit{script} en Bash que implementa el método de Monte Carlo para aproximar el valor de $\pi$:
+El propósito de este apartado es consolidar y describir los ocho (8) casos de prueba ejecutados sobre el entorno virtualizado en el que se 
+implementó la arquitectura de defensa en profundidad. En cada escenario se especifica el origen del ataque, la técnica empleada y el 
+comportamiento de los componentes de seguridad desplegados, evaluando la capacidad de detección del IDPS Suricata, la correlación de 
+eventos realizada por el SIEM Wazuh y la aplicación de medidas de contención mediante la respuesta activa integrada con el firewall 
+OpnSense.
 
-\textbf{Características del trabajo:}
-\begin{itemize}
-	\item \textbf{Tipo de archivo}: \textit{Script} Bash (\texttt{montecarlo\_pi.sh})
-	\item \textbf{Argumentos adicionales}: \texttt{100} (número de iteraciones para la aproximación)
-	\item \textbf{Naturaleza del trabajo}: Distribuido (universo Grid)
-	\item \textbf{Distribución}: Repeticiones con parámetros idénticos
-	\item \textbf{Cantidad de repeticiones}: \texttt{5}
-	\item \textbf{Selección de clúster}: Automática basada en disponibilidad
-\end{itemize}
+Lo anterior permite determinar la efectividad de los aspectos de seguridad implementados y su alineación con los lineamientos establecidos 
+en las normas \ISO/IEC 27001:2022 e \ISO/IEC 27017:2015, verificando la capacidad de la infraestructura para proteger los activos y 
+servicios del grupo GRID frente a diferentes escenarios de amenaza. A continuación, se presenta la descripción de cada una de las 
+pruebas realizadas.
 
-\subsubsection{Ejecución de la prueba}
+\subsection{Configuración del entorno de red para la ejecución de casos de prueba}
 \noindent
 
-La prueba se ejecutó siguiendo los pasos definidos en la Tabla~\ref{table:esc-01}:
+Para el desarrollo de los casos de prueba descritos a continuación, se implementaron dos reglas DNAT (Destination Network Address 
+Translation) en el firewall OpnSense, con el propósito de exponer de forma controlada los servicios SSH y HTTP de la red interna hacia la 
+red WAN simulada. En ambas reglas se definió el protocolo TCP, debido a que dichos servicios operan exclusivamente sobre este protocolo, 
+siguiendo el principio de mínimo privilegio.
 
-\begin{enumerate}
-	\item \textbf{Acceso a la aplicación}: Se accedió exitosamente a la interfaz web de \textit{Grid App}
+Esta configuración permitió redirigir el tráfico entrante dirigido a la interfaz WAN hacia la máquina objetivo ubicada en la red de 
+servidores internos, replicando un escenario real de exposición de servicios hacia redes externas no confiables. De esta manera, fue 
+posible ejecutar ataques controlados sobre la máquina objetivo y evaluar la capacidad de detección, correlación y mitigación de amenazas 
+por parte de la arquitectura de seguridad implementada. En la figura~\ref{fig1} se demuestra la creación y parámetros de la virtual IP y en 
+la figura~\ref{fig2} se evidencia la configuración de las reglas DNAT establecidas.
 
-	\item \textbf{Carga de binario}: El script de Monte Carlo fue cargado correctamente a través del selector de archivos
 
-	\item \textbf{Configuración de argumentos}: Se estableció el argumento \texttt{100} para el número de iteraciones
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-1.jpeg}
+	\caption{Configuración de virtual IP}\label{fig1}
+\end{figure}
 
-	\item \textbf{Selección de universo}: Se configuró la naturaleza del trabajo como ``Distribuido'' (universo \textit{Grid})
 
-	\item \textbf{Configuración de distribución}: Se seleccionó ``Repeticiones con parámetros idénticos''
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-2.jpeg}
+	\caption{Configuración de las reglas DNAT}\label{fig2}
+\end{figure}
 
-	\item \textbf{Definición de repeticiones}: Se especificaron \texttt{5} repeticiones del trabajo
+Adicionalmente, fue necesario deshabilitar las opciones de bloqueo de redes privadas y redes Bogon en la interfaz WAN de OpnSense, debido a 
+que el entorno virtualizado del laboratorio emplea direccionamiento IP privado en los segmentos de red utilizados. Esta configuración 
+permitió habilitar el tránsito del tráfico entre la red atacante y la máquina objetivo, garantizando la correcta ejecución de los escenarios 
+de prueba. En la figura~\ref{fig3} se evidencia la deshabilitación de las opciones \textit{Block private networks} y \textit{Block bogon 
+networks}.
 
-	\item \textbf{Selección automática de clúster}: El sistema presentó únicamente los clústeres \textit{Vanilla} disponibles (Clúster B y C), seleccionando automáticamente el más favorable con base en las métricas de \textit{Cluster Info App}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-3.jpeg}
+	\caption{Deshabilitación de opciones de bloqueo de tráfico de red}\label{fig3}
+\end{figure}
 
-	\item \textbf{Envío del trabajo}: El sistema generó correctamente el archivo \textit{submit} de \textit{Grid} y ejecutó el envío
+Asimismo, durante la configuración de las reglas DNAT previamente definidas, se habilitó la opción de creación automática de reglas de 
+firewall asociadas a cada traducción realizada sobre la interfaz WAN. Esto permitió autorizar de manera automática el tránsito del 
+tráfico de red hacia los servicios expuestos, evitando la necesidad de crear reglas manuales adicionales. La figura~\ref{fig4} presenta el 
+contexto visual de la configuración aplicada.
 
-	\item \textbf{Monitoreo de resultados}: Se visualizaron progresivamente los resultados de cada repetición conforme iban completando su ejecución
-\end{enumerate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-4.jpeg}
+	\caption{Reglas creadas automáticamente a partir de las DNAT}\label{fig4}
+\end{figure}
 
-\section{Análisis de cobertura de requisitos}
+\subsection{Caso de Prueba 1 (CP-01) Escaneo de Puertos Mediante Nmap}
 \noindent
-
-La validación cubrió exhaustivamente todos los requisitos funcionales y no funcionales especificados:
-
-\subsection{Requisitos funcionales validados}
-\noindent
-
-\begin{itemize}
-	\item \textbf{RF1 (Carga de archivos)}: El sistema cargó correctamente el \textit{script} de Bash
-	\item \textbf{RF2 (Configuración de argumentos)}: Los argumentos se incorporaron al archivo \textit{submit} dinámico
-	\item \textbf{RF3 (Selección de universo)}: El universo \textit{Grid} se configuró apropiadamente
-	\item \textbf{RF4 (Distribución de trabajos)}: Las cinco repeticiones se distribuyeron correctamente
-	\item \textbf{RF7 (Monitoreo)}: El estado de cada trabajo se monitoreó en tiempo real
-	\item \textbf{RF8 (Visualización de resultados)}: Los resultados se presentaron de forma organizada
-\end{itemize}
-
-\subsection{Requisitos no funcionales validados}
-\noindent
-
-\begin{itemize}
-	\item \textbf{RNF1 (Rendimiento)}: Los trabajos se ejecutaron en tiempos adecuados para el contexto de las pruebas
-	\item \textbf{RNF2 (Usabilidad)}: La interfaz permitió completar las tareas de manera satisfactoria
-	\item \textbf{RNF3 (Confiabilidad)}: No se presentaron fallos durante la ejecución de las pruebas realizadas
-\end{itemize}
-
-El sistema ejecutó exitosamente las cinco repeticiones del algoritmo de Monte Carlo, generando cada una una aproximación independiente de $\pi$ con el nivel de precisión especificado.
-
-\subsection{ESC-02: Ejecución de trabajos Grid con variables parametrizables}
-\noindent
-
-Este escenario validó la capacidad del sistema para generar múltiples trabajos con parámetros variables, implementando la funcionalidad de parametrización automática que permite estudios paramétricos distribuidos.
-
-\subsubsection{Configuración del trabajo de prueba}
-\noindent
-
-Para este caso se utilizó un binario compilado en C que calcula la cantidad de números primos en un intervalo específico:
-
-\textbf{Características del trabajo:}
-\begin{itemize}
-	\item \textbf{Tipo de archivo}: Binario ejecutable C (\texttt{primos})
-	\item \textbf{Argumentos adicionales}: \texttt{<x> <y>} (notación especial para argumentos dinámicos)
-	\item \textbf{Naturaleza del trabajo}: Distribuido (universo \textit{Grid})
-	\item \textbf{Distribución}: Repeticiones con variables parametrizables
-	\item \textbf{Configuración de variable \texttt{<x>}}:
-	      \begin{itemize}
-		      \item Valor inicial: \texttt{20000000}
-		      \item Valor final: \texttt{29000000}
-		      \item Incremento: \texttt{1000000}
-	      \end{itemize}
-	\item \textbf{Configuración de variable \texttt{<y>}}:
-	      \begin{itemize}
-		      \item Valor inicial: \texttt{20999999}
-		      \item Valor final: \texttt{29999999}
-		      \item Incremento: \texttt{1000000}
-	      \end{itemize}
-	\item \textbf{Trabajos generados}: \texttt{10} (calculados automáticamente por el sistema)
-\end{itemize}
-
-\subsubsection{Ejecución de la prueba}
-\noindent
-
-La prueba siguió los pasos extendidos definidos en la Tabla~\ref{table:esc-02}:
-
-\begin{enumerate}
-	\item \textbf{Carga del binario}: El ejecutable C fue cargado exitosamente
-
-	\item \textbf{Configuración de argumentos parametrizables}: Se establecieron los argumentos \texttt{<x> <y>} con notación especial
-
-	\item \textbf{Selección de variables}: El sistema detectó automáticamente las variables \texttt{<x>} y \texttt{<y>} de los argumentos
-
-	\item \textbf{Configuración de rangos}: Se definieron los valores inicial, final e incremento para ambas variables
-
-	\item \textbf{Cálculo automático}: El sistema calculó automáticamente que se generarían 10 trabajos con base en la configuración de rangos
-
-	\item \textbf{Distribución inteligente}: Los trabajos se distribuyeron automáticamente entre los clústeres vanilla disponibles
-
-	\item \textbf{Monitoreo distribuido}: Se monitoreó el progreso de los 10 trabajos que se ejecutaban en paralelo a través de múltiples clústeres
-\end{enumerate}
-
-\subsubsection{Resultados obtenidos}
-\noindent
-
-El sistema generó exitosamente 10 trabajos con las siguientes combinaciones de parámetros:
-
-\begin{verbatim}
-Trabajo 1: primos 20000000 20999999
-Trabajo 2: primos 21000000 21999999
-Trabajo 3: primos 22000000 22999999
-...
-Trabajo 10: primos 29000000 29999999
-\end{verbatim}
-
-Todos los trabajos se completaron exitosamente, validando la capacidad de parametrización automática y distribución inteligente del sistema.
-
-\subsection{ESC-03: Ejecución de trabajos en universo \textit{Parallel}}
-\noindent
-
-Este caso validó la integración del universo \textit{Parallel} con la aplicación \textit{Grid App}, demostrando la capacidad de ejecutar aplicaciones \MPI que requieren comunicación estrecha entre procesos distribuidos.
-
-\subsubsection{Configuración del trabajo de prueba}
-\noindent
-
-Se utilizó una implementación paralela del algoritmo \textit{quicksort} que opera sobre un dataset de entrada:
-
-\textbf{Características del trabajo:}
-\begin{itemize}
-	\item \textbf{Tipo de archivo}: Binario \MPI (\texttt{quick-sort-parallel})
-	\item \textbf{Argumentos adicionales}: \texttt{list10K} (nombre del archivo de entrada)
-	\item \textbf{Archivo de entrada}: \texttt{list10K.txt} (dataset con 10,000 elementos para ordenar)
-	\item \textbf{Naturaleza del trabajo}: Paralelo (universo Parallel)
-	\item \textbf{Cantidad de máquinas}: \texttt{3}
-	\item \textbf{Núcleos por máquina}: \texttt{1}
-	\item \textbf{Clúster objetivo}: Infraestructura virtualizada Parallel (seleccionada automáticamente)
-\end{itemize}
-
-\subsubsection{Ejecución de la prueba}
-\noindent
-
-La validación siguió los pasos específicos del universo \textit{Parallel} según la Tabla~\ref{table:esc-03}:
-
-\begin{enumerate}
-	\item \textbf{Carga de archivos}: Se cargaron tanto el binario \MPI como el archivo de entrada \texttt{list10K}
-
-	\item \textbf{Selección de universo Parallel}: El sistema configuró automáticamente el archivo \textit{submit} para el universo Parallel
-
-	\item \textbf{Configuración de recursos}: Se especificaron 3 máquinas con 1 núcleo cada una
-
-	\item \textbf{Selección automática de clúster}: El sistema presentó únicamente la infraestructura virtualizada \textit{Parallel}, ya que es el único clúster que admite este universo
-
-	\item \textbf{Transferencia remota}: Los archivos fueron transferidos automáticamente al clúster \textit{Parallel} a través de SSH
-
-	\item \textbf{Ejecución coordinada}: El algoritmo quick-sort-parallel se ejecutó distribuido a través de 3 procesos \MPI coordinados
-
-	\item \textbf{Recolección de resultados}: Los resultados fueron sincronizados de vuelta al Grid \textit{Manager} mediante threading asíncrono
-\end{enumerate}
-
-\subsubsection{Resultados obtenidos}
-\noindent
-
-\textbf{Validación exitosa de capacidades Parallel:}
-
-\begin{itemize}
-	\item \textbf{RF5 (Carga de archivos de entrada)}: El \textit{dataset} fue transferido correctamente
-	\item \textbf{RF6 (Configuración de recursos paralelos)}: Los parámetros \texttt{machine\_count} y \texttt{request\_cpus} fueron establecidos apropiadamente
-	\item \textbf{Comunicación \MPI}: Los procesos se comunicaron exitosamente usando OpenMPI
-	\item \textbf{Coordinación distribuida}: El algoritmo quick-sort-parallel distribuyó y coordinó correctamente la carga de trabajo
-	\item \textbf{Transferencia bidireccional}: Los archivos fueron transferidos y sincronizados correctamente entre Grid \textit{Manager} y clúster \textit{Parallel}
-\end{itemize}
-
-El conjunto de datos de 10,000 elementos se ordenó exitosamente mediante el algoritmo paralelo distribuido, demostrando la funcionalidad completa del universo Parallel integrado con \textit{Grid App}.
-
-\section{Validación de selección inteligente de clústeres}
-\noindent
-
-Un aspecto crítico validado durante las pruebas fue la capacidad del sistema para presentar únicamente los clústeres compatibles con el tipo de trabajo seleccionado, implementando una selección inteligente basada en las capacidades de cada infraestructura.
-
-\subsection{Lógica de presentación de clústeres}
-\noindent
-
-El sistema implementa la siguiente lógica de presentación de clústeres:
-
-\begin{itemize}
-	\item \textbf{Trabajos Vanilla/Grid}: Presenta clústeres \textit{Vanilla} disponibles (Clúster B y C) con base en las métricas de \textit{Cluster Info App}
-	\item \textbf{Trabajos Parallel}: Presenta únicamente la infraestructura virtualizada que admite el universo \textit{Parallel} y OpenMPI
-	\item \textbf{Selección automática}: Considera la disponibilidad de \textit{slots}, la carga actual y el historial de rendimiento
-\end{itemize}
-
-Esta funcionalidad se validó exitosamente durante todas las pruebas, eliminando la posibilidad de error del usuario al seleccionar clústeres incompatibles.
-
-\section{Análisis de cobertura de requisitos}
-\noindent
-
-La validación abarcó de manera exhaustiva todos los requisitos funcionales y no funcionales especificados:
-
-\subsection{Requisitos funcionales validados}
-\noindent
-
-\begin{itemize}
-	\item \textbf{RF1}: Carga de archivos ejecutables
-	\item \textbf{RF2}: Configuración de argumentos
-	\item \textbf{RF3}: Selección de universo HTCondor
-	\item \textbf{RF4}: Distribución de trabajos Grid
-	\item \textbf{RF5}: Carga de archivos de entrada (Parallel)
-	\item \textbf{RF6}: Configuración de recursos paralelos
-	\item \textbf{RF7}: Monitoreo de trabajos
-	\item \textbf{RF8}: Visualización de resultados
-\end{itemize}
-
-\subsection{Requisitos no funcionales validados}
-\noindent
-
-\begin{itemize}
-	\item \textbf{RNF1 (Rendimiento)}: Los trabajos se ejecutaron en tiempos adecuados para el contexto de las pruebas
-	\item \textbf{RNF2 (Usabilidad)}: La interfaz permitió completar las tareas de manera satisfactoria
-	\item \textbf{RNF3 (Confiabilidad)}: No se presentaron fallos durante la ejecución de las pruebas realizadas
-\end{itemize}
-
-\section{Documentación de evidencias}
-\noindent
-
-Durante la ejecución de las pruebas se generaron evidencias que documentan el correcto funcionamiento del sistema:
-
-\begin{itemize}
-	\item \textbf{Archivos submit generados}: Documentación de los archivos de configuración HTCondor generados automáticamente
-	\item \textbf{Registros de ejecución}: Bitácoras detalladas de la ejecución de trabajos en cada universo
-	\item \textbf{Archivos de salida}: Resultados completos de cada trabajo ejecutado
-	\item \textbf{Métricas de rendimiento}: Tiempos de ejecución y utilización de recursos
-\end{itemize}
 
 \section{Conclusiones de la validación}
 \noindent
 
-Las pruebas de validación demostraron lo siguiente:
-
-\begin{enumerate}
-	\item \textbf{Funcionalidad completa}: Todos los casos de prueba se ejecutaron correctamente, validando así la funcionalidad del sistema
-
-	\item \textbf{Integración apropiada}: La integración entre \textit{Grid App}, los universos HTCondor y la infraestructura distribuida funciona según lo diseñado
-
-	\item \textbf{Selección inteligente}: El sistema presenta únicamente los clústeres compatibles con cada tipo de trabajo seleccionado
-
-	\item \textbf{Capacidad distribuida}: Se validó la ejecución de trabajos distribuidos a través de múltiples clústeres
-
-	\item \textbf{Usabilidad adecuada}: La interfaz permite gestionar trabajos distribuidos de manera satisfactoria
-\end{enumerate}
-
-La solución implementada cumple con los objetivos establecidos, proporcionando una plataforma funcional para la ejecución de trabajos computacionales distribuidos en la infraestructura HTCondor del Grupo \GRID.
