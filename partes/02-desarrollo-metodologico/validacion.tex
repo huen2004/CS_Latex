@@ -12,7 +12,7 @@ de monitoreo continuo, mitigación dinámica y gestión centralizada de eventos 
 \section{Metodología de ejecución de pruebas}
 \noindent
 
-Con el fin de validar los aspectos de seguridad integrados mediante la arquitectura de defensa en profundidad implementada, se definió una 
+Con el objetivo de validar los aspectos de seguridad integrados mediante la arquitectura de defensa en profundidad implementada, se definió una 
 metodología orientada a garantizar la reproducibilidad y validez de los resultados obtenidos en los ocho escenarios de prueba planteados. 
 Para ello, cada caso fue ejecutado bajo un protocolo estandarizado compuesto por cuatro fases consecutivas:
 
@@ -29,7 +29,7 @@ Para ello, cada caso fue ejecutado bajo un protocolo estandarizado compuesto por
 \subsection{Criterios de validación}
 \noindent
 
-Con el fin de evaluar cuantitativa y cualitativamente el desempeño de la arquitectura de defensa en profundidad, se definieron criterios 
+Con el propósito de evaluar cuantitativa y cualitativamente el desempeño de la arquitectura de defensa en profundidad, se definieron criterios 
 estrictos para dictaminar el estado final de cada prueba:
 
 \subsubsection{Criterio de Éxito (Aprobado)}
@@ -130,6 +130,8 @@ habilitar la ejecución de las pruebas y simular de manera adecuada la exposici�
 	\caption{Reglas creadas automáticamente para la interfaz SERVERS}\label{fig5}
 \end{figure}
 
+%---------------------------------------------------------------------------------------------------------------------------------------
+
 \subsection{Caso de Prueba 1 (CP-01) Escaneo de Puertos Mediante Nmap}
 \noindent
 
@@ -162,7 +164,7 @@ sudo nmap -sS -Pn -sV -p 22,80 192.168.170
 
 \end{lstlisting}
 
-En donde cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_nmap}.
+Donde cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_nmap}.
 
 \begin{table}[H]
 \centering
@@ -273,6 +275,8 @@ El ciclo completo de detección y contención se completó en 8 segundos desde l
 El caso de prueba se clasifica como \textbf{Aprobado}, debido a que el ciclo completo de detección, correlación y bloqueo perimetral se 
 ejecutó de manera secuencial y automatizada, impidiendo actividades posteriores de reconocimiento sobre el laboratorio virtual.
 
+%-------------------------------------------------------------------------------------------------------------------------------------
+
 \subsection{Caso de prueba 2 (CP-02) Ataque de Fuerza Bruta Hydra}
 \noindent
 
@@ -293,16 +297,161 @@ respuesta activa para bloquear la dirección IP atacante antes de que se logre u
 \subsubsection{Herramienta Utilizada}
 \noindent
 
+La herramienta de código abierto Hydra es utilizada para ejecutar ataques de fuerza bruta contra servicios de autenticación y es 
+ampliamente empleada en auditorías de seguridad para evaluar la robustez de las credenciales configuradas en sistemas expuestos. Esta 
+herramienta soporta múltiples protocolos, entre los que se destacan SSH, FTP, HTTP y RDP.
+
+Para este caso de prueba se empleó el siguiente comando de Hydra:
+
+\begin{lstlisting}[language=bash, caption={Comando Hydra utilizado para el ataque de fuerza bruta SSH}, label={lst:hydra_ssh}]
+
+hydra -l huendycaicedo -P ~/wordlist_ssh.txt 192.168.1.70 ssh -t 4 -v
+
+\end{lstlisting}
+
+Cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_hydra}.
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de parámetros utilizados en Hydra}\label{tab:parametros_hydra}
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{|p{4.2cm}|p{8.5cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
+	\hline
+
+	\centering \texttt{-l huendycaicedo} &
+	Especifica el usuario de la máquina objetivo sobre el cual se realizará el ataque de fuerza bruta.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-P \textasciitilde{}/wordlist\_ssh.txt} &
+	Define el diccionario de contraseñas utilizado durante el proceso de autenticación automatizada.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{ssh} &
+	Indica el protocolo objetivo sobre el cual se ejecutará el ataque.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-t 4} &
+	Establece el número de hilos paralelos utilizados para realizar múltiples intentos de conexión simultáneamente.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-v} &
+	Habilita el modo \textit{verbose}, permitiendo visualizar cada intento de autenticación en tiempo real.
+	\tabularnewline
+	\hline
+
+	\end{tabular}
+\end{table}
+
+El diccionario de contraseñas utilizado fue personalizado e incluyó combinaciones de uso común, así como la credencial real del usuario 
+objetivo. Esto permitió simular un escenario de ataque más cercano a un entorno real, garantizando la completitud y validez del caso de 
+prueba. La composición del diccionario empleado se presenta en el siguiente apartado.
+
 \subsubsection{Ejecución de la prueba}
 \noindent
+
+Desde la máquina atacante se ejecutó un ataque de fuerza bruta sobre el servicio SSH expuesto en la dirección IP virtual 
+\texttt{192.168.1.70}, utilizando el diccionario personalizado de contraseñas descrito anteriormente y tomando como objetivo el usuario 
+\texttt{huendycaicedo}. El ataque consistió en múltiples intentos automatizados de autenticación SSH, generando un volumen considerable de 
+conexiones fallidas en un corto intervalo de tiempo.
+
+Es importante resaltar que el archivo de contraseñas utilizado por la herramienta incluía la credencial real de la máquina objetivo, con el 
+propósito de simular un escenario realista de compromiso exitoso mediante fuerza bruta y validar el comportamiento del sistema ante un 
+intento de acceso no autorizado exitoso. En la Figura~\ref{fig11} se presenta una muestra del archivo \texttt{wordlist\_ssh.txt} utilizado durante 
+la prueba.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-11.png}
+	\caption{Diccionario de contraseñas Personalizado para Hydra}\label{fig11}
+\end{figure}
+
+Como se evidencia en la figura~\ref{fig12}, Hydra inició el ataque probando de forma secuencial cada una de las contraseñas contenidas en el 
+diccionario configurado. Para efectos prácticos y de validación del laboratorio, se permitió la continuidad del ataque hasta identificar 
+la credencial correcta y lograr un acceso exitoso mediante el servicio SSH, simulando así un escenario real de compromiso por fuerza bruta.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-12.jpeg}
+	\caption{Ejecución del comando Hydra}\label{fig12}
+\end{figure}
 
 \subsubsection{Resultados y Evidencias}
 \noindent
 
+El ataque de fuerza bruta dirigido al servicio SSH desde la máquina atacante generó un volumen considerable de intentos fallidos de 
+autenticación hacia la dirección IP virtual \texttt{192.168.1.70}. Dicho tráfico fue interceptado por Suricata, el cual generó la alerta 
+correspondiente a la firma \texttt{ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack} con un nivel de confianza medio, 
+identificando correctamente el patrón de comportamiento asociado a Hydra y al uso intensivo de la librería \texttt{libssh}. En la 
+Figura~\ref{fig13} se evidencia la alerta generada por Suricata durante la ejecución del ataque.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-13.jpeg}
+	\caption{Registros de alerta Suricata}\label{fig13}
+\end{figure}
+
+El Wazuh Manager procesó la alerta generada a las 12:18:30 AM y activó el mecanismo de respuesta activa a las 12:18:31 AM, inyectando la 
+dirección IP atacante \texttt{192.168.1.57} en la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop} de OPNsense. El ataque fue iniciado a 
+las 12:17:56 AM, logrando su contención en un tiempo total aproximado de 35 segundos. En la Figura~\ref{fig14} se evidencia el dashboard de Wazuh 
+con la alerta generada y la interacción con OPNsense, mientras que en la Figura~\ref{fig15} se observa la ejecución de la respuesta activa aplicada 
+por el firewall.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-14.jpeg}
+	\caption{Dashboard de Wazuh con Alerta de SSH}\label{fig14}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-15.jpeg}
+	\caption{Respuesta Activa en OPnsense}\label{fig15}
+\end{figure}
+
+Hydra no logró completar el ataque de fuerza bruta ni obtener acceso no autorizado a la máquina objetivo, debido a que el mecanismo de 
+bloqueo perimetral interrumpió la comunicación antes de que se agotara el diccionario de contraseñas utilizado durante la prueba. En la 
+Figura~\ref{fig16} se evidencia la interrupción del ataque tras la activación de la respuesta activa por parte de la arquitectura de 
+defensa implementada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-16.jpeg}
+	\caption{Intento de ataque con Hydra Posterior al Bloqueo}\label{fig16}
+\end{figure}
+
 \subsubsection{Análisis del ciclo de detección}
 \noindent
 
-\subsection{Caso de prueba 2 (CP-02) Ataque de Fuerza Bruta Hydra}
+El caso de prueba permitió validar el comportamiento de la arquitectura de defensa en profundidad frente a un ataque de fuerza bruta 
+dirigido al servicio SSH. La detección fue realizada por Suricata, el cual identificó el patrón de comportamiento característico asociado 
+a la librería \texttt{libssh} utilizada internamente por Hydra, generando la alerta correspondiente a la firma \texttt{ET SCAN LibSSH Based 
+Frequent SSH Connections Likely BruteForce Attack}.
+
+El tráfico generado durante el ataque fue capturado simultáneamente por Suricata mediante la interfaz configurada en modo promiscuo y 
+conectada al bridge de red de OPNsense, permitiendo realizar la inspección del patrón de conexiones SSH en paralelo al procesamiento 
+perimetral del firewall. Posteriormente, la alerta fue enviada al Wazuh Manager a través del agente desplegado en la máquina Suricata, 
+donde el grupo de reglas asociado activó el mecanismo de respuesta activa al detectar la firma correspondiente.
+
+El ciclo completo de detección y contención se ejecutó en un tiempo total aproximado de 35 segundos desde el inicio del ataque, 
+distribuidos en 32 segundos de detección y 3 segundos de respuesta activa, manteniéndose por debajo del umbral crítico definido en la 
+metodología. El tiempo de detección se encuentra condicionado por el umbral de acumulación de conexiones SSH requerido por Suricata para 
+generar la firma correspondiente, permitiendo reducir la probabilidad de falsos positivos asociados a conexiones SSH legítimas y 
+esporádicas.
+
+El caso de prueba se clasifica como \textbf{Aprobado}, debido a que el sistema detectó, alertó y bloqueó el ataque de fuerza bruta de 
+forma automatizada, impidiendo que Hydra completara el proceso de autenticación y obtuviera acceso no autorizado a la máquina objetivo, 
+cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la metodología.
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{Caso de Prueba 3 (CP-03) Escaneo de Vulnerabilidades web con Nikto}
 \noindent
 
 \subsubsection{Objetivo de la prueba}
@@ -319,6 +468,64 @@ respuesta activa para bloquear la dirección IP atacante antes de que se logre u
 
 \subsubsection{Análisis del ciclo de detección}
 \noindent
+
+%-------------------------------------------------------------------------------------------------------------------------------------
+
+
+\subsection{Caso de Prueba 4 (CP-04) Ataque SSH con Metasploit}
+\noindent
+
+\subsubsection{Objetivo de la prueba}
+\noindent
+
+\subsubsection{Herramienta Utilizada}
+\noindent
+
+\subsubsection{Ejecución de la prueba}
+\noindent
+
+\subsubsection{Resultados y Evidencias}
+\noindent
+
+\subsubsection{Análisis del ciclo de detección}
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{Caso de Prueba 5 (CP-05) Denegación de Servicios (DoS) hping3}
+\noindent
+
+\subsubsection{Objetivo de la prueba}
+\noindent
+
+\subsubsection{Herramienta Utilizada}
+\noindent
+
+\subsubsection{Ejecución de la prueba}
+\noindent
+
+\subsubsection{Resultados y Evidencias}
+\noindent
+
+\subsubsection{Análisis del ciclo de detección}
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{Caso de Prueba 6 (CP-06) Movimiento lateral (Ataque Interno)}
+\noindent
+
+\subsubsection{Objetivo de la prueba}
+\noindent
+
+\subsubsection{Herramienta Utilizada}
+\noindent
+
+\subsubsection{Ejecución de la prueba}
+\noindent
+
+\subsubsection{Resultados y Evidencias}
+\noindent
+
+\subsubsection{Análisis del ciclo de detección}
 
 \section{Conclusiones de la validación}
 \noindent

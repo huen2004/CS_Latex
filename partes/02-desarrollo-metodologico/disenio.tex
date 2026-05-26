@@ -133,7 +133,7 @@ intercomunicación entre la LAN del \GRID\ y el agente de Wazuh, el cual identif
 conexión con el servidor Wazuh para verificar comportamientos no autorizados mediante reglas y políticas de seguridad.
 
 A partir de ello, se consolidan mecanismos de respuesta activa. Consecuentemente, los servicios de Suricata y Wazuh exponen funcionalidades 
-hacia la capa intermedia de servicios de aplicación, en donde se ejecutan procesos de respuesta activa al tráfico de red, sincronización de 
+hacia la capa intermedia de servicios de aplicación, donde se ejecutan procesos de respuesta activa al tráfico de red, sincronización de 
 alertas, correlación de eventos y análisis centralizado de registros, consolidando así un sistema integral de monitoreo de seguridad.
 
 La capa de negocio establece alineamiento con los controles A.5.24, A.5.31 y A.5.7 de la ISO/IEC 27001~\cite{iso27001}, mediante el flujo 
@@ -202,7 +202,7 @@ Adicionalmente, queda especificar el control A.12.3.1 de la \ISO/IEC 27001, que 
 separada, esto se evidencia gracias a él SIEM Wazuh, debido a que cuenta con un servicio denominado Snapshot Lifecycle Management(SLM), 
 este se encarga de generar las snapshots de los eventos y registros que Wazuh obtenga de agentes o de fuentes externas, dichas snapshots 
 pueden ajustarse a las necesidades del usuario según con qué frecuencia requiera los guardados de los registros y eventos, posteriormente 
-estas snapshots pasan por una VLAN que viaja a la NAS del GRID en donde se almacenan en frío, al ser un repositorio donde se guardan los 
+estas snapshots pasan por una VLAN que viaja a la NAS del GRID donde se almacenan en frío, al ser un repositorio donde se guardan los 
 eventos y registros, Wazuh podrá acceder a él de ser necesario para restaurarlos mediante el servicio de restauración de snapshots, según 
 el caso que se presente.
 

@@ -142,11 +142,11 @@ propósito específico: \textit{vmnet0} (WAN) configurada en modo \textit{Bridge
 \textit{vmnet2} (SERVERS) igualmente en modo \textit{Host-Only} y \textit{vmnet3} (Mirror) configurada mediante un \textit{LAN Segment}. 
 Esta disposición permitió establecer un entorno segmentado y controlado para el despliegue de la arquitectura de defensa en profundidad.
 
-Asimismo, se deshabilitó el servicio DHCP nativo del hipervisor con el fin de evitar asignaciones dinámicas de direcciones IP y mantener un 
-control centralizado sobre el direccionamiento de red implementado dentro del laboratorio virtual. En este contexto, las interfaces 
-\textit{vmnet1} y \textit{vmnet2} fueron configuradas con las subredes 172.16.0.0/28 y 10.0.0.0/28, respectivamente, permitiendo una 
-segmentación lógica de la red y una capacidad máxima de 14 hosts por segmento. Esta decisión fue adoptada considerando las necesidades 
-actuales del entorno y la posibilidad de crecimiento futuro tanto en la red de gestión como en el segmento de servidores.
+Asimismo, se deshabilitó el servicio DHCP nativo del hipervisor con el propósito de evitar asignaciones dinámicas de direcciones IP y 
+mantener un control centralizado sobre el direccionamiento de red implementado dentro del laboratorio virtual. En este contexto, las 
+interfaces \textit{vmnet1} y \textit{vmnet2} fueron configuradas con las subredes 172.16.0.0/28 y 10.0.0.0/28, respectivamente, 
+permitiendo una segmentación lógica de la red y una capacidad máxima de 14 hosts por segmento. Esta decisión fue adoptada considerando las 
+necesidades actuales del entorno y la posibilidad de crecimiento futuro tanto en la red de gestión como en el segmento de servidores.
 
 Por otra parte, la interfaz \textit{vmnet3} fue configurada como un \textit{LAN Segment} dedicado al mecanismo de \textit{Port Mirroring}, 
 el cual sería utilizado posteriormente para la duplicación y análisis del tráfico de red mediante el sensor \IDPS\ Suricata. Esta 
