@@ -7,7 +7,7 @@ La metodología de evaluación aplicada para la selección de las tecnologías c
 Intrusiones (\IDPS) y a la Gestión de Eventos e Información de Seguridad (\SIEM) fue \DAR\ (\textit{Decision Analysis and Resolution}) de 
 \CMMI~\cite{CMMIInstitute2010}. Esta metodología permitió evaluar las necesidades del grupo \GRID\ mediante un proceso estructurado en el 
 que se consideraron múltiples alternativas, criterios de evaluación definidos y un análisis comparativo basado en controles relacionados 
-con las normas ISO/IEC 27001 e ISO/IEC 27017, alineados con el panorama actual y los objetivos del grupo.
+con las normas \ISO/IEC 27001 e \ISO/IEC 27017, alineados con el panorama actual y los objetivos del grupo.
 
 En este contexto, se identificaron y analizaron diversas tecnologías \IDPS\ y \SIEM, aplicando criterios como rentabilidad, tipo de licencia, 
 documentación, soporte y compatibilidad, utilizando como fuentes de información sus respectivas documentaciones oficiales y repositorios en 
@@ -68,7 +68,7 @@ ancho de banda. Asimismo, resulta fundamental para evaluar su viabilidad operati
 Valora el nivel de adopción y reconocimiento de la herramienta dentro de la comunidad técnica y científica. Este criterio usa como medida 
 la suma de las descargas y forks de la respectiva página GitHub.
 
-\subsection{Criterios de Tecnologías IDPS}
+\subsection{Criterios de Tecnologías \IDPS}
 
 \subsubsection{Precisión de detección}
 
@@ -84,12 +84,12 @@ una menor carga para el personal encargado del monitoreo del tráfico.
 
 \subsubsection{Integración con otros sistemas}
 
-Este criterio determina la facilidad con la que la herramienta puede interoperar con otras soluciones de seguridad, monitoreo, SIEM, 
+Este criterio determina la facilidad con la que la herramienta puede interoperar con otras soluciones de seguridad, monitoreo, \SIEM, 
 \textit{firewalls}, plataformas cloud y sistemas de gestión institucional.
 
 \subsubsection{Capacidad de detección por comportamiento}
 
-Este criterio se estructura conforme al control A.8.16 de la \ISO/IEC 27001~\cite{iso27001} y permite evaluar la capacidad del IDPS para 
+Este criterio se estructura conforme al control A.8.16 de la \ISO/IEC 27001~\cite{iso27001} y permite evaluar la capacidad del \IDPS\ para 
 identificar amenazas a partir de comportamientos anómalos o patrones no basados exclusivamente en firmas, facilitando la detección de 
 ataques desconocidos o variantes avanzadas.
 
@@ -99,7 +99,7 @@ Este criterio se deriva del control A.5.7 de la \ISO/IEC 27001~\cite{iso27001} y
 de actualización de las reglas, firmas o bases de conocimiento utilizadas para detectar amenazas conocidas. Asimismo, este criterio 
 resulta fundamental para responder oportunamente a nuevas vulnerabilidades y vectores de ataque.
 
-\subsection{Criterios de Tecnologías SIEM}
+\subsection{Criterios de Tecnologías \SIEM}
 \subsubsection{Capacidad de correlación de eventos}
 
 Este criterio se encuentra alineado con el control CLD 12.4.5 de la \ISO/IEC 27017~\cite{iso27017} y permite evaluar la capacidad de la 
@@ -149,38 +149,38 @@ Tras definir los criterios, se identificaron las siguientes tecnologías \SIEM:
 	\item Apache Metron
 \end{itemize}
 
-\subsection{Análisis DAR}
+\subsection{Análisis \DAR}
 
-Con los criterios definidos y las tecnologías identificadas, se procede a realizar el análisis \DAR. Para este análisis se utilizó 
-una metodología estructurada basada las plantillas encontradas en el Apéndice~\ref{chap:plantilla-dar}. que permite evaluar 
-sistemáticamente cada tecnología IDPS y SIEM contra los criterios establecidos.
+Con los criterios definidos y las tecnologías identificadas, se realizó el análisis \DAR. Para este análisis se utilizó 
+una metodología estructurada basada las plantillas encontradas en el Apéndice~\ref{chap:plantilla-dar}, que permite evaluar 
+sistemáticamente cada tecnología \IDPS\ y \SIEM\ contra los criterios establecidos.
 
-Los resultados del análisis \DAR de las tecnologías \IDPS se presentan en la Figura~\ref{fig:resultados-idps} y los resultados de las 
-tecnologías \SIEM en la Figura~\ref{fig:resultados-siem}, donde cada tecnología fue evaluada con un rango de valoración de 1 a 5, en el 
+Los resultados del análisis \DAR\ de las tecnologías \IDPS\ se presentan en la Figura~\ref{fig:resultados-idps} y los resultados de las 
+tecnologías \SIEM\ en la Figura~\ref{fig:resultados-siem}, donde cada tecnología fue evaluada con un rango de valoración de 1 a 5, en el 
 cual el valor de 1 significa que no cumple en absoluto con el criterio evaluado y 5 que cumple de manera satisfactoria con el mismo.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4] {tablas-images/dar/resultados-idps.png}
-	\caption{Resultados del análisis DAR para tecnologías IDPS}\label{fig:resultados-idps}
+	\caption{Resultados del análisis \DAR\ para tecnologías IDPS}\label{fig:resultados-idps}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4] {tablas-images/dar/resultados-siem.png}
-	\caption{Resultados del análisis DAR para tecnologías SIEM}\label{fig:resultados-siem}
+	\caption{Resultados del análisis \DAR\ para tecnologías \SIEM}\label{fig:resultados-siem}
 \end{figure}
 
 \section{Resultados}
 
 \subsection{Resumen del análisis}
 
-En este apartado se presentan las tecnologías seleccionadas en cada análisis DAR realizado, de acuerdo con el valor más alto obtenido en 
+En este apartado se presentan las tecnologías seleccionadas en cada análisis \DAR\ realizado, de acuerdo con el valor más alto obtenido en 
 la sumatoria calculada a partir de los criterios propuestos y su pertinencia dentro del contexto del estudio.
 
 \subsection{Suricata}
 
-La herramienta Suricata se posiciona como la tecnología ganadora dentro de la categoría IDPS, debido a los resultados obtenidos en cada 
+La herramienta Suricata se posiciona como la tecnología ganadora dentro de la categoría \IDPS, debido a los resultados obtenidos en cada 
 uno de los criterios evaluados. La herramienta alcanzó una valoración total de 229 puntos, evidenciando un rendimiento superior frente a 
 las demás alternativas analizadas.
 
@@ -189,27 +189,31 @@ segunda tecnología con mejor valoración. Aunque las demás herramientas evalua
 y prevención de intrusiones, estas no se ajustan completamente a las necesidades, problemáticas y oportunidades actuales del grupo de 
 investigación \GRID.
 
-En la Figura~\ref{fig:estadistica-idps} se presentan las puntuaciones obtenidas por cada herramienta IDPS durante el análisis realizado.
+En la Figura~\ref{fig:estadistica-idps} se presentan las puntuaciones obtenidas por cada herramienta \IDPS\ durante el análisis realizado.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5] {tablas-images/dar/estadistica-idps.png}
-	\caption{Gráfico del análisis DAR para tecnologías IDPS}\label{fig:estadistica-idps}
+	\caption{Gráfico del análisis \DAR\ para tecnologías IDPS}\label{fig:estadistica-idps}
 \end{figure}
 
 \subsection{Wazuh}
 
-La herramienta Wazuh se posiciona como la tecnología seleccionada dentro de la categoría SIEM, debido a los resultados obtenidos en los criterios establecidos para su evaluación. La herramienta alcanzó una valoración total de 217 puntos, reflejando un desempeño superior frente a las demás alternativas analizadas.
+La herramienta Wazuh se posiciona como la tecnología seleccionada dentro de la categoría \SIEM, debido a los resultados obtenidos en los 
+criterios establecidos para su evaluación. La herramienta alcanzó una valoración total de 217 puntos, reflejando un desempeño superior 
+frente a las demás alternativas analizadas.
 
-Por otra parte, ELK Stack obtuvo una valoración de 177 puntos, posicionándose como una alternativa viable dentro del análisis. Sin embargo, sus características no se alinean completamente con las necesidades y requerimientos identificados en el análisis de necesidades, problemáticas y oportunidades (NPO) del grupo de investigación \GRID.
+Por otra parte, ELK Stack obtuvo una valoración de 177 puntos, posicionándose como una alternativa viable dentro del análisis. Sin 
+embargo, sus características no se alinean completamente con las necesidades y requerimientos identificados en el análisis de necesidades, 
+problemáticas y oportunidades (\NPO) del grupo de investigación \GRID.
 
-En la Figura~\ref{fig:estadistica-siem} se presentan las puntuaciones obtenidas por cada herramienta SIEM evaluada en el análisis DAR.
+En la Figura~\ref{fig:estadistica-siem} se presentan las puntuaciones obtenidas por cada herramienta \SIEM evaluada en el análisis \DAR.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5] {tablas-images/dar/estadistica-siem.png}
-	\caption{Gráfico del análisis DAR para tecnologías SIEM}\label{fig:estadistica-siem}
+	\caption{Gráfico del análisis \DAR\ para tecnologías SIEM}\label{fig:estadistica-siem}
 \end{figure}
 
 \subsection{Próximos pasos}
-Se procede con el diseño de las arquitecturas de la solución y su posterior implementación a través de un prototipo funcional.
+Se realizó el diseño de las arquitecturas de la solución y su posterior implementación a través de un prototipo funcional.

@@ -1,9 +1,10 @@
 \ChapterImageStar[cap:validacion]{Implementación y validación de la solución}{./images/fondo.png}\label{cap:validacion}
 \mbox{}\\
 La presente sección tiene como finalidad validar la efectividad de la arquitectura de defensa en profundidad implementada mediante la 
-integración de OPNsense, Suricata y Wazuh dentro de un laboratorio virtualizado. Para ello, se diseñaron ocho casos de prueba basados en el 
-marco MITRE ATT\&CK y las fases de la Cyber Kill Chain, permitiendo evaluar capacidades de detección, correlación de eventos y respuesta 
-activa frente a diferentes escenarios de ataque.
+integración de OPNsense~\cite{OpnsenseManual2026}, Suricata~\cite{SuricataGuide2025} y Wazuh~\cite{WazuhDocs2026} dentro de un laboratorio 
+virtualizado. Para ello, se diseñaron seis casos de prueba basados en el marco MITRE ATT\&CK~\cite{MITREATTACK2026} y las fases de la Cyber 
+Kill Chain~\cite{CyberKillChain2026}, permitiendo evaluar capacidades de detección, correlación de eventos y respuesta activa frente a 
+diferentes escenarios de ataque.
 
 Las pruebas fueron ejecutadas desde una máquina atacante con OpenSUSE, generando tráfico y eventos maliciosos controlados dentro de un 
 entorno completamente aislado. De esta manera, fue posible analizar el comportamiento de la arquitectura propuesta y validar la capacidad 
@@ -12,68 +13,80 @@ de monitoreo continuo, mitigación dinámica y gestión centralizada de eventos 
 \section{Metodología de ejecución de pruebas}
 \noindent
 
-Con el objetivo de validar los aspectos de seguridad integrados mediante la arquitectura de defensa en profundidad implementada, se definió una 
-metodología orientada a garantizar la reproducibilidad y validez de los resultados obtenidos en los ocho escenarios de prueba planteados. 
-Para ello, cada caso fue ejecutado bajo un protocolo estandarizado compuesto por cuatro fases consecutivas:
+Con el fin de validar los aspectos de seguridad integrados mediante el modelo de arquitectura de defensa en profundidad implementado, se 
+diseñó una metodología orientada a garantizar la reproducibilidad y la validez científica de los resultados obtenidos en cada uno de los 
+seis (6) escenarios de prueba. Para ello, se estableció un protocolo estandarizado de ejecución compuesto por las siguientes fases:
 
 \begin{itemize}
-    \item \textbf{Fase de Línea Base:} verificación previa del estado operativo de la infraestructura, comprobando el funcionamiento de los agentes de Wazuh, el motor Suricata y la conectividad entre las máquinas involucradas.
+    \item \textbf{Objetivo de la prueba:} define el resultado esperado de la prueba, especificando los componentes del modelo de defensa en profundidad que se buscan validar y las condiciones bajo las cuales se ejecutará el escenario.
     
-    \item \textbf{Fase de Estímulo:} ejecución controlada del ataque o actividad maliciosa desde la máquina atacante mediante las herramientas definidas para cada escenario.
+    \item \textbf{Herramienta utilizada:} describe la herramienta empleada y los parámetros de configuración utilizados durante la prueba, proporcionando un contexto de reproducibilidad técnica.
     
-    \item \textbf{Fase de Monitoreo y Centralización:} observación del procesamiento de eventos y generación de alertas por parte de Wazuh, así como el tiempo de reacción de la respuesta activa.
+    \item \textbf{Ejecución de la prueba:} expone el procedimiento realizado, incluyendo el comando o herramienta ejecutada desde la máquina atacante y las observaciones efectuadas durante el desarrollo de la prueba.
     
-    \item \textbf{Fase de Verificación de Contención:} comprobación de la mitigación aplicada mediante las reglas dinámicas del firewall y la interrupción de la actividad maliciosa.
+    \item \textbf{Resultados y evidencias:} documenta los hallazgos obtenidos mediante capturas de pantalla, registros y métricas temporales, permitiendo realizar un análisis objetivo del comportamiento de la arquitectura de defensa en profundidad.
+    
+    \item \textbf{Análisis del ciclo de detección:} evalúa el desempeño integral del sistema de detección y respuesta frente al ataque simulado, determinando el estado final del caso de prueba como \textit{Aprobado} o \textit{Rechazado}.
 \end{itemize}
 
 \subsection{Criterios de validación}
 \noindent
 
-Con el propósito de evaluar cuantitativa y cualitativamente el desempeño de la arquitectura de defensa en profundidad, se definieron criterios 
-estrictos para dictaminar el estado final de cada prueba:
+Con el propósito de evaluar cuantitativa y cualitativamente el desempeño de la arquitectura propuesta, se definieron criterios estrictos 
+para determinar el resultado final de cada caso de prueba.
 
 \subsubsection{Criterio de Éxito (Aprobado)}
-\noindent
 
-Una prueba se considera exitosa si cumple de manera secuencial el ciclo completo de automatización definido en la arquitectura 
-implementada: detección del tráfico malicioso por parte del host o del IDS Suricata, reporte del evento hacia el Wazuh Manager, correlación 
-de la regla y generación de la alerta correspondiente en el Dashboard, y finalmente la aplicación de la respuesta activa mediante el 
-firewall OPNsense, bloqueando la dirección IP atacante en un tiempo igual o inferior al umbral crítico de tolerancia establecido.
+Una prueba se considera exitosa si cumple de manera secuencial la totalidad del ciclo de automatización definido:
 
-No obstante, es importante resaltar que no todas las alertas generadas producen una respuesta activa automática. Wazuh evalúa el nivel de s
-everidad asociado a cada evento y únicamente ejecuta acciones de mitigación cuando la alerta supera el umbral de prioridad configurado. 
-Por consiguiente, aquellos eventos catalogados con niveles inferiores a 10 dentro de la escala de criticidad del SIEM son considerados de 
-bajo impacto y no desencadenan interacción directa con el firewall.
+\begin{itemize}
+    \item El tráfico malicioso es interceptado por Suricata.
+    
+    \item El agente reporta el evento al Wazuh Manager.
+    
+    \item El mánager correlaciona la regla y genera la alerta correspondiente en el dashboard.
+    
+    \item El agente de OPNsense inyecta de forma automática la IP atacante en la tabla de bloqueo, interrumpiendo la conectividad en un tiempo menor o igual a 40 segundos desde la detección del evento.
+\end{itemize}
+
+En algunos escenarios, la herramienta \SIEM\ Wazuh puede no ejecutar la respuesta activa hacia el firewall. En dichos casos, es necesario 
+verificar el nivel de criticidad asignado a la alerta generada, debido a que eventos clasificados como riesgo mínimo o con un nivel 
+inferior a 8 en la escala de prioridad de Wazuh no desencadenan mecanismos automáticos de intervención.
 
 \subsubsection{Criterio de Fallo (Rechazado)}
-\noindent
 
-Una prueba se considera fallida cuando se presenta alguna anomalía que interrumpa el ciclo de detección, correlación o contención definido 
-en la arquitectura de seguridad implementada. Entre los posibles escenarios de fallo se encuentran la evasión del ataque frente a las 
-firmas del IDS o los registros del sistema, generando falsos negativos; la incapacidad del agente para transmitir la alerta debido a 
-congestión o fallos en el canal seguro de comunicación; errores en el procesamiento de las reglas de respuesta activa por parte del Wazuh 
-Manager; o la imposibilidad del firewall OpnSense de aplicar el bloqueo perimetral correspondiente. Cualquiera de estas situaciones 
-implica que el atacante conserve conectividad y logre continuar o completar la explotación del objetivo.
+Una prueba se considera fallida cuando se presenta alguna de las siguientes anomalías:
+
+\begin{itemize}
+    \item El ataque evade las firmas del \IDS\ o los registros del sistema (\textit{falso negativo}).
+    
+    \item El agente no logra transmitir la alerta al Wazuh Manager.
+    
+    \item El mánager no procesa correctamente la regla de respuesta activa.
+    
+    \item El firewall OPNsense no aplica el bloqueo perimetral, permitiendo que el atacante complete la explotación.
+\end{itemize}
+
 
 \section{Desarrollo de los casos de prueba}
 \noindent
 
-El propósito de este apartado es consolidar y describir los ocho (8) casos de prueba ejecutados sobre el entorno virtualizado en el que se 
+El propósito de este apartado es consolidar y describir los seis (6) casos de prueba ejecutados sobre el entorno virtualizado en el que se 
 implementó la arquitectura de defensa en profundidad. En cada escenario se especifica el origen del ataque, la técnica empleada y el 
-comportamiento de los componentes de seguridad desplegados, evaluando la capacidad de detección del IDPS Suricata, la correlación de 
-eventos realizada por el SIEM Wazuh y la aplicación de medidas de contención mediante la respuesta activa integrada con el firewall 
-OpnSense.
+comportamiento de los componentes de seguridad desplegados, evaluando la capacidad de detección del \IDPS\ Suricata, la correlación de 
+eventos realizada por el \SIEM Wazuh y la aplicación de medidas de contención mediante la respuesta activa integrada con el firewall 
+OPNsense.
 
 Lo anterior permite determinar la efectividad de los aspectos de seguridad implementados y su alineación con los lineamientos establecidos 
 en las normas \ISO/IEC 27001:2022 e \ISO/IEC 27017:2015, verificando la capacidad de la infraestructura para proteger los activos y 
-servicios del grupo GRID frente a diferentes escenarios de amenaza. A continuación, se presenta la descripción de cada una de las 
+servicios del grupo \GRID\ frente a diferentes escenarios de amenaza. A continuación, se presenta la descripción de cada una de las 
 pruebas realizadas.
 
 \subsection{Configuración del entorno de red para la ejecución de casos de prueba}
 \noindent
 
-Para el desarrollo de los casos de prueba descritos a continuación, se implementaron dos reglas DNAT (Destination Network Address 
-Translation) en el firewall OpnSense, con el propósito de exponer de forma controlada los servicios SSH y HTTP de la red interna hacia la 
+Para el desarrollo de los casos de prueba descritos a continuación, se implementaron dos reglas \DNAT\ (Destination Network Address 
+Translation) en el firewall OPNsense, con el propósito de exponer de forma controlada los servicios SSH y HTTP de la red interna hacia la 
 red WAN simulada. En ambas reglas se definió el protocolo TCP, debido a que dichos servicios operan exclusivamente sobre este protocolo, 
 siguiendo el principio de mínimo privilegio.
 
@@ -81,7 +94,7 @@ Esta configuración permitió redirigir el tráfico entrante dirigido a la inter
 servidores internos, replicando un escenario real de exposición de servicios hacia redes externas no confiables. De esta manera, fue 
 posible ejecutar ataques controlados sobre la máquina objetivo y evaluar la capacidad de detección, correlación y mitigación de amenazas 
 por parte de la arquitectura de seguridad implementada. En la figura~\ref{fig1} se demuestra la creación y parámetros de la virtual IP y en 
-la figura~\ref{fig2} se evidencia la configuración de las reglas DNAT establecidas.
+la figura~\ref{fig2} se evidencia la configuración de las reglas \DNAT\ establecidas.
 
 
 \begin{figure}[H]
@@ -97,7 +110,7 @@ la figura~\ref{fig2} se evidencia la configuración de las reglas DNAT estableci
 	\caption{Configuración de las reglas DNAT}\label{fig2}
 \end{figure}
 
-Adicionalmente, fue necesario deshabilitar las opciones de bloqueo de redes privadas y redes Bogon en la interfaz WAN de OpnSense, debido a 
+Adicionalmente, fue necesario deshabilitar las opciones de bloqueo de redes privadas y redes Bogon en la interfaz WAN de OPNsense, debido a 
 que el entorno virtualizado del laboratorio emplea direccionamiento IP privado en los segmentos de red utilizados. Esta configuración 
 permitió habilitar el tránsito del tráfico entre la red atacante y la máquina objetivo, garantizando la correcta ejecución de los escenarios 
 de prueba. En la figura~\ref{fig3} se evidencia la deshabilitación de las opciones \textit{Block private networks} y \textit{Block bogon 
@@ -109,7 +122,7 @@ networks}.
 	\caption{Deshabilitación de opciones de bloqueo de tráfico de red}\label{fig3}
 \end{figure}
 
-Asimismo, durante la configuración de las reglas DNAT previamente definidas, se habilitó la opción de creación automática de reglas de 
+Asimismo, durante la configuración de las reglas \DNAT\ previamente definidas, se habilitó la opción de creación automática de reglas de 
 firewall asociadas a cada traducción realizada sobre la interfaz WAN. Esto permitió autorizar de manera automática el tránsito del 
 tráfico de red hacia los servicios expuestos, evitando la necesidad de crear reglas manuales adicionales. La figura~\ref{fig4} presenta el 
 contexto visual de la configuración aplicada.
@@ -154,7 +167,7 @@ cuando se registran más de cinco alertas del mismo tipo en un intervalo de 60 s
 
 La herramienta utilizada fue Nmap (Network Mapper), una utilidad de código abierto ampliamente empleada en el ámbito de la seguridad 
 informática para el descubrimiento de redes y la auditoría de seguridad. Esta permite identificar hosts activos, puertos abiertos, 
-servicios en ejecución y sus respectivas versiones mediante el envío de paquetes construidos de manera específica.
+servicios en ejecución y sus respectivas versiones mediante el envío de paquetes construidos de manera específica~\cite{Nmap2026}.
 
 Para este caso de prueba se utilizó el siguiente comando:
 
@@ -222,12 +235,12 @@ Attack} y con un nivel de confianza \textit{High}. En la Figura~\ref{fig7} se ev
 \end{figure}
 
 Una vez superado el umbral de tolerancia establecido, es decir, al generarse más de cinco alertas de reconocimiento por parte de Suricata, 
-el Wazuh Manager correlacionó los eventos y activó la respuesta activa a las 12:40:51, ordenando al agente de OpnSense inyectar la 
+el Wazuh Manager correlacionó los eventos y activó la respuesta activa a las 12:40:51, ordenando al agente de OPNsense inyectar la 
 dirección IP atacante \texttt{192.168.1.57} en la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop} a las 12:40:58.
 
 El escaneo fue ejecutado a las 12:40:50, logrando la contención del ataque en un tiempo aproximado de 8 segundos desde el inicio del 
 escaneo, valor considerablemente inferior al umbral crítico de 30 segundos definido en la metodología. En la figura~\ref{fig8} se evidencia la 
-primera alerta reconocida por Wazuh y en la figura~\ref{fig9} el registro correspondiente a la respuesta activa ejecutada por OpnSense.
+primera alerta reconocida por Wazuh y en la figura~\ref{fig9} el registro correspondiente a la respuesta activa ejecutada por OPNsense.
 
 \begin{figure}[H]
 	\centering
@@ -238,7 +251,7 @@ primera alerta reconocida por Wazuh y en la figura~\ref{fig9} el registro corres
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-9.jpeg}
-	\caption{Registro de Instrucción de Respuesta Activa en OpnSense}\label{fig9}
+	\caption{Registro de Instrucción de Respuesta Activa en OPNsense}\label{fig9}
 \end{figure}
 
 Tras la activación automática del mecanismo de respuesta activa por parte de Wazuh, se procedió a ejecutar un segundo escaneo utilizando 
@@ -264,7 +277,7 @@ virtual. Dicho tráfico fue capturado simultáneamente por Suricata a través de
 de la red de OPNsense, garantizando visibilidad completa del tráfico y permitiendo la inspección profunda de paquetes en paralelo al 
 procesamiento perimetral del firewall.
 
-Las alertas generadas por Suricata fueron enviadas al Wazuh Manager mediante el agente instalado en la máquina del IDPS. Posteriormente, 
+Las alertas generadas por Suricata fueron enviadas al Wazuh Manager mediante el agente instalado en la máquina del \IDPS\. Posteriormente, 
 la regla personalizada \texttt{100003} correlacionó los eventos y elevó la alerta al nivel 12 una vez superado el umbral de cinco alertas 
 consecutivas de reconocimiento, activando de forma automática el mecanismo de respuesta activa.
 
@@ -297,7 +310,7 @@ respuesta activa para bloquear la dirección IP atacante antes de que se logre u
 \subsubsection{Herramienta Utilizada}
 \noindent
 
-La herramienta de código abierto Hydra es utilizada para ejecutar ataques de fuerza bruta contra servicios de autenticación y es 
+La herramienta de código abierto Hydra~\cite{Hydra2026} es utilizada para ejecutar ataques de fuerza bruta contra servicios de autenticación y es 
 ampliamente empleada en auditorías de seguridad para evaluar la robustez de las credenciales configuradas en sistemas expuestos. Esta 
 herramienta soporta múltiples protocolos, entre los que se destacan SSH, FTP, HTTP y RDP.
 
@@ -451,7 +464,7 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 
 %-------------------------------------------------------------------------------------------------------------------------------------
 
-\subsection{Caso de Prueba 3 (CP-03) Escaneo de Vulnerabilidades web con Nikto}
+\subsection{Caso de Prueba 3 (CP-03) Reconocimiento de vulnerabilidades Nikto}
 \noindent
 
 \subsubsection{Objetivo de la prueba}
@@ -472,7 +485,7 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 %-------------------------------------------------------------------------------------------------------------------------------------
 
 
-\subsection{Caso de Prueba 4 (CP-04) Ataque SSH con Metasploit}
+\subsection{Caso de Prueba 4 (CP-04) Denegación de Servicios (\DoS) hping3}
 \noindent
 
 \subsubsection{Objetivo de la prueba}
@@ -491,7 +504,7 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 
-\subsection{Caso de Prueba 5 (CP-05) Denegación de Servicios (DoS) hping3}
+\subsection{Caso de Prueba 5 (CP-03) Ataque SSH con Metasploit}
 \noindent
 
 \subsubsection{Objetivo de la prueba}
@@ -510,7 +523,7 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 
-\subsection{Caso de Prueba 6 (CP-06) Movimiento lateral (Ataque Interno)}
+\subsection{Caso de Prueba 6 (CP-05) Movimiento lateral (Ataque Interno)}
 \noindent
 
 \subsubsection{Objetivo de la prueba}

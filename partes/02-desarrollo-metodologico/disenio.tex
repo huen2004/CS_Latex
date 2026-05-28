@@ -42,7 +42,7 @@ solución.
 
 Partiendo de lo anterior, se modeló una arquitectura mediante la aplicación web draw.io~\cite{drawio}, con el objetivo de especificar las 
 direcciones IP, interfaces y divisiones de red correspondientes a cada zona del \GRID, así como la integración gráfica de las tecnologías 
-seleccionadas a partir del análisis DAR y del dispositivo SonicWall NSa 6600, encargado de gestionar la comunicación entre la 
+seleccionadas a partir del análisis \DAR\ y del dispositivo SonicWall NSa 6600, encargado de gestionar la comunicación entre la 
 infraestructura interna y el entorno externo.
 
 
@@ -73,7 +73,7 @@ generar registros de acceso y redirigir la comunicación hacia la máquina o zon
 
 Una vez establecido el acceso a la infraestructura, el firewall SonicWall NSa 6600 ejecuta procesos de filtrado y monitoreo del tráfico de 
 red, generando registros asociados a eventos y accesos dentro del entorno. Como parte de la arquitectura de seguridad implementada, el 
-tráfico inspeccionado es replicado mediante técnicas de \textit{port mirroring} hacia la herramienta IDPS Suricata, configurada en modo 
+tráfico inspeccionado es replicado mediante técnicas de \textit{port mirroring} hacia la herramienta \IDPS\ Suricata, configurada en modo 
 promiscuo, con el propósito de analizar patrones de comportamiento, firmas de paquetes y posibles actividades sospechosas presentes en la 
 red.
 
@@ -110,7 +110,7 @@ hacia los elementos de conectividad, protocolos de comunicación, archivos de co
 Seguidamente, se aborda el comportamiento funcional de las herramientas desplegadas y la integración existente entre los diferentes 
 componentes de la infraestructura del \GRID. Finalmente, se describen los procesos de negocio asociados a la gestión de la seguridad de la 
 información y los artefactos generados como parte del presente trabajo de grado, los cuales se alinean con principios de trazabilidad y 
-reproducibilidad establecidos en la ISO/IEC 27001~\cite{iso27001}, con el propósito de facilitar la replicación, mantenimiento y
+reproducibilidad establecidos en la \ISO/IEC 27001~\cite{iso27001}, con el propósito de facilitar la replicación, mantenimiento y
 escalabilidad de la arquitectura propuesta.
 
 \subsubsection{Arquitectura de Defensa en Profundidad: Layered View}
@@ -121,14 +121,14 @@ manera holística la trazabilidad operativa de la arquitectura.
 
 El \textit{Grouping} correspondiente a la capa de infraestructura integra los componentes encargados de la comunicación entre redes, la 
 centralización de nodos físicos y virtuales, así como los mecanismos de control y protección perimetral de la infraestructura del \GRID. 
-En esta capa se materializan capacidades asociadas a los controles A.8.6 y A.5.31 de la ISO/IEC 27001~\cite{iso27001}, así como al control 
-CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}. Dentro de esta representación se incorpora el nodo de rack, el cual concentra dispositivos 
+En esta capa se materializan capacidades asociadas a los controles A.8.6 y A.5.31 de la \ISO/IEC 27001~\cite{iso27001}, así como al control 
+CLD 12.4.5 de la \ISO/IEC 27017~\cite{iso27017}. Dentro de esta representación se incorpora el nodo de rack, el cual concentra dispositivos 
 como el switch y el hipervisor encargado de orquestar los recursos virtualizados utilizados por la arquitectura. Asimismo, se incluye el 
 firewall SonicWall NSa 6600, responsable de ejecutar funciones de filtrado, validación y restricción del tráfico, actuando como punto de 
 control entre el entorno externo y la red interna del \GRID.
 
-Esta capa establece interacción con la capa de aplicación, proporcionando alineamiento con los controles A.5.7 y A.8.16 de la ISO/IEC 
-27001~\cite{iso27001}, así como con los controles 12.4.1 y CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}. Esto se logra mediante la 
+Esta capa establece interacción con la capa de aplicación, proporcionando alineamiento con los controles A.5.7 y A.8.16 de la \ISO/IEC 
+27001~\cite{iso27001}, así como con los controles 12.4.1 y CLD 12.4.5 de la \ISO/IEC 27017~\cite{iso27017}. Esto se logra mediante la 
 intercomunicación entre la LAN del \GRID\ y el agente de Wazuh, el cual identifica anomalías presentes en la red interna y establece 
 conexión con el servidor Wazuh para verificar comportamientos no autorizados mediante reglas y políticas de seguridad.
 
@@ -136,7 +136,7 @@ A partir de ello, se consolidan mecanismos de respuesta activa. Consecuentemente
 hacia la capa intermedia de servicios de aplicación, donde se ejecutan procesos de respuesta activa al tráfico de red, sincronización de 
 alertas, correlación de eventos y análisis centralizado de registros, consolidando así un sistema integral de monitoreo de seguridad.
 
-La capa de negocio establece alineamiento con los controles A.5.24, A.5.31 y A.5.7 de la ISO/IEC 27001~\cite{iso27001}, mediante el flujo 
+La capa de negocio establece alineamiento con los controles A.5.24, A.5.31 y A.5.7 de la \ISO/IEC 27001~\cite{iso27001}, mediante el flujo 
 de trazabilidad operacional definido dentro de la arquitectura, exponiendo servicios orientados a la gestión y respuesta ante amenazas de 
 seguridad. En esta capa se integran funcionalidades como la política de denegación de acceso, alimentada por el servicio de respuesta 
 activa al tráfico de red, permitiendo restringir conexiones potencialmente maliciosas identificadas durante el proceso de monitoreo y 
@@ -168,7 +168,7 @@ La Figura~\ref{fig:archiInfrastructureView} representa la interacción entre los
 interoperabilidad con el propósito de proporcionar la base estructural donde se alojan los dispositivos utilizados y las zonas a proteger. 
 La integración de estos elementos permite consolidar capacidades de filtrado, trazabilidad del envío de paquetes y operatividad conjunta 
 entre componentes, contribuyendo al fortalecimiento del modelo de defensa en profundidad implementado dentro de la infraestructura del 
-\GRID. Asimismo, esta capa proporciona soporte a los controles A.8.6 y A.5.31 de la ISO/IEC 27001~\cite{iso27001}, relacionados con la 
+\GRID. Asimismo, esta capa proporciona soporte a los controles A.8.6 y A.5.31 de la \ISO/IEC 27001~\cite{iso27001}, relacionados con la 
 gestión de capacidades y el establecimiento de mecanismos de acceso y segmentación controlada dentro de la infraestructura tecnológica.
 
 El \textit{Grouping} de infraestructura del \GRID\ representa la integración de dispositivos y nodos orientados a la comunicación del 
@@ -176,7 +176,7 @@ tráfico de red entrante y saliente. En primera instancia, se encuentra el dispo
 de filtrado e inspección del tráfico proveniente del entorno externo, constituyéndose como un punto de control que reduce la superficie de 
 exposición, segmenta el tráfico entre zonas y fortalece el perímetro de seguridad del \GRID. Dentro de este dispositivo se alojan 
 funcionalidades de traducción \NAT, así como reglas y políticas de seguridad orientadas al control y monitoreo de las comunicaciones. 
-Estas capacidades fortalecen los principios de supervisión y protección perimetral asociados al control CLD 12.4.5 de la ISO/IEC 
+Estas capacidades fortalecen los principios de supervisión y protección perimetral asociados al control CLD 12.4.5 de la \ISO/IEC 
 27017~\cite{iso27017}, orientado a la supervisión de servicios dentro de entornos cloud.
 
 En este contexto, el switch Ruijie constituye el punto central de interconexión física dentro de la infraestructura del \GRID, permitiendo 
@@ -195,14 +195,14 @@ interconexión permite que las decisiones de respuesta y actualización de polí
 SonicWall NSa 6600 mediante inyección de comandos SSH, manteniendo sincronización entre los componentes físicos y lógicos que conforman 
 la arquitectura de defensa en profundidad.
 
-La centralización y correlación de registros fortalece adicionalmente los controles A.8.16 de la ISO/IEC 27001~\cite{iso27001} y 
-CLD 12.4.1 de la ISO/IEC 27017~\cite{iso27017}, relacionados con actividades de monitoreo y gestión de registros de eventos.
+La centralización y correlación de registros fortalece adicionalmente los controles A.8.16 de la \ISO/IEC 27001~\cite{iso27001} y 
+CLD 12.4.1 de la \ISO/IEC 27017~\cite{iso27017}, relacionados con actividades de monitoreo y gestión de registros de eventos.
 
 Adicionalmente, queda especificar el control A.12.3.1 de la \ISO/IEC 27001, que justifica el respaldo de información en una ubicación 
-separada, esto se evidencia gracias a él SIEM Wazuh, debido a que cuenta con un servicio denominado Snapshot Lifecycle Management(SLM), 
+separada, esto se evidencia gracias a él \SIEM Wazuh, debido a que cuenta con un servicio denominado Snapshot Lifecycle Management(SLM), 
 este se encarga de generar las snapshots de los eventos y registros que Wazuh obtenga de agentes o de fuentes externas, dichas snapshots 
 pueden ajustarse a las necesidades del usuario según con qué frecuencia requiera los guardados de los registros y eventos, posteriormente 
-estas snapshots pasan por una VLAN que viaja a la NAS del GRID donde se almacenan en frío, al ser un repositorio donde se guardan los 
+estas snapshots pasan por una VLAN que viaja a la NAS del \GRID\ donde se almacenan en frío, al ser un repositorio donde se guardan los 
 eventos y registros, Wazuh podrá acceder a él de ser necesario para restaurarlos mediante el servicio de restauración de snapshots, según 
 el caso que se presente.
 
@@ -216,7 +216,7 @@ central de Wazuh.
 
 De esta forma, se establece un esquema de respuesta activa, monitoreo continuo y correlación de eventos que fortalece la continuidad, 
 disponibilidad y trazabilidad de los servicios de la infraestructura. La interacción coordinada entre Suricata y Wazuh contribuye 
-igualmente al fortalecimiento de los controles A.5.7 y A.5.24 de la ISO/IEC 27001~\cite{iso27001}, orientados a la inteligencia sobre 
+igualmente al fortalecimiento de los controles A.5.7 y A.5.24 de la \ISO/IEC 27001~\cite{iso27001}, orientados a la inteligencia sobre 
 amenazas y la gestión de incidentes de seguridad.
 
 \begin{figure}[H]
@@ -235,8 +235,8 @@ infraestructura. En esta vista se integran elementos pertenecientes a las capas 
 eventos y procesos generados por las funciones de autenticación, monitoreo, correlación y respuesta activa definidas dentro del modelo 
 propuesto.
 
-De manera complementaria, esta estructura fortalece los controles A.5.7 y A.8.16 de la ISO/IEC 27001~\cite{iso27001}, así como los 
-controles CLD 12.4.1 y CLD 12.4.5 de la ISO/IEC 27017~\cite{iso27017}, relacionados con inteligencia sobre amenazas, monitoreo continuo, 
+De manera complementaria, esta estructura fortalece los controles A.5.7 y A.8.16 de la \ISO/IEC 27001~\cite{iso27001}, así como los 
+controles CLD 12.4.1 y CLD 12.4.5 de la \ISO/IEC 27017~\cite{iso27017}, relacionados con inteligencia sobre amenazas, monitoreo continuo, 
 gestión de registros y supervisión de servicios cloud.
 
 Partiendo de lo anterior, el flujo inicia cuando un estudiante o docente requiere acceder a la LAN del \GRID. Para ello, es necesario 
@@ -424,7 +424,7 @@ utilizado, la arquitectura propuesta puede mantenerse funcional, debido a que su
 generar alertas, establecer mecanismos de protección perimetral y proporcionar capacidades de visualización y monitoreo sobre lo que 
 ocurre dentro de la infraestructura.
 
-Cabe resaltar que las fichas técnicas correspondientes al firewall UTM SonicWall NSA 6600 y al Switch Ruijie fueron presentadas 
+Cabe resaltar que las fichas técnicas correspondientes al firewall \UTM SonicWall NSA 6600 y al Switch Ruijie fueron presentadas 
 previamente en el Capítulo~\ref{cap:caracterizacionGRID}, debido a que estos dispositivos forman parte de la infraestructura física 
 existente del \GRID. Por esta razón, en el presente apartado únicamente se describen las tecnologías seleccionadas como resultado del 
 análisis \DAR, las cuales fueron incorporadas para fortalecer las capacidades de detección, monitoreo y correlación de eventos dentro de la 

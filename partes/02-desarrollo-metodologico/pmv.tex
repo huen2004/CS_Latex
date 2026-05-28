@@ -3,17 +3,17 @@
 
 El presente apartado describe la fase de implementación técnica de los controles de seguridad definidos dentro de la arquitectura de 
 defensa en profundidad propuesta. Este proceso de despliegue se desarrolló considerando lineamientos y controles asociados a los 
-estándares internacionales ISO/IEC 27001:2022 e ISO/IEC 27017:2015, permitiendo evidenciar la integración, disposición e interconexión de 
+estándares internacionales \ISO/IEC 27001:2022 e \ISO/IEC 27017:2015, permitiendo evidenciar la integración, disposición e interconexión de 
 las tecnologías seleccionadas dentro de la infraestructura implementada.
 
 
 Cabe resaltar que, con el propósito de validar funcionalmente la solución propuesta, se optó por el despliegue de la arquitectura dentro 
 de un entorno virtualizado local, permitiendo simular el comportamiento operativo y el flujo de tráfico de un escenario real. Asimismo, 
-debido a la indisponibilidad del dispositivo corporativo de Gestión Unificada de Amenazas (UTM) contemplado inicialmente, se integró una 
+debido a la indisponibilidad del dispositivo corporativo de Gestión Unificada de Amenazas (\UTM) contemplado inicialmente, se integró una 
 solución de código abierto orientada a cumplir funciones de firewall y enrutamiento perimetral dentro de la infraestructura implementada.
 
 De esta manera, el presente trabajo expone el aprovisionamiento e interconexión de los diferentes segmentos de red, así como la 
-integración de mecanismos asociados a firewall de próxima generación (NGFW), sistemas de detección de intrusiones (IDS) y plataformas de 
+integración de mecanismos asociados a firewall de próxima generación (\NGFW), sistemas de detección de intrusiones (\IDS) y plataformas de 
 Gestión de Información y Eventos de Seguridad (\SIEM) dentro del entorno diseñado.
 
 %######################################################################################################################################
@@ -106,7 +106,7 @@ abierto orientada a funciones específicas de seguridad, incluyendo tecnologías
 
 La Tabla~\ref{tab:vmcaracteristicas} presenta las características de hardware y software asociadas a cada máquina virtual implementada, 
 mientras que la Figura~\ref{fig:vmWare} muestra el entorno de virtualización configurado dentro de VMware. Asimismo, esta etapa contribuye 
-al cumplimiento del control A.5.31 de la norma ISO/IEC 27001:2022, relacionado con la separación y protección de entornos tecnológicos 
+al cumplimiento del control A.5.31 de la norma \ISO/IEC 27001:2022, relacionado con la separación y protección de entornos tecnológicos 
 mediante mecanismos de virtualización y aislamiento lógico.
 
 \begin{table}[H]
@@ -118,7 +118,7 @@ mediante mecanismos de virtualización y aislamiento lógico.
 	\hline
 	\textbf{Activo Tecnológico} & \textbf{Sistema Operativo Base} & \textbf{Memoria RAM} & \textbf{Procesadores (vCPU)} & \textbf{Almacenamiento} \\ \hline
 
-	Firewall (\textit{OpnSense}) & FreeBSD (Core) & 3 GB & 1 & 20 GB \\ \hline
+	Firewall (\textit{OPNsense}) & FreeBSD (Core) & 3 GB & 1 & 20 GB \\ \hline
 
 	Sensor IDPS (\textit{Suricata}) & Debian 13 (CLI) & 2 GB & 4 & 25 GB \\ \hline
 
@@ -142,7 +142,7 @@ propósito específico: \textit{vmnet0} (WAN) configurada en modo \textit{Bridge
 \textit{vmnet2} (SERVERS) igualmente en modo \textit{Host-Only} y \textit{vmnet3} (Mirror) configurada mediante un \textit{LAN Segment}. 
 Esta disposición permitió establecer un entorno segmentado y controlado para el despliegue de la arquitectura de defensa en profundidad.
 
-Asimismo, se deshabilitó el servicio DHCP nativo del hipervisor con el propósito de evitar asignaciones dinámicas de direcciones IP y 
+Asimismo, se deshabilitó el servicio \DHCP\ nativo del hipervisor con el propósito de evitar asignaciones dinámicas de direcciones IP y 
 mantener un control centralizado sobre el direccionamiento de red implementado dentro del laboratorio virtual. En este contexto, las 
 interfaces \textit{vmnet1} y \textit{vmnet2} fueron configuradas con las subredes 172.16.0.0/28 y 10.0.0.0/28, respectivamente, 
 permitiendo una segmentación lógica de la red y una capacidad máxima de 14 hosts por segmento. Esta decisión fue adoptada considerando las 
@@ -165,11 +165,11 @@ Figura~\ref{fig:topografia}.
 \end{figure}
 
 \noindent
-\subsection{Despliegue y Configuración del Firewall perimetral: OpnSense}
+\subsection{Despliegue y Configuración del Firewall perimetral: OPNsense}
 \noindent
 
 Una vez consolidada la infraestructura base dentro del hipervisor, se procedió con la integración del firewall perimetral como primera 
-capa de protección de la arquitectura de defensa en profundidad propuesta. Para este propósito, se seleccionó OpnSense como sistema 
+capa de protección de la arquitectura de defensa en profundidad propuesta. Para este propósito, se seleccionó OPNsense como sistema 
 operativo especializado para funciones de firewall y enrutamiento, actuando como el componente central encargado de la interconexión, 
 segmentación y control del tráfico entre las diferentes zonas de confianza del laboratorio virtual~\cite{OpnsenseManual2026}.
 
@@ -184,29 +184,29 @@ interfaces operan como puertas de enlace predeterminadas para sus respectivos se
 Figura~\ref{fig:fig3}, SERVERS que se muestra en la Figura~\ref{fig:fig4} y WAN que se muestra en la Figura~\ref{fig:fig5}. Permitiendo el 
 control y administración centralizada del tráfico dentro de la arquitectura propuesta.
 
-Asimismo, esta fase contribuye operativamente al cumplimiento del control A.8.22 de la norma ISO/IEC 27001:2022 y del control CLD.12.4.5 de 
-la ISO/IEC 27017:2015, relacionados con la segmentación lógica de redes, separación de entornos y monitoreo del tráfico dentro de 
+Asimismo, esta fase contribuye operativamente al cumplimiento del control A.8.22 de la norma \ISO/IEC 27001:2022 y del control CLD.12.4.5 de 
+la \ISO/IEC 27017:2015, relacionados con la segmentación lógica de redes, separación de entornos y monitoreo del tráfico dentro de 
 infraestructuras de computación en la nube.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{tablas-images/pmv/fig3.jpeg}
-	\caption{Interfaz LAN de OpnSense}\label{fig:fig3}
+	\caption{Interfaz LAN de OPNsense}\label{fig:fig3}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{tablas-images/pmv/fig4.jpeg}
-	\caption{Interfaz Servers de OpnSense}\label{fig:fig4}
+	\caption{Interfaz Servers de OPNsense}\label{fig:fig4}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{tablas-images/pmv/fig5.jpeg}
-	\caption{Interfaz WAN de OpnSense}\label{fig:fig5}
+	\caption{Interfaz WAN de OPNsense}\label{fig:fig5}
 \end{figure}
 
-Con el propósito de garantizar el aislamiento y control del entorno virtualizado, se habilitó el servicio DHCP nativo de OPNsense, 
+Con el propósito de garantizar el aislamiento y control del entorno virtualizado, se habilitó el servicio \DHCP\ nativo de OPNsense, 
 configurándolo estrictamente de acuerdo con las necesidades operativas del laboratorio. En este contexto, para la interfaz \textit{em1} 
 correspondiente al segmento LAN de gestión, se definió el rango de direcciones IP desde 172.16.0.2 hasta 172.16.0.14, mientras que para la 
 interfaz \textit{em2} asociada al segmento SERVERS de producción, se configuró el rango comprendido entre 10.0.0.2 y 10.0.0.14.
@@ -219,10 +219,10 @@ hacia la WAN, particularmente servicios HTTP, HTTPS y DNS, necesarios para proce
 De igual manera, se restringió de forma estricta cualquier comunicación o enrutamiento no autorizado entre el segmento de producción 
 (\textit{em2}), la red de gestión (\textit{em1}) y el sistema anfitrión físico, fortaleciendo así la segmentación lógica y el aislamiento 
 operativo de la infraestructura implementada. La distribución de direccionamiento IP se evidencia en la Figura~\ref{fig:fig6} y la 
-configuración del servicio DHCP se presenta en la Figura~\ref{fig:fig7}.
+configuración del servicio \DHCP\ se presenta en la Figura~\ref{fig:fig7}.
 
-Asimismo, esta etapa contribuye operativamente al cumplimiento del control A.8.22 de la norma ISO/IEC 27001:2022 y del control CLD.12.4.5 
-de la ISO/IEC 27017:2015, relacionados con segmentación de redes, control de comunicaciones y monitoreo del tráfico dentro de 
+Asimismo, esta etapa contribuye operativamente al cumplimiento del control A.8.22 de la norma \ISO/IEC 27001:2022 y del control CLD.12.4.5 
+de la \ISO/IEC 27017:2015, relacionados con segmentación de redes, control de comunicaciones y monitoreo del tráfico dentro de 
 infraestructuras de computación en la nube.
 
 \subsubsection{Evidencia de configuración de la interfaz bridge0 y la mirror}
@@ -239,7 +239,7 @@ infraestructuras de computación en la nube.
 	\caption{Configuración DHCP}\label{fig:fig7}
 \end{figure}
 
-Una vez configurado satisfactoriamente el servicio DHCP, se procedió con la definición de las reglas de filtrado del firewall, encargadas 
+Una vez configurado satisfactoriamente el servicio \DHCP\, se procedió con la definición de las reglas de filtrado del firewall, encargadas 
 de determinar el tratamiento del tráfico de red según cada interfaz implementada dentro del laboratorio virtual. Para este propósito, se 
 establecieron políticas específicas para cada segmento de red creado en la arquitectura, considerando las necesidades de conectividad, 
 segmentación y supervisión del entorno.
@@ -277,7 +277,7 @@ actualización y supervisión de los componentes desplegados en la arquitectura.
 	\caption{Reglas de firewall interfaz LAN}\label{fig:fig9}
 \end{figure}
 
-La interfaz \textit{Mirror} fue configurada como el punto de interconexión entre el firewall OpnSense y la máquina virtual destinada al 
+La interfaz \textit{Mirror} fue configurada como el punto de interconexión entre el firewall OPNsense y la máquina virtual destinada al 
 análisis de tráfico mediante el sensor \IDPS. Esta interfaz opera en modo promiscuo, permitiendo la recepción y captura del tráfico 
 duplicado proveniente del mecanismo de \textit{Port Mirroring} implementado dentro de la arquitectura.
 
@@ -305,7 +305,7 @@ componentes desplegados en el segmento de servidores. La configuración correspo
 \end{figure}
 
 Por último, la interfaz \textit{WAN} fue configurada como el punto de conexión hacia redes externas dentro del laboratorio virtual. Sobre 
-esta interfaz no se definieron reglas de acceso explícitas, debido a que OpnSense aplica de manera predeterminada una política de 
+esta interfaz no se definieron reglas de acceso explícitas, debido a que OPNsense aplica de manera predeterminada una política de 
 denegación total (\textit{Default Deny}), bloqueando cualquier intento de comunicación no autorizado, incluyendo tráfico asociado a 
 protocolos como ICMP.\@
 
@@ -319,7 +319,7 @@ comportamiento de la interfaz WAN se presentan en la Figura~\ref{fig:fig12}.
 	\caption{Reglas de firewall interfaz WAN}\label{fig:fig12}
 \end{figure}
 
-Es importante destacar que, sobre el sistema anfitrión, fue necesario realizar ajustes en las interfaces virtuales con el propósito de 
+Es importante destacar que, sobre el sistema anfitrión, fue necesario ejecutar ajustes en las interfaces virtuales con el propósito de 
 habilitar capacidades de conectividad y validación de tráfico dentro del laboratorio virtual. Estas modificaciones fueron aplicadas 
 específicamente sobre las interfaces \textit{vmnet1} y \textit{vmnet2}, permitiendo ejecutar pruebas de conectividad, como solicitudes 
 ICMP (\textit{ping}), y verificar el correcto tránsito de tráfico entre los diferentes segmentos de red implementados en la arquitectura.
@@ -336,13 +336,13 @@ nmcli connection up vmnet2
 
 \end{lstlisting}
 
-El primer comando permite configurar la interfaz de red para obtener automáticamente una dirección IP mediante el servicio DHCP 
-administrado por OpnSense, mientras que el segundo comando habilita y reinicia la interfaz virtual correspondiente, asegurando la 
+El primer comando permite configurar la interfaz de red para obtener automáticamente una dirección IP mediante el servicio \DHCP\ 
+administrado por OPNsense, mientras que el segundo comando habilita y reinicia la interfaz virtual correspondiente, asegurando la 
 aplicación inmediata de la configuración realizada dentro del sistema anfitrión.
 
 Posteriormente, para habilitar capacidades de auditoría pasiva y monitoreo de tráfico, fue necesario resolver las limitaciones nativas de 
 VMware Workstation relacionadas con el manejo de interfaces en modo promiscuo. Para ello, se implementó un puente lógico (\textit{Bridge}) 
-dentro de OpnSense, utilizando la interfaz \textit{em3} configurada sin direccionamiento IP y operando en modo promiscuo mediante el uso 
+dentro de OPNsense, utilizando la interfaz \textit{em3} configurada sin direccionamiento IP y operando en modo promiscuo mediante el uso 
 del segmento virtual \textit{LAN Segment} proporcionado por VMware.
 
 Esta configuración permitió clonar de manera asíncrona el tráfico que transita por la red LAN y redirigirlo hacia el puerto espejo 
@@ -350,8 +350,8 @@ Esta configuración permitió clonar de manera asíncrona el tráfico que transi
 tráfico. De esta manera, el monitoreo puede ejecutarse sin interferir directamente sobre el flujo principal de producción del entorno 
 virtualizado.
 
-Con este despliegue se materializan operativamente el control A.8.22 de la norma ISO/IEC 27001:2022, relacionado con la segregación y 
-segmentación de redes, y el control CLD.12.4.5 de la ISO/IEC 27017:2015, asociado al monitoreo y supervisión del tráfico dentro de 
+Con este despliegue se materializan operativamente el control A.8.22 de la norma \ISO/IEC 27001:2022, relacionado con la segregación y 
+segmentación de redes, y el control CLD.12.4.5 de la \ISO/IEC 27017:2015, asociado al monitoreo y supervisión del tráfico dentro de 
 infraestructuras de computación en la nube. El comando utilizado para resolver las restricciones de permisos impuestas por VMware durante 
 la configuración de interfaces en modo promiscuo se presenta a continuación.
 
@@ -363,7 +363,7 @@ la configuración de interfaces en modo promiscuo se presenta a continuación.
 \end{lstlisting}
 
 En la Figura~\ref{fig:fig13} se presenta la configuración realizada para la implementación del mecanismo de \textit{Port Mirroring}, así 
-como la definición de la interfaz encargada de recibir la copia del tráfico que transita por el puente lógico \textit{Bridge0} de OpnSense. 
+como la definición de la interfaz encargada de recibir la copia del tráfico que transita por el puente lógico \textit{Bridge0} de OPNsense. 
 Este puente fue configurado integrando las interfaces correspondientes a los segmentos LAN y SERVERS, permitiendo supervisar el tráfico de 
 entrada y salida, así como la comunicación entre máquinas pertenecientes al mismo segmento y entre diferentes segmentos de red.
 
@@ -374,7 +374,7 @@ detección de amenazas.
 Asimismo, la interfaz \textit{Bridge0}, que se muestra en la Figura~\ref{fig:fig14}, actúa de manera similar a un switch virtual, 
 permitiendo capturar el tráfico que circula entre las interfaces integradas y generar una copia destinada a la interfaz \textit{em3}, 
 configurada como puerto SPAN dentro del mecanismo de monitoreo. Debido a su funcionamiento interno, no fue necesario configurar el puente 
-en modo promiscuo, ya que la replicación del tráfico se realiza de forma nativa dentro del entorno virtualizado. La configuración 
+en modo promiscuo, ya que la replicación del tráfico se realizó de forma nativa dentro del entorno virtualizado. La configuración 
 correspondiente al puente lógico, se evidencia en la Figura~\ref{fig:fig15}.
 
 \begin{figure}[H]
@@ -395,18 +395,18 @@ correspondiente al puente lógico, se evidencia en la Figura~\ref{fig:fig15}.
 	\caption{Edición de la interfaz Bridge0}\label{fig:fig15}
 \end{figure}
 
-\subsection{Inspección profunda y detección de amenazas: IDPS Suricata}
+\subsection{Inspección profunda y detección de amenazas: \IDPS\ Suricata}
 \noindent
 
 En este apartado se continúa con la implementación de la segunda capa de la arquitectura de defensa en profundidad, enfocada en la 
 auditoría y supervisión del tráfico interno mediante el despliegue del Sistema de Detección y Prevención de Intrusiones (\IDPS) 
 Suricata~\cite{SuricataGuide2025}, implementado sobre un sistema operativo Debian 13 en modo CLI.\@ El objetivo principal de este 
-componente consiste en realizar procesos de inspección profunda de paquetes (\textit{Deep Packet Inspection}, DPI) sobre el tráfico 
-clonado proveniente del firewall OpnSense, permitiendo identificar anomalías, eventos sospechosos y posibles patrones de ataque dirigidos 
+componente consiste en llevar a cabo procesos de inspección profunda de paquetes (\textit{Deep Packet Inspection}, DPI) sobre el tráfico 
+clonado proveniente del firewall OPNsense, permitiendo identificar anomalías, eventos sospechosos y posibles patrones de ataque dirigidos 
 a la infraestructura tecnológica.
 
 Una vez preparado el entorno virtual y establecida la conectividad mediante las interfaces administradas por OPNsense, se procedió con el 
-acceso a la máquina virtual destinada al \IDPS\ para realizar la instalación nativa del motor de detección y su posterior configuración 
+acceso a la máquina virtual destinada al \IDPS\ para ejecutar la instalación nativa del motor de detección y su posterior configuración 
 estructural dentro del laboratorio virtual. Los comandos utilizados para este proceso se presentan a continuación.
 
 \begin{lstlisting}[language=bash, caption={Instalación del motor IDPS Suricata en Debian 13}, label={lst:suricata_install}]
@@ -419,7 +419,7 @@ Una vez instalada la herramienta, se procedió con la modificación del archivo 
 \textit{suricata.yaml}, ubicado en la ruta \texttt{/etc/suricata/suricata.yaml}. Dentro de este archivo se ajustaron parámetros 
 fundamentales para el funcionamiento del \IDPS\ dentro del laboratorio virtual, este archivo se muestra en la Figura~\ref{fig:fig16}.
 
-Entre las configuraciones realizadas, se definió la variable \texttt{\$HOME\_NET}, utilizada para especificar los segmentos de red 
+Entre las configuraciones a efectuar, se definió la variable \texttt{\$HOME\_NET}, utilizada para especificar los segmentos de red 
 internos implementados en la arquitectura propuesta. Asimismo, dentro de la sección \textit{AF\_PACKET}, evidenciado en la 
 Figura~\ref{fig:fig17}, se configuró la interfaz encargada de recibir el tráfico clonado proveniente del firewall OPNsense mediante el 
 mecanismo de \textit{Port Mirroring}. Para este propósito, se utilizó la interfaz \texttt{ens36}, correspondiente al segmento SPAN 
@@ -563,7 +563,7 @@ De esta manera, la integración del \IDPS\ contribuye operativamente al cumplimi
 \ISO/IEC 27001:2022, relacionados con inteligencia de amenazas, planificación y preparación para la gestión de incidentes de seguridad de 
 la información, así como monitoreo y supervisión de actividades dentro de entornos tecnológicos.
 
-\section{Centralización y gestión de eventos: SIEM Wazuh}
+\section{Centralización y gestión de eventos: \SIEM Wazuh}
 \noindent
 
 La presente fase corresponde a la última capa de la arquitectura de defensa en profundidad y se consolidó mediante la implementación de la 
@@ -594,7 +594,7 @@ sudo systemctl start wazuh-dashboard.service
 
 \end{lstlisting}
 
-Una vez instalada la herramienta SIEM Wazuh, se proporciona un usuario y una contraseña únicos, por lo que se recomienda almacenarlos de 
+Una vez instalada la herramienta \SIEM Wazuh, se proporciona un usuario y una contraseña únicos, por lo que se recomienda almacenarlos de 
 forma inmediata y segura. Esto se debe a que, si posteriormente se requiere modificar dichas credenciales, pueden presentarse problemas de 
 autenticación que afecten el funcionamiento óptimo de la herramienta. Asimismo, se recomienda reiniciar simultáneamente los tres servicios 
 principales cada vez que se actualicen las configuraciones de los archivos correspondientes.
@@ -633,7 +633,7 @@ WAZUH_AGENT_NAME='Example' dpkg -i ./wazuh-agent_4.14.5-1_amd64.deb
 \end{lstlisting}
 
 En la Figura~\ref{fig:fig26} se observa la sección donde se encuentran desplegados los tres agentes actualmente 
-configurados en la infraestructura: OpnSense, el sistema IDPS Suricata y la máquina objetivo.
+configurados en la infraestructura: OPNsense, el sistema \IDPS\ Suricata y la máquina objetivo.
 
 \begin{figure}[H]
 	\centering
@@ -645,13 +645,13 @@ Una vez instalado cada agente en su respectiva máquina, se dispone de un archiv
 ubicado en la ruta \texttt{/var/ossec/etc/ossec.conf}. Este archivo tiene como propósito definir tanto la configuración del \textit{wazuh-
 manager} como las actividades y monitoreos específicos que los agentes deben ejecutar en cada dispositivo.
 
-En el caso de OpnSense, la instalación del agente Wazuh se realiza mediante un \textit{plugin}, por lo que únicamente es necesario 
+En el caso de OPNsense, la instalación del agente Wazuh se realizó mediante un \textit{plugin}, por lo que únicamente es necesario 
 configurarlo desde la interfaz web del sistema, quedando posteriormente habilitado como un servicio automático. Asimismo, es importante 
 resaltar que el agente Wazuh debe tener acceso a los registros generados por el firewall para permitir la correcta correlación de eventos y 
 el monitoreo centralizado de seguridad.
 
 En la Figura~\ref{fig:fig27} se evidencia la disponibilidad del \textit{plugin} y en la Figura~\ref{fig:fig28} se mmuestra la 
-configuración correspondiente realizada en OpnSense.
+configuración correspondiente realizada en OPNsense.
 
 \begin{figure}[H]
 	\centering
@@ -662,7 +662,7 @@ configuración correspondiente realizada en OpnSense.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.3]{tablas-images/pmv/fig28.jpeg}
-	\caption{Configuración en OpnSense}\label{fig:fig28}
+	\caption{Configuración en OPNsense}\label{fig:fig28}
 \end{figure}
 
 En la máquina objetivo, al instalar el agente de Wazuh, se genera automáticamente una carpeta en la ruta previamente especificada, desde la 
@@ -685,7 +685,7 @@ eventos son almacenados principalmente en el archivo \texttt{eve.json}, consider
 diagnóstico y monitoreo continuo del entorno de seguridad.
 
 Debido a la relevancia de esta información, se configura explícitamente el agente de Wazuh para que lea el contenido del archivo 
-\texttt{eve.json} y envíe los registros al \textit{wazuh-manager}, permitiendo posteriormente realizar procesos de análisis, 
+\texttt{eve.json} y envíe los registros al \textit{wazuh-manager}, permitiendo posteriormente ejecutar procesos de análisis, 
 visualización y correlación de eventos de seguridad, evidencia que se muestra en la Figura~\ref{fig:fig30}.
 
 Adicionalmente, no solo es necesario configurar el agente de Wazuh para monitorear este archivo, sino también ajustar el archivo 
@@ -711,7 +711,7 @@ Figura~\ref{fig:fig31} se evidencia la configuración realizada en ambos archivo
 	\caption{Configuración agente wazuh en suricata segunda parte}\label{fig:fig32}
 \end{figure}
 
-En el apartado de monitoreo, la herramienta SIEM Wazuh posee la capacidad de generar diferentes vistas e integrarlas dentro de su 
+En el apartado de monitoreo, la herramienta \SIEM Wazuh posee la capacidad de generar diferentes vistas e integrarlas dentro de su 
 \textit{dashboard} principal, permitiendo visualizar de manera centralizada los registros de eventos generados tanto en las máquinas 
 monitoreadas como en el tráfico de red analizado.
 
@@ -782,12 +782,12 @@ grupo GRID. En la Figura~\ref{fig:fig38} se presenta el \textit{dashboard} con l
 \end{figure}
 
 Es importante recalcar que este \textit{dashboard} fue personalizado de acuerdo con los requerimientos específicos de la infraestructura 
-analizada. Sin embargo, la herramienta SIEM Wazuh también dispone de capacidades orientadas al cumplimiento y visualización de registros 
-basados en estándares reconocidos de seguridad, como el NIST SP 800-53~\cite{NIST80053r5}.
+analizada. Sin embargo, la herramienta \SIEM Wazuh también dispone de capacidades orientadas al cumplimiento y visualización de registros 
+basados en estándares reconocidos de seguridad, como el \NISTCSF\ SP 800-53~\cite{NIST80053r5}.
 
 En la Figura~\ref{fig:fig39} se presenta la visualización del \textit{dashboard} bajo este estándar de seguridad, 
 permitiendo un enfoque orientado al monitoreo y gestión de controles de seguridad alineados con las directrices establecidas por el 
-National Institute of Standards and Technology (NIST).
+National Institute of Standards and Technology (\NISTCSF).
 
 \begin{figure}[H]
 	\centering
@@ -795,14 +795,14 @@ National Institute of Standards and Technology (NIST).
 	\caption{Dashboard bajo estándar NIST 800-53}\label{fig:fig39}
 \end{figure}
 
-Por último, se implementó el mecanismo de respuesta activa configurado desde la herramienta SIEM Wazuh hacia el firewall OpnSense, con el 
+Por último, se implementó el mecanismo de respuesta activa configurado desde la herramienta \SIEM Wazuh hacia el firewall OPNsense, con el 
 propósito de aplicar medidas de bloqueo sobre cualquier dirección IP que intente ejecutar o se encuentre realizando actividades maliciosas 
 detectadas tanto por el agente de Wazuh como por el agente asociado a Suricata. En este punto se materializa la correlación de eventos, ya 
 que Wazuh analiza las trazas y registros proporcionados por los agentes desplegados y, con base en las reglas y condiciones configuradas, 
 toma decisiones automáticas orientadas a la mitigación de amenazas.
 
-El primer paso consistió en configurar la comunicación entre Wazuh y OpnSense. Gracias al \textit{plugin} del agente Wazuh previamente 
-instalado y configurado en OpnSense, se facilita la interacción entre ambas máquinas, siendo el servidor Wazuh quien emite las 
+El primer paso consistió en configurar la comunicación entre Wazuh y OPNsense. Gracias al \textit{plugin} del agente Wazuh previamente 
+instalado y configurado en OPNsense, se facilita la interacción entre ambas máquinas, siendo el servidor Wazuh quien emite las 
 instrucciones mediante el agente desplegado en el firewall.
 
 En la Figura~\ref{fig:fig40} se evidencia la configuración realizada para habilitar el proceso de respuesta activa del agente Wazuh. 
@@ -818,16 +818,16 @@ asociado a direcciones IP identificadas como potencialmente maliciosas.
 
 Posteriormente a la adecuación de la respuesta activa en el firewall, es necesario configurar el \textit{wazuh-manager} mediante el 
 archivo \texttt{ossec.conf}, encargado de administrar y procesar todos los registros que ingresan y salen de la plataforma. En esta 
-configuración se habilita el comando denominado \texttt{firewall-drop}, el cual permite que el agente de OpnSense identificado con el ID 
+configuración se habilita el comando denominado \texttt{firewall-drop}, el cual permite que el agente de OPNsense identificado con el ID 
 \texttt{001}, en conjunto con las reglas generadas por Suricata, emita la orden al firewall para bloquear direcciones IP sospechosas 
 durante un tiempo estimado de 300 segundos.
 
 Este mecanismo tiene como finalidad incluir temporalmente al atacante dentro de una lista negra alojada en la tabla de direcciones IP 
-generada por el alias del agente Wazuh, la cual es interpretada por OpnSense para identificar las direcciones IP que deben ser bloqueadas 
+generada por el alias del agente Wazuh, la cual es interpretada por OPNsense para identificar las direcciones IP que deben ser bloqueadas 
 automáticamente.
 
 En la Figura~\ref{fig:fig41} se evidencia la configuración realizada en el archivo \texttt{ossec.conf} para habilitar 
-la respuesta activa desde el \textit{wazuh-manager}. Asimismo, es importante recalcar que, una vez aplicada esta configuración, resulta 
+la respuesta activa desde el \textit{wazuh-manager}. Asimismo, es cabe recalcar que, una vez aplicada esta configuración, resulta 
 indispensable reiniciar el servicio correspondiente para que los cambios surtan efecto correctamente.
 
 \begin{figure}[H]
@@ -836,9 +836,9 @@ indispensable reiniciar el servicio correspondiente para que los cambios surtan 
 	\caption{Configuración de respuesta activa en archivo ossec.conf}\label{fig:fig41}
 \end{figure}
 
-La implementación de la herramienta de código abierto SIEM Wazuh permitió el establecimiento de procesos de monitoreo continuo bajo el 
-estándar NIST SP 800-53~\cite{NIST80053r5}, análisis forense, correlación de eventos y respuesta activa. Por consiguiente, se da 
-cumplimiento práctico a los controles A.5.7, A.8.16, A.5.24 y A.5.31 de la ISO/IEC 27001:2022, así como a los controles CLD 12.4.1 y 
+La implementación de la herramienta de código abierto \SIEM Wazuh permitió el establecimiento de procesos de monitoreo continuo bajo el 
+estándar \NISTCSF\ SP 800-53~\cite{NIST80053r5}, análisis forense, correlación de eventos y respuesta activa. Por consiguiente, se da 
+cumplimiento práctico a los controles A.5.7, A.8.16, A.5.24 y A.5.31 de la \ISO/IEC 27001:2022, así como a los controles CLD 12.4.1 y 
 CLD 12.4.5 de la \ISO/IEC 27017:2015.
 
 Finalmente, luego de implementar los aspectos de seguridad mediante una arquitectura de defensa en profundidad, así como de comprender 
@@ -856,9 +856,9 @@ activa, se presenta en la Figura 32 un diagrama que expone de forma gráfica la 
 
 La implementación de este laboratorio validó la efectividad de una arquitectura de Defensa en Profundidad mediante la integración de las 
 herramientas de código abierto OPNsense, Suricata y Wazuh. El firewall perimetral garantizó el control de acceso y el aislamiento de los 
-segmentos de red, mientras que el IDPS, configurado en modo promiscuo a través de la técnica de \textit{port mirroring}, permitió realizar 
+segmentos de red, mientras que el \IDPS, configurado en modo promiscuo a través de la técnica de \textit{port mirroring}, permitió realizar 
 una inspección profunda del tráfico sin degradar el rendimiento de los servidores. Toda esta telemetría de red se centralizó de forma 
-transparente en el SIEM mediante el análisis estructurado del archivo \textit{eve.json}, eliminando los silos de información en la 
+transparente en el \SIEM mediante el análisis estructurado del archivo \textit{eve.json}, eliminando los silos de información en la 
 recolección de registros de eventos.
 
 A nivel operativo, el proyecto permitió pasar de un esquema de monitoreo pasivo a un modelo de mitigación dinámica gracias a la 
@@ -869,8 +869,8 @@ como Shorewall dentro de interfaces de estado modernas, permitiendo establecer c
 seguro, organizado y fácil de auditar.
 
 Finalmente, el entorno virtualizado funcionó como un escenario práctico para materializar los requerimientos de gobernanza y seguridad del 
-Grupo GRID en configuraciones técnicas reales. El diseño del laboratorio, el análisis de amenazas basado en firmas globales y la 
+Grupo \GRID\ en configuraciones técnicas reales. El diseño del laboratorio, el análisis de amenazas basado en firmas globales y la 
 centralización de eventos de seguridad permitieron dar cumplimiento técnico y demostrable a los controles A.5.7, A.5.24, A.5.31, A.8.16, 
-A.8.6 y A.8.22 de la norma ISO/IEC 27001:2022, así como a los controles CLD 12.4.1 y CLD 12.4.5 de la ISO/IEC 27017:2015, consolidando una 
+A.8.6 y A.8.22 de la norma \ISO/IEC 27001:2022, así como a los controles CLD 12.4.1 y CLD 12.4.5 de la \ISO/IEC 27017:2015, consolidando una 
 infraestructura alineada con estándares internacionales de seguridad de la información.
 

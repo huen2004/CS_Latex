@@ -14,10 +14,10 @@ Ingeniería de Sistemas y Computación, estableciendo su relación con los proce
 recursos tecnológicos. Asimismo, se determinó la necesidad de fortalecer los mecanismos de supervisión, monitoreo y gestión de eventos de 
 seguridad dentro de la infraestructura, con el propósito de mejorar la trazabilidad y visibilidad operacional del entorno.
 
-A partir de los hallazgos obtenidos en el estudio de Mapeo Sistemático de Literatura (\SMS) y del análisis DAR realizado sobre diferentes 
+A partir de los hallazgos obtenidos en el estudio de Mapeo Sistemático de Literatura (\SMS) y del análisis \DAR\ realizado sobre diferentes 
 tecnologías de seguridad, se seleccionaron herramientas orientadas a fortalecer las capacidades de detección, correlación y respuesta ante 
 incidentes dentro de la infraestructura cloud del \GRID. Como resultado, se definió una arquitectura basada en la integración de un 
-firewall NGFW SonicWall NSA 6600, el IDPS Suricata y el SIEM Wazuh, estableciendo un modelo interoperable alineado con controles de las 
+firewall \NGFW\ SonicWall NSA 6600, el \IDPS\ Suricata y el \SIEM\ Wazuh, estableciendo un modelo interoperable alineado con controles de las 
 normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
 \section{Revisión sistemática de la literatura}
@@ -33,13 +33,13 @@ durante el periodo comprendido entre 2022 y 2025, identificando un enfoque recur
 monitoreo continuo, correlación de eventos, protección perimetral y supervisión de infraestructuras distribuidas. Asimismo, los estudios 
 seleccionados mostraron una amplia adopción de estándares y buenas prácticas alineadas con las normas \ISO/IEC 27001 e \ISO/IEC 27017.
 
-De igual forma, el SMS permitió establecer una estructura taxonómica orientada a clasificar los estudios según su tipo de contribución, 
+De igual forma, el \SMS permitió establecer una estructura taxonómica orientada a clasificar los estudios según su tipo de contribución, 
 enfoque de seguridad y contexto de aplicación, proporcionando una visión integral sobre las tendencias actuales en arquitecturas de 
 seguridad para entornos cloud. Esta clasificación facilitó la identificación de patrones tecnológicos y metodológicos presentes en la 
 literatura, así como la relación existente entre monitoreo, detección de amenazas, gestión de eventos y protección de activos de 
 información dentro de infraestructuras institucionales y académicas.
 
-\section{Análisis de Decisiones y Resolución (DAR)}
+\section{Análisis de Decisiones y Resolución (\DAR)}
 \noindent
 
 La aplicación de la metodología \DAR\ (\textit{Decision Analysis and Resolution}) del modelo \CMMI\ permitió evaluar de manera estructurada 
@@ -79,22 +79,22 @@ componentes y la trazabilidad operacional existente entre los diferentes element
 \section{Implementación del Prototipo de Arquitectura de defensa en profundidad}
 \noindent
 
-La materialización de la arquitectura propuesta se realizó mediante un PMV o prototipo funcional queintegra todos los componentes
+La materialización de la arquitectura propuesta se realizó mediante un \PMV o prototipo funcional queintegra todos los componentes
 seleccionados y diseñados para la debida realización de esta sección.
 
-\subsection{Implementación del Firewall Perimetral Opnsense}
+\subsection{Implementación del Firewall Perimetral OPNsense}
 
-La implementación del firewall Opnsense permitió establecer mecanismos de segmentación lógica, control de acceso y filtrado del tráfico 
+La implementación del firewall OPNsense permitió establecer mecanismos de segmentación lógica, control de acceso y filtrado del tráfico 
 dentro del laboratorio virtual. Mediante la configuración de interfaces virtualizadas independientes y reglas restrictivas de comunicación, 
 se logró aislar los diferentes segmentos de red correspondientes a administración, monitoreo y servidores.
 
 Asimismo, el despliegue de reglas de firewall sobre la interfaz WAN permitió establecer capacidades de control perimetral y soporte para 
-procesos de respuesta activa provenientes de la herramienta SIEM Wazuh. La implementación de aliases dinámicos permitió automatizar 
+procesos de respuesta activa provenientes de la herramienta \SIEM\ Wazuh. La implementación de aliases dinámicos permitió automatizar 
 procesos de bloqueo temporal sobre direcciones IP identificadas como potencialmente maliciosas.
 
-\subsection{Implementación del Sistema IDPS Suricata}
+\subsection{Implementación del Sistema \IDPS\ Suricata}
 
-La implementación del sistema IDPS Suricata permitió realizar inspección profunda del tráfico de red mediante técnicas de port mirroring 
+La implementación del sistema \IDPS\ Suricata permitió realizar inspección profunda del tráfico de red mediante técnicas de port mirroring 
 configuradas sobre la infraestructura virtualizada. Esto posibilitó analizar paquetes en tiempo real sin afectar el desempeño operativo de 
 las máquinas desplegadas.
 
@@ -102,10 +102,10 @@ A partir de la utilización de firmas de detección y reglas de inspección, se 
 potencialmente malicioso y eventos asociados a amenazas de red. Los registros generados en el archivo \textit{eve.json} fueron 
 posteriormente centralizados por Wazuh para su correlación y monitoreo continuo.
 
-\subsection{Implementación de la Plataforma SIEM Wazuh}
+\subsection{Implementación de la Plataforma \SIEM\ Wazuh}
 
-La implementación de la plataforma SIEM Wazuh permitió centralizar registros provenientes de los agentes desplegados sobre las diferentes 
-máquinas del laboratorio, incluyendo el firewall OPNsense, el IDPS Suricata y la máquina objetivo.
+La implementación de la plataforma \SIEM\ Wazuh permitió centralizar registros provenientes de los agentes desplegados sobre las diferentes 
+máquinas del laboratorio, incluyendo el firewall OPNsense, el \IDPS\ Suricata y la máquina objetivo.
 
 Mediante el uso de agentes y configuraciones personalizadas en el archivo \textit{ossec.conf}, se habilitaron capacidades de monitoreo 
 continuo, clasificación de alertas, correlación de eventos y visualización centralizada de incidentes de seguridad.
@@ -125,19 +125,19 @@ La implementación exitosa del prototipo permitió fortalecer las capacidades de
 \GRID\ mediante la integración de tecnologías de código abierto orientadas a la protección de infraestructuras de computación en la nube.
 
 \begin{itemize}
-    \item \textbf{Centralización de eventos de seguridad:} Consolidación de registros provenientes del firewall, el IDPS y las máquinas monitoreadas mediante la plataforma SIEM Wazuh.
+    \item \textbf{Centralización de eventos de seguridad:} Consolidación de registros provenientes del firewall, el \IDPS\ y las máquinas monitoreadas mediante la plataforma \SIEM\ Wazuh.
 
     \item \textbf{Capacidades de monitoreo continuo:} Implementación de dashboards personalizados para visualización de alertas, análisis de severidad y seguimiento de eventos de seguridad en tiempo real.
 
-    \item \textbf{Inspección profunda de tráfico:} Despliegue del sistema IDPS Suricata mediante técnicas de port mirroring para análisis de tráfico interno y externo sin afectar el rendimiento de la infraestructura.
+    \item \textbf{Inspección profunda de tráfico:} Despliegue del sistema \IDPS\ Suricata mediante técnicas de port mirroring para análisis de tráfico interno y externo sin afectar el rendimiento de la infraestructura.
 
-    \item \textbf{Respuesta activa automatizada:} Integración entre Wazuh y OpnSense para aplicar bloqueos dinámicos sobre direcciones IP sospechosas detectadas por correlación de eventos.
+    \item \textbf{Respuesta activa automatizada:} Integración entre Wazuh y OPNsense para aplicar bloqueos dinámicos sobre direcciones IP sospechosas detectadas por correlación de eventos.
 
     \item \textbf{Segmentación lógica de red:} Separación de entornos de administración, monitoreo y servicios mediante interfaces virtualizadas y políticas restrictivas de firewall.
 
     \item \textbf{Correlación de eventos de seguridad:} Relación automática entre alertas provenientes de diferentes fuentes para mejorar la detección de amenazas y el análisis de incidentes.
 
-    \item \textbf{Cumplimiento de estándares internacionales:} Implementación alineada con controles de las normas ISO/IEC 27001:2022, ISO/IEC 27017:2015 y capacidades de monitoreo bajo NIST SP 800-53.
+    \item \textbf{Cumplimiento de estándares internacionales:} Implementación alineada con controles de las normas \ISO/IEC 27001:2022, \ISO/IEC 27017:2015 y capacidades de monitoreo bajo \NISTCSF\ SP 800-53.
 
     \item \textbf{Escalabilidad del entorno:} Arquitectura virtualizada preparada para incorporar nuevas máquinas, agentes y mecanismos de seguridad sin afectar la operación del laboratorio.
 \end{itemize}
@@ -148,13 +148,13 @@ La implementación exitosa del prototipo permitió fortalecer las capacidades de
 Este proyecto genera múltiples contribuciones orientadas al fortalecimiento de la seguridad en infraestructuras de computación en la nube dentro de contextos académicos e institucionales:
 
 \begin{itemize}
-	\item \textbf{Metodológica}: Integración de un proceso reproducible compuesto por caracterización organizacional, mapeo sistemático de literatura, análisis DAR y modelado arquitectónico basado en TOGAF y ArchiMate.
+	\item \textbf{Metodológica}: Integración de un proceso reproducible compuesto por caracterización organizacional, mapeo sistemático de literatura, análisis \DAR\ y modelado arquitectónico basado en TOGAF y ArchiMate.
 	
 	\item \textbf{Técnica}: Diseño de una arquitectura de defensa en profundidad orientada a la supervisión, correlación y respuesta ante eventos de seguridad mediante tecnologías como SonicWall NSA 6600, Suricata y Wazuh.
 	
 	\item \textbf{Académica}: Consolidación y documentación de referentes metodológicos y tecnológicos relacionados con seguridad en la nube, proporcionando trazabilidad y soporte científico para futuras investigaciones.
 	
-	\item \textbf{Institucional}: Fortalecimiento de las capacidades de monitoreo, protección y gestión de eventos de seguridad dentro de la infraestructura del grupo \GRID, alineando la propuesta con controles de la ISO/IEC 27001 e ISO/IEC 27017.
+	\item \textbf{Institucional}: Fortalecimiento de las capacidades de monitoreo, protección y gestión de eventos de seguridad dentro de la infraestructura del grupo \GRID, alineando la propuesta con controles de la \ISO/IEC 27001 e \ISO/IEC 27017.
 \end{itemize}
 
 Los resultados demuestran que la incorporación de los aspectos de seguridad seleccionados para la infraestructura del Grupo \GRID\ 
