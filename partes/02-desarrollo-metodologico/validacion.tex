@@ -156,7 +156,6 @@ actividad maliciosa.
 
 \subsubsection{Objetivo de la prueba}
 \noindent
-
 Verificar que el sistema de defensa en profundidad implementado, compuesto por las herramientas de código abierto Wazuh, Suricata y 
 OPNsense, detecte un escaneo de reconocimiento proveniente desde la red WAN, genere alertas asociadas a la firma identificada y ejecute la 
 respuesta activa mediante el bloqueo perimetral automatizado una vez superado el umbral de tolerancia establecido. Dicho umbral se activa 
@@ -381,7 +380,7 @@ la prueba.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-11.png}
+	\includegraphics[scale=0.4]{tablas-images/pruebas/vali-11.png}
 	\caption{Diccionario de contraseñas Personalizado para Hydra}\label{fig11}
 \end{figure}
 
@@ -467,32 +466,368 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 \subsection{Caso de Prueba 3 (CP-03) Reconocimiento de vulnerabilidades Nikto}
 \noindent
 
+En un ejercicio de seguridad ofensiva, el escaneo de aplicaciones web representa uno de los vectores iniciales más comunes. Los 
+servidores web exponen superficies de ataque amplias que pueden ser aprovechadas por un atacante durante las primeras etapas de 
+reconocimiento~\cite{MITREATTACK2026}. En este caso, se empleó una técnica de reconocimiento de vulnerabilidades mediante un escaneo web 
+activo contra la aplicación \textit{Damn Vulnerable Web Application} (DVWA), desplegada en la máquina objetivo, con el propósito de 
+verificar que la arquitectura de defensa en profundidad implementada es capaz de detectar, generar alertas y mitigar este tipo de 
+actividad de forma automatizada.
+
 \subsubsection{Objetivo de la prueba}
 \noindent
+
+Validar la capacidad de detección y respuesta de la arquitectura de defensa en profundidad implementada ante un escaneo web activo 
+ejecutado desde la máquina atacante hacia la máquina objetivo. Para ello, se busca verificar que Suricata identifique los patrones de 
+tráfico HTTP asociados al escáner, que Wazuh procese y correlacione los eventos generados asignando el nivel de severidad correspondiente, 
+y que el mecanismo de respuesta activa ejecute el bloqueo automatizado de la dirección IP atacante en OPNsense, completando el ciclo de 
+detección, correlación y contención definido en la metodología.
 
 \subsubsection{Herramienta Utilizada}
 \noindent
 
+Nikto es un escáner de vulnerabilidades web de código abierto desarrollado en Perl y mantenido activamente desde 2001. La herramienta 
+ejecuta más de 6\,700 pruebas automatizadas sobre el servidor objetivo, incluyendo la detección de archivos y directorios sensibles, la 
+identificación de versiones de software con vulnerabilidades conocidas, el análisis de cabeceras HTTP inseguras y la detección de 
+configuraciones incorrectas~\cite{NiktoDocs}. Debido a su naturaleza altamente visible y a la ausencia de mecanismos de evasión 
+habilitados por defecto, Nikto es ampliamente utilizado en auditorías y evaluaciones de seguridad de aplicaciones web. A continuación, se 
+presenta el comando utilizado para la ejecución de esta prueba:
+
+\begin{lstlisting}[language=bash, caption={Comando utilizado para la ejecución de Nikto}, label={lst:nikto}]
+
+nikto -h http://192.168.1.70/DVWA
+
+\end{lstlisting}
+
+Cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_nikto}.
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de parámetros utilizados en Nikto}\label{tab:parametros_nikto}
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{|p{4.2cm}|p{8.5cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
+	\hline
+
+	\centering \texttt{-h http://192.168.1.70/DVWA} &
+	Define el host objetivo al cual se le van a realizar los escáneres de vulnerabilidades web mediante las pruebas automatizadas
+	\tabularnewline
+	\hline
+	\end{tabular}
+\end{table}
+
 \subsubsection{Ejecución de la prueba}
 \noindent
+
+Esta prueba se ejecutó desde la máquina atacante mediante el uso de Nikto contra la dirección IP virtual \texttt{192.168.1.70}, 
+expuesta en la interfaz WAN del firewall OPNsense. Para ello, se empleó el comando descrito en el apartado anterior, replicando el 
+comportamiento de un atacante que busca identificar vulnerabilidades y configuraciones inseguras en una aplicación web accesible desde 
+una red externa. El escaneo, presentado en la Figura~\ref{fig17}, se inició a las 19:06:50. En este contexto, el uso del comando \texttt{date} 
+permitió registrar con precisión el instante de inicio de la prueba, facilitando posteriormente el análisis de los tiempos de detección y 
+respuesta de la arquitectura de defensa en profundidad.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-17.jpeg}
+	\caption{Escaneo de vulnerabilidades Http}\label{fig17}
+\end{figure}
+
+Nikto identificó al servidor \textit{Apache/2.4.67} sobre Debian como la plataforma subyacente de la aplicación DVWA. Asimismo, reportó 
+la ausencia de cinco cabeceras de seguridad HTTP consideradas fundamentales: \textit{Referrer-Policy}, \textit{Content-Security-Policy}, 
+\textit{X-Content-Type-Options}, \textit{Permissions-Policy} y \textit{Strict-Transport-Security}. La ausencia de estas cabeceras puede 
+incrementar la superficie de ataque de la aplicación, facilitando la explotación de vulnerabilidades asociadas a la ejecución de 
+contenido no confiable, el manejo inseguro de recursos web y otros vectores de ataque dirigidos al cliente.
 
 \subsubsection{Resultados y Evidencias}
 \noindent
 
+Los resultados obtenidos durante esta prueba confirman el funcionamiento integral del ciclo de detección y respuesta implementado en la 
+arquitectura de defensa en profundidad ante un escaneo web activo.
+
+Como se evidencia en la Figura~\ref{fig18}, Suricata detectó el tráfico generado por Nikto a las 19:07:05, generando múltiples alertas asociadas a 
+la firma \textit{ET WEB\_SERVER Script tag in URI Possible Cross Site Scripting Attempt}. Dichas alertas registraron conexiones 
+provenientes de la dirección IP atacante \texttt{192.168.1.57} hacia la dirección IP objetivo \texttt{10.0.0.2} a través del puerto 80. 
+Los eventos fueron capturados en la interfaz \texttt{ens36} y procesados por el agente de Suricata, confirmando que el motor de detección 
+identificó correctamente los patrones de tráfico potencialmente malicioso generados por el escaneo web.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-18.jpeg}
+	\caption{Reconocimiento de alertas Http en Suricata}\label{fig18}
+\end{figure}
+
+Como evidencia del proceso de correlación y respuesta, la Figura~\ref{fig19} muestra que Wazuh recibió y procesó las alertas generadas por 
+Suricata a las 19:07:05.370. Posteriormente, el mecanismo de respuesta activa ordenó el bloqueo de la dirección IP atacante 
+\texttt{192.168.1.57}, incorporándola de forma automática a la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop} de OPNsense. El ataque 
+fue ejecutado a las 19:06:50, mientras que la alerta fue correlacionada y visualizada en el \textit{dashboard} de Wazuh a las 19:07:05, 
+lo que corresponde a un tiempo de detección aproximado de 15 segundos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-19.jpeg}
+	\caption{Dashboard de Wazuh con la alerta Http}\label{fig19}
+\end{figure}
+
+En la Figura~\ref{fig20} se presenta el registro de la respuesta activa ejecutada por OPNsense tras recibir la instrucción emitida por 
+Wazuh. Como resultado, la dirección IP atacante fue incorporada de forma automática a la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop}, 
+impidiendo nuevas comunicaciones provenientes del origen identificado como malicioso.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-20.jpeg}
+	\caption{Registro de respuesta activa en OPNSense}\label{fig20}
+\end{figure}
+
+Finalmente, como se evidencia en la Figura~\ref{fig21}, al intentar ejecutar nuevamente el escaneo con Nikto a las 19:09:19, la herramienta 
+reportó un fallo al establecer conexión con la dirección IP virtual de la máquina objetivo en el puerto 80 (\texttt{192.168.1.70:80}). 
+Este resultado confirma que el bloqueo aplicado por OPNsense fue efectivo, impidiendo cualquier comunicación posterior proveniente de la 
+máquina atacante hacia el servicio web expuesto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-21.jpeg}
+	\caption{Intento de Escaneo Http Posterior al Bloqueo}\label{fig21}
+\end{figure}
+
+
 \subsubsection{Análisis del ciclo de detección}
 \noindent
 
-%-------------------------------------------------------------------------------------------------------------------------------------
+El caso de prueba permitió validar el comportamiento de la arquitectura de defensa en profundidad implementada ante un escaneo web activo 
+ejecutado con Nikto sobre la aplicación DVWA. La detección fue realizada por Suricata, el cual identificó patrones de tráfico HTTP 
+asociados a actividades potencialmente maliciosas en las URI solicitadas, generando la alerta correspondiente a la firma 
+\textit{ET WEB\_SERVER Script tag in URI Possible Cross Site Scripting Attempt}, clasificada dentro de la categoría 
+\textit{Web Application Attack} con un nivel de severidad \textit{Major}.
 
+El tráfico generado durante la prueba fue capturado por Suricata a través de la interfaz \texttt{ens36} configurada en modo promiscuo, 
+permitiendo la inspección del flujo HTTP de manera paralela al procesamiento perimetral realizado por OPNsense. Posteriormente, las 
+alertas fueron enviadas al Wazuh Manager mediante el agente de Suricata, donde la regla personalizada \texttt{100007}, configurada con 
+nivel de severidad 12, activó el mecanismo de respuesta activa. Adicionalmente, el evento fue clasificado bajo la táctica 
+\textit{Initial Access} y la técnica \textit{Exploit Public-Facing Application} del framework MITRE ATT\&CK, evidenciando una correlación 
+consistente entre el comportamiento observado y las tácticas comúnmente empleadas por actores maliciosos durante las fases iniciales de 
+un ataque.
+
+El ciclo completo de detección y contención se completó en menos de dos minutos desde la identificación inicial de la actividad maliciosa 
+hasta la aplicación efectiva del bloqueo de la dirección IP atacante \texttt{192.168.1.57} en OPNsense. Todo el proceso se ejecutó de 
+forma automatizada, sin requerir intervención humana en ninguna de sus etapas, lo que evidencia la efectividad de la arquitectura de 
+defensa en profundidad implementada frente a este tipo de amenaza.
+
+El caso de prueba se clasifica como \textbf{Aprobado}, dado que el sistema detectó, correlacionó y mitigó el escaneo web de manera 
+automática, activando los mecanismos de respuesta definidos en la arquitectura. Como resultado, Nikto no pudo completar exitosamente un 
+segundo intento de reconocimiento sobre la aplicación objetivo, impidiéndose cualquier comunicación posterior desde la máquina atacante. 
+De esta manera, se cumplió satisfactoriamente el ciclo de detección, correlación y contención establecido en la metodología de validación.
+
+%-------------------------------------------------------------------------------------------------------------------------------------
 
 \subsection{Caso de Prueba 4 (CP-04) Denegación de Servicios (\DoS) hping3}
 \noindent
 
+En el ámbito de la seguridad ofensiva, la generación de tráfico malicioso constituye una técnica ampliamente utilizada para evaluar la 
+capacidad de detección y respuesta de los mecanismos de protección implementados en una infraestructura. Los ataques de inundación 
+(\textit{flood}) y el envío de paquetes especialmente construidos representan vectores recurrentes en escenarios reales, debido a su 
+capacidad para afectar la disponibilidad de los servicios, evadir configuraciones inadecuadas de los dispositivos de seguridad y 
+consumir recursos críticos de red~\cite{MITREATTACK2026}. En esta prueba, se simula un ataque de denegación de servicio 
+(\textit{Denial of Service, DoS}) mediante el envío masivo de paquetes hacia la máquina objetivo, con el propósito de verificar que la 
+arquitectura de defensa en profundidad implementada es capaz de detectar, generar alertas y ejecutar mecanismos de contención de forma 
+automatizada.
+
 \subsubsection{Objetivo de la prueba}
 \noindent
 
+Evaluar la capacidad de detección y respuesta de la arquitectura de defensa en profundidad implementada ante tráfico malicioso generado 
+contra la máquina objetivo. Para ello, se busca verificar que Suricata identifique los patrones de ataque presentes en la capa de red, 
+que Wazuh procese y correlacione los eventos generados asignando el nivel de severidad correspondiente, y que el mecanismo de respuesta 
+activa ejecute el bloqueo automatizado de la dirección IP atacante en OPNsense, completando el ciclo de detección, correlación y 
+contención definido en la metodología.
+
 \subsubsection{Herramienta Utilizada}
 \noindent
+
+Hping3 es una herramienta de código abierto orientada a la generación y manipulación de paquetes TCP/IP mediante línea de comandos. A 
+diferencia de la utilidad \textit{ping} tradicional, permite construir paquetes personalizados a nivel de protocolo, definiendo 
+parámetros como las banderas TCP, el tamaño de la carga útil (\textit{payload}), la frecuencia de envío y la interfaz de origen, entre 
+otros~\cite{Hping3Docs}. Debido a estas capacidades, es ampliamente utilizada en pruebas de penetración y ejercicios de seguridad ofensiva para simular 
+ataques de denegación de servicio, así como para evaluar el comportamiento de firewalls, sistemas de detección de intrusos y otros 
+mecanismos de protección frente a tráfico anómalo. A continuación, se presenta el comando utilizado para el desarrollo de la prueba:
+
+\begin{lstlisting}[language=bash, caption={Comando Hping3 utilizado en la prueba}, label={lst:hping3-flood}]
+
+timeout 7 hping3 -S --flood -p 80 192.168.1.70
+
+\end{lstlisting}
+
+Cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_hping3}.
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de parámetros utilizados en Hping3}\label{tab:parametros_hping3}
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{|p{4.2cm}|p{8.5cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
+	\hline
+
+	\centering \texttt{timeout 7} &
+	Limita la ejecución a 7 segundos
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-S} &
+	Establece el flag SYN en cada paquete simulando el inicio de conexión TCP
+	\tabularnewline
+	\hline
+
+	\centering \texttt{--flood} &
+	Envía los paquetes a la máxima velocidad posible sin esperar respuesta
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-p 80} &
+	Define el puerto destino HTTP, apuntando directamente al servicio web expuesto
+	\tabularnewline
+	\hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Ejecución de la prueba}
+\noindent
+
+Esta prueba se ejecutó desde la máquina atacante mediante el lanzamiento de un ataque de inundación SYN utilizando Hping3 contra la 
+dirección IP virtual \texttt{192.168.1.70}, expuesta en la interfaz WAN del firewall OPNsense. Para ello, se empleó el comando descrito 
+en el apartado anterior, replicando el comportamiento de un atacante cuyo objetivo es degradar la disponibilidad de un servicio web 
+mediante el envío masivo de paquetes TCP con la bandera SYN activada.
+
+La prueba, presentada en la Figura~\ref{fig22}, se inició a las 23:14:21 y tuvo una duración de siete segundos. Durante este intervalo, 
+Hping3 transmitió un total de 191\,274 paquetes en modo \texttt{--flood} a través de la interfaz \texttt{wlo1} de la máquina atacante. 
+Asimismo, se registró una pérdida de paquetes del 100\,\% y tiempos de \textit{round-trip} de 0.0 ms, comportamiento esperado para este 
+modo de operación, dado que la herramienta envía paquetes de forma continua sin esperar respuestas por parte del objetivo.
+
+Es importante señalar que OPNsense se encuentra configurado con reglas de filtrado que restringen el tráfico ICMP, razón por la cual no 
+resulta apropiado utilizar solicitudes de eco (\textit{ping}) para este escenario. En consecuencia, se empleó la opción \texttt{-S}, que 
+permite generar paquetes TCP SYN dirigidos al servicio expuesto, garantizando que el tráfico alcance la máquina objetivo y pueda ser 
+inspeccionado por los mecanismos de detección y respuesta implementados en la arquitectura de defensa en profundidad.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-22.jpeg}
+	\caption{Inicio de ataque DoS hacia la máquina objetivo}\label{fig22}
+\end{figure}
+
+\subsubsection{Resultados y Evidencias}
+\noindent
+
+Los resultados obtenidos durante esta prueba confirman el funcionamiento integral del ciclo de detección y respuesta implementado en la 
+arquitectura de defensa en profundidad ante un ataque de inundación SYN.
+
+Como se evidencia en la Figura~\ref{fig23}, Suricata detectó el tráfico generado por Hping3 a las 23:15:20, generando miles de alertas asociadas a 
+la firma \textit{SURICATA STREAM 3way handshake SYN resend different seq on SYN recv}. Dichas alertas fueron clasificadas dentro de la 
+categoría \textit{Generic Protocol Command Decode} con un nivel de severidad 3, registrando conexiones provenientes de la dirección IP 
+atacante \texttt{192.168.1.57} hacia la dirección IP objetivo \texttt{192.168.1.70} a través del puerto 80. Los eventos fueron capturados 
+en la interfaz \texttt{ens36}, confirmando que Suricata identificó correctamente el comportamiento anómalo asociado al ataque de 
+inundación SYN generado por Hping3.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-23.jpeg}
+	\caption{Inicio de ataque DoS hacia la máquina objetivo}\label{fig23}
+\end{figure}
+
+En la Figura~\ref{fig24} se evidencia que Wazuh recibió y correlacionó las alertas generadas por Suricata, visualizándolas en el 
+\textit{dashboard} de monitoreo. El evento fue clasificado bajo la táctica \textit{Impact} y la técnica 
+\textit{Network Denial of Service} del framework MITRE ATT\&CK, lo que demuestra una correspondencia adecuada entre el comportamiento 
+observado y la naturaleza del ataque ejecutado.
+
+Wazuh registró la alerta a las 23:14:30.388 y activó el mecanismo de respuesta activa de forma automática, ordenando el bloqueo de la 
+dirección IP atacante mediante su incorporación a la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop} de OPNsense. Considerando que el 
+ataque fue iniciado a las 23:14:21 y que la alerta fue generada a las 23:14:30, el tiempo de detección fue aproximadamente de 9 segundos, 
+cumpliendo con los criterios de respuesta establecidos para la arquitectura de defensa en profundidad.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-24.jpeg}
+	\caption{Emisión de alertas en el dashboard de Wazuh}\label{fig24}
+\end{figure}
+
+En la Figura~\ref{fig25} se evidencia la ejecución del mecanismo de respuesta activa por parte del agente de Wazuh a las 23:14:30. Como resultado, 
+la dirección IP atacante fue incorporada automáticamente a la tabla de bloqueo \texttt{\_\_wazuh\_agent\_drop} de OPNsense, permitiendo 
+la contención inmediata de la amenaza sin requerir intervención humana.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-25.jpeg}
+	\caption{Respuesta activa OPNsense}\label{fig25}
+\end{figure}
+
+Es importante destacar que, una vez aplicado el bloqueo perimetral, no se observa un cambio evidente en la salida del comando ejecutado 
+desde la máquina atacante. Este comportamiento se debe a que Hping3, al operar en modo \texttt{--flood}, no espera respuestas por parte 
+del firewall ni de la máquina objetivo, limitándose a transmitir paquetes TCP SYN de forma continua y masiva. En consecuencia, la 
+ausencia de mensajes de error o de fallos de conexión no constituye un indicador fiable de que el bloqueo no haya sido efectivo.
+
+No obstante, los paquetes SYN generados durante la prueba alcanzaron la infraestructura objetivo y fueron inspeccionados por Suricata, lo 
+que permitió la activación de las firmas de detección correspondientes y, posteriormente, la ejecución del mecanismo de respuesta activa. 
+Por tanto, la efectividad del bloqueo debe verificarse mediante los registros generados por Suricata, Wazuh y OPNsense, y no a través de 
+la salida mostrada por la herramienta atacante.
+
+\subsubsection{Análisis del ciclo de detección}
+
+El caso de prueba permitió validar el comportamiento de la arquitectura de defensa en profundidad ante un ataque de inundación SYN 
+ejecutado con Hping3. La detección fue realizada por Suricata, el cual identificó el patrón anómalo de conexiones TCP incompletas 
+característico de este tipo de ataque, generando la alerta correspondiente a la firma \textit{SURICATA STREAM 3way handshake SYN resend 
+different seq on SYN recv}. Esta firma se activó como consecuencia del envío masivo de paquetes TCP SYN con números de secuencia 
+variables, sin completar el proceso de establecimiento de conexión (\textit{three-way handshake}).
+
+El tráfico generado durante la prueba fue capturado por Suricata a través de la interfaz \texttt{ens36} configurada en modo promiscuo, 
+permitiendo la inspección del flujo TCP de manera paralela al procesamiento perimetral realizado por OPNsense. Asimismo, se evidenció que 
+el ataque fue iniciado a las 23:14:21, mientras que Wazuh correlacionó y expuso la alerta a las 23:14:30, lo que corresponde a un tiempo 
+de detección aproximado de 9 segundos. Este resultado se encuentra considerablemente por debajo del umbral crítico de 40 segundos 
+establecido en la metodología de validación.
+
+Posteriormente, el mecanismo de respuesta activa fue ejecutado de forma automática, clasificando el evento bajo la táctica \textit{Impact} 
+y la técnica \textit{Network Denial of Service} del framework MITRE ATT\&CK. Como resultado, la dirección IP atacante fue incorporada a 
+la tabla de bloqueo de OPNsense, interrumpiendo la comunicación maliciosa sin requerir intervención humana.
+
+El ciclo completo de detección, correlación y contención se completó en menos de un minuto desde el inicio del ataque hasta la aplicación 
+efectiva del bloqueo de la dirección IP atacante. Este comportamiento demuestra la capacidad de la arquitectura para responder de manera 
+autónoma frente a eventos de denegación de servicio basados en inundación de tráfico.
+
+El caso de prueba se clasifica como \textbf{Aprobado}, dado que el sistema detectó, correlacionó y mitigó el ataque de inundación SYN de 
+forma automatizada, activando los mecanismos de respuesta definidos en la arquitectura e impidiendo la continuidad del tráfico malicioso 
+hacia la máquina objetivo. De esta manera, se cumplió satisfactoriamente el ciclo de detección, correlación y contención establecido en 
+la metodología.
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{Caso de Prueba 5 (CP-05) Ataque SSH con Metasploit}
+\noindent
+
+La explotación de vulnerabilidades constituye una de las fases más críticas dentro de un ejercicio de seguridad ofensiva, ya que permite 
+al adversario pasar de las actividades de reconocimiento a la obtención de acceso o ejecución de código sobre el sistema objetivo. Los 
+\textit{frameworks} de explotación proporcionan un conjunto estructurado de herramientas y técnicas que automatizan el aprovechamiento de 
+vulnerabilidades conocidas, reduciendo la complejidad técnica y facilitando la ejecución de pruebas de seguridad 
+controladas~\cite{MITREATTACK2026, MetasploitDocs}. En esta prueba, se simula un ataque de explotación contra la máquina objetivo con el 
+propósito de verificar que la arquitectura de defensa en profundidad implementada es capaz de detectar, generar alertas y ejecutar 
+mecanismos de contención de forma automatizada.
+
+\subsubsection{Objetivo de la prueba}
+\noindent
+
+Verificar la capacidad de detección y respuesta de la arquitectura de defensa en profundidad implementada ante un intento de 
+explotación ejecutado mediante Metasploit contra la máquina objetivo. Para ello, se busca validar que Suricata identifique las firmas 
+asociadas al ataque, que Wazuh procese y correlacione los eventos generados mostrando las alertas correspondientes en el 
+\textit{dashboard}, y que el mecanismo de respuesta activa ejecute el bloqueo automatizado de la dirección IP atacante en OPNsense, 
+completando el ciclo de detección, correlación y contención definido en la metodología.
+
+\subsubsection{Herramienta Utilizada}
+\noindent
+
+Metasploit Framework es una de las plataformas de explotación de vulnerabilidades más utilizadas en el ámbito de las pruebas de 
+penetración y la seguridad ofensiva. Desarrollada en Ruby y mantenida por Rapid7, proporciona un entorno modular que integra 
+\textit{exploits}, \textit{payloads}, \textit{encoders} y módulos auxiliares, permitiendo ejecutar pruebas de explotación de forma 
+estructurada, reproducible y controlada~\cite{MetasploitDocs}. Debido a su amplia cobertura de vulnerabilidades y a su capacidad para 
+automatizar distintas fases de un ataque, es una de las herramientas más empleadas en auditorías de seguridad y ejercicios de validación 
+de controles defensivos. A continuación, se presenta el comando utilizado para el desarrollo de la prueba:
 
 \subsubsection{Ejecución de la prueba}
 \noindent
@@ -504,27 +839,16 @@ cumpliendo satisfactoriamente el ciclo de detección y respuesta definido en la 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 
-\subsection{Caso de Prueba 5 (CP-03) Ataque SSH con Metasploit}
+\subsection{Caso de Prueba 6 (CP-06) Movimiento lateral (Ataque Interno)}
 \noindent
 
-\subsubsection{Objetivo de la prueba}
-\noindent
-
-\subsubsection{Herramienta Utilizada}
-\noindent
-
-\subsubsection{Ejecución de la prueba}
-\noindent
-
-\subsubsection{Resultados y Evidencias}
-\noindent
-
-\subsubsection{Análisis del ciclo de detección}
-
-%--------------------------------------------------------------------------------------------------------------------------------------
-
-\subsection{Caso de Prueba 6 (CP-05) Movimiento lateral (Ataque Interno)}
-\noindent
+En las fases avanzadas de un ataque informático, una vez obtenido acceso inicial sobre un sistema, el adversario puede intentar expandir 
+su presencia hacia otros segmentos de la red mediante técnicas de movimiento lateral. Estas técnicas representan una amenaza 
+significativa para las infraestructuras segmentadas, ya que permiten comprometer activos adicionales y aumentar progresivamente el 
+alcance del ataque dentro del entorno objetivo~\cite{MITREATTACK2026}. En esta prueba, se simulan técnicas de movimiento lateral 
+desde una máquina previamente comprometida hacia otros sistemas del laboratorio, con el propósito de evaluar la capacidad de la 
+arquitectura de defensa en profundidad implementada para detectar, generar alertas y contener este tipo de actividad de forma 
+automatizada.
 
 \subsubsection{Objetivo de la prueba}
 \noindent
