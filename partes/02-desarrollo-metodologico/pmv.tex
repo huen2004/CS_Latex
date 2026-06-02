@@ -816,24 +816,49 @@ asociado a direcciones IP identificadas como potencialmente maliciosas.
 	\caption{Habilitación y configuración de la respuesta activa}\label{fig:fig40}
 \end{figure}
 
-Posteriormente a la adecuación de la respuesta activa en el firewall, es necesario configurar el \textit{wazuh-manager} mediante el 
-archivo \texttt{ossec.conf}, encargado de administrar y procesar todos los registros que ingresan y salen de la plataforma. En esta 
-configuración se habilita el comando denominado \texttt{firewall-drop}, el cual permite que el agente de OPNsense identificado con el ID 
-\texttt{001}, en conjunto con las reglas generadas por Suricata, emita la orden al firewall para bloquear direcciones IP sospechosas 
-durante un tiempo estimado de 300 segundos.
+Posteriormente a la adecuación del mecanismo de respuesta activa en el firewall, fue necesario configurar el archivo 
+\textit{ossec.conf} del \textit{Wazuh Manager}, responsable de administrar los eventos y registros generados por los 
+diferentes agentes de la infraestructura. Esta configuración permite que, ante la detección de eventos asociados a las 
+reglas personalizadas de Suricata, el agente de OPNsense identificado con el ID \textit{001} ejecute el comando 
+\textit{firewall-dropopnsense-fw}, correspondiente a un script alojado en el propio firewall.
 
-Este mecanismo tiene como finalidad incluir temporalmente al atacante dentro de una lista negra alojada en la tabla de direcciones IP 
-generada por el alias del agente Wazuh, la cual es interpretada por OPNsense para identificar las direcciones IP que deben ser bloqueadas 
-automáticamente.
+Mediante este mecanismo, Wazuh puede enviar instrucciones a OPNsense para bloquear automáticamente direcciones IP 
+catalogadas como sospechosas durante un período inicial de 300 segundos. Las direcciones bloqueadas son almacenadas en una 
+lista gestionada mediante un alias del firewall, la cual es consultada por OPNsense para aplicar las restricciones 
+correspondientes. Asimismo, si una dirección IP reincide en actividades potencialmente maliciosas, el tiempo de bloqueo 
+puede incrementarse progresivamente hasta alcanzar períodos de 30 minutos.
 
-En la Figura~\ref{fig:fig41} se evidencia la configuración realizada en el archivo \texttt{ossec.conf} para habilitar 
-la respuesta activa desde el \textit{wazuh-manager}. Asimismo, es cabe recalcar que, una vez aplicada esta configuración, resulta 
-indispensable reiniciar el servicio correspondiente para que los cambios surtan efecto correctamente.
+De igual forma, se definieron restricciones asociadas al nivel de severidad de las alertas que pueden desencadenar acciones 
+de respuesta activa. Para ello, únicamente se consideraron eventos con un nivel de alerta igual o superior a 8, evitando 
+que eventos informativos o de baja criticidad generen bloqueos innecesarios y reduciendo así la probabilidad de falsos 
+positivos derivados de auditorías rutinarias, actividades de monitoreo o escaneos legítimos.
+
+La Figura~\ref{fig:fig41} presenta la configuración realizada en el archivo \textit{ossec.conf} para habilitar el mecanismo de respuesta 
+activa dentro del \textit{Wazuh Manager}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{tablas-images/pmv/fig41.jpeg}
 	\caption{Configuración de respuesta activa en archivo ossec.conf}\label{fig:fig41}
+\end{figure}
+
+Finalmente, para que Wazuh pudiera interpretar correctamente los eventos generados por Suricata y procesarlos durante las 
+etapas de correlación y respuesta activa, fue necesario implementar un \textit{decoder} local personalizado. Dicho 
+\textit{decoder} fue configurado para heredar las capacidades del decodificador JSON utilizado de forma nativa por Wazuh, 
+permitiendo reconocer y extraer adecuadamente los campos contenidos en los registros enviados por Suricata.
+
+La implementación de este componente resulta fundamental dentro del flujo de procesamiento de eventos, ya que garantiza que 
+la información recibida sea interpretada correctamente antes de ser evaluada por las reglas de detección y los mecanismos 
+de respuesta activa definidos previamente. De esta manera, se evita la pérdida de información relevante y se reducen 
+posibles errores durante el análisis de los eventos de seguridad.
+
+La Figura~\ref{fig:decoders} presenta la configuración del \textit{decoder} desarrollado para habilitar la decodificación y el 
+procesamiento de los registros provenientes de Suricata dentro de la plataforma Wazuh.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{tablas-images/pmv/decoders.jpeg}
+	\caption{Creación de decoders de Suricata para Wazuh}\label{fig:decoders}
 \end{figure}
 
 La implementación de la herramienta de código abierto \SIEM Wazuh permitió el establecimiento de procesos de monitoreo continuo bajo el 
@@ -847,7 +872,7 @@ activa, se presenta en la Figura 32 un diagrama que expone de forma gráfica la 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{tablas-images/pmv/fig42.png}
+	\includegraphics[scale=0.3]{tablas-images/pmv/fig42.jpeg}
 	\caption{Diagrama de topología de red final}\label{fig:fig42}
 \end{figure}
 

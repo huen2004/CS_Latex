@@ -118,7 +118,7 @@ networks}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-3.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-3.jpeg}
 	\caption{Deshabilitación de opciones de bloqueo de tráfico de red}\label{fig3}
 \end{figure}
 
@@ -141,6 +141,54 @@ habilitar la ejecución de las pruebas y simular de manera adecuada la exposici�
 	\centering
 	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-5.jpeg}
 	\caption{Reglas creadas automáticamente para la interfaz SERVERS}\label{fig5}
+\end{figure}
+
+Adicionalmente, es importante destacar que, con el propósito de garantizar el correcto desarrollo de los escenarios de 
+validación y evidenciar las capacidades de personalización que ofrece Wazuh, se implementó un conjunto de reglas 
+personalizadas orientadas a los requerimientos específicos del entorno de pruebas. Esta configuración permitió demostrar 
+el proceso de adaptación de la plataforma a diferentes necesidades operativas y de seguridad, tal como podría ocurrir en 
+escenarios reales de implementación.
+
+En la Figura~\ref{regla1} se presentan las 4 primeras reglas personalizadas y en la Figura~\ref{regla2} las 2 siguientes 
+reglas, estas fueron desarrolladas para apoyar la ejecución de los casos de prueba descritos en las siguientes secciones. 
+Dichas reglas fueron alineadas con tácticas y técnicas del marco de referencia MITRE ATT\&CK y agrupadas bajo la categoría 
+denominada \textit{suricata, nmap, recon}, con el fin de facilitar su identificación y administración dentro de la 
+plataforma.
+
+Asimismo, es importante señalar que cada una de las reglas implementadas hereda las características del grupo de reglas de 
+Suricata y de su regla principal \textit{86601}, lo que permite mantener la consistencia en el proceso de correlación y 
+clasificación de eventos. La creación de reglas personalizadas constituye una funcionalidad relevante de Wazuh, ya que 
+posibilita ajustar la severidad de las alertas y adaptar los mecanismos de detección de acuerdo con la frecuencia, 
+criticidad o comportamiento de los eventos identificados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/regla1.jpeg}
+	\caption{Cuatro reglas personalizadas de Wazuh para efectos de las pruebas}\label{regla1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/regla2.jpeg}
+	\caption{Dos reglas personalizadas de Wazuh para efectos de las pruebas}\label{regla2}
+\end{figure}
+
+Finalmente, una configuración crítica dentro del proceso de validación correspondió a la adaptación del script encargado 
+de ejecutar las acciones de respuesta activa. Esta modificación fue necesaria debido a que Suricata envía la dirección IP 
+de origen mediante el identificador JSON \textit{src\_ip}, mientras que el script de respuesta activa de Wazuh espera 
+recibir dicho valor bajo el identificador \textit{srcip}. Esta diferencia genera inconsistencias durante la ejecución de 
+las acciones automatizadas, ya que la ausencia del campo esperado impide identificar correctamente la dirección IP 
+involucrada en el evento y, en consecuencia, evita la aplicación de la respuesta configurada.
+
+Por esta razón, fue necesario ajustar la variable utilizada por el script para alinearla con la estructura de los 
+registros generados por Suricata. Como se muestra en la Figura~\ref{variables}, esta adaptación permitió garantizar el 
+correcto funcionamiento de los mecanismos de respuesta activa implementados en el laboratorio, asegurando la ejecución de 
+las acciones definidas ante los eventos de seguridad detectados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/variables.jpeg}
+	\caption{Adaptación de variable “src\_ip” en el script opnsense-sw}\label{variables}
 \end{figure}
 
 %---------------------------------------------------------------------------------------------------------------------------------------
@@ -210,7 +258,7 @@ el comando \texttt{date} para verificar el tiempo exacto en el que inició la ej
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-6.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-6.jpeg}
 	\caption{Escaneo Inicial a la máquina objetivo}\label{fig6}
 \end{figure}
 
@@ -259,7 +307,7 @@ se presentan en la figura~\ref{fig10}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-10.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-10.jpeg}
 	\caption{Ejecución de comando Nmap posterior a la respuesta activa}\label{fig10}
 \end{figure}
 
@@ -405,7 +453,7 @@ Figura~\ref{fig13} se evidencia la alerta generada por Suricata durante la ejecu
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-13.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-13.jpeg}
 	\caption{Registros de alerta Suricata}\label{fig13}
 \end{figure}
 
@@ -434,7 +482,7 @@ defensa implementada.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-16.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-16.jpeg}
 	\caption{Intento de ataque con Hydra Posterior al Bloqueo}\label{fig16}
 \end{figure}
 
@@ -504,7 +552,7 @@ Cada parámetro cumple una función específica, tal como se describe en la Tabl
 	\centering
 	\caption{Descripción de parámetros utilizados en Nikto}\label{tab:parametros_nikto}
 	\renewcommand{\arraystretch}{1.4}
-	\begin{tabular}{|p{4.2cm}|p{8.5cm}|}
+	\begin{tabular}{|p{4.5cm}|p{8.5cm}|}
 	\hline
 	\rowcolor{gray!25}
 	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
@@ -586,7 +634,7 @@ máquina atacante hacia el servicio web expuesto.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-21.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-21.jpeg}
 	\caption{Intento de Escaneo Http Posterior al Bloqueo}\label{fig21}
 \end{figure}
 
@@ -711,7 +759,7 @@ inspeccionado por los mecanismos de detección y respuesta implementados en la a
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-22.jpeg}
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-22.jpeg}
 	\caption{Inicio de ataque DoS hacia la máquina objetivo}\label{fig22}
 \end{figure}
 
@@ -822,20 +870,186 @@ completando el ciclo de detección, correlación y contención definido en la me
 \subsubsection{Herramienta Utilizada}
 \noindent
 
-Metasploit Framework es una de las plataformas de explotación de vulnerabilidades más utilizadas en el ámbito de las pruebas de 
-penetración y la seguridad ofensiva. Desarrollada en Ruby y mantenida por Rapid7, proporciona un entorno modular que integra 
-\textit{exploits}, \textit{payloads}, \textit{encoders} y módulos auxiliares, permitiendo ejecutar pruebas de explotación de forma 
-estructurada, reproducible y controlada~\cite{MetasploitDocs}. Debido a su amplia cobertura de vulnerabilidades y a su capacidad para 
-automatizar distintas fases de un ataque, es una de las herramientas más empleadas en auditorías de seguridad y ejercicios de validación 
-de controles defensivos. A continuación, se presenta el comando utilizado para el desarrollo de la prueba:
+Metasploit Framework es una de las plataformas de explotación de vulnerabilidades más utilizadas en el ámbito de las 
+pruebas de penetración y la seguridad ofensiva. Desarrollada en Ruby y mantenida por Rapid7, proporciona un entorno modular 
+que integra \textit{exploits}, \textit{payloads}, \textit{encoders} y módulos auxiliares, permitiendo ejecutar pruebas de 
+explotación de forma estructurada, reproducible y controlada~\cite{MetasploitDocs}. Debido a su amplia cobertura de 
+vulnerabilidades y a su capacidad para automatizar distintas fases de un ataque, es una de las herramientas más empleadas 
+en auditorías de seguridad y ejercicios de validación de controles defensivos.
+
+Para esta prueba se utilizó el módulo \texttt{php\_cgi\_arg\_injection} de Metasploit Framework con el objetivo de explotar 
+una vulnerabilidad presente en la aplicación objetivo y obtener acceso remoto al sistema comprometido. A continuación, se 
+presenta la secuencia de comandos empleada durante la ejecución de la prueba:
+
+\begin{lstlisting}[language=bash, caption={Comandos utilizados en Metasploit Framework}]
+
+use exploit/multi/http/php_cgi_arg_injection
+set RHOSTS 192.168.1.70
+set RPORT 80
+set TARGETURI /DVWA
+set LHOST 192.168.1.57
+run
+
+\end{lstlisting}
+
+Cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_metasploit}.
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de parámetros utilizados en Metasploit}\label{tab:parametros_metasploit}
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{|p{4.9cm}|p{8.5cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
+	\hline
+
+	\centering \texttt{use exploit/multi/http/php\_cgi\_arg\_injection} &
+	Carga el módulo de explotación almacenado en la librería de Metasploit, el cual aprovecha una vulnerabilidad en la 
+	ejecución de PHP-CGI que permite inyectar argumentos mediante peticiones HTTP especialmente construidas.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{set RHOSTS 192.168.1.70} &
+	Define la dirección IP de la máquina objetivo donde se encuentra desplegado el servicio web que será objeto de la 
+	explotación.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{set RPORT 80} &
+	Especifica el puerto remoto de destino (80), correspondiente al servicio web expuesto y permitido por las políticas de 
+	filtrado del firewall del laboratorio.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{set TARGETURI /DVWA} &
+	Define la ruta de la aplicación web en el servidor objetivo, indicando al módulo de explotación la ubicación donde debe 
+	buscar el recurso potencialmente vulnerable.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{set LHOST 192.168.1.57} &
+	Define la dirección IP de la máquina atacante, utilizada por el objetivo comprometido para establecer la conexión de 
+	retorno hacia el atacante.
+	\tabularnewline
+	\hline
+
+	\centering \texttt{run} &
+	Ejecuta las instrucciones anteriormente realizadas.
+	\tabularnewline
+	\hline
+	\end{tabular}
+\end{table}
 
 \subsubsection{Ejecución de la prueba}
 \noindent
 
+Esta prueba se ejecutó desde la máquina atacante mediante el uso de Metasploit Framework contra la dirección IP virtual 
+\texttt{192.168.1.70}, expuesta en la interfaz WAN del firewall OPNsense, se puede evidanciar en la Figura~\ref{fig26}. 
+Para ello, se empleó la secuencia de comandos descrita en el apartado anterior, replicando el comportamiento de un atacante 
+que busca explotar de forma automatizada una vulnerabilidad presente en una aplicación web accesible desde una red externa.
+
+El ataque, presentado en la Figura~\ref{fig27}, se orientó a la explotación de la vulnerabilidad 
+\texttt{php\_cgi\_arg\_injection} sobre la ruta \texttt{/DVWA}, dirigiendo las solicitudes exclusivamente al puerto 80 del 
+servidor objetivo. Como resultado, el módulo de explotación completó su ejecución sin lograr establecer una sesión 
+interactiva con el sistema comprometido. Este comportamiento sugiere que los mecanismos de protección implementados en la 
+infraestructura, incluyendo los controles perimetrales y las capacidades de detección y respuesta activa, limitaron el 
+éxito de la explotación y evitaron el establecimiento de una conexión remota persistente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{tablas-images/pruebas/vali-26.jpeg}
+	\caption{Máquina atacante expuesta a la interfaz WAN del firewall OPNsense}\label{fig26}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-27.jpeg}
+	\caption{Ejecución de comandos en Metasploit}\label{fig27}
+\end{figure}
+
 \subsubsection{Resultados y Evidencias}
 \noindent
 
+Los resultados obtenidos durante esta prueba confirman el funcionamiento completo de la cadena de detección y respuesta 
+automatizada de la infraestructura ante un intento de explotación activa mediante HTTP.
+
+Como se evidencia en la Figura~\ref{fig28}, Suricata detectó el tráfico malicioso generado por el exploit de Metasploit exactamente 
+a las 09:14:03.374 a.\,m. El motor de inspección profunda de paquetes identificó múltiples firmas de criticidad 
+\textit{Major}, asociadas a la inyección de argumentos de configuración web, disparando alertas bajo las firmas 
+\textit{ET WEB SERVER PHP code Injection in HTTP POST}, \textit{ET WEB SERVER auto\_prepend\_file PHP config option in URI} 
+y \textit{ET WEB SERVER Generic PHP Remote File Include}. 
+
+Asimismo, se registró el flujo de red originado desde la dirección IP atacante \texttt{192.168.1.57} hacia la dirección IP 
+interna del servidor \texttt{10.0.0.2}, utilizando el puerto web estándar \texttt{80} a través de la interfaz 
+\texttt{ens36}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-28.jpeg}
+	\caption{Detección de tráfico malicioso por Suricata}\label{fig28}
+\end{figure}
+
+Como evidencia de la centralización y correlación, en la Figura~\ref{fig29} se observa que el gestor de Wazuh recibió las 
+alertas provenientes de Suricata y, de forma casi inmediata, a las 09:14:05 a.\,m., ejecutó la directiva de respuesta 
+activa.
+
+El módulo ordenó de manera autónoma el bloqueo de la dirección IP atacante expuesta en la interfaz WAN 
+(\texttt{192.168.1.57}), comunicándose con el proceso \texttt{opnsense-fw} e inyectando dicha dirección en la tabla de 
+bloqueos dinámicos del firewall.
+
+Al comparar el instante en que el tráfico malicioso alcanzó el sensor (09:14:03 a.\,m.) con el momento de ejecución del 
+bloqueo en el firewall (09:14:05 a.\,m.), se evidencia un tiempo de respuesta automática de tan solo dos segundos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-29.jpeg}
+	\caption{Emisión de alertas en el dashboard de Wazuh}\label{fig29}
+\end{figure}
+
+En la Figura~\ref{fig30} se presenta la evidencia recolectada desde la consola de OPNsense, donde se verifica el registro 
+de la regla dinámica generada por Wazuh y la inclusión de la dirección IP del contenedor Parrot en la tabla de bloqueo 
+\texttt{\_\_wazuh\_agent\_drop}. Esta acción confirma la correcta aplicación de la respuesta activa sobre el firewall, 
+interrumpiendo de manera efectiva cualquier intento de comunicación proveniente del origen malicioso a nivel de red.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-30.jpeg}
+	\caption{Respuesta activa ejecutada en Opnsense}\label{fig30}
+\end{figure}
+
+Finalmente, con el propósito de evaluar el estado del entorno tras la ejecución de la respuesta activa y el bloqueo 
+perimetral, se procedió a relanzar el comando \texttt{run} desde Metasploit Framework. Como se observa en la 
+Figura~\ref{fig31}, la herramienta desplegó el mensaje \texttt{[*] Started reverse TCP handler on 192.168.1.57:4444}, 
+tras lo cual la consola permaneció en un estado de espera indefinida, sin evidenciar progreso alguno en el proceso de 
+explotación.
+
+Este comportamiento confirma la efectividad de la regla de bloqueo aplicada por OPNsense, la cual descarta el tráfico 
+proveniente de la dirección IP atacante. Como consecuencia, al no recibir respuesta alguna desde el servidor objetivo 
+(\texttt{192.168.1.70:80}), el exploit no logra establecer comunicación con el servicio vulnerable ni completar las etapas 
+posteriores de la intrusión, interrumpiendo de forma efectiva la cadena de ataque.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{tablas-images/pruebas/vali-31.jpeg}
+	\caption{Relanzamiento de comando Run}\label{fig31}
+\end{figure}
+
 \subsubsection{Análisis del ciclo de detección}
+
+El caso de prueba permitió validar el comportamiento de la arquitectura de defensa en profundidad ante un intento de 
+explotación activa ejecutado mediante Metasploit Framework. Suricata detectó patrones asociados a la inyección de 
+directivas web dentro del flujo HTTP, generando alertas bajo las firmas 
+\textit{ET WEB SERVER PHP code Injection in HTTP POST}, \textit{ET WEB SERVER auto\_prepend\_file PHP config option in URI} 
+y \textit{ET WEB SERVER Generic PHP Remote File Include}. El tráfico fue capturado a través de la interfaz \texttt{ens36} 
+en modo promiscuo y correlacionado por Wazuh, que clasificó automáticamente el evento según MITRE ATT\&CK dentro de la 
+táctica \textit{Initial Access} y la técnica \textit{Exploit Public-Facing Application (T1190)}.
+
+De acuerdo con los registros obtenidos, el ataque fue detectado a las 09:14:03 a.,m. y la acción de mitigación se ejecutó 
+a las 09:14:05 a.,m., alcanzando un tiempo de detección y respuesta de dos segundos, valor ampliamente inferior al umbral 
+de 40 segundos definido en la metodología. En consecuencia, el caso de prueba se clasifica como \textbf{Aprobado}, ya que 
+la arquitectura detectó, correlacionó y bloqueó automáticamente el intento de explotación, impidiendo el establecimiento 
+de una sesión \textit{Meterpreter} y validando el ciclo completo de detección y respuesta propuesto.
 
 %--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -853,17 +1067,246 @@ automatizada.
 \subsubsection{Objetivo de la prueba}
 \noindent
 
+Simular técnicas de movimiento lateral desde un sistema previamente comprometido dentro del laboratorio, con el fin de 
+verificar que Suricata detecte el tráfico anómalo entre segmentos de red, que Wazuh correlacione y centralice las alertas 
+generadas, y que la respuesta activa ejecute el bloqueo automático en OPNsense, validando el ciclo completo de detección y 
+contención ante una amenaza interna.
+
 \subsubsection{Herramienta Utilizada}
 \noindent
+
+Para esta prueba se utilizaron dos herramientas ejecutadas desde el host previamente comprometido (\texttt{10.0.0.2}). 
+En primer lugar, se empleó Nmap para identificar los servicios y puertos expuestos en el segmento de red LAN, simulando 
+actividades de reconocimiento interno asociadas al movimiento lateral. Posteriormente, se utilizó Hydra como herramienta 
+de fuerza bruta contra servicios de autenticación, con el objetivo de emular un intento de acceso lateral desde un sistema 
+comprometido dentro de la red interna. El comando utilizado para la fase de reconocimiento fue el siguiente:
+
+\begin{lstlisting}[language=bash]
+
+nmap -sV 172.16.0.10
+
+hydra -l root -P ~/wordlist_lateral.txt 172.16.0.10 ssh -t 4
+
+\end{lstlisting}
+
+Cada parámetro cumple una función específica, tal como se describe en la Tabla~\ref{tab:parametros_movimiento_lateral}.
+
+\begin{table}[H]
+	\centering
+	\caption{Descripción de parámetros utilizados en Movimiento Lateral}\label{tab:parametros_movimiento_lateral}
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{|p{4.2cm}|p{8.5cm}|}
+	\hline
+	\rowcolor{gray!25}
+	\centering \textbf{Parámetro} & \centering \textbf{Descripción} \tabularnewline
+	\hline
+
+	\centering \texttt{-sV 172.16.0.10} &
+	Detecta versiones de los servicios corriendo en los puertos abiertos
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-l miguelangelgarcia} &
+	Especifica el usuario de la máquina a ser atacada
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-P ~/wordlist\_lateral\.txt} &
+	Diccionario de contraseñas personalizado utilizado
+	\tabularnewline
+	\hline
+
+	\centering \texttt{ssh} &
+	Protocolo Atacado
+	\tabularnewline
+	\hline
+
+	\centering \texttt{-t 4} &
+	Establece 4 tareas paralelas para el ataque
+	\tabularnewline
+	\hline
+	\end{tabular}
+\end{table}
 
 \subsubsection{Ejecución de la prueba}
 \noindent
 
+La prueba de movimiento lateral fue ejecutada desde el host previamente comprometido \texttt{10.0.0.2}, simulando el 
+comportamiento de un atacante que, tras obtener acceso inicial a un sistema interno, intenta expandirse hacia otros 
+activos de la red.
+
+Como se observa en la Figura~\ref{fig32}, la fase de reconocimiento interno inició a las 12:11:19 p.,m. mediante la 
+ejecución de Nmap, con el propósito de identificar los servicios disponibles en el segmento de red. El escaneo reveló el 
+puerto \texttt{22/TCP} abierto, asociado al servicio \textit{OpenSSH 10.0p2}. Posteriormente, como se evidencia en la 
+Figura~\ref{fig33}, a las 12:11:40 p.,m. el reconocimiento se extendió hacia la dirección \texttt{172.16.0.12}, donde se 
+identificaron los puertos \texttt{22/TCP} (SSH) y \texttt{443/TCP} (HTTPS), alojados sobre un servidor Ubuntu con Wazuh. 
+Estos resultados permitieron al atacante mapear los servicios expuestos y seleccionar potenciales objetivos para continuar 
+el movimiento lateral dentro de la infraestructura.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-32.jpeg}
+	\caption{Ejecución de escaneo de puertos con Nmap hacia Suricata}\label{fig32}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-33.jpeg}
+	\caption{Ejecución de escaneo de puertos hacia Wazuh}\label{fig33}
+\end{figure}
+
+Finalmente, como parte de la fase de movimiento lateral, se ejecutó un ataque de fuerza bruta dirigido contra un servicio 
+de autenticación interno. Como se observa en la Figura~\ref{fig34}, a las 12:13:54 p.,m. se lanzó la herramienta Hydra contra el 
+servicio SSH del host \texttt{172.16.0.10}, utilizando el diccionario \texttt{\textasciitilde/wordlist\_lateral.txt} para 
+el usuario \texttt{miguelangelgarcia}. La ejecución finalizó a las 12:14:01 p.,m., identificando las credenciales válidas 
+\texttt{miguelangelgarcia:grid\_1234}.
+
+Este resultado demuestra la viabilidad de un escenario de movimiento lateral dentro de la infraestructura, en el que un 
+atacante con acceso previo a un sistema comprometido logra obtener credenciales válidas y potencialmente extender su 
+control hacia otros activos de la red interna.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-34.jpeg}
+	\caption{Ejecución del ataque de fuerza bruta}\label{fig34}
+\end{figure}
+
 \subsubsection{Resultados y Evidencias}
 \noindent
 
+Los resultados obtenidos validan la capacidad de la arquitectura para inspeccionar, correlacionar y generar alertas ante 
+actividades maliciosas en el tráfico lateral de la red interna. Asimismo, evidencian la capacidad de monitorear amenazas 
+entre segmentos sin afectar las políticas de protección perimetral ni la disponibilidad de los servicios legítimos.
+
+Como se observa en la Figura~\ref{fig35}, Suricata detectó en tiempo real los patrones de tráfico asociados al movimiento lateral. 
+A las 12:12:29 p.,m. identificó actividades de reconocimiento interno, activando la firma 
+\textit{ET SCAN Potential SSH Scan OUTBOUND}. Posteriormente, durante la ejecución del ataque de fuerza bruta con Hydra a 
+las 12:13:54 p.,m., registró múltiples conexiones TCP consecutivas hacia el host \texttt{172.16.0.10} sobre el puerto 
+\texttt{22/TCP}, generando la alerta \textit{ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack}, 
+asociada a intentos de autenticación masiva contra servicios SSH.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-35.jpeg}
+	\caption{Ejecución del ataque de fuerza bruta}\label{fig35}
+\end{figure}
+
+Como se evidencia en la Figura~\ref{fig36}, Wazuh centralizó y correlacionó los eventos generados por Suricata con los registros de 
+auditoría del servicio SSH (\texttt{sshd-session}) a las 12:14:02 p.,m., asociándolos automáticamente con las tácticas 
+\textit{Credential Access} y \textit{Lateral Movement} del marco MITRE ATT\&CK.
+
+No obstante, durante el procesamiento de la respuesta activa, a las 12:13:57 p.,m., el módulo \textit{Active Response} 
+registró el mensaje \texttt{Skipping internal asset 10.0.0.2 - potential Suricata to\_client false positive}, tal como se 
+muestra en la Figura~\ref{fig37}. Este comportamiento evidencia la aplicación de una política de protección para activos 
+internos, diseñada para evitar bloqueos automáticos sobre sistemas considerados legítimos dentro de la infraestructura.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-36.jpeg}
+	\caption{Emisión de alertas en el dashboard de Wazuh}\label{fig36}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-37.jpeg}
+	\caption{Respuesta activa ejecutada en Opnsense}\label{fig37}
+\end{figure}
+
+Como se observa en el análisis de código presentado en la Figura~\ref{fig38}, este comportamiento se debe a que la dirección IP 
+\texttt{10.0.0.2} se encuentra definida explícitamente dentro del arreglo \texttt{internal\_whitelist = ['10.0.0.2']} 
+del script de respuesta activa \texttt{opnsense-fw}. Esta configuración fue incorporada para evitar bloqueos automáticos 
+derivados de posibles falsos positivos asociados al tráfico clasificado como \textit{to\_client} durante las pruebas de 
+validación.
+
+Asimismo, esta política permite mantener la visibilidad de los eventos dentro del SIEM sin afectar la continuidad 
+operativa de los activos internos considerados legítimos, garantizando el monitoreo de actividades potencialmente 
+sospechosas sin interrumpir el funcionamiento normal de la infraestructura.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-38.jpeg}
+	\caption{Script encargado de ejecutar la respuesta activa (opnsense-fw)}\label{fig38}
+\end{figure}
+
+Con el propósito de evaluar el comportamiento de la arquitectura sin las excepciones definidas para activos internos, se 
+procedió a eliminar temporalmente la entrada correspondiente de la lista blanca (\texttt{internal\_whitelist}) y relanzar 
+el escenario de movimiento lateral. Como se observa en la Figura~\ref{fig39}, al detectarse el nuevo patrón de ataque a las 
+12:25:14 p.,m., Wazuh procesó el evento y ejecutó de forma inmediata la directiva de respuesta activa, enviando la 
+instrucción correspondiente al script \texttt{opnsense-fw} desplegado en el firewall OPNsense.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-39.jpeg}
+	\caption{Emisión de alertas en Wazuh}\label{fig39}
+\end{figure}
+
+La efectividad de la medida de contención se confirma mediante los registros presentados en la Figura~\ref{fig40}. A las 
+12:25:14 p.,m., Wazuh ejecutó la respuesta activa e incorporó la dirección IP \texttt{10.0.0.2} a la lista dinámica de 
+bloqueo \texttt{\_\_wazuh\_agent\_drop} del firewall OPNsense. Posteriormente, a las 12:25:18 p.,m., los registros 
+\texttt{filterlog} evidenciaron el descarte de los paquetes TCP originados desde dicha dirección y dirigidos al host 
+\texttt{172.16.0.10} sobre el puerto \texttt{22/TCP}.
+
+Estos resultados demuestran que el mecanismo de respuesta activa logró aplicar la medida de contención en un intervalo 
+aproximado de cuatro segundos desde la generación de la alerta, interrumpiendo de forma efectiva la comunicación asociada 
+al intento de movimiento lateral.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/vali-40.jpeg}
+	\caption{Respuesta activa ejecutada en Opnsense}\label{fig40}
+\end{figure}
+
+La aplicación de la medida de contención tuvo un efecto inmediato sobre la actividad del atacante. Como se observa en la 
+Figura~\ref{fig41}, durante la segunda ejecución de Hydra, iniciada a las 12:25:12 p.,m., la herramienta perdió la 
+capacidad de establecer comunicación con el servicio objetivo debido a las reglas dinámicas de bloqueo aplicadas por 
+OPNsense sobre la dirección IP de origen.
+
+Como resultado, la ejecución finalizó a las 12:26:48 p.,m. sin identificar credenciales válidas, reportando el mensaje 
+\texttt{0 valid password found}. Este comportamiento confirma que la respuesta activa interrumpió eficazmente el intento 
+de fuerza bruta, impidiendo la continuidad del movimiento lateral dentro de la red interna.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/vali-41.jpeg}
+	\caption{Ejecución de Hydra con bloqueo de IP activo}\label{fig41}
+\end{figure}
+
 \subsubsection{Análisis del ciclo de detección}
+
+El caso de prueba permitió validar el comportamiento de la arquitectura de defensa en profundidad ante un escenario de 
+movimiento lateral y ataque de fuerza bruta sobre servicios SSH. La detección fue realizada de manera conjunta por 
+Suricata y Wazuh, los cuales identificaron actividades de reconocimiento interno, múltiples intentos de autenticación y 
+conexiones consecutivas hacia activos de la red. Los eventos fueron correlacionados por el SIEM y clasificados conforme al 
+marco MITRE ATT\&CK dentro de la táctica \textit{Credential Access} y la técnica 
+\textit{Brute Force: Password Guessing (T1110.001)}.
+
+Durante la primera ejecución del ataque, la respuesta activa no fue aplicada debido a la presencia de la dirección IP 
+\texttt{10.0.0.2} en la lista de exclusión \texttt{internal\_whitelist}, una medida orientada a preservar la disponibilidad 
+de activos internos considerados legítimos. Posteriormente, tras remover esta excepción y relanzar el escenario, Wazuh 
+ejecutó la respuesta activa a las 12:25:14 p.,m., alcanzando un tiempo de respuesta de dos segundos, valor ampliamente 
+inferior al umbral de 40 segundos definido en la metodología.
+
+Los registros de OPNsense confirmaron el bloqueo automático del origen atacante y el descarte del tráfico dirigido al 
+servicio SSH del host objetivo. En consecuencia, el caso de prueba se clasifica como \textbf{Aprobado}, ya que la 
+arquitectura detectó, correlacionó y contuvo de forma automatizada el intento de movimiento lateral, impidiendo su 
+propagación hacia otros activos de la red interna y validando el ciclo completo de detección y respuesta.
+
 
 \section{Conclusiones de la validación}
 \noindent
+
+Los resultados obtenidos durante la fase de validación evidencian la capacidad de la arquitectura propuesta para detectar, 
+correlacionar y contener incidentes de seguridad mediante la integración de Wazuh, Suricata y OPNsense. Los diferentes 
+escenarios evaluados demostraron un funcionamiento coordinado entre los mecanismos de monitoreo, análisis y respuesta, 
+permitiendo la identificación oportuna de actividades asociadas a reconocimiento, explotación de vulnerabilidades y 
+movimiento lateral.
+
+Asimismo, las pruebas realizadas confirmaron la efectividad del mecanismo de respuesta activa para aplicar medidas de 
+contención automatizadas, así como la flexibilidad de la arquitectura para adaptar su comportamiento mediante políticas de 
+exclusión y bloqueo de activos. La correlación de eventos bajo el marco MITRE ATT\&CK facilitó la contextualización de los 
+incidentes y el seguimiento de las diferentes etapas del ataque.
+
+En conjunto, los resultados muestran que la arquitectura proporciona capacidades de monitoreo continuo, respuesta 
+automatizada y trazabilidad de eventos, manteniendo en todos los casos tiempos de detección y mitigación inferiores al 
+umbral establecido en la metodología de validación.
 
