@@ -180,7 +180,7 @@ recibir dicho valor bajo el identificador \textit{srcip}. Esta diferencia genera
 las acciones automatizadas, ya que la ausencia del campo esperado impide identificar correctamente la dirección IP 
 involucrada en el evento y, en consecuencia, evita la aplicación de la respuesta configurada.
 
-Por esta razón, fue necesario ajustar la variable utilizada por el script para alinearla con la estructura de los 
+Debido a lo anterior, fue necesario ajustar la variable utilizada por el script para alinearla con la estructura de los 
 registros generados por Suricata. Como se muestra en la Figura~\ref{variables}, esta adaptación permitió garantizar el 
 correcto funcionamiento de los mecanismos de respuesta activa implementados en el laboratorio, asegurando la ejecución de 
 las acciones definidas ante los eventos de seguridad detectados.
@@ -189,6 +189,41 @@ las acciones definidas ante los eventos de seguridad detectados.
 	\centering
 	\includegraphics[scale=0.3]{tablas-images/pruebas/variables.jpeg}
 	\caption{Adaptación de variable “src\_ip” en el script opnsense-sw}\label{variables}
+\end{figure}
+
+\subsection{Entornos de ejecución de pruebas}
+\noindent
+
+La ejecución de las pruebas se va a realizar sobre dos entornos Linux diferentes. El primero corresponde a OpenSUSE 
+Tumbleweed, un sistema operativo orientado a la defensa y prevención de riesgos cibernéticos. Por otro lado, se utilizó un 
+contenedor con el sistema operativo ParrotOS, ejecutado mediante Docker sobre el OpenSUSE mencionado, debido a que este no 
+dispone en sus repositorios de herramientas desarrolladas para gestionar ataques dirigidos. Sin embargo, ParrotOS, al ser 
+un sistema operativo desarrollado para realizar pruebas de penetración (\textit{pentesting}), sí incorpora las herramientas 
+necesarias para la ejecución de las pruebas propuestas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/ter-parrot.jpeg}
+	\caption{Entorno de ejecución de pruebas con ParrotOS}\label{ter-parrot}
+\end{figure}
+
+Por otra parte, para realizar pruebas o utilizar herramientas que atenten contra la integridad de una página web, se hizo 
+uso de una aplicación denominada \textit{Damn Vulnerable Web Application} (DVWA). Como su nombre lo indica, esta aplicación 
+fue diseñada para ser deliberadamente vulnerable y cuenta con diferentes niveles de dificultad, que van desde bajo hasta 
+imposible. Su propósito es facilitar la realización de pruebas de seguridad; por ello, se utilizó para ejecutar pruebas de 
+vulnerabilidades en la capa de aplicación web y simular un servicio expuesto dentro de la infraestructura.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{tablas-images/pruebas/DVWA-1.jpeg}
+	\caption{Inicio de la página de la Aplicación DVWA}\label{dvwa-bajo}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{tablas-images/pruebas/DVWA-2.jpeg}
+	\caption{Nivel de seguridad de la página de la Aplicación DVWA }\label{dvwa-medio}
 \end{figure}
 
 %---------------------------------------------------------------------------------------------------------------------------------------
